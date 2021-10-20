@@ -1,0 +1,51 @@
+<div class="right_col" role="main">
+    <div class="">
+
+    <p class="toolbar">
+        <a class="create btn btn-success" id="create-rec" href="javascript:">Add New</a>
+    </p>
+    <table id="classTable" class="display" cellspacing="0" data-toolbar=".toolbar" data-query-params="queryParams" data-pagination="true"
+        data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+        <thead> <tr> <th data-field="id" data-sortable="true" data-visible="false">ID</th><th data-field="commodity_code" data-sortable="true">Commodity Code</th><th data-field="description" data-sortable="true">Description</th><th data-field="actions" data-searchable="false">Action</th></tr></thead>
+        <tfoot> <tr>  <th class="hidden">ID</th><th>Commodity Code</th><th>Description</th><th>Action</th></tr></tfoot>
+    </table>
+</div>
+</div>
+
+<!-- Bootstrap modal -->
+<div class="modal fade" id="modal_form" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Commodity Form</h3>
+            </div>
+            <div class="modal-body form">
+                <form id="form" class="form-horizontal" data-toggle="validator">
+                    <input type="hidden" value="" name="id" />
+                    <div class="form-body"> <div class="form-group">  <label class="control-label col-md-3">Commodity Code</label><div class="col-md-9"> <input name="commodity_code" placeholder="Commodity Code" class="form-control" type="text" required><span class="help-block"></span> </div> </div><div class="form-group">  <label class="control-label col-md-3">Description</label><div class="col-md-9"> <input name="description" placeholder="Description" class="form-control" type="text" required><span class="help-block"></span> </div> </div></div><div class="modal-footer">
+                        <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- End Bootstrap modal -->
+<!-- /page content -->
+
+<!-- footer content -->
+<footer>
+  <div class="pull-right">
+    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+  </div>
+  <div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
+</div>
+</div>

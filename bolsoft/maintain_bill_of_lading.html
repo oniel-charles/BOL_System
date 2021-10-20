@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bill of Lading Processing </title>
+  <link rel="icon" href="./img/app_icon.ico">
+
+  <!-- Bootstrap -->
+  <!--    <link href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  -->
+  <!-- Font Awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+  <!-- Font Awesome -->
+  <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+  <!-- iCheck -->
+  <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+  <!-- bootstrap-daterangepicker -->
+  <link href="./css/datepicker.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" />
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
+  <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+  <!-- Custom Theme Style -->
+  <link href="./build/css/custom.css" rel="stylesheet">
+  <style>
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:hover {
+      box-shadow: inset 0 0 0 0 rgba(0, 0, 0, .4), -2px -3px 5px -2px rgba(0, 0, 0, .4);
+    }
+
+    .address-width {
+      max-width: 200px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title">
+              <img src="./img/company_icon.ico" />
+              <span id=glo_company_name></span>
+            </a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Welcome,</span>
+              <h2 class="user_fullname_disaplay">Active User</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a>
+                    <i class="fa fa-home"></i> Home
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="/home/main">Dashboard</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-cogs"></i> Maintenance
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_vessel.html">Vessel</a>
+                    </li>
+                    <li>
+                      <a href="maintain_port.html">Port</a>
+                    </li>
+                    <li>
+                      <a href="maintain_country.html">Country</a>
+                    </li>
+                    <li>
+                      <a href="maintain_currency.html">Currency</a>
+                    </li>
+                    <li>
+                      <a href="maintain_package.html">Package</a>
+                    </li>
+                    <li>
+                      <a href="maintain_commodity.html">Commodity</a>
+                    </li>
+                    <li>
+                      <a href="maintain_container_size_type.html">Container Size Type</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-list-alt"></i> Charges
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_charges.html">Charge Item</a>
+                    </li>
+                    <li>
+                      <a href="maintain_sur_charge.html">Sur Charge</a>
+                    </li>
+                    <li>
+                      <a href="maintain_gct_rate.html">GCT Rate</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-dollar"></i> Billing
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_receipt.html">Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_order.html">Order</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-anchor"></i> Manifest Processing
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_voyage.html">Voyage</a>
+                    </li>
+                    <li>
+                      <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                    </li>
+                    <li>
+                      <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-bar-chart"></i> Reports
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                    </li>
+                    <li>
+                      <a href="maintain_gct_report.html">GCT Report</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+              <a id="menu_toggle">
+                <i style="font-size:16px" class="fa fa-bars"></i>
+              </a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-left">
+              <li class="">
+                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                  aria-expanded="false">
+                  <span style="font-size: 15px;font-weight:bold;color:#73879C;"> Bill Of Lading</span>
+                </a>
+
+              </li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="images/img.jpg" alt="">
+                  <span class="user_fullname_disaplay">Active User</span>
+                  <span class=" fa fa-angle-down"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                  <li>
+                    <a href="javascript:;"> Profile</a>
+                  </li>
+                  <li>
+                    <a href="javascript:passwordChangeRequest()">
+                      <i class="fa fa-lock pull-right"></i> Change Password</a>
+
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:displayHelp();">Help</a>
+                  </li>
+                  <li>
+                    <a href="javascript:authenticateUser()">
+                      <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li role="presentation" class="dropdownx">
+                <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                  <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="loader"></div>
+      <div class="right_col" role="main">
+
+
+        <div class="">
+
+          <div id="toolbar">
+            <div class="form-inline" role="form">
+              <div class="form-group">
+                <a class="create btn btn-success" onclick="newBillOfLading()">Add New</a>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Vessel</label>
+              </div>
+              <div class="form-group">
+                <select id="vessel" onchange="loadVoyageSelect()" data-live-search="true" class=" load-selectpicker  form-control" data-path="./app/vessel/select"></select>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Voyage</label>
+              </div>
+              <div class="form-group">
+                <select id="voyage" onchange="loadManifestTable()" class=" load-select form-control"></select>
+              </div>
+              <div class="form-group" style="padding-left:30px;">
+                
+                  <div class="btn-group">
+                    <button data-toggle="dropdown" class="btn  btn-info dropdown-toggle" type="button"> 
+                            <i class="fa fa-list-alt"></i> Apply Charges <span class="caret"></span> </button>
+                    <ul class="dropdown-menu" id="form-list">
+                      <li><a href="javascript:applySpecificCharge()">Apply Specific Charge</a>
+                      </li>
+                      <li><a href="javascript:generateCharges();">Generate Charge</a>
+                      </li>
+                    </ul>
+                  </div>
+                    <div class="btn-group">
+                      <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"> 
+                              <i class="fa fa-list-alt"></i> Manifest <span class="caret"></span> </button>
+                      <ul class="dropdown-menu" id="form-list">
+                        <li><a href="javascript:printManifest();">Print Default Manifest</a>
+                        </li>
+                        <li><a href="javascript:printCleanManifest();">Print Clean Manifest</a>
+                        </li>
+                        <li><a href="javascript:printChargesManifest();">Print Charges Manifest</a>
+                        </li>  
+                        <li><a href="javascript:printDoorToDoorManifest();">Print Doo-to-Door Manifest</a>
+                        </li>
+                        <li><a href="javascript:printPreClearManifest();">Print Pre-Clearance Manifest</a>
+                        </li>
+                        <li><a href="javascript:printLocalPreClearManifest();">Print Local Pre-Clearance Manifest</a>
+                        </li>
+                        <li><a href="javascript:printAllBillofLading();">Print All Bills of Lading</a>
+                        </li>                        
+                      </ul>
+                    </div>
+              </div>
+            </div>
+          </div>
+          <table id="classTable" class="display" cellspacing="0" data-toolbar="#toolbar" data-query-params="queryParams" data-pagination="true"
+            data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+            <thead>
+              <tr>
+                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                <th data-field="bill_of_lading_number" data-sortable="true"> Bill Of Lading Number</th>
+                <th data-field="consignee_name" data-sortable="true"> Consignee</th>
+                <th data-field="consignee_address" data-class="address-width" data-sortable="true">Consignee Address</th>
+                <th data-formatter="createBlActionButtons" data-searchable="false">Action</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th class="hidden">ID</th>
+                <th> Bill Of Lading Number</th>
+                <th>Consignee Name</th>
+                <th>Consignee Address</th>
+                <th>Action</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- Bootstrap modal style="z-index:1041" -->
+      <div class="modal fade" id="modal_form" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 class="modal-title">Bill Of Lading Form</h3>
+            </div>
+            <div class="modal-body form">
+              <form id="form" class="form-horizontal" data-toggle="validator">
+                <input type="hidden" value="" id="id" />
+                <div class="form-body">
+                  <div class="container">
+                    <ul class="nav nav-tabs">
+                      <li role="presentation" class="active">
+                        <a id="bolinfotab" href="#bolinfo" data-toggle="tab" aria-controls="bolinfo" role="tab" title="Bill of Lading Info">
+                          <span class="round-tab">
+                            <i class="fa fa-globe"></i>
+                            General
+                          </span>
+                        </a>
+                      </li>
+
+                      <li role="presentation">
+                        <a id="consigneetab" href="#consignee" data-toggle="tab" aria-controls="consignee" role="tab" title="Consignee">
+                          <span class="round-tab">
+                            <i class="fa fa-user" style="color:brown"></i>
+                            Consignee
+                          </span>
+                        </a>
+                      </li>
+                      <li role="presentation">
+                        <a id="shippertab" href="#shipper" data-toggle="tab" aria-controls="shipper" role="tab" title="Shipper">
+                          <span class="round-tab">
+                            <i class="fa fa-user" style="color:green"></i>
+                            Shipper
+                          </span>
+                        </a>
+                      </li>
+                      <li role="presentation">
+                        <a id="notifytab" href="#notify" data-toggle="tab" aria-controls="notify" role="tab" title="Notiyfy Party">
+                          <span class="round-tab">
+                            <i class="fa fa-user"></i>
+                            Notify
+                          </span>
+                        </a>
+                      </li>
+                      <li role="presentation">
+                        <a id="goodstab" href="#goods" data-toggle="tab" aria-controls="goods" role="tab" title="Goods">
+                          <span class="round-tab">
+                            <i class="fa fa-cubes"></i>
+                            Goods
+                          </span>
+                        </a>
+                      </li>
+                      <li role="presentation">
+                        <a id="chargestab" href="#charges" data-toggle="tab" aria-controls="charges" role="tab" title="Charges">
+                          <span class="round-tab">
+                            <i class="fa fa-list-alt"></i>
+                            Charges
+                          </span>
+                        </a>
+                      </li>
+                      <li role="presentation">
+                        <a id="containertab" href="#container" data-toggle="tab" aria-controls="container" role="tab" title="Container">
+                          <span class="round-tab">
+                            <i class="fa fa-tasks"></i>
+                            Container
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+
+
+                    <div class="tab-content">
+                      <div class="tab-pane active" role="tabpanel" id="bolinfo">
+
+                        <div class="row">
+                          <div class="col-md-3 form-group">
+                            <div class="checkbox" onclick="showHideParentBL()">
+                              <label class="control-label ">Parent Bol
+                                <input id="parent_bol" name="parent_bol" type="checkbox" class="flat">
+                              </label>
+                            </div>
+                          </div>
+
+                          <div id="masterbl" class="col-md-9 form-group">
+                            <label class="control-label col-md-3">Master BL</label>
+                            <div class="col-md-9">
+                              <select id="master_bol_id" onchange="initializeWithMaster()" class=" form-control"></select>
+                              <span class="help-block"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Bill Of Lading Number</label>
+                          <div class="col-md-9">
+                            <input id="bill_of_lading_number" name="bill_of_lading_number" placeholder="Bill Of Lading Number" class="form-control" type="text"
+                              required>
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Port Of Origin</label>
+                          <div class="col-md-9">
+                            <select id="port_of_origin" class="load-select form-control" data-path="./app/port/select" required></select>
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Port Of Loading</label>
+                          <div class="col-md-9">
+                            <select id="port_of_loading" class="load-select form-control" data-path="./app/port/select" required></select>
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Port Of Discharge</label>
+                          <div class="col-md-9">
+                            <select id="port_of_discharge" class="load-select form-control" data-path="./app/port/select" required></select>
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Port Of Delivery</label>
+                          <div class="col-md-9">
+                            <select id="port_of_delivery" class="load-select form-control" data-path="./app/port/select" required></select>
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Currency</label>
+                          <div class="col-md-9">
+                            <select id="currency_id" class="load-select form-control" data-path="./app/currency/select" required></select>
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Value Of Goods</label>
+                          <div class="col-md-4">
+                            <input id="value_of_goods" name="value_of_goods" placeholder="Value" class="form-control" type="number" min="0.00" step=".01" >
+                            <span class="help-block"></span>
+                          </div>
+                          <div class="col-md-4">
+                            <select id="value_currency" class="load-select form-control" data-path="./app/currency/select" ></select>
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                        <div class="form-group">                               
+                          <label class="control-label col-md-6">Status</label>
+                          <div class="col-sm-6">
+                            <select id="status" class="selectpicker " data-width="auto" required>
+                              <option value="release">Release</option>
+                              <option value="hold">Hold</option>
+                            </select>
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="form-group">                               
+                          <label class="control-label col-md-6">Customer Type</label>
+                          <div class="col-sm-6">
+                            <select id="customer_type" class="selectpicker " data-width="auto" required>
+                              <option value=null>Regular</option>
+                              <option value="doortodoor">DoorToDoor</option>
+                              <option value="preclear">PreClear</option>
+                              <option value="localpreclear">LocalPreClear</option>
+                              <option value="doortodoor">DoorToDoor</option>     
+                            </select>
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="tab-pane" role="tabpanel" id="consignee">
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Consignee Name</label>
+                          <div class="col-md-9">
+                            <input id="consignee_name" name="consignee_name" placeholder="Consignee Name" class="form-control" type="text">
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Consignee Address</label>
+                          <div class="col-md-9">
+                            <input id="consignee_address" name="consignee_address" placeholder="Consignee Address" class="form-control" type="text">
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group ">
+                          <label class="control-label col-md-3">Consignee Phone #</label>
+                          <div class="col-md-9">
+                            <input id="consignee_phone_num" placeholder="000-000-0000" class="form-control" type="text">
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group hidden">
+                          <label class="control-label col-md-3">Consignee Id</label>
+                          <div class="col-md-9">
+                            <input id="consignee_id" name="consignee_id" placeholder="Consignee Id" class="form-control" type="text">
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="tab-pane" role="tabpanel" id="shipper">
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Shipper Name</label>
+                          <div class="col-md-9">
+                            <input id="shipper_name" name="shipper_name" placeholder="Shipper Name" class="form-control" type="text">
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Shipper Address</label>
+                          <div class="col-md-9">
+                            <input id="shipper_address" name="shipper_address" placeholder="Shipper Address" class="form-control" type="text">
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+
+                        <div class="form-group ">
+                          <label class="control-label col-md-3">Shipper Phone #</label>
+                          <div class="col-md-9">
+                            <input id="shipper_phone_num" placeholder="000-000-0000" class="form-control" type="text">
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane" role="tabpanel" id="notify">
+
+                        <div class="form-group">
+                          <div class="control-label col-md-3"></div>
+                          <div class="control-label col-md-9">
+                            <button id="same_csn" class="btn btn-warning btn-sm">Same as Consignee</button>
+                          </div>
+                          <label class="control-label col-md-3"> Notify Name</label>
+                          <div class="col-md-9">
+                            <input id="notify_name" name="notify_name" placeholder="Notify Name" class="form-control" type="text">
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Notify Address</label>
+                          <div class="col-md-9">
+                            <input id="notify_address" name="notify_address" placeholder="Notify Address" class="form-control" type="text">
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                        <div class="form-group ">
+                          <label class="control-label col-md-3">Notify Phone #</label>
+                          <div class="col-md-9">
+                            <input id="notify_phone_num" placeholder="000-000-0000" class="form-control" type="text">
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Notify Date</label>
+                          <div class="col-md-9">
+                            <input data-toggle="datepicker" id="notify_date" name="notify_date" placeholder="Notify Date" class="form-control has-feedback-left"
+                              type="text">
+                            <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                            <span class="help-block"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane" role="tabpanel" id="goods">
+                        <div class="">
+
+                          <p class="toolbar">
+                            <button type="button" id="create-detail" class="btn btn-success btn-sm">Add New</button>
+                          </p>
+                          <table id="blDetailTable" class="display" cellspacing="0" data-toolbar=".toolbar" data-query-params="queryParams" data-pagination="true"
+                            data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                            <thead>
+                              <tr>
+                                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                                <th data-field="Description_of_goods" data-sortable="true">Description</th>
+                                <th data-formatter="createActionButtons" data-searchable="false">Action</th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th class="hidden">ID</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+
+                      </div>
+                      <div class="tab-pane" role="tabpanel" id="charges">
+                   
+                        <div class="">
+                          <p class="chargetoolbar">
+                            <button type="button" id="create-charge-rec" class="btn btn-success btn-sm">Add New</button>
+                          </p>
+                          <table id="chargeTable" class="display" cellspacing="0" data-toolbar=".chargetoolbar" data-query-params="queryParams" data-pagination="true"
+                            data-striped="true" data-search="true" data-show-multi-sort="true">
+                            <thead>
+                              <tr>
+                                <th data-field="id" data-visible="false">ID</th>
+                                <th data-field="charge_item_id" data-formatter="formatChargeItem" data-sortable="true">Charge Item </th>
+                                <th data-field="prepaid_flag" data-formatter="formatPrepaid" data-sortable="true">Prepaid </th>
+                                <th data-field="amount" data-sortable="true">Amount</th>
+                                <th data-field="currency_code" data-sortable="true">Currency</th>
+                                <th data-formatter="createChargeActionButtons" data-searchable="false">Action</th>
+                              </tr>
+                            </thead>
+                            
+                          </table>
+                        </div>
+
+                      </div>
+                      <div class="tab-pane" role="tabpanel" id="container">
+                        <h3>Container</h3>
+                        <div class="">
+                          <p class="toolbarcon ">
+
+                            <div style="margin-top:3px;">
+                              <button type="button" onclick="addBOLContainer()" class="btn btn-success btn-sm">Add Container</button>
+                            </div>
+                          </p>
+                          <table id="containertable" class="display" cellspacing="0" data-toolbar=".toolbarcon" data-pagination="true" data-striped="true"
+                            data-editable="true" data-toolbar-align='top' data-search="false" data-show-multi-sort="true" data-sort-priority='[{"sortName": "voyage_number","sortOrder":"desc"},{"sortName":"id","sortOrder":"desc"}]'>
+
+                          </table>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                      <ul class="list-inline pull-right">
+                        <li>
+                          <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                        </li>
+                        <li>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+      <!-- /.modal -->
+      <!-- End Bootstrap modal -->
+
+
+      <!-- Bootstrap BL DETAIL modal -->
+      <div class="modal" id="detail_modal" data-backdrop="static" style="z-index:1149">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title">Second Modal title</h4>
+            </div>
+            <div class="container"></div>
+            <div class="modal-body">
+              <form id="bl_Detail_form" class="form-horizontal" data-toggle="validator">
+                <div class="form-body">
+                  <input type="hidden" value="form body" id="id" />
+                  <input type="hidden" value="form body" id="billoflading_id" />
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Number Of Items</label>
+                    <div class="col-md-5">
+                      <input onchange="autoDescribeGoods()" type="number" min="0" step="1" id="number_of_items" name="number_of_items" placeholder="Number Of Items"
+                        class="form-control" type="text" required>
+                      <span class="help-block"></span>
+                    </div>
+                    <div class="checkbox col-md-3">
+                      <label class="control-label " onclick="autoDescribeGoods(1)">Auto Describe
+                        <input id="auto_describe" type="checkbox" class="flat">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Package Type </label>
+                    <div class="col-md-9">
+                      <select id="package_type_id" onchange="autoDescribeGoods()" class=" load-selectpicker form-control" data-live-search="true"
+                        data-path="./app/package/select" required>
+                      </select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Commodity</label>
+                    <div class="col-md-9">
+                      <select id="commodity_id" onchange="autoDescribeGoods()" class=" load-selectpicker form-control" data-path="./app/commodity/select"></select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Description of Goods</label>
+                    <div class="col-md-9">
+                      <textarea id="Description_of_goods" class=" form-control"></textarea>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Weight</label>
+                    <div class="col-md-3">
+                      <input id="weight" name="weight" placeholder="Weight" class="form-control" type="number" min="0" step=".01" required>
+                      <span class="help-block"></span>
+                    </div>
+
+                    <label class="control-label col-md-3">Weight Unit</label>
+                    <div class="col-md-3">
+                      <select id="weight_unit" class="selectpicker " data-width="auto" required>
+                        <option value="kg">Kilograms</option>
+                        <option value="lb">Pounds</option>
+                        
+                      </select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Measure</label>
+                    <div class="col-md-3">
+                      <input id="measure" name="measure" placeholder="Measure" class="form-control" type="number" min="0" step=".01" required>
+                      <span class="help-block"></span>
+                    </div>
+
+                    <label class="control-label col-md-3">Measure Unit</label>
+                    <div class="col-sm-3">
+                      <select id="measure_unit" class="selectpicker " data-width="auto" required>
+                        <option value="cuf">Cubic Feet</option>
+                        <option value="cum">Cubic Meter</option>
+                      </select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <fieldset style="display:none;">
+                    <legend style="font-size:12px;">Measurement</legend>
+                    <div class="form-group">
+                      <label class="control-label col-md-3">Width</label>
+                      <div class="col-md-3">
+                        <input id="width" name="width" placeholder="Width" class="form-control" type="number" min="0" step=".01">
+                        <span class="help-block"></span>
+                      </div>
+
+                      <label class="control-label col-md-3">Depth</label>
+                      <div class="col-md-3">
+                        <input id="depth" name="depth" placeholder="Depth" class="form-control" type="number" min="0" step=".01">
+                        <span class="help-block"></span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3">Breath</label>
+                      <div class="col-md-3">
+                        <input id="breath" name="breath" placeholder="Breath" class="form-control" type="number" min="0" step=".01">
+                        <span class="help-block"></span>
+                      </div>
+
+                      <label class="control-label col-md-3">Volume</label>
+                      <div class="col-md-3">
+                        <input id="volume" name="volume" placeholder="Volume" class="form-control" type="number" min="0" step=".01">
+                        <span class="help-block"></span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="modal-footer">
+                  <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <!-- End Bootstrap  BL DETAIL  modal -->
+
+      <!-- Bootstrap modal -->
+      <div class="modal fade" id="apply_charges_modal" role="dialog">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h3 class="modal-title">Apply Charges</h3>
+            </div>
+            <div class="modal-body form">
+              <label class="control-label ">Charge Item </label>
+
+              <select id="apply_charge_item_id" class="load-select selectpicker" data-path="./app/charge_item/select" required></select>
+              <button class=" btn btn-success" onclick="applyCharges()" id="apply_charges_but">Apply</button>
+              <button class=" btn btn-danger" onclick="removeCharges()" id="remove_charges_but">Remove</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+
+      <!-- Bootstrap BL CHARGE modal -->
+      <div class="modal fade" id="charge_modal" role="dialog">
+        <div class="modal-dialog ">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 class="modal-title">Bill Of Lading Other Charge Form</h3>
+            </div>
+            <div class="modal-body form">
+              <form id="charge_form" class="form-horizontal" data-toggle="validator">
+                <input type="hidden" name="id" id="id" />
+                <input type="hidden" id="billoflading_id" />
+
+                <div class="form-body">
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Charge Item </label>
+                    <div class="col-md-9">
+                      <select onchange="initialLizeAmount()" id="charge_item_id" class="load-select selectpicker" data-path="./app/charge_item/select"
+                        required></select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Amount</label>
+                    <div class="col-md-4">
+                      <input id="amount" name="amount" placeholder="Amount" class="form-control" type="number" min="0" step=".01" required>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Prepaid Flag</label>
+                    <div class="col-md-9">
+                      <select id="prepaid_flag" class="selectpicker ">
+                        <option value="c">Collect</option>
+                        <option value="p">Prepaid</option>
+                        <option value="i">Ignore</option>
+                      </select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="checkbox ">
+                      <label class="control-label">Attracts GCT
+                        <input id="attract_gct" type="checkbox" class="flat">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Payment Currency</label>
+                    <div class="col-md-9">
+                      <select id="currency_id" class="load-select selectpicker" data-path="./app/currency/select" required></select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /page content -->
+
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  <script src="./js/ajax-bootstrap-select.min.js"></script>
+  <script src="./vendors/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="./vendors/nprogress/nprogress.js"></script>
+
+  <script src="./js/bootstrap-editable.js"></script>
+  <!-- iCheck -->
+  <script src="./js/bootstrap-table-editable.js"></script>
+  <script src="./vendors/iCheck/icheck.min.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="./js/datepicker.min.js"></script>
+
+  <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  <!-- Custom Theme Scripts -->
+  <script src="./build/js/custom.min.js"></script>
+
+  <script src="./scripts/app.js"></script>
+  <script>
+    function applySpecificCharge(){
+      $('#apply_charges_modal').modal('show');
+    }
+    function generateCharges(){
+      $('.loader').show();
+      $.ajax({
+        type: "POST",
+        url: './app/billoflading/generate_charge/' + $('#voyage').val(),
+        success: function (data) {
+          $('.loader').hide();
+          $('#apply_charges_modal').modal('hide');
+          toastr.success('Charges added ' + data + ' bills of lading', 'Success Alert', { timeOut: 5000 });
+        },
+        error: function (xhr, ajaxOptions, thrownError) { $('.loader').hide(); handleStandardHttpErrors(xhr, ajaxOptions, thrownError); },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+
+    $("#same_csn").click(function (e) {
+      e.preventDefault();
+      $('#notify_name').val($('#consignee_name').val());
+      $('#notify_address').val($('#consignee_address').val());
+    });
+    function initialLizeAmount() {
+      var select_path = "./app/charge_item/select";
+      if (SELECT_DATA_PATH[select_path]) {
+        var data = getJsonObjectValue(SELECT_DATA_PATH[select_path], 'id', $('#charge_item_id').val());
+
+$('#currency_id').val(data[0].currency_id);
+        //if (data.basis=='fixed'){   TBC
+        $('#attract_gct').iCheck('uncheck');
+        $('#attract_gct').prop('checked', false);
+        if (data[0].gct == 1) {
+          $('#attract_gct').iCheck('check');
+          $('#attract_gct').prop('checked', true);
+        }
+        $('#amount').val(data[0].item_rate);
+        //}
+      }
+    }
+
+    function applyCharges() {
+      $('.loader').show();
+      $.ajax({
+        type: "POST",
+        url: './app/billoflading/apply_charge/' + $('#voyage').val() + '/' + $('#apply_charge_item_id').val(),
+        success: function (data) {
+          $('.loader').hide();
+          $('#apply_charges_modal').modal('hide');
+          toastr.success('Charge was successfully applied to ' + data + ' bills of lading', 'Success Alert', { timeOut: 5000 });
+        },
+        error: function (xhr, ajaxOptions, thrownError) { $('.loader').hide(); handleStandardHttpErrors(xhr, ajaxOptions, thrownError); },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+
+    }
+    function removeCharges() {
+      $('.loader').show();
+      $.ajax({
+        type: "POST",
+        url: './app/billoflading/unapply_charge/' + $('#voyage').val() + '/' + $('#apply_charge_item_id').val(),
+        success: function (data) {
+          $('.loader').hide();
+          $('#apply_charges_modal').modal('hide');
+          toastr.success('Charge was successfully removed from ' + data + ' bills of lading', 'Success Alert', { timeOut: 5000 });
+        },
+        error: function (xhr, ajaxOptions, thrownError) { $('.loader').hide(); handleStandardHttpErrors(xhr, ajaxOptions, thrownError); },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+
+    $(document).ready(function () {
+      //
+      data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": "", "value_currency":"","value_of_goods":""};
+      save_method = '';
+      pkey = 'id';
+
+      //&**************************************************
+      $( ".modal" ).each(function() {
+        $( this ).draggable({
+           handle: ".modal-header"
+         });
+      });
+
+      $('#form')
+        .bootstrapValidator({
+          feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+          },
+          excluded: [':disabled'],
+          fields: {
+            port_origin: {
+              validators: {
+                notEmpty: {
+                  message: 'Port of origin  required and cannot be empty'
+                }
+              }
+            },
+            port_delivery: {
+              validators: {
+                notEmpty: {
+                  message: 'Port of delivery is  required and cannot be empty'
+                }
+              }
+            },
+            bill_of_lading_number: {
+              validators: {
+                notEmpty: {
+                  message: 'Bill Of Lading Number is  required and cannot be empty'
+                }
+              }
+            }
+          }
+        }).on('error.form.bv', function (e) {
+          var tab = $(".has-error:first input").closest('.tab-pane').attr('id');
+          $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+          $(".has-error:first input").focus();
+          e.preventDefault();
+        })
+        .on('success.form.bv', function (e) {
+          // Prevent submit form
+          e.preventDefault();
+          var $form = $(e.target),
+            validator = $form.data('bootstrapValidator');
+          var form_data = getFormData('#form', data_model);
+          form_data['voyage_id'] = $('#voyage').val();
+          form_data['notify_date'] = validDate($('#notify_date').val()).date;
+          console.log(form_data);
+          if (save_method == 'PUT') {
+            $.ajax({
+              type: "PUT",
+              url: './app/bill_of_lading/' + form_data['id'],
+              data: JSON.stringify(form_data),
+              success: function (data) {
+                $('#modal_form').modal('hide');
+                toastr.success('The record was updated successfully', 'Success Alert', { timeOut: 5000 })
+                $('#classTable').bootstrapTable('updateByUniqueId', {
+                  id: form_data['id'],
+                  row: form_data
+                });
+                updateHouse(form_data['id']);
+              },
+              error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+              beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+          }
+          if (save_method == 'POST') {
+            form_data.id = null;
+            $.ajax({
+              type: "POST",
+              url: './app/bill_of_lading/',
+              data: JSON.stringify(form_data),
+              success: function (data) {
+                var obj = {};
+                $.extend(true, obj, form_data);
+                obj.id = data;
+                if (form_data.parent_bol == 1) { loadParentSelect('new'); }
+                editThis(data, '');
+                toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                $('#classTable').bootstrapTable("append", obj);
+
+              },
+              error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+              beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+          }
+          $form
+            .bootstrapValidator('disableSubmitButtons', false)
+            .bootstrapValidator('resetForm', true);
+        })
+        .on('click', 'tbody > tr > td', function (e) {
+
+        });
+
+      //**************************************************
+
+      loadVoyageSelect();
+
+      function getData() {
+        return '{"data":[{"id":"1","name":"1 West","location":"Block C"},{"id":"2","name":"1 North","location":"Block A"},{"id":"3","name":"1 South","location":"Block A"}]}';
+      }
+
+      $('#parent_bol').on('ifChanged', function (event) {
+        showHideParentBL();
+      });
+
+
+    });
+    function saveRecord() {
+
+    }
+    function printAllBillofLading(){
+      showLargeReport('./app/report/billoflading_f1/All/'  +$('#voyage').val() , 'bill_of_ladings.pdf', 'Bill Of Lading', '#my-report1-iframe', {});
+      $('#report2-tab').hide();
+    }
+    function printThis(id, el) {
+      showLargeReport('./app/report/billoflading_f1/' + id , 'bill_of_lading.pdf', 'Bill Of Lading', '#my-report1-iframe', {});
+      $('#report2-tab').hide();
+    }
+    function deleteThis(id, el) {
+      var tmp = $(el).closest("tr").find("td:eq(0)").text();
+      confirmDialog("Delete Request", 'Are you sure you want to delete:<br><b>' + tmp + '<b> ?', function (confirm) {
+        if (!confirm) return false;
+        $.ajax({
+          type: "DELETE",
+          url: './app/bill_of_lading/' + id,
+          success: function (data) {
+            console.log('deleted ' + id);
+            //$('#classTable').bootstrapTable('remove', { field: 'id', values: ['' + id] });
+            $('#classTable').bootstrapTable('removeByUniqueId', id);
+            toastr.success('The record was deleted successfully', 'Success Alert', { timeOut: 5000 })
+
+          },
+          error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+
+      });
+
+
+    }
+    function editThis(id, el) {
+      save_method = 'PUT';
+      $.ajax({
+        url: './app/bill_of_lading/' + id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          data_model = data;
+          data_model['notify_date'] = formatDate(data['notify_date']);
+          loadFormData('#form', data_model);
+          $('#modal_form .modal-title').text('Edit Bill Of Lading - '+data.bill_of_lading_number+'   '+data.consignee_name);
+          $('#modal_form').modal('show');
+          $('#bolinfotab').tab('show');
+          showHideParentBL();
+          $('#master_bol_id').val(data_model.master_bol_id);
+          loadContainerTable();
+          loadBlGoods();
+          loadBlCharge();
+          if (data.order_processed == 1 || numeric(data.receipt_processed)>0) {
+            $("#form :input").prop("disabled", true);
+          } else {
+            $("#form :input").prop("disabled", false);
+          }
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+    function newBillOfLading() {
+      data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": "", "value_currency":"","value_of_goods":""};
+      save_method = 'POST';
+      clearForm('#form');
+      $('#modal_form').modal('show'); // show bootstrap modal                
+      showHideParentBL();
+      $('#chargestab').hide();
+      $('#goodstab').hide();
+      $('#containertab').hide();
+      $('#bolinfotab .modal-title').text('Add Bill Of Lading');
+      $('#bolinfotab').tab('show');
+      initializeWithMaster();
+      $("#form :input").prop("disabled", false);
+    }
+
+    function initializeWithMaster() {
+      var select_path = './app/bill_of_lading/master-select/' + $('#voyage').val();
+      if (SELECT_DATA_PATH[select_path]) {
+        $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+          if ($('#master_bol_id').val() == value.id) {
+            $('#port_of_loading').val(value.port_of_loading);
+            $('#port_of_delivery').val(value.port_of_delivery);
+            $('#port_of_origin').val(value.port_of_origin);
+            $('#port_of_discharge').val(value.port_of_discharge);
+            $('#currency_id').val(value.currency_id);
+          }
+        });
+      }
+
+    }
+    function loadVoyageSelect() {
+      $('#voyage').empty();
+      var select_path = './app/voyage/select/' + $('#vessel').val();
+      if (SELECT_DATA_PATH[select_path]) {
+        $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+          $('#voyage').append('<option value=' + value.id + '>' + value.manifest_number + ' - ' + formatDate(value.arrival_date) + '</option>');
+        });
+        loadManifestTable();
+      } else {
+        $.ajax({
+          url: select_path,
+          type: 'GET',
+          dataType: 'json',
+          async: false,
+          success: function (data) {
+            SELECT_DATA_PATH[select_path] = data;
+            $.each(data, function (key, value) {
+              $('#voyage').append('<option value=' + value.id + '>' + value.manifest_number + ' - ' + formatDate(value.arrival_date) + '</option>');
+            });
+            loadManifestTable();
+          },
+          error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+      }
+    }
+    function loadParentSelect() {
+      $('#master_bol_id').empty();
+      var select_path = './app/bill_of_lading/master-select/' + $('#voyage').val();
+      if (SELECT_DATA_PATH[select_path] && arguments.length == 0) {
+        $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+          if (data_model.id != value.id) {
+            $('#master_bol_id').append('<option value=' + value.id + '>' + value.bill_of_lading_number + '</option>');
+          }
+        });
+      } else {
+        $.ajax({
+          url: select_path,
+          type: 'GET',
+          dataType: 'json',
+          async: false,
+          success: function (data) {
+            SELECT_DATA_PATH[select_path] = data;
+            $.each(data, function (key, value) {
+              if (data_model.id != value.id) {
+                $('#master_bol_id').append('<option value=' + value.id + '>' + value.bill_of_lading_number + '</option>');
+              }
+            });
+          },
+          error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+      }
+    }
+    function loadContainerSizeType() {
+      var select_path = './app/container_size_type/select';
+      var size_type_code = [], obj = {};
+      if (SELECT_DATA_PATH[select_path]) {
+        $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+          obj = {};
+          obj['value'] = value.id;
+          obj['text'] = value.size_type_code;
+          size_type_code.push(obj);
+        });
+      } else {
+        $.ajax({
+          url: select_path,
+          type: 'GET',
+          dataType: 'json',
+          async: false,
+          success: function (data) {
+            SELECT_DATA_PATH[select_path] = data;
+            $.each(data, function (key, value) {
+              obj = {};
+              obj['value'] = value.id;
+              obj['text'] = value.size_type_code;
+              size_type_code.push(obj);
+            });
+          },
+          error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+      }
+      return size_type_code;
+    }
+    function loadGoods() {
+
+    }
+    function loadManifestTable() {
+      var select_path = './app/voyage/select/' + $('#vessel').val();
+      if (SELECT_DATA_PATH[select_path]) {
+        var vid=$('#voyage').val();
+        $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+             if(value.id==vid){
+              console.log(value.transportation_mode);
+               if(value.transportation_mode=='A'){
+                  $('#bill_of_lading_number').parent().parent().find( ".control-label" )[0].innerHTML="Air Waybill";
+                  $('#masterbl').find( ".control-label" )[0].innerHTML="MAWB";
+               }else{
+                  $('#bill_of_lading_number').parent().parent().find( ".control-label" )[0].innerHTML="Bill Of Lading Number";
+                  $('#masterbl').find( ".control-label" )[0].innerHTML="Master BL";
+               }
+             }              
+        });
+      }    
+      $('.loader').show();
+      $.ajax({
+        url: './app/bill_of_lading/list/' + $('#voyage').val(),
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          console.log(data);
+          $('#classTable').bootstrapTable("destroy");
+          $('#classTable').bootstrapTable({
+            uniqueId: 'id',
+            columns:[{
+                        field: 'id',
+                        sortable: true,
+                        align: 'left',
+                        title: 'id'
+                    },
+                    {
+                        field: 'bill_of_lading_number',
+                        sortable: true,       
+                        align: 'left',
+                        formatter: function (value, row, index) {   
+                          console.log(value);                         
+                            var val=value;  
+                            if(numeric(row.receipt_processed)>0){
+                               val ='<span style="color:red">'+val+'</span>';                                                           
+                            }
+                            return val;
+                        }
+                    },
+                    {
+                        field: 'consignee_name',
+                        sortable: true,       
+                        align: 'left',
+                        formatter: function (value, row, index) {   
+                          console.log(value);                         
+                            var val=value;  
+                            if(numeric(row.receipt_processed)>0){
+                               val ='<span style="color:red">'+val+'</span>';                                                           
+                            }
+                            return val;
+                        }
+                    }],
+            data: data
+          });
+          loadParentSelect();
+          $('.loader').hide();
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+    function updateHouse(id) {
+      if ($('#parent_bol').prop('checked')) {
+        var obj = {};
+        $.ajax({
+          type: "POST",
+          url: './app/billoflading/update_house/' + id,
+          data: JSON.stringify(obj), // serializes the form's elements.                        
+          success: function (data) {
+          },
+          error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError); },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+      }
+    }
+    function deleteBOLContainer(id) {
+      console.log(id);
+
+      $.ajax({
+        type: "DELETE",
+        url: './app/bill_of_lading_container/' + id,
+        success: function (data) {
+          loadContainerTable();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+    function loadContainerTable() {
+      $('#containertable').bootstrapTable("destroy");
+      //toggle `popup` / `inline` mode
+      $.fn.editable.defaults.mode = 'inline';
+      var size_types = loadContainerSizeType();
+      console.log('logging size type array');
+      console.log(size_types);
+      /* $('#containertable').on('editable-save.bs.table', function (field, row, newValue, $el) {
+         saveBOLContainerRecord(field, row, newValue, $el);
+         console.log(field);
+         console.log(row);
+         console.log(newValue.container_number + 'oniel charles' + newValue.id);
+         console.log(newValue);
+         console.log($el);
+       });  */
+
+      $.ajax({
+        url: './app/bill_of_lading_container/select/' + numeric(data_model['id']),
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#containertable').bootstrapTable({
+            idField: 'id',
+            columns: [
+              [{
+                field: 'container_number',
+                sortable: true,
+                align: 'left',
+                title: 'Container',
+                editable: {
+                  type: 'text',
+                  validate: function (value) {
+                    value = $.trim(value);
+                    if (!value) {
+                      return 'This field is required';
+                    }
+                  },
+                  url: function (params) {
+                    var obj = {};
+                    obj[params.name] = params.value;
+                    return saveBOLContainerRecord(obj, params.pk);
+                  }
+
+                }
+              },
+              {
+                field: 'container_size_type_id',
+                title: 'Size Type',
+                editable: {
+                  type: 'select',
+                  source: size_types,
+                  url: function (params) {
+                    var obj = {};
+                    obj[params.name] = params.value;
+                    return saveBOLContainerRecord(obj, params.pk);
+                  }
+                }
+              }, {
+                field: 'operate',
+                title: ' ',
+                align: 'center',
+                formatter: operateFormatter
+              }]
+            ],
+            uniqueId: 'id',
+            data: data
+          });
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+    function operateFormatter(value, row, index) {
+      return ['<a class="btn-danger" onclick="deleteBOLContainer(' + row.id + ')" href="#" title="Remove">',
+        '<i class="glyphicon glyphicon-remove"></i>',
+        '</a>'
+      ].join('');
+    }
+    function addBOLContainer() {
+      var obj = { "container_number": "", "billoflading_id": data_model['id'] };
+      $.ajax({
+        type: "POST",
+        url: './app/bill_of_lading_container/',
+        data: JSON.stringify(obj),
+        success: function (data) {
+          loadContainerTable();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+    function showHideParentBL() {
+      $('#containertab').show();
+      if ($('#parent_bol').prop('checked')) {
+        $('#masterbl').hide();
+        $('#chargestab').hide();
+        $('#goodstab').hide();
+        //$('#consigneetab').hide();
+        //$('#shippertab').hide();
+        $('#notifytab').hide();
+      } else {
+        $('#masterbl').show();
+        $('#chargestab').show();
+        $('#goodstab').show();
+        $('#consigneetab').show();
+        $('#shippertab').show();
+        $('#notifytab').show();
+      }
+      if (save_method == 'POST') {
+        $('#containertab').hide();
+        $('#chargestab').hide();
+        $('#goodstab').hide();
+      }
+      loadParentSelect();
+    }
+    function saveBOLContainerRecord(field_obj, id) {
+      console.log('are we getting here');
+      var record_saved = false;
+      $.ajax({
+        type: "PUT",
+        url: './app/bill_of_lading_container/' + id,
+        data: JSON.stringify(field_obj),
+        success: function (data) {
+          record_saved = true;
+        },
+        error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+      return record_saved;
+    }
+
+  </script>
+  <script>
+
+    //BL Detail Scripts
+    function loadBlGoods() {
+      $('#blDetailTable').bootstrapTable("destroy");
+      $.ajax({
+        url: './app/bill_of_lading_detail/select/' + data_model.id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#blDetailTable').bootstrapTable({
+            uniqueId: 'id',
+            data: data
+          });
+
+          try { parent.autoResize('myframe'); } catch (e) { }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+
+
+    $(document).ready(function () {
+      //            
+      detail_model = { "id": "0", "billoflading_id": "", "package_type_id": "", "commodity_id": "", "Description_of_goods": "", "number_of_items": "", "weight": "", "measure": "", "weight_unit": "", "measure_unit": "", "width": "", "depth": "", "breath": "", "volume": "" }
+
+      bootstrapTableIndex = 0;
+      save_detail_method = '';
+      pkey = 'id';
+
+      //&**************************************************
+
+      $('#bl_Detail_form')
+        .bootstrapValidator({
+          feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+          },
+          excluded: [':disabled'],
+          fields: {
+            billoflading_id: {
+              validators: {
+                notEmpty: {
+                  message: 'Billoflading Id is  required and cannot be empty'
+                }
+              }
+            },
+            package_type_id: {
+              validators: {
+                notEmpty: {
+                  message: 'Package Type Id is  required and cannot be empty'
+                }
+              }
+            },
+            commodity_id: {
+              validators: {
+                notEmpty: {
+                  message: 'Commodity Id is  required and cannot be empty'
+                }
+              }
+            }
+          }
+        })
+        .on('success.form.bv', function (e) {
+          console.log('success.form.bv');
+          // If you want to prevent the default handler (bootstrapValidator._onSuccess(e))
+          // e.preventDefault();
+        })
+        .on('success.form.bv', function (e) {
+          // Prevent submit form
+          e.preventDefault();
+          var $form = $(e.target),
+            validator = $form.data('bootstrapValidator');
+          var form_data = getFormData('#bl_Detail_form', detail_model);
+          if (save_detail_method == 'PUT') {
+            $.ajax({
+              type: "PUT",
+              url: './app/bill_of_lading_detail/' + form_data['id'],
+              data: JSON.stringify(form_data),
+              success: function (data) {
+                $('#detail_modal').modal('hide');
+                toastr.success('The record was updated successfully', 'Success Alert', { timeOut: 5000 })
+                $('#blDetailTable').bootstrapTable('updateByUniqueId', {
+                  id: form_data['id'],
+                  row: form_data
+                });
+
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+              },
+              beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+          }
+          if (save_detail_method == 'POST') {
+            form_data.id = null;
+            $.ajax({
+              type: "POST",
+              url: './app/bill_of_lading_detail/',
+              data: JSON.stringify(form_data),
+              success: function (data) {
+                console.log('after add -1' + data);
+                //var object = $.extend({}, object1, object2);
+                var obj = {};
+                $.extend(true, obj, form_data);
+                obj.id = data;
+                obj.actions = '<button onclick="editBlDetail(' + data + ',this)" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+                obj.actions += '<button onclick="deleteBlDetail(' + data + ',this)" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+
+                console.log(obj);
+                $('#detail_modal').modal('hide');
+                toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                $('#blDetailTable').bootstrapTable("append", obj);
+
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+              },
+              beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+          }
+          $form
+            .bootstrapValidator('disableSubmitButtons', false)
+            .bootstrapValidator('resetForm', true);
+        })
+        .on('click', 'tbody > tr > td', function (e) {
+          var table = $table.data('bootstrap.table'),
+            $element = $(this),
+            $tr = $element.parent(),
+            row = table.data[$tr.data('index')];
+          alert(row);
+        });
+
+      //**************************************************
+
+      $("#create-detail").click(function (e) {
+        //
+        detail_model = { "id": "0", "billoflading_id": "", "package_type_id": "", "commodity_id": "", "Description_of_goods": '', "number_of_items": "", "weight": "", "measure": "", "weight_unit": "", "measure_unit": "", "width": "", "depth": "", "breath": "", "volume": "" }
+        e.preventDefault();
+        clearForm('#bl_Detail_form');
+        $('#auto_describe').iCheck('check');
+        $('#bl_Detail_form').find('#billoflading_id').val(data_model.id);
+        save_detail_method = 'POST';
+        $('#detail_modal').modal('show'); // show bootstrap modal                
+        $('#detail_modal .modal-title').text('Add Bill Of Lading Detail');
+      });
+
+
+      function getData() {
+        return '{"data":[{"id":"1","name":"1 West","location":"Block C"},{"id":"2","name":"1 North","location":"Block A"},{"id":"3","name":"1 South","location":"Block A"}]}';
+      }
+
+
+    });
+    function saveRecord() {
+
+    }
+    function deleteBlDetail(id, el) {
+      bootstrapTableIndex = $(el).closest("tr").index();
+      var tmp = $(el).closest("tr").find("td:eq(0)").text();
+      confirmDialog("Delete Request", 'Are you sure you want to delete:<br><b>' + tmp + '<b> ?', function (confirm) {
+        if (!confirm) return false;
+        $.ajax({
+          type: "DELETE",
+          url: './app/bill_of_lading_detail/' + id,
+          success: function (data) {
+            console.log('deleted ' + id);
+            //$('#blDetailTable').bootstrapTable('remove', { field: 'id', values: ['' + id] });
+            $('#blDetailTable').bootstrapTable('removeByUniqueId', id);
+            toastr.success('The record was deleted successfully', 'Success Alert', { timeOut: 5000 })
+
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+
+      });
+
+
+    }
+    function editBlDetail(id, el) {
+      save_detail_method = 'PUT';
+      $.ajax({
+        url: './app/bill_of_lading_detail/' + id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#bl_Detail_form')
+            .bootstrapValidator('disableSubmitButtons', false)
+            .bootstrapValidator('resetForm', true);
+          detail_model = data;
+          loadFormData('#bl_Detail_form', detail_model);
+          $('#detail_modal .modal-title').text('Edit Bill Of Lading Detail');
+          $('#detail_modal').modal('show');
+          $('#auto_describe').iCheck('check');
+          if (numeric(data_model.receipt_processed) >0 || data_model.order_processed == 1) {
+            $("#bl_Detail_form :input").prop("disabled", true);
+          } else {
+            $("#bl_Detail_form :input").prop("disabled", false);
+          }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+    function autoDescribeGoods() {
+      console.log($('#auto_describe').prop('checked'));
+      if ($('#auto_describe').prop('checked') || (arguments.length > 0 && !$('#auto_describe').prop('checked'))) {
+        var txt = $('#number_of_items').val() + ' ' + $('#package_type_id option:selected').text() + '(s) said to contain ' + $('#commodity_id option:selected').text();
+        $('#Description_of_goods').val(txt);
+      }
+    }
+
+    function createActionButtons(value, row, index, field) {
+      var $buttons = '<button onclick="editBlDetail(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+      if (numeric(data_model.receipt_processed)==0 && data_model.order_processed != 1) {
+        $buttons += '<button onclick="deleteBlDetail(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+      }
+      return $buttons;
+    }
+    function createBlActionButtons(value, row, index, field) {
+      var $buttons = '<button onclick="printThis(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-default btn-sm"   data-target="#print-button" ><i class="fa fa-print"></i></button>';
+      $buttons += '<button onclick="editThis(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#editbl-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+      $buttons += '<button onclick="deleteThis(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#deletebl-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+      return $buttons;
+    }
+  </script>
+  <script>
+    /*CHARGES Script
+    rename for integration
+    charge_model
+    charge_form
+    charge_modal
+    create-charge-rec
+    chargeTable
+    */
+
+    function loadBlCharge() {
+      $('#chargeTable').bootstrapTable("destroy");
+      $.ajax({
+        url: './app/bill_of_lading_other_charge/select/' + data_model.id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#chargeTable').bootstrapTable({
+           // height: 300,
+            uniqueId: 'id',
+            data: data
+          });
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+
+    function formatPrepaid(value, row, index, field) {
+      return $("#prepaid_flag [value='" + value + "']").text();
+    }
+
+    function formatChargeItem(value, row, index, field) {
+
+      var select_path = "./app/charge_item/select";
+      if (!SELECT_DATA_PATH[select_path]) {
+        $.ajax({
+          url: select_path,
+          type: 'GET',
+          dataType: 'json',
+          async: false,
+          success: function (data) {
+            SELECT_DATA_PATH[select_path] = data;
+          },
+          error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+      }
+      var txt = ''
+      for (var i = 0; i < SELECT_DATA_PATH[select_path].length; i++) {
+        if (SELECT_DATA_PATH[select_path][i].id == value) { txt = SELECT_DATA_PATH[select_path][i].description; }
+      }
+      return txt;
+    }
+
+    $(document).ready(function () {
+      //
+      charge_model = { "id": "0", "charge_item_id": "", "amount": "", "prepaid_flag": "", "attract_gct": "", "currency_id": "", "billoflading_id": "" }
+
+      bootstrapTableIndex = 0;
+      save_method = '';
+      pkey = 'id';
+
+      //&**************************************************
+
+      $('#charge_form')
+        .bootstrapValidator({
+          feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+          },
+          excluded: [':disabled'],
+          fields: {
+            charge_item_id: {
+              validators: {
+                notEmpty: {
+                  message: 'Charge Item Id is  required and cannot be empty'
+                }
+              }
+            },
+            amount: {
+              validators: {
+                notEmpty: {
+                  message: 'Amount is  required and cannot be empty'
+                }
+              }
+            },
+            prepaid_flag: {
+              validators: {
+                notEmpty: {
+                  message: 'Prepaid Flag is  required and cannot be empty'
+                }
+              }
+            }
+          }
+        })
+        .on('success.form.bv', function (e) {
+          console.log('success.form.bv');
+          // If you want to prevent the default handler (bootstrapValidator._onSuccess(e))
+          // e.preventDefault();
+        })
+        .on('success.form.bv', function (e) {
+          // Prevent submit form
+          e.preventDefault();
+          var $form = $(e.target),
+            validator = $form.data('bootstrapValidator');
+          var form_data = getFormData('#charge_form', charge_model);
+          if (charge_save_method == 'PUT') {
+            $.ajax({
+              type: "PUT",
+              url: './app/bill_of_lading_other_charge/' + form_data['id'],
+              data: JSON.stringify(form_data),
+              success: function (data) {
+                $('#charge_modal').modal('hide');
+                toastr.success('The record was updated successfully', 'Success Alert', { timeOut: 5000 })
+                $('#chargeTable').bootstrapTable('updateByUniqueId', {
+                  id: form_data['id'],
+                  row: form_data
+                });
+
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+              },
+              beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+          }
+          if (charge_save_method == 'POST') {
+            form_data.id = null;
+            $.ajax({
+              type: "POST",
+              url: './app/bill_of_lading_other_charge/',
+              data: JSON.stringify(form_data),
+              success: function (data) {
+                save_method = 'PUT';
+                var obj = {};
+                $.extend(true, obj, form_data);
+                obj.id = data;
+                $('#charge_modal').modal('hide');
+                toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                $('#chargeTable').bootstrapTable("append", obj);
+
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+              },
+              beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+          }
+          $form
+            .bootstrapValidator('disableSubmitButtons', false)
+            .bootstrapValidator('resetForm', true);
+        })
+        .on('click', 'tbody > tr > td', function (e) {
+          var table = $table.data('bootstrap.table'),
+            $element = $(this),
+            $tr = $element.parent(),
+            row = table.data[$tr.data('index')];
+          alert(row);
+        });
+
+
+      $("#create-charge-rec").click(function (e) {
+        charge_save_method = 'POST';
+        charge_model = { "id": "0", "charge_item_id": "", "amount": "", "prepaid_flag": "", "attract_gct": "", "currency_id": "", "billoflading_id": "" }
+        e.preventDefault();
+        clearForm('#charge_form');
+        $('#charge_form #billoflading_id').val(data_model.id);
+        $('#charge_modal').modal('show');
+        $('#charge_modal .modal-title').text('Add Bill Of Lading Other Charge');
+        initialLizeAmount();
+      });
+
+
+      function getData() {
+        return '{"data":[{"id":"1","name":"1 West","location":"Block C"},{"id":"2","name":"1 North","location":"Block A"},{"id":"3","name":"1 South","location":"Block A"}]}';
+      }
+
+
+    });
+    function saveRecord() {
+
+    }
+    function deleteCharge(id, el) {
+      bootstrapTableIndex = $(el).closest("tr").index();
+      var tmp = $(el).closest("tr").find("td:eq(0)").text();
+      confirmDialog("Delete Request", 'Are you sure you want to delete:<br><b>' + tmp + '<b> ?', function (confirm) {
+        if (!confirm) return false;
+        $.ajax({
+          type: "DELETE",
+          url: './app/bill_of_lading_other_charge/' + id,
+          success: function (data) {
+            console.log('deleted ' + id);
+            //$('#chargeTable').bootstrapTable('remove', { field: 'id', values: ['' + id] });
+            $('#chargeTable').bootstrapTable('removeByUniqueId', id);
+            toastr.success('The record was deleted successfully', 'Success Alert', { timeOut: 5000 })
+
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+
+      });
+
+
+    }
+    function editCharge(id, el) {
+      bootstrapTableIndex = $(el).closest("tr").index();
+      charge_save_method = 'PUT';
+      $.ajax({
+        url: './app/bill_of_lading_other_charge/' + id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#charge_form')
+            .bootstrapValidator('disableSubmitButtons', false)
+            .bootstrapValidator('resetForm', true);
+          charge_model = data;
+          loadFormData('#charge_form', charge_model);
+          $('#charge_modal .modal-title').text('Edit Bill Of Lading Other Charge');
+          $('#charge_modal').modal('show');
+          if (numeric(data_model.receipt_processed) >0 || data_model.order_processed == 1) {
+            $("#charge_form :input").prop("disabled", true);
+          } else {
+            $("#charge_form :input").prop("disabled", false);
+          }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+    function createChargeActionButtons(value, row, index, field) {
+      var $buttons = '<button onclick="editCharge(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+      if (numeric(data_model.receipt_processed)==0 && data_model.order_processed != 1) {
+        $buttons += '<button onclick="deleteCharge(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+      }
+      return $buttons;
+    }
+
+    function printManifest(){
+      showLargeReport('./app/report/bol_manifest_fmt1/' +$('#voyage').val() , 'Manifest.pdf', 'Default Manifest', '#my-report1-iframe', {});
+      $('#report2-tab').hide();
+    }
+    function printCleanManifest(){
+      showLargeReport('./app/report/bol_manifest_fmt1/' +$('#voyage').val() +'/clean', 'Manifest.pdf', 'Clean Manifest', '#my-report1-iframe', {});
+      $('#report2-tab').hide();
+    }
+    function printDoorToDoorManifest(){
+      showLargeReport('./app/report/bol_manifest_fmt1/' +$('#voyage').val() +'/door', 'Manifest.pdf', 'Door to Door Manifest', '#my-report1-iframe', {});
+      $('#report2-tab').hide();
+    }
+    function printPreClearManifest(){
+      showLargeReport('./app/report/bol_manifest_fmt1/' +$('#voyage').val() +'/preclear', 'Manifest.pdf', 'Pre-Clearance Manifest', '#my-report1-iframe', {});
+      $('#report2-tab').hide();
+    }
+    function printLocalPreClearManifest(){
+      showLargeReport('./app/report/bol_manifest_fmt1/' +$('#voyage').val() +'/localpreclear', 'Manifest.pdf', 'Local Pre-Clearance Manifest', '#my-report1-iframe', {});
+      $('#report2-tab').hide();
+    }
+
+    function printChargesManifest(){
+      showLargeReport('./app/report/bol_manifest/' +$('#voyage').val() , 'Manifest.pdf', 'Charges Manifest', '#my-report1-iframe', {});
+      $('#report2-tab').hide();
+    }
+    
+  </script>
+</body>
+
+</html>

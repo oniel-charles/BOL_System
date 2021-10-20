@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bill of Lading Processing </title>
+    <link rel="icon" href="./img/app_icon.ico">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="./build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title">
+              <img src="./img/company_icon.ico" />
+              <span id=glo_company_name></span>
+            </a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Welcome,</span>
+              <h2 class="user_fullname_disaplay">Active User</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a>
+                    <i class="fa fa-home"></i> Home
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="/home/main">Dashboard</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-cogs"></i> Maintenance
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_vessel.html">Vessel</a>
+                    </li>
+                    <li>
+                      <a href="maintain_port.html">Port</a>
+                    </li>
+                    <li>
+                      <a href="maintain_country.html">Country</a>
+                    </li>
+                    <li>
+                      <a href="maintain_currency.html">Currency</a>
+                    </li>
+                    <li>
+                      <a href="maintain_package.html">Package</a>
+                    </li>
+                    <li>
+                      <a href="maintain_commodity.html">Commodity</a>
+                    </li>
+                    <li>
+                      <a href="maintain_container_size_type.html">Container Size Type</a>
+                    </li>
+                    <li>
+                      <a href="maintain_vessel.html">Vessel</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-list-alt"></i> Charges
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_charges.html">Charge Item</a>
+                    </li>
+                    <li>
+                      <a href="maintain_sur_charge.html">Sur Charge</a>
+                    </li>
+                    <li>
+                      <a href="maintain_gct_rate.html">GCT Rate</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-dollar"></i> Billing
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_receipt.html">Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_order.html">Order</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-anchor"></i> Manifest Processing
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_voyage.html">Voyage</a>
+                    </li>
+                    <li>
+                      <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                    </li>
+                    <li>
+                      <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-bar-chart"></i> Reports
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                    </li>
+                    <li>
+                      <a href="maintain_gct_report.html">GCT Report</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+          <div class="nav_menu">
+              <nav>
+                  <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                      <a id="menu_toggle">
+                          <i style="font-size:16px" class="fa fa-bars"></i>
+                      </a>
+                  </div>
+
+                  <ul class="nav navbar-nav navbar-left">
+                      <li class="">
+                          <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false">
+                              <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Voyage</span>
+                          </a>
+
+                      </li>
+
+                  </ul>
+
+                  <ul class="nav navbar-nav navbar-right">
+                      <li class="">
+                          <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false">
+                              <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                              <span class=" fa fa-angle-down"></span>
+                          </a>
+                          <ul class="dropdown-menu dropdown-usermenu pull-right">
+                              <li>
+                                  <a href="javascript:;"> Profile</a>
+                              </li>
+                              <li>
+                                  <a href="javascript:passwordChangeRequest()"> 
+                                      <i class="fa fa-lock pull-right"></i> Change Password</a>
+                                      
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="javascript:displayHelp();">Help</a>
+                              </li>
+                              <li>
+                                  <a href="javascript:authenticateUser()"> 
+                                      <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                              </li>
+                          </ul>
+                      </li>
+
+                      <li role="presentation" class="dropdownx">
+                          <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                              <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+
+      <div class="right_col" role="main">
+        <div class="">
+
+          <div id="toolbar">
+            <div class="form-inline" role="form">
+                <div class="form-group">
+                    <a class="create btn btn-success" id="create-rec" href="javascript:">Add Voyage</a>
+                </div>
+                <div class="form-group">
+                    <span>Vessel </span>
+                    <select id="vessel" onchange="loadVoyageTable()" class=" load-select form-control " data-path="./app/vessel/select"></select>
+                </div>
+            </div>
+        </div>
+     
+          
+          <table id="classTable" class="display" cellspacing="0" data-toolbar="#toolbar" data-pagination="true" data-striped="true"
+            data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "voyage_number","sortOrder":"desc"},{"sortName":"id","sortOrder":"desc"}]'>
+            <thead>
+              <tr>
+                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                <th data-field="vessel_code" data-sortable="true" data-visible="false">Vessel</th>
+                <th data-field="arrival_date" data-formatter="formatColumDate" data-sortable="true">Arrival Date</th>
+                <th data-field="voyage_number" data-sortable="true">Voyage Number</th>
+                <th data-field="manifest_number" data-sortable="true">Manifest Number</th>
+                <th data-field="stripped" data-formatter="formatStrip">Stripped</th>
+                <th data-field="stripped_date" data-formatter="formatColumDate">Strip Date</th>
+                <th data-field="actions" data-searchable="false">Action</th>
+              </tr>
+            </thead>
+          
+          </table>
+        </div>
+      </div>
+
+      <!-- Bootstrap modal -->
+      <div class="modal fade" id="modal_form" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h3 class="modal-title">Voyage Form</h3>
+            </div>
+            <div class="modal-body form">
+              <form id="edit_form" class="form-horizontal" data-toggle="validator">
+                <ul class="nav nav-tabs">
+                  <li class="active">
+                    <a id="generaltab" data-toggle="tab" href="#general"><i class="fa fa-globe" style="color:blue"></i> General</a>
+                  </li>
+                  <li>
+                    <a id="voycontab" data-toggle="tab" href="#voycon"><i class="fa fa-tasks" style="color:brown"></i> Voyage Container</a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div id="general" class="tab-pane fade in active">
+                    <input type="hidden" value="" name="id" id="id" />
+                    <div class="form-body">
+                      <div class="form-group">  <label class="control-label col-md-6">Transportation Mode</label>
+                        <div class="col-md-6 ">
+                            <label class="radio-inline">
+                                <input type="radio" value="A" name="transportation_mode" >Air
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" value="S" name="transportation_mode" >Sea
+                            </label>
+                        </div>
+                         </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3">Vessel</label>
+                        <div class="col-md-9">
+                          <select id="vessel_id" name="vessel_id" placeholder="Select Vessel" class="load-select form-control" data-path="./app/vessel/select"
+                            required></select>
+                          <span class="help-block"></span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3">Voyage Number</label>
+                        <div class="col-md-9">
+                          <input id="voyage_number" name="voyage_number" placeholder="Voyage Number" class="form-control" type="text" required>
+                          <span class="help-block"></span>
+                        </div>
+                      </div>
+                      <div class=row>
+                      <div class="form-group col-md-6">
+                        <label class="control-label col-md-7">Manifest Number</label>
+                        <div class="col-md-5">
+                          <input id="manifest_number" name="manifest_number" placeholder="Manifest Number" class="form-control" type="text" >
+                          <span class="help-block"></span>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label class="control-label col-md-6">Registration#</label>
+                        <div class="col-md-6">
+                          <input id="registration_number" name="registration_number" placeholder="Registration Number" class="form-control" type="text" >
+                          <span class="help-block"></span>
+                        </div>
+                      </div>
+                    </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3">Departure Date</label>
+                        <div class="col-md-9">
+                          <input data-toggle="datepicker" id="departure_date" name="departure_date" placeholder="Departure Date" class="form-control has-feedback-left"
+                            type="text" required>
+                          <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                          <span class="help-block"></span>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3">Arrival Date</label>
+                        <div class="col-md-9">
+                          <input data-toggle="datepicker" id="arrival_date" name="arrival_date" placeholder="Arrival Date" class="form-control has-feedback-left "
+                            type="text" required>
+                          <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                          <span class="help-block"></span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="checkbox">
+                          <label class="control-label col-md-3">Stripped
+                            <input id="stripped" name="stripped" type="checkbox" class="flat">
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3">Stripped Date</label>
+                        <div class="col-md-9">
+                          <input data-toggle="datepicker" id="stripped_date" name="stripped_date" placeholder="Stripped Date" class="form-control has-feedback-left"
+                            type="text">
+                          <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                          <span class="help-block"></span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div id="voycon" class="tab-pane fade">
+
+                      <div class="">
+                          <p class="toolbarcon " >
+                  
+                              <div class="form-group" style="margin-top:3px;">
+                                  <div class="col-md-5">
+                                  <input class="form-control" id="container_number" type="text" placeholder="Container Number" >
+                                  </div>
+                                  <div class="form-group">
+                                  <a class="col-md-3 create btn btn-success" id="add_container" href="javascript:">Add Container</a>
+                                  </div>
+                              </div>
+                         </p>
+                          <table id="containertable" class="display" cellspacing="0" data-toolbar=".toolbarcon" data-pagination="true" data-striped="true"
+                          data-toolbar-align='top' data-search="false" data-show-multi-sort="true" data-sort-priority='[{"sortName": "voyage_number","sortOrder":"desc"},{"sortName":"id","sortOrder":"desc"}]'>
+                            <thead>
+                              <tr>
+                                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                                <th data-field="container_number" data-sortable="true" >Container</th>
+                                <th data-field="action" data-formatter="formatDeleteConButton" data-searchable="false">Action</th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th class="hidden">ID</th>
+                                <th >Container</th>
+                                <th></th>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+          </div>
+
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- End Bootstrap modal -->
+    <!-- /page content -->
+
+    <!-- footer content -->
+    <footer>
+      <div class="pull-right">
+        Gentelella - Bootstrap Admin Template by
+        <a href="https://colorlib.com">Colorlib</a>
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
+  </div>
+  </div>
+  <script src="./vendor/js/jquery.min.js"></script>
+  <script src="./vendor/js/jquery-ui.js"></script>
+  <script src="./vendor/js/bootstrap.min.js"></script>
+  <script src="./vendor/js/bootstrap-table.min.js"></script>
+  <script src="./vendor/js/bootstrap-select.min.js"></script>
+  <script src="./js/ajax-bootstrap-select.min.js"></script>
+  <script src="./vendors/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="./vendors/nprogress/nprogress.js"></script>
+
+  <script src="./js/bootstrap-editable.js"></script>
+  <!-- iCheck -->
+  <script src="./js/bootstrap-table-editable.js"></script>
+  <script src="./vendors/iCheck/icheck.min.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="./js/datepicker.min.js"></script>
+
+  <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+  <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+  <!-- Custom Theme Scripts -->
+  <script src="./build/js/custom.min.js"></script>
+
+  <script src="./scripts/app.js"></script>
+  <script src="./scripts/crud.js"></script>
+  <script src="./scripts/compare-strings.min.js"></script>
+  <script>
+
+
+    $(document).ready(function () {
+
+      $('[data-toggle="datepicker"]').datepicker({
+        autoHide: true,
+        zIndex: 2048,
+        format: "dd/mm/yyyy"
+      });
+      $("#modal_form").draggable({
+      handle: ".modal-header"
+  });
+
+
+      //
+      data_model = { "id": "0", "vessel_id": "", "voyage_number": "", "departure_date": "", "arrival_date": "", "stripped": "", "stripped_date": "","transportation_mode":"","manifest_number":"","registration_number":"" }
+      businessObject=   new BusinessObject(data_model,'voyage'); 
+      bootstrapTableIndex = 0;
+      save_method = '';
+      pkey = 'id';
+      
+      //&**************************************************
+
+      $('#edit_form')
+        .bootstrapValidator({
+          feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+          },
+          excluded: [':disabled'],
+          fields: {
+            vessel_id: {
+              validators: {
+                notEmpty: {
+                  message: 'Vessel Id is  required and cannot be empty'
+                }
+              }
+            },
+            voyage_number: {
+              validators: {
+                notEmpty: {
+                  message: 'Voyage Number is  required and cannot be empty'
+                }
+              }
+            },
+            departure_date: {
+              validators: {
+                notEmpty: {
+                  message: 'Departure Date is  required and cannot be empty'
+                },
+                date: {
+                  format: 'DD/MM/YYYY',
+                  message: 'The Departure Date is not valid'
+                }
+              }
+            }, stripped_date: {
+              validators: {
+                date: {
+                  format: 'DD/MM/YYYY',
+                  message: 'The Stripped Date is not valid'
+                }
+              }
+            },
+            arrival_date: {
+              validators: {
+                notEmpty: {
+                  message: 'Arrival Date is  required and cannot be empty'
+                }, date: {
+                  format: 'DD/MM/YYYY',
+                  message: 'The Arrival Date is not valid'
+                },
+
+                callback: {
+                  message: 'Arrival date  cannot be before departure date',
+                  callback: function (value, validator, $field) { return valiDateFormField(value, validator, $field) }
+                }
+              }
+            }
+          }
+        })
+        .on('success.form.bv', function (e) {
+          // Prevent submit form
+          e.preventDefault();
+          var $form = $(e.target),
+            validator = $form.data('bootstrapValidator');
+          var form_data=getFormData('#edit_form',data_model);
+          form_data['arrival_date'] = validDate($('#arrival_date').val()).date;
+          form_data['departure_date'] = validDate($('#departure_date').val()).date;
+          form_data['stripped_date'] = validDate($('#stripped_date').val()).date;
+          if (!valiDateForm()) return false;
+          if (save_method == 'PUT') {
+            $.ajax({
+              type: "PUT",
+              url: './app/voyage/' + form_data['id'],
+              data: JSON.stringify(form_data), // serializes the form's elements.
+              success: function (data) {
+                $('#modal_form').modal('hide');
+                toastr.success('The record was updated successfully', 'Success Alert', { timeOut: 5000 })
+                $('#classTable').bootstrapTable('updateByUniqueId', {
+                  id: form_data['id'],
+                  row: form_data
+                });
+                //Update remote booking with strip data
+                var obj=getBusinessObject('voyage/port',form_data['id']);
+                if(obj.length>0){
+                    var port_origin='';
+                    var rate =compareTwoStrings(obj[0].port_of_origin.split(' ').join('').toLowerCase(),'newyork');
+                    if(rate >.75) port_origin='newyork';
+                    rate =compareTwoStrings(obj[0].port_of_origin.split(' ').join('').toLowerCase(),'miami');
+                    if(rate >.75) port_origin='miami';
+                }
+                $env=getBusinessObject('system_values/code/environment');
+               if($env.length>0){
+                 if($env[0].data_value=='production') {
+                   var strip_obj={stripped:form_data['stripped'] ,stripped_date:form_data['stripped_date'],manifest_number:form_data['manifest_number'],booking_id:obj[0].booking_id }; 
+                   updateRemoteBooking(port_origin,strip_obj);
+                 }
+                }
+                
+                //update remote booking  (miami/new york)
+
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+              },
+              beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+          }
+          if (save_method == 'POST') {
+            $.ajax({
+              type: "POST",
+              url: './app/voyage/',
+              data: JSON.stringify(form_data), // serializes the form's elements.                        
+              success: function (data) {
+                var obj = {};
+                $.extend(true, obj, form_data);
+                obj.id = data;
+                obj.actions = '<button onclick="editThis(' + data + ',this)" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+                obj.actions += '<button onclick="deleteThis(' + data + ',this)" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+
+                $('#modal_form').modal('hide');
+                toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                $('#classTable').bootstrapTable("append", obj);
+
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+              },
+              beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+          }
+          $form
+            .bootstrapValidator('disableSubmitButtons', false)  // Enable the submit buttons
+            .bootstrapValidator('resetForm', true);             // Reset the form
+        })
+        /*
+        .on('click', 'tbody > tr > td', function (e) {
+          var table = $table.data('bootstrap.table'),
+            $element = $(this),
+            $tr = $element.parent(),
+            row = table.data[$tr.data('index')];
+           // alert(row);
+        });
+       */
+      //**************************************************
+
+      $("#create-rec").click(function (e) {
+        clearForm('#edit_form');
+        $('#vessel_id').val($('#vessel').val());
+        $("[name=transportation_mode]").val(["S"]);
+        save_method = 'POST';
+        $('#modal_form').modal('show'); // show bootstrap modal                
+        $('.modal-title').text('Add Voyage'); // Set Title to Bootstrap modal title
+        $('#voycontab').hide();
+        $('#generaltab').tab('show');
+      });
+
+      $("#add_container").click(function (e) {
+        if ($('#container_number').val().trim() == '') return false;
+        var voy_con_obj = {};
+        voy_con_obj.container_number = $('#container_number').val().trim();
+        voy_con_obj.id = null;
+        voy_con_obj.voyage_id = $('#id').val();
+        $.ajax({
+          type: "POST",
+          url: './app/voyage_container/',
+          data: JSON.stringify(voy_con_obj), // serializes the form's elements.                        
+          success: function (data) {
+            var obj = {};
+            $.extend(true, obj, voy_con_obj);
+            obj.id = data.id;
+            obj.actions += '<button onclick="deleteThis(' + data + ',this)" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+
+            toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+            loadVoyageContainerTable();
+            $('#container_number').val('');
+
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+        return false;
+
+      });
+      loadVoyageTable();
+      function getData() {
+        return '{"data":[{"id":"1","name":"1 West","location":"Block C"},{"id":"2","name":"1 North","location":"Block A"},{"id":"3","name":"1 South","location":"Block A"}]}';
+      }
+
+
+    });
+
+    function updateRemoteBooking(port_origin,strip_obj){
+      $.ajax({
+          type: "POST",
+          url: './app/import/'+port_origin+'/update_strip',
+          data: JSON.stringify(strip_obj), // serializes the form's elements.                        
+          success: function (data) {
+            console.log(data);
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+    }
+
+    function saveRecord() {
+
+    }
+    function deleteThis(id, el) {
+      bootstrapTableIndex = $(el).closest("tr").index();
+      var tmp = $(el).closest("tr").find("td:eq(0)").text();
+      confirmDialog("Delete Request", 'Are you sure you want to delete:<br><b>' + tmp + '<b> ?', function (confirm) {
+        if (!confirm) return false;
+        $.ajax({
+          type: "DELETE",
+          url: './app/voyage/' + id,
+          success: function (data) {
+            $('#classTable').bootstrapTable('removeByUniqueId', id);
+            toastr.success('The record was deleted successfully', 'Success Alert', { timeOut: 5000 })
+
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+
+      });
+
+
+    }
+    function editThis(id, el) {
+      bootstrapTableIndex = $(el).closest("tr").index();
+      save_method = 'PUT';
+      $.ajax({
+        url: './app/voyage/' + id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#edit_form')
+            .bootstrapValidator('disableSubmitButtons', false)
+            .bootstrapValidator('resetForm', true);
+          data_model = data;
+          data_model['arrival_date'] = formatDate(data['arrival_date']);
+          data_model['departure_date'] = formatDate(data['departure_date']);
+          data_model['stripped_date'] = formatDate(data['stripped_date']);
+          loadFormData('#edit_form',data_model);
+          $('.modal-title').text('Edit Voyage');
+          $('#modal_form').modal('show');
+          $('#voycontab').show();
+          $('#generaltab').tab('show');
+          loadVoyageContainerTable();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+
+
+    }
+
+
+    function formatColumDate(value, row, index, field) {
+      return formatDate(value);
+    }
+
+    function formatStrip(value, row, index, field) {
+      if (value == 1) {
+        return 'Yes';
+      }
+      return 'No';
+    }
+    function formatDeleteConButton(value, row, index, field) {      
+      return  '<button onclick="deleteContainer(' +value+ ');return false;" style="margin-left:10px" class="btn btn-danger btn-sm"  ><i class="glyphicon glyphicon-trash"></i></button>';
+    }
+
+    function valiDateForm(e) {
+      var obj = validDate($('#arrival_date').val());
+      if (!obj.valid) {
+        $('#arrival_date').addClass('invalid');
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    function valiDateFormField(value, validator, $field) {
+      data_model['arrival_date'] = validDate($('#arrival_date').val()).date;
+          data_model['departure_date'] = validDate($('#departure_date').val()).date;          
+      if (validDate($('#arrival_date').val()).date>0 && validDate($('#departure_date').val()).date>0){
+         if (validDate($('#arrival_date').val()).date< validDate($('#departure_date').val()).date){
+           return false;
+         }else{
+           return true;
+         }
+      }else{
+         return true;
+      }
+    }
+
+    function loadVoyageTable() {
+      $('#classTable').bootstrapTable("destroy");
+      $.ajax({
+        url: './app/voyage/list/' + $('#vessel').val(),
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#classTable').bootstrapTable({
+            uniqueId: 'id',
+            data: data
+          });
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+    function loadVoyageContainerTable() {
+      ;
+      $('#containertable').bootstrapTable("destroy");
+      $.ajax({
+        url: './app/voyage_container/select/' +numeric( $('#id').val()),
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#containertable').bootstrapTable({
+            uniqueId: 'container_number',
+            data: data
+          });
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+
+    function deleteContainer($val){
+        $.ajax({
+          type: "DELETE",
+          url: './app/voyage_container/' + $val,
+          success: function (data) {
+            console.log('deleted -id=' + $val);
+            //$('#classTable').bootstrapTable('remove', { field: 'id', values: ['' + id] });
+            $('#containertable').bootstrapTable('removeByUniqueId', id);
+            toastr.success('The container was deleted successfully', 'Success Alert', { timeOut: 5000 })
+            loadVoyageContainerTable();
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+        return false;    
+    }
+  </script>
+</body>
+
+</html>

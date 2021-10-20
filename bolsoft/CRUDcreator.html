@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Crud creator</title>
+
+
+
+    
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+    
+
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    
+
+
+
+
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        Select Table
+
+        <select id='schtable' name='schtable'></select>
+        <button id=load>Load</button>
+    </div>
+
+    <iframe width="100%" height="600px" scrolling="yes" id="prev" src="">your browser needs to be updated.
+    </iframe>
+
+    <script>
+        $(document).ready(function () {
+            class_model = { "id": "0", "name": "", "location": "" };
+            bootstrapTableIndex = 0;
+            save_method = '';
+            
+            content = { 'file': '','filename':'tempCrud.html' };
+            tablesx = [{
+                "name": "students",
+                "fields": {
+                    "firstName": "char",
+                    "lastName": "char",
+                    "DOB": "date",
+                    "address": "char",
+                    "fee": "dec",
+                    "age": "num",
+                    "street_address": "char"
+                }
+            }];
+            loadTables();
+
+            $("#load").click(function (e) {
+                createCrud();
+
+
+            });
+
+            function createCrud() {
+                $.ajax({
+                    url: './crudTemplate.html',
+                    type: 'GET',
+                    dataType: 'text',
+                    success: function (data) {
+                        content.file = data;
+
+                        //set table
+                        table = tables[$("#schtable").val()];
+                        //Create title
+                       /* var tmp = content.file.split('<title>');
+                        var tmp2 = tmp[1].split('</title>');
+                        content.file = tmp[0] + '<title>Maintain ' + splitCamelCase(table.name) + '</title>' + tmp2[1];
+                       */
+                       
+                        //Header Bar
+                        content.file = content.file.split('Class Rooms').join(splitCamelCase(table.name.trim()));
+
+                        //table Head 
+                        var tmp = content.file.split('<thead>');
+                        var tmp2 = tmp[1].split('</thead>');
+                        var head = ' <tr> <th data-field="id" data-sortable="true" data-visible="false">ID</th>';
+                        var i = 0;
+                        for (var x in table.fields) {
+                            if (x == 'id') continue;
+                            head += '<th data-field="' + x + '" data-sortable="true">' + splitCamelCase(x) + '</th>';
+                            ++i;
+                            if (i > 1) break;
+                        }
+                        head += '<th data-formatter="createActionButtons"  data-searchable="false">Action</th></tr>';
+                        content.file = tmp[0] + '<thead>' + head + '</thead>' + tmp2[1];
+
+                        //table foot
+                        var tmp = content.file.split('<tfoot>');
+                        var tmp2 = tmp[1].split('</tfoot>');
+                        var head = ' <tr>  <th class="hidden">ID</th>';
+                        var i = 0;
+                        for (var x in table.fields) {
+                            if (x == 'id') continue;
+                            head += '<th>' + splitCamelCase(x) + '</th>';
+                            ++i;
+                            if (i > 1) break;
+                        }
+                        head += '<th>Action</th></tr>';
+                        content.file = tmp[0] + '<tfoot>' + head + '</tfoot>' + tmp2[1];
+
+                        //Form title
+                        content.file = content.file.split('Class Room Form').join(splitCamelCase(table.name.trim()) + ' Form');
+                        var tmp      = content.file.split('Add Class');
+                        content.file =tmp[0]+'Add '+splitCamelCase(table.name.trim())+tmp[1];
+                        var tmp      = content.file.split('Edit Class');
+                        content.file =tmp[0]+'Edit '+splitCamelCase(table.name.trim())+tmp[1];
+                       
+
+                        //Form body
+                        var tmp = content.file.split('<div class="form-body">');
+                        var tmp2 = tmp[1].split('<div class="modal-footer">');
+                        var formField = ' ';
+                        var i = 0;
+                        for (var x in table.fields) {
+                            if (x == 'id') continue;
+                            formField += '\n <div class="form-group">  <label class="control-label col-md-3">' + splitCamelCase(x) + '</label>';
+                            formField += '<div class="col-md-9"> ';
+                            formField += '<input id="' + x + '" name="' + x + '" placeholder="' + splitCamelCase(x) + '" class="form-control" type="text" required>';
+                            formField += '<span class="help-block"></span> </div> </div>';
+                        }
+                        content.file = tmp[0] + '<div class="form-body">' + formField + '</div><div class="modal-footer">' + tmp2[1];
+
+                        //Define data model
+                        var tmp = content.file.split('Model Definition');
+                        var data_model = '{ "id": "0"';
+                        for (var x in table.fields) {
+                            if (x == 'id') continue;
+                            data_model += ',"' + x + '": ""';
+                        }
+                        data_model += '}';
+                        content.file = tmp[0] + '\n data_model=' + data_model + tmp[2];
+
+                        //Clear data model
+                        var tmp = content.file.split('Clear Model');
+                        var data_model = '{ "id": "0"';
+                        for (var x in table.fields) {
+                            if (x == 'id') continue;
+                            data_model += ',"' + x + '": ""';
+                        }
+                        data_model += '}';
+                        content.file = tmp[0] + '\n data_model=' + data_model + tmp[2];
+
+                        //Set bootstrapValidator
+                        var tmp = content.file.split('.bootstrapValidator({');
+                        var indx = tmp[1].indexOf('})');
+                        var validator_string = ' feedbackIcons: {';
+                        validator_string += "\n  valid: 'glyphicon glyphicon-ok',";
+                        validator_string += "\n  invalid: 'glyphicon glyphicon-remove',";
+                        validator_string += "\n  validating: 'glyphicon glyphicon-refresh'";
+                        validator_string += "\n  },";
+                        validator_string += "\n  excluded: [':disabled'],";
+                        validator_string += "\n fields: {";
+                        var i = 0;
+                        for (var x in table.fields) {
+                            if (x == 'id') continue;
+                            if (i > 0) { validator_string += ","; }
+                            validator_string += "\n " + x + ":{";
+                            validator_string += "\n   validators: {";
+                            validator_string += "\n     notEmpty: {";
+                            validator_string += "\n        message: '" + splitCamelCase(x) + " is  required and cannot be empty'";
+                            validator_string += "\n      }";
+                            validator_string += "\n    }";
+                            validator_string += "\n }";
+                            ++i;
+                            if (i > 2) break;
+                        }
+                        validator_string += "\n}";
+                        content.file = tmp[0] + '.bootstrapValidator({' + validator_string + tmp[1].substring(tmp[1].indexOf('})'));
+                        //Update table name
+                        content.file = content.file.split('class_room').join(table.name.trim());
+                        $.ajax({
+                            type: "POST",
+                            url: './dataStore.php',
+                            data: content,
+                            success: function (data) {
+                                document.getElementById('prev').src = 'tempCrud.html'// content;
+                                //$('#prev').contents().find('body').html(content);
+
+                            }
+                        });
+                    },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+
+            function loadTables() {
+                var tableOptString = "";
+                tables = [];
+                $.ajax({
+                    url: "./sql.txt",
+                    async: false,
+                    success: function (data) {
+                        var letters = /[a-zA-Z]/, y = 0,jsontable={},tableobj={};
+                        var tablessql = data.split("CREATE TABLE IF NOT EXISTS");
+                        
+                        for (var x = 0; x < tablessql.length; x++) {
+                            var fields = tablessql[x].split(/\n/);
+                            var fieldarr={};                            
+                            var tablerow=fields[0].split('`');
+                            if (tablerow.length<4) continue;
+                            tables[y] = {}; tableobj[tablerow[3].trim()]={};
+                            tables[y].name = tablerow[3].trim(); tables[y].fields = {};
+                            
+                            for (var i = 1; i < fields.length - 1; i++) {
+                                tableobj[tables[y].name.trim()].pkey='';
+							    if ((fields[i].indexOf("PRIMARY KEY") != -1)){
+                                   tmp=fields[i].split("`").join(" ");
+                                   tmp=tmp.split("(").join(" ");
+                                   tmp=tmp.split("PRIMARY KEY").join(" ");
+                                   tmp=tmp.split(")").join(" ").trim();
+                                   tmp=tmp.split(",").join(" ").trim();
+                                   tmp=tmp.split(/\s+/).join(",").trim();
+								   //tmp2=tmp[1].split(")");
+                                   eval('tables[y].pkey="'+tmp+'"'); 
+                                   console.log(tables[y].name);
+                                   console.log('primary key****'+tmp);                                                                 
+                                   //tableobj[tables[y].name.trim()].pkey=tmp2[0];  
+                                   break;                                
+								}
+                                if (fields[i].indexOf("CONSTRAINT") != -1) continue;
+                                if (fields[i].indexOf("INDEX") != -1) continue;
+                                if (fields[i].trim() == "") continue;
+                                tmp = fields[i].split("`").join(" ");
+                                tmp = tmp.split("(").join(" ");
+                                var fld = tmp.split(/\s+/);
+                                //console.log(tmp+'  '+fld);
+                                try { if (!letters.test(fld[1].trim()[0])) continue; } catch (e) { break; }
+                                if (!fld[1].trim()[0]) continue;
+                                //alert(fields[i]+'tables[y].fields.'+fld[1]+'="'+fld[2]+'"    >>'+fld[1].trim()[0]);
+                                eval('tables[y].fields.' + fld[1] + '="' + fld[2] + '"');
+                                eval('fieldarr.' + fld[1] + '="' + fld[2] + '"');
+                                
+                            }
+                            tableobj[tables[y].name.trim()].pkey=tables[y].pkey;
+                            tableobj[tables[y].name.trim()].fields=fieldarr;
+                            console.log(tableobj[tables[y].name.trim()]);
+                            console.log(fieldarr);
+                            tableOptString += "<option value='" + y + "'>" + tables[y].name + "</option>";
+                            ++y;
+                            //console.log(tables);
+                        }
+                        var jsontable={'file':JSON.stringify(tableobj),'filename':'tables.json'}
+                        $.ajax({
+                            type: "POST",
+                            url: './dataStore.php',
+                            data: jsontable,
+                            success: function (data) {
+                                //document.getElementById('prev').src = 'tempCrud.html'// content;
+                                //$('#prev').contents().find('body').html(content);
+
+                            }
+                        });
+                        $('select[name="schtable"]').append(tableOptString);
+                    }
+                });
+            }
+
+        });
+    </script>
+</body>
+
+</html>

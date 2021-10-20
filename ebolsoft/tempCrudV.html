@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>App</title>
+    <link rel="icon" href="./img/app_icon.ico">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="./build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+    
+
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="./img/company_icon.ico" />
+                            <span>Quality One</span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="index.html">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>                                
+                                   
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                    <div class="nav_menu">
+                            <nav>
+                              <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                                <a id="menu_toggle">
+                                  <i style="font-size:16px" class="fa fa-bars"></i>
+                                </a>
+                              </div>
+                  
+                              <ul class="nav navbar-nav navbar-left">
+                                <li class="">
+                                  <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Bill Of Lading</span>
+                                  </a>
+                  
+                                </li>
+                  
+                              </ul>
+                  
+                              <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+                                  <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                  </a>
+                                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                      <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                            <a href="javascript:passwordChangeRequest()"> 
+                                                    <i class="fa fa-lock pull-right"></i> Change Password</a>
+                                                    
+                                                </a>
+                                    </li>
+                                    <li>
+                                      <a href="javascript:displayHelp();">Help</a>
+                                    </li>
+                                    <li>
+                                      <a href="javascript:authenticateUser()">
+                                        <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                  </ul>
+                                </li>
+                  
+                                <li role="presentation" class="dropdownx">
+                                  <button type="button" class="btn btn-round btn-success btn-sm " onclick="loadShortCutOption(this)">
+                                    <i class="fa fa-search-plus"></i> BL Processing</button>
+                  
+                                </li>
+                              </ul>
+                            </nav>
+                          </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                <div class="">
+
+                    <p class="toolbar">
+                        <a class="create btn btn-success" id="create-rec" href="javascript:">Add New</a>
+                    </p>
+                    <table id="classTable" class="display" cellspacing="0" data-toolbar=".toolbar" data-query-params="queryParams" data-pagination="true"
+                        data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                        <thead> <tr> <th data-field="id" data-sortable="true" data-visible="false">ID</th><th data-field="parent_bol" data-sortable="true">Parent Bol</th><th data-field="bol_total" data-sortable="true">Bol Total</th><th data-formatter="createActionButtons"  data-searchable="false">Action</th></tr></thead>
+                        <tfoot> <tr>  <th class="hidden">ID</th><th>Parent Bol</th><th>Bol Total</th><th>Action</th></tr></tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bootstrap modal -->
+            <div class="modal fade" id="modal_form" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="modal-title">Bill Of Lading Form</h3>
+                        </div>
+                        <div class="modal-body form">
+                            <form id="edit_form" class="form-horizontal" data-toggle="validator">
+                                <input type="hidden" value="" name="id" id="id" />
+                                <div class="form-body"> 
+ <div class="form-group">  <label class="control-label col-md-3">Parent Bol</label><div class="col-md-9"> <input id="parent_bol" name="parent_bol" placeholder="Parent Bol" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Bol Total</label><div class="col-md-9"> <input id="bol_total" name="bol_total" placeholder="Bol Total" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Bill Of Lading Number</label><div class="col-md-9"> <input id="bill_of_lading_number" name="bill_of_lading_number" placeholder="Bill Of Lading Number" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Port Of Origin</label><div class="col-md-9"> <input id="port_of_origin" name="port_of_origin" placeholder="Port Of Origin" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Port Of Loading</label><div class="col-md-9"> <input id="port_of_loading" name="port_of_loading" placeholder="Port Of Loading" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Port Of Discharge</label><div class="col-md-9"> <input id="port_of_discharge" name="port_of_discharge" placeholder="Port Of Discharge" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Port Of Delivery</label><div class="col-md-9"> <input id="port_of_delivery" name="port_of_delivery" placeholder="Port Of Delivery" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Currency Id</label><div class="col-md-9"> <input id="currency_id" name="currency_id" placeholder="Currency Id" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Consignee Sname</label><div class="col-md-9"> <input id="consignee_sname" name="consignee_sname" placeholder="Consignee Sname" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Consignee Fname</label><div class="col-md-9"> <input id="consignee_fname" name="consignee_fname" placeholder="Consignee Fname" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Consignee Other Name</label><div class="col-md-9"> <input id="consignee_other_name" name="consignee_other_name" placeholder="Consignee Other Name" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Consignee Address</label><div class="col-md-9"> <input id="consignee_address" name="consignee_address" placeholder="Consignee Address" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Consignee Phone Num</label><div class="col-md-9"> <input id="consignee_phone_num" name="consignee_phone_num" placeholder="Consignee Phone Num" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Consignee Id</label><div class="col-md-9"> <input id="consignee_id" name="consignee_id" placeholder="Consignee Id" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Shipper Id</label><div class="col-md-9"> <input id="shipper_id" name="shipper_id" placeholder="Shipper Id" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Shipper Fname</label><div class="col-md-9"> <input id="shipper_fname" name="shipper_fname" placeholder="Shipper Fname" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Shipper Sname</label><div class="col-md-9"> <input id="shipper_sname" name="shipper_sname" placeholder="Shipper Sname" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Shipper Other Name</label><div class="col-md-9"> <input id="shipper_other_name" name="shipper_other_name" placeholder="Shipper Other Name" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Shipper Address</label><div class="col-md-9"> <input id="shipper_address" name="shipper_address" placeholder="Shipper Address" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Shipper Phone Num</label><div class="col-md-9"> <input id="shipper_phone_num" name="shipper_phone_num" placeholder="Shipper Phone Num" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Notify Fname</label><div class="col-md-9"> <input id="notify_fname" name="notify_fname" placeholder="Notify Fname" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Notify Other Name</label><div class="col-md-9"> <input id="notify_other_name" name="notify_other_name" placeholder="Notify Other Name" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Notify Sname</label><div class="col-md-9"> <input id="notify_sname" name="notify_sname" placeholder="Notify Sname" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Notify Address</label><div class="col-md-9"> <input id="notify_address" name="notify_address" placeholder="Notify Address" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Notify Date</label><div class="col-md-9"> <input id="notify_date" name="notify_date" placeholder="Notify Date" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Notify Phone Num</label><div class="col-md-9"> <input id="notify_phone_num" name="notify_phone_num" placeholder="Notify Phone Num" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Master Bol Id</label><div class="col-md-9"> <input id="master_bol_id" name="master_bol_id" placeholder="Master Bol Id" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Booking Id</label><div class="col-md-9"> <input id="booking_id" name="booking_id" placeholder="Booking Id" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Order Processed</label><div class="col-md-9"> <input id="order_processed" name="order_processed" placeholder="Order Processed" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Receipt Processed</label><div class="col-md-9"> <input id="receipt_processed" name="receipt_processed" placeholder="Receipt Processed" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Edited By</label><div class="col-md-9"> <input id="edited_by" name="edited_by" placeholder="Edited By" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Edit Type</label><div class="col-md-9"> <input id="edit_type" name="edit_type" placeholder="Edit Type" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Value Of Goods</label><div class="col-md-9"> <input id="value_of_goods" name="value_of_goods" placeholder="Value Of Goods" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Value Currency</label><div class="col-md-9"> <input id="value_currency" name="value_currency" placeholder="Value Currency" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Customer Type</label><div class="col-md-9"> <input id="customer_type" name="customer_type" placeholder="Customer Type" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Status</label><div class="col-md-9"> <input id="status" name="status" placeholder="Status" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Booking Container Id</label><div class="col-md-9"> <input id="booking_container_id" name="booking_container_id" placeholder="Booking Container Id" class="form-control" type="text" required><span class="help-block"></span> </div> </div></div><div class="modal-footer">
+                                    <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- End Bootstrap modal -->
+            <!-- /page content -->
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+   
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/jquery-ui.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+    <script src="./vendor/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="./vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="./vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="./vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="./build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/crud.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            //
+ data_model={ "id": "0","parent_bol": "","bol_total": "","bill_of_lading_number": "","port_of_origin": "","port_of_loading": "","port_of_discharge": "","port_of_delivery": "","currency_id": "","consignee_sname": "","consignee_fname": "","consignee_other_name": "","consignee_address": "","consignee_phone_num": "","consignee_id": "","shipper_id": "","shipper_fname": "","shipper_sname": "","shipper_other_name": "","shipper_address": "","shipper_phone_num": "","notify_fname": "","notify_other_name": "","notify_sname": "","notify_address": "","notify_date": "","notify_phone_num": "","master_bol_id": "","booking_id": "","order_processed": "","receipt_processed": "","edited_by": "","edit_type": "","value_of_goods": "","value_currency": "","customer_type": "","status": "","booking_container_id": ""};
+            //
+ businessObject=   new BusinessObject(data_model,'bill_of_lading'); 
+            fieldValidatrs={};
+            //
+ fieldValidatrs.parent_bol=createValidationField('Parent Bol','notEmpty');
+ fieldValidatrs.bol_total=createValidationField('Bol Total','notEmpty');
+ fieldValidatrs.bill_of_lading_number=createValidationField('Bill Of Lading Number','notEmpty');
+ fieldValidatrs.port_of_origin=createValidationField('Port Of Origin','notEmpty');
+ fieldValidatrs.port_of_loading=createValidationField('Port Of Loading','notEmpty');
+ fieldValidatrs.port_of_discharge=createValidationField('Port Of Discharge','notEmpty');
+ fieldValidatrs.port_of_delivery=createValidationField('Port Of Delivery','notEmpty');
+ fieldValidatrs.currency_id=createValidationField('Currency Id','notEmpty');
+ fieldValidatrs.consignee_sname=createValidationField('Consignee Sname','notEmpty');
+ fieldValidatrs.consignee_fname=createValidationField('Consignee Fname','notEmpty');
+ fieldValidatrs.consignee_other_name=createValidationField('Consignee Other Name','notEmpty');
+ fieldValidatrs.consignee_address=createValidationField('Consignee Address','notEmpty');
+ fieldValidatrs.consignee_phone_num=createValidationField('Consignee Phone Num','notEmpty');
+ fieldValidatrs.consignee_id=createValidationField('Consignee Id','notEmpty');
+ fieldValidatrs.shipper_id=createValidationField('Shipper Id','notEmpty');
+ fieldValidatrs.shipper_fname=createValidationField('Shipper Fname','notEmpty');
+ fieldValidatrs.shipper_sname=createValidationField('Shipper Sname','notEmpty');
+ fieldValidatrs.shipper_other_name=createValidationField('Shipper Other Name','notEmpty');
+ fieldValidatrs.shipper_address=createValidationField('Shipper Address','notEmpty');
+ fieldValidatrs.shipper_phone_num=createValidationField('Shipper Phone Num','notEmpty');
+ fieldValidatrs.notify_fname=createValidationField('Notify Fname','notEmpty');
+ fieldValidatrs.notify_other_name=createValidationField('Notify Other Name','notEmpty');
+ fieldValidatrs.notify_sname=createValidationField('Notify Sname','notEmpty');
+ fieldValidatrs.notify_address=createValidationField('Notify Address','notEmpty');
+ fieldValidatrs.notify_date=createValidationField('Notify Date','notEmpty');
+ fieldValidatrs.notify_phone_num=createValidationField('Notify Phone Num','notEmpty');
+ fieldValidatrs.master_bol_id=createValidationField('Master Bol Id','notEmpty');
+ fieldValidatrs.booking_id=createValidationField('Booking Id','notEmpty');
+ fieldValidatrs.order_processed=createValidationField('Order Processed','notEmpty');
+ fieldValidatrs.receipt_processed=createValidationField('Receipt Processed','notEmpty');
+ fieldValidatrs.edited_by=createValidationField('Edited By','notEmpty');
+ fieldValidatrs.edit_type=createValidationField('Edit Type','notEmpty');
+ fieldValidatrs.value_of_goods=createValidationField('Value Of Goods','notEmpty');
+ fieldValidatrs.value_currency=createValidationField('Value Currency','notEmpty');
+ fieldValidatrs.customer_type=createValidationField('Customer Type','notEmpty');
+ fieldValidatrs.status=createValidationField('Status','notEmpty');
+ fieldValidatrs.booking_container_id=createValidationField('Booking Container Id','notEmpty');
+            crudInit(businessObject);
+            loadBusinessObjects(businessObject.data_table);
+        });        
+
+       
+    </script>
+</body>
+
+</html>

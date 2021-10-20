@@ -1,0 +1,1 @@
+INSERT INTO `menu_item` (`id`, `menu_group_id`, `title`, `url`, `menu_order`, `status`, `level`, `icon`, `description`) VALUES (NULL, '21', 'Rate Table', 'rate_table.html', '2', 0, '2', NULL, NULL);

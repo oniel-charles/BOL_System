@@ -1,0 +1,1 @@
+INSERT INTO `menu_item` (`id`, `menu_group_id`, `title`, `url`, `menu_order`, `status`, `level`, `icon`, `description`) VALUES (NULL, '6', 'Admin Enquiry ', 'billOfLading_Enquiry_admin.html', '5', 0, '2', NULL, NULL);

@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bill of Lading Processing </title>
+    <link rel="icon" href="./img/app_icon.ico">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="./build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="./img/company_icon.ico" />
+                            <span id=glo_company_name></span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/home/main">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-cogs"></i> Maintenance
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_port.html">Port</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_country.html">Country</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_currency.html">Currency</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_package.html">Package</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_commodity.html">Commodity</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_container_size_type.html">Container Size Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-list-alt"></i> Charges
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_charges.html">Charge Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_sur_charge.html">Sur Charge</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_rate.html">GCT Rate</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-dollar"></i> Billing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_receipt.html">Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_order.html">Order</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-exchange"></i> EDI
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="exportPCS.html">PCS Download</a>
+                                        </li>
+                                        <li>
+                                            <a href="exportansix12.html">Export to Customs</a>
+                                        </li>
+                                        <li>
+                                            <a href="exportasycuda.html">ASYCUDA Download</a>
+                                        </li>
+                                        <li>
+                                            <a href="importManifest.html">Manifest Import</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-anchor"></i> Manifest Processing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_voyage.html">Voyage</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                                        </li>
+                                        <li>
+                                            <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-bar-chart"></i> Reports
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_report.html">GCT Report</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                            <a id="menu_toggle">
+                                <i style="font-size:16px" class="fa fa-bars"></i>
+                            </a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> PCS BL Export </span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                            <a href="javascript:passwordChangeRequest()"> 
+                                                    <i class="fa fa-lock pull-right"></i> Change Password</a>
+                                                    
+                                                </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:displayHelp();">Help</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:authenticateUser()"> 
+                                            <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdownx">
+                                <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                                    <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label col-md-6">Carrier Code (Shipping Line)</label>
+                        <div class="col-md-6">
+                            <input id="carrier_code" placeholder="Carrier Code" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label col-md-6">Customs Office</label>
+                        <div class="col-md-6">
+                            <select id="custom_code" class="all-values load-select form-control" data-path="./app/custom_office/select"></select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label col-md-6">Manifest Reg. No.</label>
+                        <div class="col-md-6">
+                            <input id="man_reg" placeholder="Registration No" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label col-md-6">Agent Code (TRN)</label>
+                        <div class="col-md-6">
+                            <input id="agent_code" placeholder="Agent Code" class="form-control" type="text">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        <label class="control-label col-md-6">Vessel</label>
+                        <div class="col-md-6">
+                            <select id="vessel" onchange="loadVoyageSelect();setCountry();" class=" load-select form-control" data-path="./app/vessel/select"></select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label col-md-6">Voyage</label>
+                        <div class="col-md-6">
+                            <select id="voyage" onchange="loadParentSelect()" class=" load-select form-control"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="masterbl" class="col-md-4 form-group">
+                        <label class="control-label col-md-6">Master BL</label>
+                        <div class="col-md-6">
+                            <select id="master_bol_id" onchange="loadRegNum();" class=" form-control"></select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div id="masterbl" class="col-md-4 form-group">
+                        <label class="control-label col-md-6">Expected Strip Date</label>
+                        <div class="col-md-6">
+                            <input data-toggle="datepicker" id="strip_date" name="strip_date" placeholder="Departure Date" class="form-control has-feedback-left"
+                                type="text" required>
+                            <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div id="masterbl" class="col-md-4 form-group">
+                        <label class="control-label col-md-6">Time</label>
+                        <div class="col-md-6">
+                            <input id="strip_time" type="time" name="strip_time" value="09:30">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" form-group col-md-4">
+                        <label class="control-label col-md-4">Download Type</label>
+                        <div class="col-md-8">
+                            <select id="download_type" class="selectpicker ">
+                                <option value="d">Deconsolidation</option>
+                                <option value="i">Itemization</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="hidden form-group col-md-4">
+                        <label class="control-label col-md-6">Vessel Country</label>
+                        <div class="col-md-6">
+                            <select id="country_id" class=" load-select form-control" data-path="./app/country/select"></select>
+                        </div>
+                    </div>
+                    </div>
+                <button class="btn btn-success" onclick="downloadPCS(); return false;">Download PCS</button>
+                <textarea id="results" cols="800" style="display:none" rows="10"></textarea>
+            </div>
+
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+
+            <!-- Bootstrap modal -->
+            <div class="modal fade" data-backdrop="static" id="modal_form" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="modal-title">Edi Translation Form</h3>
+                        </div>
+                        <div class="modal-body form">
+                            <form id="edit_form" class="form-horizontal" data-toggle="validator">
+                                <input type="hidden" value="" name="id" id="id" />
+
+                                </select>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Type</label>
+                                        <div class="col-md-9">
+                                            <input readonly id="type" name="type" placeholder="Type" class="form-control" type="text" required>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group hidden">
+                                        <label class="control-label col-md-3">Internal Code</label>
+                                        <div class="col-md-9">
+                                            <input id="internal_code" name="internal_code" placeholder="Internal Code" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">External Code</label>
+                                        <div class="col-md-9">
+                                            <input id="external_code" name="external_code" placeholder="External Code" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            <i class="fa fa-refresh " style="color:darkcyan;cursor:pointer;font-size:18px;" onclick="reloadInternalSelect()"></i> Internal Code</label>
+                                        <div class="col-md-9">
+
+                                            <select readonly id="package_id" class=" load-selectpicker form-control" data-path="./app/package/select"></select>
+                                            <select readonly id="port_id" class=" load-selectpicker form-control" data-path="./app/port/select"></select>
+                                            <select readonly id="commodity_id" class=" load-selectpicker form-control" data-path="./app/commodity/select"></select>
+
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group hidden">
+                                        <label class="control-label col-md-3">Translation Source Id</label>
+                                        <div class="col-md-9">
+                                            <input id="translation_source_id" name="translation_source_id" placeholder="Translation Source Id" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveEDIRecord(event)">
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="./vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="./vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="./vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="./build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+
+    <script>
+        
+        $('#custom_code').selectpicker('val','JMKWL');
+        
+        
+//*****************************
+        $.ajax({
+            url: './app/system_values/code/office',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if(data.length>0){
+                    $('#custom_code').selectpicker('val',data[0].data_value); //'JMMPH'       
+                    $office=data[0].data_value;
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+//**************************
+
+        var d = new Date();
+        $('#strip_date').val(pad(d.getDate(), 2) + '/' + pad((1 + d.getMonth()), 2) + '/' + d.getFullYear());
+        setCountry();
+        function setCountry() {
+            var path = './app/vessel/select';
+            if (SELECT_DATA_PATH[path]) {
+                $.each(SELECT_DATA_PATH[path], function (key, value) {
+                    if ($('#vessel').val() == value.id) {
+                        $('#country_id').selectpicker('val', value.country_id);
+                    }
+                });
+            }
+        }
+        console.log($('#custom_code').val());
+    </script>
+    <script>
+        setUpEDITranslation();
+        package_codes = {};
+        commodity_codes = {};
+        $.ajax({
+            url: './app/package',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    package_codes[data[i].id] = data[i].package_code;
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+
+        function loadParentSelect() {
+            $('#master_bol_id').empty();
+            var select_path = './app/bill_of_lading/master-select/' + $('#voyage').val();
+            if (SELECT_DATA_PATH[select_path] && arguments.length == 0) {
+                $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+                    $('#master_bol_id').append('<option value=' + value.id + '>' + value.bill_of_lading_number + '</option>');
+                });
+            } else {
+                $.ajax({
+                    url: select_path,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        SELECT_DATA_PATH[select_path] = data;
+                        $.each(data, function (key, value) {
+                            $('#master_bol_id').append('<option value=' + value.id + '>' + value.bill_of_lading_number + '</option>');
+
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+            loadRegNum();
+        }
+
+        loadVoyageSelect();
+        function loadVoyageSelect() {
+            $('#voyage').empty();
+            var select_path = './app/voyage/select/' + $('#vessel').val();
+            if (SELECT_DATA_PATH[select_path]) {
+                $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+                    var date1 = '' + value.arrival_date;
+                    date1 = date1.substr(0, 4) + '-' + date1.substr(4, 2) + '-' + date1.substr(6, 2);
+                    $('#voyage').append('<option value=' + value.id + '>' + value.manifest_number + ' * ' + date1 + '</option>');
+                });
+                loadParentSelect();
+            } else {
+                $.ajax({
+                    url: select_path,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        SELECT_DATA_PATH[select_path] = data;
+                        $.each(data, function (key, value) {
+                            var date1 = '' + value.arrival_date;
+                            date1 = date1.substr(0, 4) + '-' + date1.substr(4, 2) + '-' + date1.substr(6, 2);
+                            $('#voyage').append('<option value=' + value.id + '>' + value.manifest_number + ' * ' + date1 + '</option>');
+                        });
+                        loadParentSelect();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+        }
+        //**********************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&***************************
+        function downloadPCS() {
+          if($("#download_type").val()=='d'){
+              downloadDeconsolidation();
+          }else{
+              downloadItemisation();
+          }
+        }    
+        function downloadItemisation() {
+            setPCSCodes();
+            loadTranslationcodes();
+
+            //GET ********** all the details
+            bol_details = {};
+            var edi_error = false;
+            $.ajax({
+                url: './app/bill_of_lading_detail/manifest-detail/' + $('#voyage').val(),
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (!bol_details[data[i].billoflading_id]) {
+                            bol_details[data[i].billoflading_id] = [];
+                        }
+                        bol_details[data[i].billoflading_id].push(data[i]);
+                       
+                      /*  if (getEDICode('commodity', data[i].commodity_id).trim() == '') {
+                            edi_error = true;
+                            return;
+                        }*/
+                        if (getEDICode('package', data[i].package_type_id).trim() == '') {
+                            edi_error = true;
+                            return;
+                        }
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+            if (edi_error) { return false; }
+
+            //*** GET CONTAINER AND MATER INFO
+            master_BOL = {};
+            $.ajax({
+                url: './app/bill_of_lading/master-con/' + $('#master_bol_id').val(),
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    master_BOL = data[0];
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+            if (master_BOL.bill_of_lading_number == undefined) {
+                alert('error exporting PCS ');
+                return false;
+            }
+            var port_origin = getEDICode('port', master_BOL.port_of_origin);
+            if (port_origin == '') return false;
+            var port_loading = getEDICode('port', master_BOL.port_of_loading);
+            if (port_loading == '') return false;
+            var port_delivery = getEDICode('port', master_BOL.port_of_delivery);
+            if (port_delivery == '') return false;
+            var port_discharge = getEDICode('port', master_BOL.port_of_discharge);
+            if (port_discharge == '') return false;
+
+            var download_text = '<?xml version="1.0"?>';
+            download_text += '\n<ns0:Itemization xmlns:ns0="http://Soget.PSW.Schemas.Itemization">';
+            //download_text += '\n<ID>' + $("#voyage option:selected").text().split('*')[0].trim() + '</ID>';
+            download_text += '\n<ID>' + $("#master_bol_id option:selected").text() + '-' + master_BOL.container_number +  '</ID>';
+            download_text += '\n<Sender>' + $('#agent_code').val() + '</Sender>';
+            download_text += '\n<Receiver>S-ONE_PSW_JAM</Receiver>';
+            var d = new Date();
+            var datestr = d.toISOString().substr(0, 11) + pad(d.getHours(),2) + ':' + pad(d.getMinutes(),2) + ':00Z';
+            download_text += '\n<Date>' + datestr + '</Date>';
+
+            download_text += '\n<Reference>' + $("#master_bol_id option:selected").text() + '</Reference>';
+            download_text += '\n<AnnouncementType>785</AnnouncementType>';
+            download_text += '\n<Function>Create</Function>';
+            download_text += '\n<State>Valid</State>';
+            download_text += '\n<Comment></Comment>';
+            download_text += '\n<FreightAgent>'+$('#carrier_code').val()+'</FreightAgent>';
+            download_text += '\n<Place>' + port_discharge + '</Place>';
+            download_text += '\n<HandlingPlace>' + $('#custom_code').val() + '</HandlingPlace>';
+
+            download_text += '\n<MainAnnouncementDocument>';
+            download_text += '\n<Reference>' + master_BOL.bill_of_lading_number + '</Reference>';
+            download_text += '\n</MainAnnouncementDocument>';            
+
+            download_text += '\n<Transports>';
+            download_text += '\n<Transport>';
+            download_text += '\n<Reference>' + $("#vessel option:selected").text() + '</Reference>';
+            download_text += '\n<Stage>20</Stage>';
+            download_text += '\n<Mode>1</Mode>';
+            download_text += '\n<CarrierCode>' + $('#carrier_code').val() + '</CarrierCode>';
+            download_text += '\n<EstimatedDateOfArrival>' + $("#voyage option:selected").text().split('*')[1] + 'T10:00:00Z</EstimatedDateOfArrival>';
+            download_text += '\n<AdditionalInformations>';
+            download_text += '\n<AdditionalInformation>';
+            download_text += '\n<Type>ArrivalCustomsManifestId</Type>';
+            download_text += '\n<Value>' + $('#man_reg').val() + '</Value>';
+            download_text += '\n</AdditionalInformation>';
+            download_text += '\n</AdditionalInformations>';
+            download_text += '\n</Transport>';
+            download_text += '\n</Transports>';
+
+            download_text += '\n<HandlingUnits>';
+
+            $.ajax({
+                url: './app/bill_of_lading/bill-chg/' + $('#voyage').val() + '/' + $('#master_bol_id').val(),
+                type: 'GET',
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    //for (var i = 0; i < data.length; i++) {
+                     //   var indx = data[i].id;
+                       // for (var x = 0; x < bol_details[indx].length; x++) {                            
+                            download_text += '\n<HandlingUnit>';
+                            download_text += '\n<Reference>' + master_BOL.container_number + '</Reference>';
+                            download_text += '\n</HandlingUnit>';
+                       // }
+                   // }
+                    download_text += '\n</HandlingUnits>';
+                    download_text += '\n<AnnouncementDocuments>';
+
+                    for (var i = 0; i < data.length; i++) {
+                        download_text += '\n<AnnouncementDocument>';
+
+                        download_text += '\n<Reference>' + data[i].bill_of_lading_number + '</Reference>';
+                        //download_text += '\n<HandlingPlace>' + $('#custom_code').val() + '</HandlingPlace>';
+                        download_text += '\n<Type>705</Type>';
+                        download_text += '\n<ProcessingIndicator>23</ProcessingIndicator>';
+                        download_text += '\n<Parties>';
+                        download_text += '\n<Party>';
+                        download_text += '\n<Type>CZ</Type>';
+                        download_text += '\n<Name>' + data[i].shipper_name.split('&').join(' and ') + '</Name>';
+                        if (data[i].shipper_address.trim() == '') {
+                            download_text += '\n<Address>' + data[i].shipper_name.split('&').join(' and ') + '</Address>';
+                        }
+                        else {
+                            download_text += '\n<Address>' + data[i].shipper_address.split('&').join(' and ') + '</Address>';
+                        }
+                        download_text += '\n</Party>';
+                        download_text += '\n<Party>';
+                        download_text += '\n<Type>CN</Type>';
+                        download_text += '\n<Name>' + data[i].consignee_name.split('&').join(' and ') + '</Name>';
+                        if (data[i].consignee_address.trim() == '') {
+                            download_text += '\n<Address>' + data[i].consignee_name.split('&').join(' and ') + '</Address>';
+                        }
+                        else {
+                            download_text += '\n<Address>' + data[i].consignee_address.split('&').join(' and ') + '</Address>';
+                        }
+                        download_text += '\n</Party>';
+                        if (data[i].notify_name.trim() != '') {
+                            download_text += '\n<Party>';
+                            download_text += '\n<Type>N1</Type>';
+                            download_text += '\n<Name>' + data[i].notify_name + '</Name>';
+                            if (data[i].notify_address.trim() == '') {
+                                download_text += '\n<Address>' + data[i].notify_name.split('&').join(' and ') + '</Address>';
+                            }
+                            else {
+                                download_text += '\n<Address>' + data[i].notify_address.split('&').join(' and ') + '</Address>';
+                            }
+                            download_text += '\n</Party>';
+                        }
+                        download_text += '\n</Parties>';
+
+                        download_text += '\n<Locations>';
+                        download_text += '\n<Location>';
+                        download_text += '\n<Type>76</Type>';
+                        download_text += '\n<Code>' + port_origin + '</Code>';
+                        download_text += '\n</Location>';
+                        download_text += '\n<Location>';
+                        download_text += '\n<Type>9</Type>';
+                        download_text += '\n<Code>' + port_loading + '</Code>';
+                        download_text += '\n</Location>';
+                        download_text += '\n<Location>';
+                        download_text += '\n<Type>11</Type>';
+                        download_text += '\n<Code>' + port_delivery + '</Code>';
+                        download_text += '\n</Location>';
+                        download_text += '\n<Location>';
+                        download_text += '\n<Type>20</Type>';
+                        download_text += '\n<Code>' + port_discharge + '</Code>';
+                        download_text += '\n</Location>';
+                        download_text += '\n</Locations>';
+
+                        var indx = data[i].id;
+                        download_text += '\n<Goods>';
+                        for (var j = 0; j < bol_details[indx].length; j++) {
+                            download_text += '\n<Good>';
+                            download_text += '\n<Reference>' + data[i].bill_of_lading_number + '-' + bol_details[indx][j].id + '</Reference>';
+                            download_text += '\n<PackagingCode>' + edi_codes['package:' + bol_details[indx][j].package_type_id] + '</PackagingCode>';
+                            download_text += '\n<Quantity>' + numeric(bol_details[indx][j].number_of_items) + '</Quantity>';
+                            download_text += '\n<Description>' + bol_details[indx][j].Description_of_goods.split('&').join(' and ') + '</Description>';
+                            download_text += '\n<Incoterm></Incoterm>';
+                            download_text += '\n<Weight>';
+                            download_text += '\n<MeasureGrossWeight>';
+                            var mass = bol_details[indx][j].weight;
+                            if (bol_details[indx][j].weight_unit == 'lb') mass = 0.453592 * bol_details[indx][j].weight;
+                            var cubic = numeric(bol_details[indx][j].measure, 2);
+                            if (bol_details[indx][j].measure_unit != 'cum') cubic = 0.0283168 * bol_details[indx][j].measure;
+
+                            download_text += '\n<Value>' + numeric(mass,2) + '</Value>';
+                            download_text += '\n<Unit>KGM</Unit>';
+                            download_text += '\n</MeasureGrossWeight>';
+                            download_text += '\n</Weight>';
+                            download_text += '\n<Volume>';
+                            download_text += '\n<Value>' + cubic + '</Value>';
+                            download_text += '\n<Unit>MTQ</Unit>';
+                            download_text += '\n</Volume>';
+                            download_text += '\n<MarksAndNumbers></MarksAndNumbers>';
+                            download_text += '\n<IsHazardous>false</IsHazardous>';
+                            download_text += '\n<Pollutant>false</Pollutant>';
+
+
+                            download_text += '\n<GoodHandlingUnits>';
+                            download_text += '\n<HandlingUnit>';
+                            download_text += '\n<Reference>' + master_BOL.container_number + '</Reference>';
+                            download_text += '\n</HandlingUnit>';
+                            download_text += '\n</GoodHandlingUnits>';
+
+/*
+                            download_text += '\n<CustomsInformations>';
+                            download_text += '\n <Status>T</Status>';
+                            download_text += '\n<CommodityCode>' + edi_codes['commodity:' + bol_details[indx][j].commodity_id] + '</CommodityCode>';
+                            download_text += '\n</CustomsInformations>';
+*/
+
+                            download_text += '\n</Good>';
+                        }
+                        download_text += '\n</Goods>';
+                        download_text += '\n</AnnouncementDocument>';
+                    }
+                    download_text += '\n</AnnouncementDocuments>';
+                    download_text += '\n</ns0:Itemization>';
+
+                    $("#myselect option:selected").text();
+                    $('#results').val(download_text);
+                    downloadTXTFile(download_text, 'pcs.xml', 'plain/text');
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+
+        }
+        function downloadDeconsolidation() {
+            setPCSCodes();
+            loadTranslationcodes();
+
+            //GET ********** all the details
+            bol_details = {};
+            var edi_error = false;
+            $.ajax({
+                url: './app/bill_of_lading_detail/manifest-detail/' + $('#voyage').val(),
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (!bol_details[data[i].billoflading_id]) {
+                            bol_details[data[i].billoflading_id] = [];
+                        }
+                        bol_details[data[i].billoflading_id].push(data[i]);
+                       
+                      /*  if (getEDICode('commodity', data[i].commodity_id).trim() == '') {
+                            edi_error = true;
+                            return;
+                        }*/
+                        if (getEDICode('package', data[i].package_type_id).trim() == '') {
+                            edi_error = true;
+                            return;
+                        }
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+            if (edi_error) { return false; }
+
+            //*** GET CONTAINER AND MATER INFO
+            master_BOL = {};
+            $.ajax({
+                url: './app/bill_of_lading/master-con/' + $('#master_bol_id').val(),
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    master_BOL = data[0];
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+            if (master_BOL.bill_of_lading_number == undefined) {
+                alert('error exporting PCS ');
+                return false;
+            }
+            var port_origin = getEDICode('port', master_BOL.port_of_origin);
+            if (port_origin == '') return false;
+            var port_loading = getEDICode('port', master_BOL.port_of_loading);
+            if (port_loading == '') return false;
+            var port_delivery = getEDICode('port', master_BOL.port_of_delivery);
+            if (port_delivery == '') return false;
+            var port_discharge = getEDICode('port', master_BOL.port_of_discharge);
+            if (port_discharge == '') return false;
+
+            var download_text = '<?xml version="1.0"?>';
+            download_text += '\n<ns0:HouseManifest xmlns:ns0="http://Soget.PSW.Schemas.HouseManifest">';
+            //download_text += '\n<ID>' + $("#voyage option:selected").text().split('*')[0].trim() + '</ID>';
+            download_text += '\n<ID>' + $("#master_bol_id option:selected").text() + '-' + master_BOL.container_number +  '</ID>';
+            download_text += '\n<Sender>' + $('#agent_code').val() + '</Sender>';
+            download_text += '\n<Receiver>S-ONE_PSW_JAM</Receiver>';
+            var d = new Date();
+            var datestr = d.toISOString().substr(0, 11) + pad(d.getHours(),2) + ':' + pad(d.getMinutes(),2) + ':00Z';            
+            download_text += '\n<Date>' + datestr + '</Date>';
+
+            download_text += '\n<Reference>' + $("#master_bol_id option:selected").text() + '-' + master_BOL.container_number + '</Reference>';
+            download_text += '\n<AnnouncementType>788</AnnouncementType>';
+            download_text += '\n<Function>Create</Function>';
+            download_text += '\n<State>Valid</State>';
+            download_text += '\n<Comment>Valid</Comment>';
+            download_text += '\n<Announcer>' + $('#agent_code').val() + '</Announcer>';
+            download_text += '\n<Place>' + port_discharge + '</Place>';
+           //download_text += '\n<Place/>';
+            download_text += '\n<HandlingPlace>' + $('#custom_code').val() + '</HandlingPlace>';
+            var d = $('#strip_date').val().split('/');
+            if (d.length < 3) {
+                alert('PLease select Expected strip date');
+                return false;
+            }
+            var datestr = d[2] + '-' + d[1] + '-' + d[0] + 'T' + $('#strip_time').val() + ':00Z';
+            download_text += '\n<ExpectedDateOfStripping>' + datestr + '</ExpectedDateOfStripping>';
+
+            download_text += '\n<MainHandlingUnit>';
+            download_text += '\n<Reference>' + master_BOL.container_number + '</Reference>';
+            download_text += '\n<MainAnnouncementDocument>';
+            download_text += '\n<Reference>' + master_BOL.bill_of_lading_number + '</Reference>';
+            download_text += '\n</MainAnnouncementDocument>';
+            download_text += '\n</MainHandlingUnit>';
+
+            download_text += '\n<Transports>';
+            download_text += '\n<Transport>';
+            download_text += '\n<Reference>' + $("#vessel option:selected").text() + '</Reference>';
+            download_text += '\n<Stage>20</Stage>';
+            download_text += '\n<Mode>1</Mode>';
+            download_text += '\n<CarrierCode>' + $('#carrier_code').val() + '</CarrierCode>';
+            download_text += '\n<EstimatedDateOfArrival>' + $("#voyage option:selected").text().split('*')[1] + 'T10:00:00Z</EstimatedDateOfArrival>';
+            download_text += '\n<AdditionalInformations>';
+            download_text += '\n<AdditionalInformation>';
+            download_text += '\n<Type>ArrivalCustomsManifestId</Type>';
+            download_text += '\n<Value>' + $('#man_reg').val() + '</Value>';
+            download_text += '\n</AdditionalInformation>';
+            download_text += '\n</AdditionalInformations>';
+            download_text += '\n</Transport>';
+            download_text += '\n</Transports>';
+
+            download_text += '\n<HandlingUnits>';
+
+            $.ajax({
+                url: './app/bill_of_lading/bill-chg/' + $('#voyage').val() + '/' + $('#master_bol_id').val(),
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var indx = data[i].id;
+                        if(!bol_details[indx]){
+                            alert('No goods information found for '+data[i].bill_of_lading_number +' - '+data[i].consignee_name+' \n Please correct before continuing ');
+                            return;
+                        }
+                        for (var x = 0; x < bol_details[indx].length; x++) {                            
+                            download_text += '\n<HandlingUnit>';
+                            download_text += '\n<Reference>' + data[i].bill_of_lading_number + '-' + bol_details[indx][x].id + '</Reference>';
+                            download_text += '\n</HandlingUnit>';
+                        }
+                    }
+                    download_text += '\n</HandlingUnits>';
+                    download_text += '\n<AnnouncementDocuments>';
+
+                    for (var i = 0; i < data.length; i++) {
+                        download_text += '\n<AnnouncementDocument>';
+
+                        download_text += '\n<Reference>' + data[i].bill_of_lading_number + '</Reference>';
+                        //download_text += '\n<HandlingPlace>' + $('#custom_code').val() + '</HandlingPlace>';
+                        download_text += '\n<Type>705</Type>';
+                        download_text += '\n<ProcessingIndicator>23</ProcessingIndicator>';
+                        download_text += '\n<Parties>';
+                        download_text += '\n<Party>';
+                        download_text += '\n<Type>CZ</Type>';
+                        download_text += '\n<Name>' + data[i].shipper_name.split('&').join(' and ') + '</Name>';
+                        if (data[i].shipper_address.trim() == '') {
+                            download_text += '\n<Address>' + data[i].shipper_name.split('&').join(' and ') + '</Address>';
+                        }
+                        else {
+                            download_text += '\n<Address>' + data[i].shipper_address.split('&').join(' and ') + '</Address>';
+                        }
+                        download_text += '\n</Party>';
+                        download_text += '\n<Party>';
+                        download_text += '\n<Type>CN</Type>';
+                        download_text += '\n<Name>' + data[i].consignee_name.split('&').join(' and ') + '</Name>';
+                        if (data[i].consignee_address.trim() == '') {
+                            download_text += '\n<Address>' + data[i].consignee_name.split('&').join(' and ') + '</Address>';
+                        }
+                        else {
+                            download_text += '\n<Address>' + data[i].consignee_address.split('&').join(' and ') + '</Address>';
+                        }
+                        download_text += '\n</Party>';
+                        if (data[i].notify_name.trim() != '') {
+                            download_text += '\n<Party>';
+                            download_text += '\n<Type>N1</Type>';
+                            download_text += '\n<Name>' + data[i].notify_name.split('&').join(' and ') + '</Name>';
+                            if (data[i].notify_address.trim() == '') {
+                                download_text += '\n<Address>' + data[i].notify_name.split('&').join(' and ') + '</Address>';
+                            }
+                            else {
+                                download_text += '\n<Address>' + data[i].notify_address.split('&').join(' and ') + '</Address>';
+                            }
+                            download_text += '\n</Party>';
+                        }
+                        download_text += '\n</Parties>';
+
+                        download_text += '\n<Locations>';
+                        download_text += '\n<Location>';
+                        download_text += '\n<Type>76</Type>';
+                        download_text += '\n<Code>' + port_origin + '</Code>';
+                        download_text += '\n</Location>';
+                        download_text += '\n<Location>';
+                        download_text += '\n<Type>9</Type>';
+                        download_text += '\n<Code>' + port_loading + '</Code>';
+                        download_text += '\n</Location>';
+                        download_text += '\n<Location>';
+                        download_text += '\n<Type>11</Type>';
+                        download_text += '\n<Code>' + port_delivery + '</Code>';
+                        download_text += '\n</Location>';
+                        download_text += '\n<Location>';
+                        download_text += '\n<Type>20</Type>';
+                        download_text += '\n<Code>' + port_discharge + '</Code>';
+                        download_text += '\n</Location>';
+                        download_text += '\n</Locations>';
+
+                        download_text += '\n<Amounts>';
+
+                        if (data[i].value_of_goods > 0) {
+                            var freight = numericStr(data[i].value_of_goods, 2);
+                            var flag = 'CC';
+                            flag='PO';
+                           // if (data[i].prepaid_flag != 'c') { flag = 'PO'; }
+                            download_text += '\n<Amount>';
+                            download_text += '\n<Type>100000</Type>';
+                            download_text += '\n<Value>' + freight.split(',').join('') + '</Value>';
+                            download_text += '\n<Unit>USD</Unit>';
+                            download_text += '\n<PaymentMethod>' + flag + '</PaymentMethod>';
+                            download_text += '\n</Amount>';
+                        }
+                        download_text += '\n</Amounts>';
+
+                        var indx = data[i].id;
+                        download_text += '\n<Goods>';
+                        for (var j = 0; j < bol_details[indx].length; j++) {
+                            download_text += '\n<Good>';
+                            download_text += '\n<Reference>' + data[i].bill_of_lading_number + '-' + bol_details[indx][j].id + '</Reference>';
+                            download_text += '\n<PackagingCode>' + edi_codes['package:' + bol_details[indx][j].package_type_id] + '</PackagingCode>';
+                            download_text += '\n<Quantity>' + numeric(bol_details[indx][j].number_of_items) + '</Quantity>';
+                            download_text += '\n<Description>' + bol_details[indx][j].Description_of_goods.split('&').join(' and ') + '</Description>';
+                            download_text += '\n<Incoterm></Incoterm>';
+                            download_text += '\n<Weight>';
+                            download_text += '\n<MeasureGrossWeight>';
+                            var mass = bol_details[indx][j].weight;
+                            if (bol_details[indx][j].weight_unit == 'lb') mass = 0.453592 * bol_details[indx][j].weight;
+                            var cubic = numeric(bol_details[indx][j].measure, 2);
+                            if (bol_details[indx][j].measure_unit != 'cum') cubic = 0.0283168 * bol_details[indx][j].measure;
+
+                            download_text += '\n<Value>' + numeric(mass,2) + '</Value>';
+                            download_text += '\n<Unit>KGM</Unit>';
+                            download_text += '\n</MeasureGrossWeight>';
+                            download_text += '\n</Weight>';
+                            download_text += '\n<Volume>';
+                            download_text += '\n<Value>' + cubic + '</Value>';
+                            download_text += '\n<Unit>MTQ</Unit>';
+                            download_text += '\n</Volume>';
+                            download_text += '\n<MarksAndNumbers></MarksAndNumbers>';
+                            download_text += '\n<IsHazardous>false</IsHazardous>';
+                            download_text += '\n<Pollutant>false</Pollutant>';
+
+
+                            download_text += '\n<GoodHandlingUnits>';
+                            download_text += '\n<GoodHandlingUnit>';
+                            download_text += '\n<Reference>' + data[i].bill_of_lading_number + '-' + bol_details[indx][j].id + '</Reference>';
+                            download_text += '\n</GoodHandlingUnit>';
+                            download_text += '\n</GoodHandlingUnits>';
+
+/*
+                            download_text += '\n<CustomsInformations>';
+                            download_text += '\n <Status>T</Status>';
+                            download_text += '\n<CommodityCode>' + edi_codes['commodity:' + bol_details[indx][j].commodity_id] + '</CommodityCode>';
+                            download_text += '\n</CustomsInformations>';
+*/
+
+                            download_text += '\n</Good>';
+                        }
+                        download_text += '\n</Goods>';
+                        download_text += '\n</AnnouncementDocument>';
+                    }
+                    download_text += '\n</AnnouncementDocuments>';
+                    download_text += '\n</ns0:HouseManifest>';
+
+                    $("#myselect option:selected").text();
+                    $('#results').val(download_text);
+                    downloadTXTFile(download_text, 'pcs.xml', 'plain/text');
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+
+        }
+
+        function getEDICode(type, id) {
+            var p_key = type + ':' + id;
+            console.log(p_key);
+            if (!edi_codes[p_key]) {
+                var form_data = {};
+                form_data.translation_source_id = translation_id;
+                form_data.external_code = '';
+                form_data.type = type;
+                form_data.code_id = id;
+                form_data.port_id = id;
+                form_data.package_id = id;
+                form_data.commodity_id = id;
+
+                $('#commodity_id').selectpicker('hide');
+                $('#package_id').selectpicker('hide');
+                $('#port_id').selectpicker('hide');
+
+                $("#port_id").prop('disabled', true);
+                $("#commodity_id").prop('disabled', true);
+                $("#package_id").prop('disabled', true);
+
+                if (type == 'port') {
+                    $('#port_id').selectpicker('show');
+                }
+                if (type == 'commodity') {
+                    $('#commodity_id').selectpicker('show');
+                }
+                if (type == 'package') {
+                    $('#package_id').selectpicker('show');
+                }
+                //$('#package_id').selectpicker('val', '');
+                //$('#commodity_id').selectpicker('hide');
+                loadFormData('#edit_form', form_data);
+                //if (commodity_package=='BOX') break;
+                $('#modal_form').modal('show');
+                return '';
+            }
+            console.log(edi_codes[p_key] + '   ' + p_key);
+            return edi_codes[p_key];
+        }
+
+        function setUpEDITranslation() {
+            edi_codes = {};
+            translation_id = 0;
+            //get Translation source bl-import
+            $.ajax({
+                url: './app/translation_source/code/pcs',
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data.length == 0) {
+                        addTranslationSource();
+                    } else {
+                        translation_id = data[0].id;
+                        loadTranslationcodes();
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+            //get all translation codes
+
+        }
+        function loadTranslationcodes() {
+            $.ajax({
+                url: './app/edi_translation/select/' + translation_id,
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        edi_codes[data[i].type + ':' + data[i].code_id] = data[i].external_code;
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function addTranslationSource() {
+            var obj = { code: 'PCS', description: 'PCS Export' };
+            $.ajax({
+                type: "POST",
+                url: './app/translation_source/',
+                async: false,
+                data: JSON.stringify(obj), // serializes the form's elements.                        
+                success: function (data) {
+                    translation_id = data;
+                    loadTranslationcodes();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+
+        function saveEDIRecord(e) {
+            e.preventDefault();
+            var form_data = {};
+            form_data.translation_source_id = translation_id;
+            form_data.external_code = $('#external_code').val();
+            form_data.type = $('#type').val();
+            if ($('#type').val() == 'port') {
+                form_data.code_id = numeric($('#port_id').selectpicker('val'));
+            }
+            if ($('#type').val() == 'commodity') {
+                form_data.code_id = numeric($('#commodity_id').selectpicker('val'));
+            }
+            if ($('#type').val() == 'package') {
+                form_data.code_id = numeric($('#package_id').selectpicker('val'));
+            }
+            var obj = { port_id: 0, code_id: 0, commodity_id: 0, package_id: 0, type: 0 }
+            console.log(getFormData('#edit_form', obj));
+            console.log($('#port_id').val());
+            console.log($('#port_id').selectpicker('val'));
+            console.log(form_data);
+            $.ajax({
+                type: "POST",
+                url: './app/edi_translation/',
+                data: JSON.stringify(form_data), // serializes the form's elements.                        
+                success: function (data) {
+                    $('#modal_form').removeClass("fade").modal('hide');
+                    //$('.modal-backdrop').remove();           
+                    downloadPCS();
+                    toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                    //$('#classTable').bootstrapTable("append", obj);
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+        }
+
+        getPCSCodes();
+        function getPCSCodes(){
+            $system_codes=[];
+            $.ajax({
+            url: './app/system_values/code/PCS',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                
+                if (data.length > 0) {
+                    for(var i=0;i<data.length;i++){
+                        $system_codes.push(data[i]);
+                        $('#'+data[i].data_value).val(data[i].description);
+                    }
+                } else {
+                    var obj = { data_type: 'char', data_value: 'agent_code', description:'', code: 'PCS' };
+                    $.ajax({
+                        type: "POST",url: './app/system_values/',data: JSON.stringify(obj),async: false, 
+                        success: function (data) { obj.id=data; $system_codes.push(obj);},
+                        error: function (xhr, ajaxOptions, thrownError) {handleStandardHttpErrors(xhr, ajaxOptions, thrownError);},
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+                    var obj = { data_type: 'char', data_value: 'carrier_code', description:'', code: 'PCS' };
+                    $.ajax({
+                        type: "POST",url: './app/system_values/',data: JSON.stringify(obj), async: false,
+                        success: function (data) { obj.id=data; $system_codes.push(obj);},
+                        error: function (xhr, ajaxOptions, thrownError) {handleStandardHttpErrors(xhr, ajaxOptions, thrownError);},
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+                }
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+        }
+
+        function setPCSCodes(){
+            console.log($system_codes);
+            for(var i=0;i<$system_codes.length;i++){
+                console.log('#'+$system_codes[i].data_value);
+              var obj = {  description:$('#'+$system_codes[i].data_value).val() };
+              $.ajax({
+                        type: "PUT",
+                        url: './app/system_values/' +$system_codes[i].id ,
+                        data: JSON.stringify(obj), // serializes the form's elements.                        
+                        success: function (data) {
+  
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+            }        
+        }
+        loadRegNum();
+     function loadRegNum(){
+            $.ajax({
+            url: './app/voyage/' + $('#voyage').val(),
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {            
+                var d = new Date();     //JMMBJ                       
+                $('#man_reg').val('JMKWL-'+d.getFullYear()+'-'+data.registration_number);
+                if($office){ $('#man_reg').val($office+'-'+d.getFullYear()+'-'+data.registration_number);}
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });  
+     }      
+    </script>
+</body>
+
+</html>

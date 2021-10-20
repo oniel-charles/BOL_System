@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>X-editable starter template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> 
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>  
+
+    <!-- x-editable (bootstrap version) -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+    
+	
+	
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+	<script src="./js/bootstrap-table-editable.js"></script>
+    <!-- main.js -->
+    <script src="main.js"></script>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <h1>X-editable starter template</h1>
+
+      <div>
+        <span>Username:</span>
+        <a href="#" id="username" data-type="text" data-placement="right" data-title="Enter username">superuser</a>
+      </div>
+      
+      <div>
+        <span>Status:</span>
+        <a href="#" id="status"></a>
+      </div>
+
+      <table id="table"></table>
+	  dd
+	            <h1>Custom Sort</h1>
+        <p>Use <code>sorter</code> column option to define the custom sort of bootstrap table.</p>
+        <table id="table2" class="table table-bordered table-striped" data-editable="true" data-toggle="table"  data-pagination="true"></table>
+    
+    </div>
+<script>
+ var data = [{
+        "name": "active","id":1
+    }, {
+        "name": "blocked","id":2
+    }, {
+        "name": "deleted","id":3
+    }];
+    var $table = $('#table');
+    $(function () {
+        $table.bootstrapTable({
+            idField: 'id',
+            columns: [{
+                field: 'state',
+                title: '',
+                checkbox: true
+            }, {
+                field: 'id',
+                title: 'ID',
+                type: 'text'
+            },{
+                field: 'name',
+                title: 'Names',
+                sortable: true,
+                editable: {
+                    type: 'select',
+                    source: [
+                        {value: 'active', text: 'Active'},
+                        {value: 'blocked', text: 'Blocked'},
+                        {value: 'deleted', text: 'Deleted'}
+                    ]
+                }
+            }],
+            data: data
+        });
+		$("#table").editable({   
+			selector: 'td ',
+			url: 'ajax_url',
+			title: 'Name xx',
+			type: "select",
+			success: function(data, config) {
+			console.log(data);
+			console.log(config);
+			},
+			source: [
+                        {value: 'active', text: 'Active'},
+                        {value: 'blocked', text: 'Blocked'},
+                        {value: 'deleted', text: 'Deleted'}
+                    ]
+		  });
+		  $.fn.editable.defaults.mode = 'inline';
+    });
+</script>
+<script>
+data2 =[{
+    "id": 0,
+    "name": "Item 0",
+    "price": "$0"
+},{
+    "id": 1,
+    "name": "active",
+    "price": "$1"
+},{
+    "id": 2,
+    "name": "Item 2",
+    "price": "$2"
+}];
+
+$('#table2').bootstrapTable({
+    idField: 'id',
+    columns: [
+                [
+                    {
+                        field: 'state',
+                        checkbox: true,
+                        rowspan: 2,
+                        align: 'center',
+                        valign: 'middle'
+                    }, {
+                        title: 'Item ID',
+                        field: 'id',
+                        rowspan: 2,
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true
+                    }, {
+                        title: 'Item Detail',
+                        colspan: 3,
+                        align: 'center'
+                    }
+                ],
+                [
+                    {
+                        field: 'name',
+                        title: 'Item Name',
+                        sortable: true,
+                        editable: {
+                    type: 'select',
+                    source: [
+                        {value: 'active', text: 'Active'},
+                        {value: 'blocked', text: 'Blocked'},
+                        {value: 'deleted', text: 'Deleted'}
+                    ]
+                }
+						
+                    }, {
+                        field: 'price',
+                        title: 'Item Price',
+                        sortable: true,
+                        align: 'center',
+                        editable: {
+                            type: 'text',
+                            title: 'Item Price',
+                            validate: function (value) {
+                                value = $.trim(value);
+                                if (!value) {
+                                    return 'This field is required';
+                                }
+                                if (!/^\$/.test(value)) {
+                                    return 'This field needs to start width $.'
+                                }
+                                var data = $table.bootstrapTable('getData'),
+                                    index = $(this).parents('tr').data('index');
+                                console.log(data[index]);
+                                return '';
+                            },
+							success: function(data, config) {
+			console.log(data);
+			console.log(config);
+			}
+							
+                        }
+                    }, {
+                        field: 'operate',
+                        title: 'Item Operate',
+                        align: 'center',
+                    }
+                ]
+            ],
+	data:data2
+});
+$('#table2').on('editable-save.bs.table', function(field, row, oldValue, $el){
+    console.log(field);
+    console.log(row);
+	    console.log('oniel charles');
+    console.log(oldValue);
+    console.log($el);
+});
+     
+</script>
+  </body>
+</html>

@@ -1,0 +1,1195 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema ejacksondb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema ejacksondb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `ejacksondb` DEFAULT CHARACTER SET latin1 ;
+USE `ejacksondb` ;
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`port`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`port` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `port_code` CHAR(10) NULL DEFAULT NULL,
+  `port_name` CHAR(60) NULL DEFAULT NULL,
+  `country_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `country_id` (`country_id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 12
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`shipping_line`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`shipping_line` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `shipping_line_name` CHAR(50) NULL DEFAULT NULL,
+  `address` CHAR(100) NULL DEFAULT NULL,
+  `phone` CHAR(30) NULL DEFAULT NULL,
+  `email` CHAR(50) NULL DEFAULT NULL,
+  `website` CHAR(45) NULL DEFAULT NULL,
+  `fax` CHAR(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`vessel`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`vessel` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `vessel_name` CHAR(50) NULL DEFAULT NULL,
+  `vessel_code` CHAR(10) NULL DEFAULT NULL,
+  `lloyd_number` CHAR(20) NULL DEFAULT NULL,
+  `country_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_vessel_country` (`country_id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 152
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`booking`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`booking` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `vessel_id` INT(11) NULL DEFAULT NULL,
+  `document_number` CHAR(20) NULL DEFAULT NULL,
+  `sail_date` INT(11) NULL DEFAULT NULL,
+  `port_of_loading` INT(11) NULL DEFAULT NULL,
+  `transportation_mode` CHAR(1) NULL DEFAULT NULL,
+  `status` CHAR(30) NULL DEFAULT NULL,
+  `voyage_number` CHAR(20) NULL DEFAULT NULL,
+  `port_of_discharge` INT(11) NULL DEFAULT NULL,
+  `tare` CHAR(20) NULL DEFAULT NULL,
+  `shipping_line_id` INT(11) NULL DEFAULT NULL,
+  `manifest_number` CHAR(20) NULL DEFAULT NULL,
+  `contract_number` CHAR(20) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_booking_vessel_idx` (`vessel_id` ASC),
+  INDEX `fk_booking_port_idx` (`port_of_loading` ASC),
+  INDEX `fk_booking_shipping_line_idx` (`shipping_line_id` ASC),
+  CONSTRAINT `fk_booking_port`
+    FOREIGN KEY (`port_of_loading`)
+    REFERENCES `ejacksondb`.`port` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_booking_shipping_line`
+    FOREIGN KEY (`shipping_line_id`)
+    REFERENCES `ejacksondb`.`shipping_line` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_booking_vessel`
+    FOREIGN KEY (`vessel_id`)
+    REFERENCES `ejacksondb`.`vessel` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 44
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`user_profile`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`user_profile` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_name` CHAR(60) NULL DEFAULT NULL,
+  `password` CHAR(255) NULL DEFAULT NULL,
+  `full_name` CHAR(70) NULL DEFAULT NULL,
+  `status` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`bill_of_lading`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`bill_of_lading` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `parent_bol` SMALLINT(6) NULL DEFAULT NULL,
+  `bol_total` DECIMAL(10,2) NULL DEFAULT NULL,
+  `bill_of_lading_number` CHAR(25) NULL DEFAULT NULL,
+  `port_of_origin` INT(11) NULL DEFAULT NULL,
+  `port_of_loading` INT(11) NULL DEFAULT NULL,
+  `port_of_discharge` INT(11) NULL DEFAULT NULL,
+  `port_of_delivery` INT(11) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `consignee_sname` CHAR(100) NULL DEFAULT NULL,
+  `consignee_fname` CHAR(100) NULL DEFAULT NULL,
+  `consignee_other_name` CHAR(100) NULL DEFAULT NULL,
+  `consignee_address` CHAR(255) NULL DEFAULT NULL,
+  `consignee_phone_num` CHAR(30) NULL DEFAULT NULL,
+  `consignee_id` INT(11) NULL DEFAULT NULL,
+  `shipper_id` INT(11) NULL DEFAULT NULL,
+  `shipper_fname` CHAR(100) NULL DEFAULT NULL,
+  `shipper_sname` CHAR(100) NULL DEFAULT NULL,
+  `shipper_other_name` CHAR(100) NULL DEFAULT NULL,
+  `shipper_address` CHAR(255) NULL DEFAULT NULL,
+  `shipper_phone_num` CHAR(30) NULL DEFAULT NULL,
+  `notify_fname` CHAR(40) NULL DEFAULT NULL,
+  `notify_other_name` CHAR(40) NULL DEFAULT NULL,
+  `notify_sname` CHAR(40) NULL DEFAULT NULL,
+  `notify_address` CHAR(255) NULL DEFAULT NULL,
+  `notify_date` INT(11) NULL DEFAULT NULL,
+  `notify_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `master_bol_id` INT(11) NULL DEFAULT NULL,
+  `booking_id` INT(11) NOT NULL,
+  `order_processed` SMALLINT(6) NULL DEFAULT NULL,
+  `receipt_processed` SMALLINT(6) NULL DEFAULT NULL,
+  `edited_by` INT(11) NULL DEFAULT NULL,
+  `edit_type` CHAR(25) NULL DEFAULT NULL,
+  `value_of_goods` DECIMAL(12,2) NULL DEFAULT NULL,
+  `value_currency` INT(11) NULL DEFAULT NULL,
+  `customer_type` CHAR(15) NULL DEFAULT NULL,
+  `status` CHAR(10) NULL DEFAULT NULL,
+  `booking_container_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_voyage_idx` (`booking_id` ASC),
+  INDEX `fk_bol_port_delivery` (`port_of_delivery` ASC),
+  INDEX `fk_bol_port_discharge` (`port_of_discharge` ASC),
+  INDEX `fk_bol_port_loading` (`port_of_loading` ASC),
+  INDEX `fk_bol_port_origin` (`port_of_origin` ASC),
+  INDEX `by_Receipt_processed` (`receipt_processed` ASC),
+  INDEX `by_order_processed` (`order_processed` ASC),
+  INDEX `by_parent` (`parent_bol` ASC),
+  INDEX `fk_edit_user_idx` (`edited_by` ASC),
+  CONSTRAINT `fk_bol_booking`
+    FOREIGN KEY (`booking_id`)
+    REFERENCES `ejacksondb`.`booking` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_bol_port_delivery`
+    FOREIGN KEY (`port_of_delivery`)
+    REFERENCES `ejacksondb`.`port` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_bol_port_discharge`
+    FOREIGN KEY (`port_of_discharge`)
+    REFERENCES `ejacksondb`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_bol_port_loading`
+    FOREIGN KEY (`port_of_loading`)
+    REFERENCES `ejacksondb`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_bol_port_origin`
+    FOREIGN KEY (`port_of_origin`)
+    REFERENCES `ejacksondb`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_edit_user`
+    FOREIGN KEY (`edited_by`)
+    REFERENCES `ejacksondb`.`user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2996
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`container_size_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`container_size_type` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `size_type_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  `maximum_cude` DECIMAL(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`bill_of_lading_container`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`bill_of_lading_container` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `container_number` CHAR(15) NULL DEFAULT NULL,
+  `container_size_type_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bol_container_size_type` (`container_size_type_id` ASC),
+  INDEX `fk_bill_of_lading_container_` (`billoflading_id` ASC),
+  CONSTRAINT `fk_bill_of_lading_container_`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `ejacksondb`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_bol_container_size_type`
+    FOREIGN KEY (`container_size_type_id`)
+    REFERENCES `ejacksondb`.`container_size_type` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`bill_of_lading_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`bill_of_lading_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `package_type_id` INT(11) NULL DEFAULT NULL,
+  `commodity_id` INT(11) NULL DEFAULT NULL,
+  `Description_of_goods` VARCHAR(500) NULL DEFAULT NULL,
+  `number_of_items` INT(11) NULL DEFAULT NULL,
+  `weight` DECIMAL(10,2) NULL DEFAULT NULL,
+  `measure` DECIMAL(10,2) NULL DEFAULT NULL,
+  `weight_unit` CHAR(10) NULL DEFAULT NULL,
+  `measure_unit` CHAR(10) NULL DEFAULT NULL,
+  `width` DECIMAL(10,2) NULL DEFAULT NULL,
+  `depth` DECIMAL(10,2) NULL DEFAULT NULL,
+  `breath` DECIMAL(10,2) NULL DEFAULT NULL,
+  `volume` DECIMAL(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bol_detail_bill_of_lading` (`billoflading_id` ASC),
+  CONSTRAINT `fk_bol_detail_bill_of_lading`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `ejacksondb`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2469
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`currency`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`currency` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `currency_code` CHAR(10) NULL DEFAULT NULL,
+  `currency_name` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`commodity`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`commodity` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `commodity_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 58
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`package`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`package` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `package_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`charge_item`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`charge_item` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `item_code` CHAR(20) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  `basis` CHAR(20) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `item_rate` DECIMAL(10,2) NULL DEFAULT NULL,
+  `commodity_id` INT(11) NULL DEFAULT NULL,
+  `package_id` INT(11) NULL DEFAULT NULL,
+  `print_seperate` SMALLINT(6) NULL DEFAULT NULL,
+  `gct` SMALLINT(6) NULL DEFAULT NULL,
+  `system_def` CHAR(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_charge_item_commodity` (`commodity_id` ASC),
+  INDEX `fk_charge_item_package` (`package_id` ASC),
+  CONSTRAINT `fk_charge_item_commodity`
+    FOREIGN KEY (`commodity_id`)
+    REFERENCES `ejacksondb`.`commodity` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_charge_item_package`
+    FOREIGN KEY (`package_id`)
+    REFERENCES `ejacksondb`.`package` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`bill_of_lading_other_charge`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`bill_of_lading_other_charge` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `prepaid_flag` CHAR(10) NULL DEFAULT NULL,
+  `attract_gct` SMALLINT(6) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `amount_paid` DECIMAL(10,2) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `bycharges` (`billoflading_id` ASC, `charge_item_id` ASC),
+  INDEX `fk_bol_other_charge_currency` (`currency_id` ASC),
+  INDEX `fk_bol_other_charge_item` (`charge_item_id` ASC),
+  CONSTRAINT `fk_bol_other_charge_bol`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `ejacksondb`.`bill_of_lading` (`id`)
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_bol_other_charge_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `ejacksondb`.`currency` (`id`),
+  CONSTRAINT `fk_bol_other_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `ejacksondb`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`billoflading_discount`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`billoflading_discount` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `charge_item_id` INT(11) NOT NULL,
+  `basis` VARCHAR(15) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `bol_charge_item` (`charge_item_id` ASC, `billoflading_id` ASC),
+  INDEX `fk_charge_item_idx` (`charge_item_id` ASC),
+  INDEX `fk_billoflading_idx` (`billoflading_id` ASC),
+  CONSTRAINT `fk_billoflading`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `ejacksondb`.`bill_of_lading` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `ejacksondb`.`charge_item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`booking_container`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`booking_container` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `container_number` CHAR(15) NULL DEFAULT NULL,
+  `container_size_type_id` INT(11) NULL DEFAULT NULL,
+  `booking_id` INT(11) NULL DEFAULT NULL,
+  `container_seal` CHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_booking_container_size_type_idx` (`container_size_type_id` ASC),
+  INDEX `fk_booking_container_booking_idx` (`booking_id` ASC),
+  CONSTRAINT `fk_booking_container_booking`
+    FOREIGN KEY (`booking_id`)
+    REFERENCES `ejacksondb`.`booking` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_booking_container_size_type`
+    FOREIGN KEY (`container_size_type_id`)
+    REFERENCES `ejacksondb`.`container_size_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 39
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`brand`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`brand` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `description` CHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`charge_item_rate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`charge_item_rate` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `effective_date` INT(11) NULL DEFAULT NULL,
+  `rate` DECIMAL(5,2) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `charge_FK_idx` (`charge_item_id` ASC),
+  CONSTRAINT `charge_FK`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `ejacksondb`.`charge_item` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`client`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`client` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `client_fname` CHAR(40) NULL DEFAULT NULL,
+  `client_code` CHAR(10) NULL DEFAULT NULL,
+  `client_sname` CHAR(40) NULL DEFAULT NULL,
+  `client_address` CHAR(200) NULL DEFAULT NULL,
+  `phone_number` CHAR(25) NULL DEFAULT NULL,
+  `email_address` CHAR(80) NULL DEFAULT NULL,
+  `balance` DECIMAL(12,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`client_discount`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`client_discount` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `client_id` INT(11) NOT NULL,
+  `charge_item_id` INT(11) NOT NULL,
+  `basis` VARCHAR(15) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `by_client_item` (`client_id` ASC, `charge_item_id` ASC),
+  INDEX `fk_charge_item_idx` (`charge_item_id` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`company`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`company` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `company_name` CHAR(50) NULL DEFAULT NULL,
+  `company_address` CHAR(100) NULL DEFAULT NULL,
+  `phone` CHAR(30) NULL DEFAULT NULL,
+  `email` CHAR(50) NULL DEFAULT NULL,
+  `website` CHAR(45) NULL DEFAULT NULL,
+  `fax` CHAR(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`country`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`country` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `country_code` CHAR(10) NULL DEFAULT NULL,
+  `country_name` CHAR(60) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 212
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`currency_rate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`currency_rate` (
+  `currency_id` INT(11) NOT NULL,
+  `effective_date` INT(11) NULL DEFAULT NULL,
+  `exchange_rate` DECIMAL(7,2) NULL DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Index_date` (`currency_id` ASC, `effective_date` ASC),
+  CONSTRAINT `fk_currency_rate_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `ejacksondb`.`currency` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`custom_office`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`custom_office` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `code` CHAR(20) NULL DEFAULT NULL,
+  `description` CHAR(40) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 57
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`voyage`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`voyage` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `vessel_id` INT(11) NULL DEFAULT NULL,
+  `voyage_number` CHAR(20) NULL DEFAULT NULL,
+  `departure_date` INT(11) NULL DEFAULT NULL,
+  `arrival_date` INT(11) NULL DEFAULT NULL,
+  `stripped` SMALLINT(6) NULL DEFAULT NULL,
+  `stripped_date` INT(11) NULL DEFAULT NULL,
+  `mby_arrival_date` INT(11) NULL DEFAULT NULL,
+  `mby_vessel_id` INT(11) NULL DEFAULT NULL,
+  `transportation_mode` CHAR(1) NULL DEFAULT NULL,
+  `manifest_number` CHAR(15) NULL DEFAULT NULL,
+  `registration_number` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 35
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`delivery_order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`delivery_order` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `order_date` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_order_bol` (`billoflading_id` ASC),
+  INDEX `fk_order_created_by` (`created_by` ASC),
+  INDEX `fk_order_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_order_bol0`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `ejacksondb`.`bill_of_lading` (`id`),
+  CONSTRAINT `fk_order_created_by0`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `ejacksondb`.`user_profile` (`id`),
+  CONSTRAINT `fk_order_voyage0`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `ejacksondb`.`voyage` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`translation_source`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`translation_source` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `code` CHAR(15) NULL DEFAULT NULL,
+  `description` CHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `codeIndex` (`code` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`edi_translation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`edi_translation` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `type` CHAR(15) NULL DEFAULT NULL,
+  `internal_code` CHAR(15) NULL DEFAULT NULL,
+  `external_code` CHAR(255) NULL DEFAULT NULL,
+  `code_id` INT(11) NULL DEFAULT NULL,
+  `translation_source_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_edi_translation_translation_source1_idx` (`translation_source_id` ASC),
+  CONSTRAINT `fk_edi_translation_translation_source1`
+    FOREIGN KEY (`translation_source_id`)
+    REFERENCES `ejacksondb`.`translation_source` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`menu_group`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`menu_group` (
+  `id` BIGINT(20) NOT NULL,
+  `title` CHAR(100) NULL DEFAULT NULL,
+  `menu_order` INT(11) NULL DEFAULT NULL,
+  `status` SMALLINT(6) NULL DEFAULT NULL,
+  `level` SMALLINT(6) NULL DEFAULT NULL,
+  `icon` CHAR(100) NULL DEFAULT NULL,
+  `description` CHAR(100) NULL DEFAULT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`menu_item`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`menu_item` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `menu_group_id` BIGINT(20) NULL DEFAULT NULL,
+  `title` VARCHAR(100) NULL DEFAULT NULL,
+  `url` VARCHAR(100) NULL DEFAULT NULL,
+  `menu_order` INT(11) NULL DEFAULT NULL,
+  `status` INT(11) NULL DEFAULT NULL,
+  `level` SMALLINT(6) NULL DEFAULT NULL,
+  `icon` CHAR(100) NULL DEFAULT NULL,
+  `description` CHAR(150) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_menu_item_` (`menu_group_id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 64
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`notification_history`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`notification_history` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `notification_date` INT(11) NULL DEFAULT NULL,
+  `notification_detail` CHAR(100) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_billoflading_notification` (`billoflading_id` ASC),
+  CONSTRAINT `fk_billoflading_notification`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `ejacksondb`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`preclearance`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`preclearance` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `preclearance_date` INT(11) NULL DEFAULT NULL,
+  `preclearance_time` INT(11) NULL DEFAULT NULL,
+  `client_id` INT(11) NULL DEFAULT NULL,
+  `payee` CHAR(40) NULL DEFAULT NULL,
+  `preclearance_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `local_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `exchange_rate` DECIMAL(8,2) NULL DEFAULT NULL,
+  `printed` SMALLINT(6) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(6) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Unique_preclearance_by_bol` (`preclearance_date` ASC, `billoflading_id` ASC, `preclearance_time` ASC, `preclearance_total` ASC),
+  INDEX `fk_preclearance_currency` (`currency_id` ASC),
+  INDEX `fk_preclearancet_bol` (`billoflading_id` ASC),
+  INDEX `fk_preclearance_client` (`client_id` ASC),
+  INDEX `fk_preclearance_created_by` (`created_by` ASC),
+  INDEX `fk_preclearance_deleted_by` (`cancel_by` ASC),
+  CONSTRAINT `fk_preclearance_client0`
+    FOREIGN KEY (`client_id`)
+    REFERENCES `ejacksondb`.`client` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_preclearance_created_by0`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `ejacksondb`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_preclearance_currency0`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `ejacksondb`.`currency` (`id`),
+  CONSTRAINT `fk_preclearance_deleted_by0`
+    FOREIGN KEY (`cancel_by`)
+    REFERENCES `ejacksondb`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`preclearance_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`preclearance_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `preclearance_id` INT(11) NULL DEFAULT NULL,
+  `bol_id` INT(11) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `currency_amount` DECIMAL(10,2) NOT NULL,
+  `discount` DECIMAL(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_preclearance_detail_charge_item` (`charge_item_id` ASC),
+  INDEX `fk_preclearance_idx` (`preclearance_id` ASC),
+  CONSTRAINT `fk_preclearance0`
+    FOREIGN KEY (`preclearance_id`)
+    REFERENCES `ejacksondb`.`preclearance` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_preclearance_detail_charge_item0`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `ejacksondb`.`charge_item` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`product`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`product` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `code` CHAR(30) NULL DEFAULT NULL,
+  `description` CHAR(45) NULL DEFAULT NULL,
+  `brand_id` INT(11) NULL DEFAULT NULL,
+  `img` CHAR(30) NULL DEFAULT NULL,
+  `low_stock_value` INT(11) NULL DEFAULT NULL,
+  `weight` DECIMAL(10,2) NULL DEFAULT NULL,
+  `volume` DECIMAL(10,2) NULL DEFAULT NULL,
+  `dimention` CHAR(20) NULL DEFAULT NULL,
+  `balance_quantity` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`product_rate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`product_rate` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `effective_date` INT(11) NULL DEFAULT NULL,
+  `selling_price` DECIMAL(12,2) NULL DEFAULT NULL,
+  `product_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_product_idx` (`product_id` ASC),
+  CONSTRAINT `fk_product`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `ejacksondb`.`product` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`purchase_order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`purchase_order` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `supplier_id` INT(11) NULL DEFAULT NULL,
+  `purchase_date` INT(11) NULL DEFAULT NULL,
+  `cost` DECIMAL(12,2) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `created_time` INT(11) NULL DEFAULT NULL,
+  `created_date` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`purchase_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`purchase_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `purchase_order_id` INT(11) NULL DEFAULT NULL,
+  `product_id` INT(11) NULL DEFAULT NULL,
+  `quantity` INT(11) NULL DEFAULT NULL,
+  `weight` DECIMAL(12,2) NULL DEFAULT NULL,
+  `purchase_price` DECIMAL(12,2) NULL DEFAULT NULL,
+  `balance_quantity` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_purchase_order_idx` (`purchase_order_id` ASC),
+  INDEX `fk_purchase_product_idx` (`product_id` ASC),
+  CONSTRAINT `fk_purchase_order`
+    FOREIGN KEY (`purchase_order_id`)
+    REFERENCES `ejacksondb`.`purchase_order` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_purchase_product`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `ejacksondb`.`product` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 10
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`rate_table`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`rate_table` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `package_id` INT(11) NULL DEFAULT NULL,
+  `basis` CHAR(20) NULL DEFAULT NULL,
+  `unit` DECIMAL(10,2) NULL DEFAULT NULL,
+  `rate` DECIMAL(10,2) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `purpose` CHAR(15) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_rate_package_idx` (`package_id` ASC),
+  INDEX `fk_rate_charge_item_idx` (`charge_item_id` ASC),
+  CONSTRAINT `fk_rate_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `ejacksondb`.`charge_item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_rate_package`
+    FOREIGN KEY (`package_id`)
+    REFERENCES `ejacksondb`.`package` (`id`)
+    ON DELETE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`receipt`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`receipt` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `receipt_date` INT(11) NULL DEFAULT NULL,
+  `receipt_time` INT(11) NULL DEFAULT NULL,
+  `client_id` INT(11) NULL DEFAULT NULL,
+  `payee` CHAR(40) NULL DEFAULT NULL,
+  `receipt_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `local_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `exchange_rate` DECIMAL(8,2) NULL DEFAULT NULL,
+  `printed` SMALLINT(6) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(6) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `customer_identification` CHAR(20) NOT NULL,
+  `payment_type` CHAR(20) NULL DEFAULT NULL,
+  `payment_type_no` CHAR(15) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Unique_Receipt_by_bol` (`receipt_date` ASC, `billoflading_id` ASC, `receipt_time` ASC, `receipt_total` ASC),
+  INDEX `fk_receipt_currency` (`currency_id` ASC),
+  INDEX `fk_receipt_bol` (`billoflading_id` ASC),
+  INDEX `fk_receipt_client` (`client_id` ASC),
+  INDEX `fk_receipt_created_by` (`created_by` ASC),
+  INDEX `fk_receipt_deleted_by` (`cancel_by` ASC),
+  CONSTRAINT `fk_receipt_client`
+    FOREIGN KEY (`client_id`)
+    REFERENCES `ejacksondb`.`client` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_receipt_created_by`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `ejacksondb`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_receipt_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `ejacksondb`.`currency` (`id`),
+  CONSTRAINT `fk_receipt_deleted_by`
+    FOREIGN KEY (`cancel_by`)
+    REFERENCES `ejacksondb`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`receipt_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`receipt_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `receipt_id` INT(11) NULL DEFAULT NULL,
+  `bol_id` INT(11) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `currency_amount` DECIMAL(10,2) NOT NULL,
+  `discount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `comment` CHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_receipt_detail_charge_item` (`charge_item_id` ASC),
+  INDEX `fk_Receipt` (`receipt_id` ASC),
+  CONSTRAINT `fk_Receipt`
+    FOREIGN KEY (`receipt_id`)
+    REFERENCES `ejacksondb`.`receipt` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_receipt_detail_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `ejacksondb`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`receipt_payment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`receipt_payment` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `receipt_id` INT(11) NULL DEFAULT NULL,
+  `payment_type` CHAR(15) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  `currency_amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `payment_type_no` CHAR(25) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `by_receipt` (`receipt_id` ASC, `payment_type` ASC),
+  INDEX `fk_receipt_payment_receipt_idx` (`receipt_id` ASC),
+  CONSTRAINT `fk_receipt_payment_receipt`
+    FOREIGN KEY (`receipt_id`)
+    REFERENCES `ejacksondb`.`receipt` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`sale_order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`sale_order` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` INT(11) NULL DEFAULT NULL,
+  `customer_name` VARCHAR(80) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  `cancel_time` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `created_date` INT(11) NULL DEFAULT NULL,
+  `created_time` INT(11) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 17
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`sale_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`sale_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `sale_order_id` INT(11) NULL DEFAULT NULL,
+  `product_id` INT(11) NULL DEFAULT NULL,
+  `quantity` INT(11) NULL DEFAULT NULL,
+  `sale_price` DECIMAL(12,2) NULL DEFAULT NULL,
+  `purchase_detail_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_sale_product_idx` (`product_id` ASC),
+  INDEX `fk_sale_purchase_idx` (`purchase_detail_id` ASC),
+  INDEX `fk_sale_order_idx` (`sale_order_id` ASC),
+  CONSTRAINT `fk_sale_order`
+    FOREIGN KEY (`sale_order_id`)
+    REFERENCES `ejacksondb`.`sale_order` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_sale_product`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `ejacksondb`.`product` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_sale_purchase`
+    FOREIGN KEY (`purchase_detail_id`)
+    REFERENCES `ejacksondb`.`purchase_detail` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 10
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`shipment_order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`shipment_order` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `locked` INT(11) NULL DEFAULT NULL,
+  `printed` SMALLINT(6) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `order_date` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_order_bol` (`billoflading_id` ASC),
+  INDEX `fk_order_created_by` (`created_by` ASC),
+  INDEX `fk_order_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_order_bol`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `ejacksondb`.`bill_of_lading` (`id`)
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_created_by`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `ejacksondb`.`user_profile` (`id`),
+  CONSTRAINT `fk_order_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `ejacksondb`.`voyage` (`id`)
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`supplier`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`supplier` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `supplier_name` CHAR(45) NULL DEFAULT NULL,
+  `address` CHAR(200) NULL DEFAULT NULL,
+  `phone` CHAR(25) NULL DEFAULT NULL,
+  `email` CHAR(80) NULL DEFAULT NULL,
+  `balance` DECIMAL(12,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`system_values`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`system_values` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `description` CHAR(30) NULL DEFAULT NULL,
+  `data_type` CHAR(10) NULL DEFAULT NULL,
+  `data_value` CHAR(30) NULL DEFAULT NULL,
+  `code` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 21
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`tally`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`tally` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `start_date` INT(11) NULL DEFAULT NULL,
+  `end_date` INT(11) NULL DEFAULT NULL,
+  `status` CHAR(20) NULL DEFAULT NULL,
+  `booking_id` INT(11) NULL DEFAULT NULL,
+  `start_time` INT(11) NULL DEFAULT NULL,
+  `end_time` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `fk_tally_booking_idx` (`booking_id` ASC),
+  CONSTRAINT `fk_tally_booking`
+    FOREIGN KEY (`booking_id`)
+    REFERENCES `ejacksondb`.`booking` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 13
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`tally_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`tally_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `tally_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_detail_id` INT(11) NULL DEFAULT NULL,
+  `bill_of_lading_number` CHAR(25) NULL DEFAULT NULL,
+  `consignee_name` VARCHAR(45) NULL DEFAULT NULL,
+  `package_type_id` INT(11) NULL DEFAULT NULL,
+  `number_of_items` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `f_tally_key` (`bill_of_lading_number` ASC, `package_type_id` ASC, `tally_id` ASC),
+  INDEX `f_tally_detail_tally_idx` (`tally_id` ASC),
+  CONSTRAINT `f_tally_detail_tally`
+    FOREIGN KEY (`tally_id`)
+    REFERENCES `ejacksondb`.`tally` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 34
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`user_option`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`user_option` (
+  `menu_item_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `fk_user_option_user_profile` USING BTREE (`user_id` ASC, `menu_item_id` ASC),
+  INDEX `menu_item_id` USING BTREE (`menu_item_id` ASC, `user_id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1638
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ejacksondb`.`voyage_container`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ejacksondb`.`voyage_container` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `container_number` CHAR(15) NULL DEFAULT NULL,
+  `port_origin` INT(11) NULL DEFAULT NULL,
+  `seal` CHAR(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_voyage_container_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_voyage_container_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `ejacksondb`.`voyage` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

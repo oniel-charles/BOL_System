@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>App</title>
+    <link rel="icon" href="./img/app_icon.ico">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="./build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+    
+
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="./img/company_icon.ico" />
+                            <span>Quality One</span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/home/main">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>                                
+                                   
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                    <div class="nav_menu">
+                            <nav>
+                              <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                                <a id="menu_toggle">
+                                  <i style="font-size:16px" class="fa fa-bars"></i>
+                                </a>
+                              </div>
+                  
+                              <ul class="nav navbar-nav navbar-left">
+                                <li class="">
+                                  <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Allowance</span>
+                                  </a>
+                  
+                                </li>
+                  
+                              </ul>
+                  
+                              <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+                                  <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                  </a>
+                                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                      <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                            <a href="javascript:passwordChangeRequest()"> 
+                                                    <i class="fa fa-lock pull-right"></i> Change Password</a>
+                                                    
+                                                </a>
+                                    </li>
+                                    <li>
+                                      <a href="javascript:displayHelp();">Help</a>
+                                    </li>
+                                    <li>
+                                      <a href="javascript:authenticateUser()">
+                                        <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                  </ul>
+                                </li>
+                  
+                                <li role="presentation" class="dropdownx">
+                                  <button type="button" class="btn btn-round btn-success btn-sm " onclick="loadShortCutOption(this)">
+                                    <i class="fa fa-search-plus"></i> BL Processing</button>
+                  
+                                </li>
+                              </ul>
+                            </nav>
+                          </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                <div class="">
+
+                    <p class="toolbar">
+                        <a class="create btn btn-success" id="create-rec" href="javascript:">Add New</a>
+                    </p>
+                    <table id="classTable" class="display" cellspacing="0" data-toolbar=".toolbar" data-query-params="queryParams" data-pagination="true"
+                        data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                        <thead> <tr> <th data-field="id" data-sortable="true" data-visible="false">ID</th><th data-field="code" data-sortable="true">Code</th><th data-field="description" data-sortable="true">Description</th><th data-formatter="createActionButtons"  data-searchable="false">Action</th></tr></thead>
+                        <tfoot> <tr>  <th class="hidden">ID</th><th>Code</th><th>Description</th><th>Action</th></tr></tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bootstrap modal -->
+            <div class="modal fade" id="modal_form" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="modal-title">Allowance Form</h3>
+                        </div>
+                        <div class="modal-body form">
+                            <form id="edit_form" class="form-horizontal" data-toggle="validator">
+                                <input type="hidden" value="" name="id" id="id" />
+                                <div class="form-body"> 
+ <div class="form-group">  <label class="control-label col-md-3">Code</label><div class="col-md-9"> <input id="code" name="code" placeholder="Code" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Description</label><div class="col-md-9"> <input id="description" name="description" placeholder="Description" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Amount</label><div class="col-md-9"> <input id="amount" name="amount" placeholder="Amount" class="form-control" type="text" required><span class="help-block"></span> </div> </div></div><div class="modal-footer">
+                                    <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- End Bootstrap modal -->
+            <!-- /page content -->
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+   
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/jquery-ui.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+    <script src="./vendor/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src=./vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src=./vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src=./vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="./build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/crud.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            //
+ data_model={ "id": "0","code": "","description": "","amount": ""};
+            //
+ businessObject=   new BusinessObject(data_model,'allowance'); 
+            fieldValidatrs={};
+            //
+ fieldValidatrs.code=createValidationField('Code','notEmpty');
+ fieldValidatrs.description=createValidationField('Description','notEmpty');
+ fieldValidatrs.amount=createValidationField('Amount','notEmpty');
+            crudInit(businessObject);
+            loadBusinessObjects(businessObject.data_table);
+        });        
+
+       
+    </script>
+</body>
+
+</html>

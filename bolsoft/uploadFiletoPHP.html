@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+  
+</form>
+<textarea id=wordtext></textarea>
+<button onclick="uploadManifest()"> custom upload</button>
+</body>
+<script src="./vendor/js/jquery.min.js"></script>
+<script> 
+   function uploadManifest(){
+    var file_data = $('#fileToUpload').prop('files')[0];   
+    var form_data = new FormData();                  
+    //form_data.append('file', file_data);
+    form_data.append("file", fileToUpload.files[0]);                          
+    $.ajax({
+        url: 'upload.php', // <-- point to server-side PHP script 
+        dataType: 'text',  // <-- what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,                         
+        type: 'post',
+        success: function(php_script_response){
+            $('#wordtext').html(php_script_response); // <-- display response from the PHP script, if any
+        }
+     });
+   }
+</script>
+</html>

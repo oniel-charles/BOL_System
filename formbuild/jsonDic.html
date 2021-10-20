@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    tables = [{
+      "name": "students",
+      "fields": {
+        "firstName": "char",
+        "lastName": "char",
+        "DOB": "date",
+        "address": "char",
+        "fee": "dec",
+        "age": "num"
+      }
+    },
+    {
+      "name": "teachers",
+      "fields": {
+        "firstName": "char",
+        "lastName": "char",
+        "DOB": "date",
+        "address": "char",
+        "fee": "dec",
+        "age": "num",
+        "class": "char"
+      }
+    }
+    ];
+
+
+    $(document).ready(function () {
+
+      for (var i = 0; i < tables.length; i++) {
+        var $file = $("<li/>");
+        $($file).append('<label class="tree-toggler nav-header">' + tables[i].name + '</label>');
+        var $fields = $("<ul/>").addClass("nav nav-list tree");
+        for (var x in tables[i].fields) {
+          $($fields).append('<li draggable="true"  ondragstart="drag(event)" >' + x  + '</li>');
+        }
+        $($file).append($fields);
+        $("#tables").append($file);
+      }
+
+      $('label.tree-toggler').click(function () {
+        $(this).parent().children('ul.tree').toggle(300);
+      });
+      $('label.tree-toggler').parent().children('ul.tree').toggle(1);
+
+
+    });
+
+    function allowDrop(ev) {
+    ev.preventDefault();
+}
+    function drop(ev){
+       ev.preventDefault();       
+      var data = ev.dataTransfer.getData("text");
+      console.log(data);
+      if (ev.target.tagName=='INPUT'){
+          ev.target.setAttribute('name',data);
+          ev.target.id=data;
+          ev.target.parentNode.getElementsByTagName("label")[0].innerHTML=splitCamelCase(data);
+      }
+      //console.log(ev.target.firstChild.innerHTML);
+      //ev.target.innerHTML='Active User';//parentNode.firstChild.innerHTML = "Milk"
+     // document.getElementById("label1").innerHTML="Milk treak";
+
+    }
+    function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.innerHTML);
+   }
+
+   /**
+ * Splits a camelCase or PascalCase word into individual words separated by spaces. 
+ * @param {Object} word
+ * @returns {String}
+ */
+ console.log(splitCamelCase('thisIsImportant'));
+function splitCamelCase(word) {
+	var output, i, l, capRe = /[A-Z]/;
+	if (typeof(word) !== "string") {
+		throw new Error("The \"word\" parameter must be a string.");
+	}
+	output = [];
+	for (i = 0, l = word.length; i < l; i += 1) {
+		if (i === 0) {
+			output.push(word[i].toUpperCase());
+		}
+		else {
+			if (i > 0 && capRe.test(word[i])) {
+				output.push(" ");
+			}
+			output.push(word[i]);
+		}
+	}
+	return output.join("");
+}
+  </script>
+  <style>
+    #tables li,
+    #tables li label {
+      cursor: pointer;
+    }
+    
+    #tables ul li {
+      cursor: grab;
+      margin-left: 30px;
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <ul id=tables class="nav nav-list">   
+  </ul>
+
+
+<div class="form-group" ondrop="drop(event)"  ondragover="allowDrop(event)">
+    <label id="label1" for="email">Email address:</label>
+    <input type="email" class="form-control" id="email">
+  </div>
+</body>
+
+</html>

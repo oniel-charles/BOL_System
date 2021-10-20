@@ -1,0 +1,31 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2021-06-18 23:20
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: Oniel
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+CREATE TABLE IF NOT EXISTS `jacksondb`.`rate_table` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `package_id` INT(11) NULL DEFAULT NULL,
+  `basis` CHAR(20) NULL DEFAULT NULL,
+  `unit` DECIMAL(10,2) NULL DEFAULT NULL,
+  `rate` DECIMAL(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_rate_package_idx` (`package_id` ASC),
+  CONSTRAINT `fk_rate_package`
+    FOREIGN KEY (`package_id`)
+    REFERENCES `jacksondb`.`package` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

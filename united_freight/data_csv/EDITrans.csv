@@ -1,0 +1,7 @@
+"Rec No","Transid","Translinkid","Transextcode","Transintid","Transcodetype"
+2,1,1,"1002           ",6,"PORT           "
+3,2,1,"0008           ",2,"PORT           "
+4,3,0,"               ",0,"               "
+5,4,1,"BBL            ",28,"PACKAGE        "
+6,5,1,"BBL            ",1,"PACKAGE        "
+7,6,1,"PCE            ",11,"PACKAGE        "

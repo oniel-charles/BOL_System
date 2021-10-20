@@ -1,0 +1,1 @@
+ALTER TABLE `notification_history` CHANGE `notification_detail` `notification_detail` CHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bill of Lading Processing </title>
+    <link rel="icon" href="../img/worldwide.png">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="../img/company.ico" />
+                            <span>Cargo Shipping</span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/dennis/main">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-cogs"></i> Maintenance
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_port.html">Port</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_country.html">Country</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_currency.html">Currency</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_package.html">Package</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_commodity.html">Commodity</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_container_size_type.html">Container Size Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-list-alt"></i> Charges
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_charges.html">Charge Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_sur_charge.html">Sur Charge</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_rate.html">GCT Rate</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-dollar"></i> Billing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_receipt.html">Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_order.html">Order</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-anchor"></i> Manifest Processing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_voyage.html">Voyage</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                                        </li>
+                                        <li>
+                                            <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-bar-chart"></i> Reports
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_report.html">GCT Report</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                            <a id="menu_toggle">
+                                <i style="font-size:16px" class="fa fa-bars"></i>
+                            </a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Import Manifest</span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images/img.jpg" alt="">
+                                    <span class="user_fullname_disaplay">Active User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:passwordChangeRequest()">
+                                            <i class="fa fa-lock pull-right"></i> Change Password</a>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Help</a>
+                                    </li>
+                                    <li>
+                                        <a href="login.html">
+                                            <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdownx">
+                                <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                                    <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                <div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-6">Vessel</label>
+                        <div class="col-md-6">
+                            <select id="vessel" onchange="loadVoyageSelect()" class=" load-select form-control" data-path="./api.php/vessel/api/select"></select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-6">Voyage</label>
+                        <div class="col-md-6">
+                            <select id="voyage" class=" load-select form-control"></select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-6">Default Port Of Origin</label>
+                        <div class="col-md-6">
+                            <select id="port_of_origin" class="load-select form-control" data-path="./api.php/port/api/select" required></select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-6">Default Port Of Loading</label>
+                        <div class="col-md-6">
+                            <select id="port_of_loading" class="load-select form-control" data-path="./api.php/port/api/select" required></select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-6">Default Port Of Discharge</label>
+                        <div class="col-md-6">
+                            <select id="port_of_discharge" class="load-select form-control" data-path="./api.php/port/api/select" required></select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-6">Default Port Of Delivery</label>
+                        <div class="col-md-6">
+                            <select id="port_of_delivery" class="load-select form-control" data-path="./api.php/port/api/select" required></select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <legend>
+                        Import File
+                    </legend>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label class="col-md-4" for="csvFileInput">
+                                    <strong>Manifest File:</strong>
+                                </label>
+                                <input id="field_path" placeholder="Select manifest file" class="col-md-8" style="background:rgb(226, 231, 241);border:3px rgb(142, 141, 184) solid; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px;"
+                                    type="file" onchange="BOLFILEPATH=this;" accept=".mfd">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="col-md-4" for="csvFileInput">
+                                    <strong>Details:</strong>
+                                </label>
+                                <input id="detail_path" placeholder="Select manifest file" class="col-md-8" style="background:rgb(226, 231, 241);border:3px rgb(142, 141, 184) solid; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px;"
+                                    type="file" onchange="DETAILPATH=this;" accept=".dtl">
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-success" onclick="loadBLDetail(); return false;">Import</button>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+                <div class="">
+
+                    <p class="toolbar">
+
+                    </p>
+                    <table id="classTable" class="display" cellspacing="0" data-toolbar=".toolbar" data-query-params="queryParams" data-pagination="true"
+                        data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                                <th data-field="bill_of_lading_number" data-sortable="true">Bill Of Lading</th>
+                                <th data-field="consignee_name" data-sortable="true">Consignee</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+
+            <!-- Bootstrap modal -->
+            <div class="modal fade" data-backdrop="static" id="modal_form" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="modal-title">Edi Translation Form</h3>
+                        </div>
+                        <div class="modal-body form">
+                            <form id="edit_form" class="form-horizontal" data-toggle="validator">
+                                <input type="hidden" value="" name="id" id="id" />
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Type</label>
+                                        <div class="col-md-9">
+                                            <input readonly id="type" name="type" placeholder="Type" class="form-control" type="text" required>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group hidden">
+                                        <label class="control-label col-md-3">Internal Code</label>
+                                        <div class="col-md-9">
+                                            <input id="internal_code" name="internal_code" placeholder="Internal Code" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">External Code</label>
+                                        <div class="col-md-9">
+                                            <input readonly id="external_code" name="external_code" placeholder="External Code" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            <i class="fa fa-refresh " style="color:darkcyan;cursor:pointer;font-size:18px;" onclick="reloadInternalSelect()"></i> Internal Code</label>
+                                        <div class="col-md-9">
+                                            <select id="package_id" class=" load-selectpicker form-control" data-live-search="true" data-path="./api.php/package/api/select">
+                                            </select>
+                                            <select id="commodity_id" class=" load-selectpicker form-control" data-live-search="true" data-path="./api.php/commodity/api/select">
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group hidden">
+                                        <label class="control-label col-md-3">Translation Source Id</label>
+                                        <div class="col-md-9">
+                                            <input id="translation_source_id" name="translation_source_id" placeholder="Translation Source Id" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveEDIRecord(event)">
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+
+    <script>
+        $('#port_of_origin').val(2);
+        $('#port_of_loading').val(2);
+        edi_codes = {};
+        setUpEDITranslation();
+        function saveEDIRecord(e) {
+            e.preventDefault();
+            var form_data = {};
+            form_data.translation_source_id = translation_id;
+            form_data.external_code = $('#external_code').val();
+            form_data.type = $('#type').val();
+
+            form_data.code_id = numeric($('#commodity_id').selectpicker('val'));
+            if ($('#type').val() == 'package') {
+                form_data.code_id = numeric($('#package_id').selectpicker('val'));
+                if ($('#package_id').selectpicker('val') == null) {
+                    $('#package_id').select();
+                    alert('Please select an internal package code from the drop down');
+                    return false;
+                }
+            }
+
+
+            $.ajax({
+                type: "POST",
+                url: './api.php/edi_translation/',
+                data: JSON.stringify(form_data), // serializes the form's elements.                        
+                success: function (data) {
+                    $('#modal_form').removeClass("fade").modal('hide');
+                    //$('.modal-backdrop').remove();           
+                    loadBLDetail();
+                    toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                    //$('#classTable').bootstrapTable("append", obj);
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+        }
+
+        function setUpEDITranslation() {
+            translation_id = 0;
+            //get Translation source bl-import
+            $.ajax({
+                url: './api.php/translation_source/api/code/bl-import',
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data.length == 0) {
+                        addTranslationSource();
+                    } else {
+                        translation_id = data[0].id;
+                        loadTranslationcodes();
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+            //get all translation codes
+
+
+        }
+        function loadTranslationcodes() {
+            $.ajax({
+                url: './api.php/edi_translation/api/select/' + translation_id,
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        edi_codes[data[i].type.trim() + ':' + data[i].external_code.trim()] = data[i].code_id;
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function addTranslationSource() {
+            var obj = { code: 'bl-import', description: 'Cargo Manifest Import' };
+            $.ajax({
+                type: "POST",
+                url: './api.php/translation_source/',
+                async: false,
+                data: JSON.stringify(obj), // serializes the form's elements.                        
+                success: function (data) {
+                    translation_id = data;
+                    loadTranslationcodes();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function loadManifest() {
+
+            var reader = new FileReader();
+
+            // Handle errors load
+            reader.onload = importManifest;
+            reader.onerror = errorHandler;
+            // Read file into memory as UTF-8  
+            if (typeof (BOLFILEPATH) == 'undefined') {
+                $('#field_path').click();
+                return false;
+            }
+            if (typeof (DETAILPATH) == 'undefined') {
+                $('#detail_path').click();
+                return false;
+            }
+            //loadBLDetail(); 
+            reader.readAsText(BOLFILEPATH.files[0]);
+        }
+        function reloadInternalSelect() {
+            reloadSelect('#commodity_id');
+            reloadSelect('#package_id');
+        }
+
+        function trimExternalCode(rec, $type) {
+            var commodity_package = rec.join(' ').split(/\s+/).join(" ").trim();
+            if ($type == 'commodity') {
+                commodity_package = commodity_package.split('&').join(" ").trim();
+                commodity_package = commodity_package.split('/').join(" ").trim();
+                commodity_package = commodity_package.split('-').join(" ").trim();
+                commodity_package = commodity_package.split(/\s+/).join(" ").trim();
+                commodity_package=commodity_package.split(' ').slice(1).join(" ");
+                if (commodity_package.indexOf("FOOD") != -1 && commodity_package.indexOf("CLOTH") != -1) { commodity_package = 'FOOD AND CLOTHING'; }
+                if (commodity_package.indexOf("FOOD") != -1 && commodity_package.indexOf("CLOTH") == -1) { commodity_package = 'FOOD'; }
+                if (commodity_package.indexOf("FOOD") == -1 && commodity_package.indexOf("CLOTH") != -1) { commodity_package = 'CLOTHING'; }
+                if (commodity_package.indexOf("TV") != -1) { commodity_package = 'TELEVISION'; }
+                if (commodity_package.indexOf("TELEVISION") != -1) { commodity_package = 'TELEVISION'; }
+                if (commodity_package.indexOf("TOILETRIES") != -1) { commodity_package = 'TOILETRIES'; }
+                if (commodity_package.indexOf("TOOLS") != -1) { commodity_package = 'TOOLS'; }
+               console.log(commodity_package);               
+            }
+            if ($type == 'package') {
+                commodity_package = commodity_package.split('&').join(" ").trim();
+                commodity_package = commodity_package.split('/').join(" ").trim();
+                commodity_package = commodity_package.split('-').join(" ").trim();
+                commodity_package = commodity_package.split(/\s+/).join(" ").trim();
+                if (commodity_package.indexOf("BOX") != -1) { commodity_package = 'BOX'; }
+                if (commodity_package.indexOf("BARREL") != -1) { commodity_package = 'BARREL'; }
+                if (commodity_package.indexOf("PACKAGE") != -1) { commodity_package = 'PACKAGE'; }
+                if (commodity_package.indexOf("TV") != -1) { commodity_package = 'TELEVISION'; }
+                if (commodity_package.indexOf("TELEVISION") != -1) { commodity_package = 'TELEVISION'; }
+                commodity_package=commodity_package.split(' ')[0];
+            }
+            commodity_package=commodity_package.substr(0, 255);
+            return commodity_package.replace(/[0-9]/g, '');
+        }
+        function mapEdiCodes() {
+
+        }
+        function loadBLDetail() {
+            detail_records = {};
+            reloadInternalSelect();
+            loadTranslationcodes();
+            console.log(edi_codes);
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var csv = event.target.result, rec;
+                var allTextLines = csv.split(/\r\n|\n/);
+                for (var i = 0; i < allTextLines.length; i++) {
+                    rec = allTextLines[i].split('\t');
+                    if (numeric(rec[1]) == 0) continue;
+                    console.log(rec);
+                    var ex_code = rec.slice(2, 3);
+                    ex_code = ('' + ex_code).substr(0, 255);
+                    var commodity_package = trimExternalCode([ex_code], 'package');
+                    console.log(commodity_package);
+                    var p_key = 'package:' + commodity_package.trim();
+                    if (!edi_codes[p_key]) {
+                        var form_data = {};
+                        form_data.translation_source_id = translation_id;
+                        form_data.external_code = commodity_package;
+                        form_data.type = 'package';
+                        form_data.code_id = 0;
+                        $('#package_id').selectpicker('show');
+                        $('#package_id').selectpicker('val', '');
+                        $('#commodity_id').selectpicker('hide');
+                        loadFormData('#edit_form', form_data);
+                        //if (commodity_package=='BOX') break;
+                        $('#modal_form').modal('show');
+                        return;
+                    }
+                    var commodity_package = trimExternalCode([ex_code], 'commodity');
+                    var c_key = 'commodity:' + commodity_package.trim();
+                    if (!edi_codes[c_key]) {
+                        var form_data = {};
+                        form_data.translation_source_id = translation_id;
+                        form_data.external_code = commodity_package;
+                        form_data.type = 'commodity';
+                        form_data.code_id = 0;
+                        $('#package_id').selectpicker('hide');
+                        $('#commodity_id').selectpicker('val', '');
+                        $('#commodity_id').selectpicker('show');
+                        loadFormData('#edit_form', form_data);
+                        //if (commodity_package=='BOX') break;
+                        console.log(rec); console.log(form_data);
+                        $('#modal_form').modal('show');
+                        return;
+                    }
+                    var obj = { measure: numeric(rec[4]), weight: numeric(rec[3]), measure_unit: 'cuf', weight_unit: 'lb', billoflading_id: 0, commodity_id: edi_codes[c_key], package_type_id: edi_codes[p_key], description_of_goods: rec.slice(1, 3).join(' '), number_of_items: numeric(rec[1]) };
+                    if (!detail_records[rec[0].trim()]) {
+                        detail_records[rec[0].trim()] = [obj];
+                    } else { detail_records[rec[0].trim()].push(obj); }
+                }
+                loadManifest();
+
+            };
+            reader.onerror = errorHandler;
+            reader.readAsText(DETAILPATH.files[0]);
+        }
+        function importManifest(event) {
+            bl_added = [];
+            bl_ids = {};
+            var csv = event.target.result;
+            var allTextLines = csv.split(/\r\n|\n/);
+            var bol;
+            var data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": $('#voyage').val() };
+            var lines = [];
+            for (var i = 0; i < allTextLines.length; i++) {
+                bol = allTextLines[i].split('\t');
+                if (typeof (bol[7]) == "undefined") {
+                    continue;
+                }
+                data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": $('#voyage').val() };
+                data_model.port_of_loading = $('#port_of_loading').val();
+                data_model.port_of_origin = $('#port_of_origin').val();
+                data_model.port_of_delivery = $('#port_of_delivery').val();
+                data_model.port_of_discharge = $('#port_of_discharge').val();
+                console.log(bol);
+                if (!bl_ids[bol[7].trim()]) {
+                    data_model.bill_of_lading_number = bol[7].trim();
+                    data_model.parent_bol = 1;
+                    data_model.currency_id = 1;
+                    addBol(data_model);
+                    var clone = Object.assign({}, data_model);
+                    bl_added.push(clone);
+                    //data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": $('#voyage').val() };
+                }
+                data_model.bill_of_lading_number = bol[1].trim();
+                data_model.parent_bol = 0;
+                data_model.currency_id = 1;
+                data_model.consignee_phone_num = bol[4].trim();
+                data_model.master_bol_id = bl_ids[bol[7].trim()];
+                data_model.consignee_name = bol[2].trim();
+                data_model.consignee_address = bol[3].split('||').join(', ').trim();
+                data_model.shipper_name = bol[10].trim();
+                data_model.shipper_address = bol[11].split('||').join(', ').trim();
+                addBol(data_model, bol[0].trim());
+                var clone = Object.assign({}, data_model);
+                bl_added.push(clone);
+
+            }
+            console.log(bl_added);
+            $('#classTable').bootstrapTable("destroy");
+            $('#classTable').bootstrapTable({
+                uniqueId: 'id',
+                data: bl_added
+            });
+            toastr.success(bl_added.length + ' Bills Of Lading Added', 'Success Alert', { timeOut: 5000 })
+
+        }
+        function addBolDetail(refnum, id) {
+
+            if (!detail_records[refnum]) return;
+            for (var i = 0; i < detail_records[refnum].length; i++) {                
+                detail_records[refnum][i].billoflading_id = id
+                $.ajax({
+                    type: "POST",
+                    url: './api.php/bill_of_lading_detail/',
+                    data: JSON.stringify(detail_records[refnum][i]), // serializes the form's elements.                        
+                    success: function (data) {
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+        }
+        function addBol(form_data, refnum) {
+            var $async = true;
+            if (form_data.parent_bol == 1) { $async = false; }
+            $.ajax({
+                type: "POST",
+                url: './api.php/bill_of_lading/',
+                async: $async,
+                data: JSON.stringify(form_data), // serializes the form's elements.                        
+                success: function (data) {
+                    bl_ids[form_data.bill_of_lading_number] = data;
+                    var obj = {};
+                    obj.id = data;
+                    obj.blnum = form_data.bill_of_lading_number;
+                    obj.consignee = form_data.consignee_name;
+                    addBolDetail(refnum, data);
+                    //toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                    console.log('successfully added ' + form_data.bill_of_lading_number);
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function errorHandler(evt) {
+            if (evt.target.error.name == "NotReadableError") {
+                alert("Canno't read file !");
+            }
+        }
+        loadVoyageSelect();
+        function loadVoyageSelect() {
+            $('#voyage').empty();
+            var select_path = './api.php/voyage/api/select/' + $('#vessel').val();
+            if (SELECT_DATA_PATH[select_path]) {
+                $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+                    $('#voyage').append('<option value=' + value.id + '>' + value.voyage_number + ' - ' + formatDate(value.arrival_date) + '</option>');
+                });
+            } else {
+                $.ajax({
+                    url: select_path,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        SELECT_DATA_PATH[select_path] = data;
+                        $.each(data, function (key, value) {
+                            $('#voyage').append('<option value=' + value.id + '>' + value.voyage_number + ' - ' + formatDate(value.arrival_date) + '</option>');
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+        }
+
+        $(document).ready(function () {
+            //
+
+
+        });
+    </script>
+</body>
+
+</html>

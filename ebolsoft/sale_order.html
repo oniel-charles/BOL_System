@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>App</title>
+    <link rel="icon" href="./img/app_icon.ico">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="./build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="./img/company_icon.ico" />
+                            <span>Quality One</span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="index.html">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout"
+                            href="javascript:authenticateUser()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                            <a id="menu_toggle">
+                                <i style="font-size:16px" class="fa fa-bars"></i>
+                            </a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;"
+                                    class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Sale Order</span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;"
+                                    class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active
+                                        User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:passwordChangeRequest()">
+                                            <i class="fa fa-lock pull-right"></i> Change Password</a>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:displayHelp();">Help</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:authenticateUser()">
+                                            <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdownx">
+                                <button type="button" class="btn btn-round btn-success btn-sm "
+                                    onclick="loadShortCutOption(this)">
+                                    <i class="fa fa-search-plus"></i> BL Processing</button>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                <div class="">
+                    <a class="create btn btn-success" id="create-rec" href="javascript:">Add New</a>
+                    <div id="toolbar">
+                        <div class="form-inline" role="form">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Showing </label>
+                                <div class="col-md-9">
+                                    <div>
+                                        <input data-toggle="datepicker" id="start_date" name="end_date"
+                                            placeholder="Start Date" class="form-control has-feedback-left " type="text"
+                                            required>
+                                        <span class="fa fa-calendar form-control-feedback left"
+                                            aria-hidden="true"></span>
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-1">to</label>
+                                <div class="col-md-11">
+                                    <div>
+                                        <input data-toggle="datepicker" id="end_date" name="end_date"
+                                            placeholder="End Date" class="form-control has-feedback-left " type="text"
+                                            required>
+                                        <span class="fa fa-calendar form-control-feedback left"
+                                            aria-hidden="true"></span>
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div id="refresh_but" onclick="loadBusinessObjects()"
+                                    style="font-size:22px;color:green;cursor: pointer;" class="fa fa-refresh "></div>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="classTable" class="display" cellspacing="0" data-toolbar="#toolbar"
+                        data-query-params="queryParams" data-pagination="true" data-striped="true" data-search="true"
+                        data-show-multi-sort="true"
+                        data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                        <thead>
+                            <!--tr>
+                                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                                <th data-formatter="formatReceiptDate" data-sortable="true">Receipt Date</th>
+                                <th data-sorter="receiptNumberSorter" data-cell-style="receiptNumberStyle" data-formatter="formatReceiptNumber" data-align="center"  data-sortable="true">Receipt Number</th>
+                                <th data-field="payee" data-sortable="true">Customer</th>
+                                <th data-field="receipt_total" data-align="right" data-sortable="true">Amount</th>
+                                <th data-formatter="createActionButtons" data-searchable="false">Action</th>
+                            </tr-->
+                        </thead>
+                        <tfoot>
+                            <!--tr>
+                                <th class="hidden">ID</th>
+                                <th>Receipt Date</th>
+                                <th>Receipt Number</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr-->
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bootstrap modal -->
+            <div class="modal fade" id="modal_form" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="modal-title">Sale Order Form</h3>
+                        </div>
+                        <div class="modal-body form">
+                            <form id="edit_form" class="form-horizontal" data-toggle="validator">
+                                <input type="hidden" value="" name="id" id="id" />
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="form-group col-md-8"> <label
+                                                class="control-label col-md-5">Customer</label>
+                                            <div class="col-md-7">
+                                                <select id="customer_id" onchange="initializeCustomer()"
+                                                    data-live-search="true"
+                                                    onblur=" console.log('hell live search')"
+                                                    class="add-none load-selectpicker  form-control"
+                                                    data-path="./app/client/select"></select>
+                                                <span class="help-block"></span> </div>
+                                        </div>
+                                        <div class="form-group col-md-5"> <label
+                                                class="control-label col-md-3 ">Phone</label>
+                                            <div class="col-md-9"> <input id="phone_number" name="phone_number"
+                                                    placeholder="Phone" class="form-control" type="text"
+                                                     ><span class="help-block"></span> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group "> <label class="control-label col-md-3">Name</label>
+                                        <div class="col-md-9"> <input id="customer_name" name="customer_name"
+                                                placeholder="Name" class="form-control" type="text" required><span
+                                                class="help-block"></span> </div>
+                                    </div>
+
+
+                                    <div class="form-group "> <label class="control-label col-md-3">Address</label>
+                                        <div class="col-md-9"> <input id="customer_address" name="customer_address"
+                                                placeholder="Address" class="form-control" type="text"
+                                                ><span class="help-block"></span> </div>
+                                    </div>
+                                    <div class="form-group "> <label class="control-label col-md-3">Total Cost</label>
+                                        <div class="col-md-9"> <input id="cost" name="cost"
+                                                placeholder="Total Cost" class="form-control" type="text" 
+                                                data-bv-callback="true"    data-bv-callback-callback="specialValidation"  required><span
+                                                class="help-block"></span> </div>
+                                    </div>
+
+                                    <div>
+                                        <table id="payment_type_table" class="display" cellspacing="0"
+                                            data-show-footer="true" data-toolbar=".toolbarcon" data-striped="true"
+                                            data-editable="true" data-toolbar-align="top" data-search="false"></table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input id="submit" type="submit" class="btn btn-info" value="Save & Print"
+                                        onclick="saveRecord()">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- End Bootstrap modal -->
+            <!-- /page content -->
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/jquery-ui.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+    <script src="./vendor/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="./vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="./vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="./vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="./build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/crud.js"></script>
+
+    <script>
+
+        var today = new Date();
+        $('#end_date').datepicker().datepicker("setDate", today);
+        today.setDate(today.getDate() - 30);
+        $('#start_date').datepicker().datepicker("setDate", today);
+
+        $(document).ready(function () {
+            //
+            data_model = { "id": "0", "customer_id": "", "customer_name": "", "amount": "", "cancel_time": "", "cancel_date": "", "cancel_by": "", "created_date": "", "created_time": "", "created_by": "" };
+            //
+            businessObject = new BusinessObject(data_model, 'sale_order');
+            fieldValidatrs = {};
+            //
+            fieldValidatrs.supplier_id = createValidationField('Supplier Id', 'notEmpty');
+            //fieldValidatrs.sale_date = createValidationField('Sale Date', 'notEmpty');
+            fieldValidatrs.cost = createValidationField('Total Cost', 'notEmpty');
+            crudInit(businessObject);
+            loadBusinessObjects(businessObject.data_table);
+            businessObject.beforeNewRecord = function () {
+                var today = new Date();
+                $('#sale_date').datepicker().datepicker("setDate", today);
+                detail_data = [{ id: 1, product_id: 0, sale_price: 0, quantity: 0, payment_type: "Cash", amount: 0, payment_type_no: "" }];
+                product_list = loadProducts();
+                loadPaymentType();
+            }
+        });
+
+
+        function loadPaymentType() {
+            $('#payment_type_table').bootstrapTable("destroy");
+            //toggle `popup` / `inline` mode
+            $.fn.editable.defaults.mode = 'inline';
+            var payment_types = [{ value: "Cash", text: "Cash" }, { value: "Debit Card", text: "Debit Card" }, { value: "Credit Card", text: "Credit Card" }, { value: "Cheque", text: "Cheque" }, { value: "Direct Deposit", text: "Direct Deposit" }];
+            $('#payment_type_table').bootstrapTable({
+                idField: 'id',
+                columns: [
+                    [{
+                        field: 'operate',
+                        title: ' <a  onclick="addPaymentType()" href="#" title="Add"><i class="fa fa-plus-circle blue" style="font-size:20px" ></i></a>',
+                        align: 'center',
+                        formatter: operateFormatter
+                    },
+                    {
+                        field: 'product_id',
+                        align: 'left',
+                        title: 'Product',
+                        editable: {
+                            type: 'select',
+                            onblur: 'submit',
+                            source: product_list,
+                            url: function (params) {
+                                return updatePaymentArray(params, 'product_id');
+                            }
+
+                        }
+                    },
+                    {
+                        field: 'quantity',
+                        align: 'center',
+                        title: 'Quantity',
+                        formatter: function (value, row, index) {
+                            return numericStr(value, 0);
+                        },
+                        editable: {
+                            type: 'text',
+                            onblur: 'submit',
+                            url: function (params) {
+                                return updatePaymentArray(params, 'quantity');
+                            }
+                        }
+                    },
+                    {
+                        field: 'sale_price',
+                        align: 'center',
+                        title: 'Unit Price',
+                        formatter: function (value, row, index) {
+                            return numericStr(value, 2);
+                        }
+
+                    },
+                    {
+                        field: 'balance_quantity',
+                        align: 'center',
+                        title: 'Quantity on Hand',
+                        formatter: function (value, row, index) {
+                            return numericStr(value, 0);
+                        }
+
+                    },
+
+                    {
+                        field: 'amount',
+                        align: 'right',
+                        title: 'Total',
+                        footerFormatter: totalPaymentFormatter,
+
+                        formatter: function (value, row, index) {
+                            return numericStr(value, 2);
+                        }
+                    }]
+                ],
+                uniqueId: 'id',
+                data: detail_data
+            });
+        }
+
+        function operateFormatter(value, row, index) {
+            return ['<a class="btn-danger" onclick="deletePaymentType(' + row.id + ')" href="#" title="Remove">',
+                '<i class="glyphicon glyphicon-remove"></i>',
+                '</a>'
+            ].join('');
+        }
+        function totalPaymentFormatter(data) {
+            var field = this.field
+            var amt = data.map(function (row) {
+                return +row[field]
+            }).reduce(function (sum, i) {
+                return sum + i
+            }, 0);
+            return '<b>$' + numericStr(amt, 2) + '</b>';
+        }
+
+        function addPaymentType() {
+            var id = 1, amt = 0;
+            if (numeric($('#net_payment').html()) < 0) { amt = -1 * numeric($('#net_payment').html()); $('#net_payment').html("0.00") }
+            if (detail_data.length > 0) {
+                id = detail_data[detail_data.length - 1].id + 1;
+            }
+            var obj = { id: id, product_id: 0, sale_price: 0, quantity: 0, payment_type: "Cash", amount: amt, payment_type_no: "" };
+            detail_data.push(obj);
+            console.log(detail_data);
+            $('#net_payment').css("color", "blue");
+            loadPaymentType();
+        }
+        function deletePaymentType(id) {
+            for (var i = 0; i < detail_data.length; i++) {
+                if (id == detail_data[i].id) {
+                    var amt = numeric($('#net_payment').html()) - detail_data[i].amount;
+                    $('#net_payment').html(numericStr(amt, 2));
+                    if (amt < 0) {
+                        $('#net_payment').css("color", "red");
+                    } else {
+                        $('#net_payment').css("color", "blue");
+                    }
+                    detail_data.splice(i, 1);
+                    break;
+                }
+            }
+            loadPaymentType();
+        }
+
+        function updatePaymentArray(parms, type) {
+            $('#edit_form')
+                .data('bootstrapValidator')
+                .updateStatus('cost', 'NOT_VALIDATED', null);
+
+            var detail_data = [], total = 0, obj = {};
+            var data = $('#payment_type_table').bootstrapTable('getData');
+
+            for (var i = 0; i < data.length; i++) {
+                if (type == 'price' && parms.pk == data[i].id) { data[i].sale_price = numeric(parms.value) }
+                if (type == 'quantity' && parms.pk == data[i].id) { data[i].quantity = numeric(parms.value) }
+                //if(type=='type' && parms.pk==data[i].id){data[i].payment_type =parms.value}   
+                if (type == 'product_id' && parms.pk == data[i].id) {
+                     data[i].product_id = parms.value ;
+                     var prod=getProduct(parms.value);
+                     data[i].balance_quantity=prod.balance_quantity;
+                     data[i].sale_price=prod.selling_price;
+                }
+
+                data[i].amount = numeric(data[i].sale_price) * numeric(data[i].quantity);
+
+                obj = { sale_price: data[i].amount - data[i].quantity, quantity: data[i].quantity, id: data[i].id, payment_type: data[i].payment_type, amount: numeric(data[i].amount), payment_type_no: data[i].payment_type_no };
+                detail_data.push(obj);
+                total += numeric(data[i].amount);
+            }
+            $("#cost").val(total);
+            $('#net_payment').html(numericStr(total - numeric($('#jm_total').val()), 2));
+            if (total - numeric($('#jm_total').val()) < 0) {
+                $('#net_payment').css("color", "red");
+            } else {
+                $('#net_payment').css("color", "blue");
+            }
+            console.log(detail_data);
+            // $('#payment_type_table').bootstrapTable('refresh');  
+            $("#edit_form").data('bootstrapValidator');
+            loadPaymentType();
+        }
+
+        function loadProducts() {
+            var select_path = './app/product/select';
+            var product_code = [], obj = {};
+            if (SELECT_DATA_PATH[select_path]) {
+                $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+                    obj = {};
+                    obj['value'] = value.id;
+                    obj['text'] = value.description;
+                    product_code.push(obj);
+                });
+            } else {
+                $.ajax({
+                    url: select_path,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        SELECT_DATA_PATH[select_path] = data;
+                        $.each(data, function (key, value) {
+                            obj = {};
+                            obj['value'] = value.id;
+                            obj['text'] = value.description;
+                            product_code.push(obj);
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+            return product_code;
+        }
+        function specialValidation(value, validator) {
+            return validateSaleDetail();
+        }
+        function validateSaleDetail() {
+            var data = $('#payment_type_table').bootstrapTable('getData');
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].product_id == 0) {
+                    toastr.error('Product not selected for item ' + (i + 1), 'Error ', { timeOut: 5000 });
+                    return false;
+                }
+               
+                if (data[i].amount == 0) {
+                    toastr.error('Zero amount for item ' + (i + 1), 'Error ', { timeOut: 5000 });
+                    return false;
+                }
+                if (data[i].quantity > data[i].balance_quantity) {
+                    toastr.error('Insufficient quantity   for item ' + (i + 1), 'Error ', { timeOut: 5000 });
+                    return false;
+                }
+
+            }
+            return true;
+        }
+
+        function saveBusinessObject(form_data, data_table) {
+            form_data.amount=$("#cost").val();
+            form_data.phone_number=$("#phone_number").val();
+            form_data.customer_address=$("#customer_address").val();
+            var parm_obj = { sale_order: form_data, detail: detail_data };
+            showMediumReportEmbed('./app/report/print_sale_order/create', 'sale_order.pdf', 'Sale Order', '#my-report1-iframe', parm_obj);
+            $('#report2-tab').hide();
+           // $('#modal_form').modal('hide');
+            loadBusinessObjects(businessObject.data_table);
+            return;
+
+        }
+        function reprintSaleOrder($id) {
+            var obj = {};
+            showMediumReportEmbed('./app/report/print_sale_order/reprint/' + $id, 'sale_order.pdf', 'Sale Order', '#my-report1-iframe', obj);
+            $('#report2-tab').hide();
+        }
+        function createActionButtons(value, row, index, field) {
+            var $buttons = ""; //'<i onclick="viewReceipt(' + row.id + ',this)" class="fa fa-list-alt btn btn-default btn-sm" data-toggle="tooltip" title="View details" style="font-size:18px;"></i>';
+            if (row.cancel_date == null) {
+                $buttons = '<i onclick="reprintSaleOrder(' + row.id + ',this)" class="fa fa-print btn btn-default btn-sm" data-toggle="tooltip" title="re-Print SaleOrder" style="font-size:18px;"></i>';
+                $buttons += '<i onclick="cancelSaleOrder(' + row.id + ',this)" class="fa fa-ban btn btn-default btn-sm" data-toggle="tooltip" title="Cancel SaleOrder" style="font-size:18px;color:red"></i>';
+            }
+            return $buttons;
+        }
+        function loadBusinessObjects($data_table) {
+            $('.loader').show();
+            var sdate = validDate($('#start_date').val()).date;
+            var edate = validDate($('#end_date').val()).date;
+            $.ajax({
+                url: './app/sale_order/date_range/' + sdate + '/' + edate,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        idField: 'id',
+                        columns: [
+                            [{
+                                field: 'created_date',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Date',
+                                formatter: formatSaleOrderDate
+                            },
+                            {
+                                field: 'id',
+                                sortable: true,
+                                align: 'center',
+                                title: 'Sale Order Number',
+                                cellStyle: receiptNumberStyle,
+                                formatter: formatSaleOrderNumber,
+
+                            }, {
+                                field: 'customer_name',
+                                sortable: true,
+                                title: 'Customer',
+                                align: 'left'
+                            }, {
+                                field: 'amount',
+                                sortable: true,
+                                title: 'Total',
+                                align: 'right'
+                            }, {
+                                field: 'actionbuttons',
+                                title: 'Actions',
+                                formatter: createActionButtons
+                            }]
+                        ],
+                        uniqueId: 'id',
+                        data: data
+                    });
+                    $('.loader').hide();
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function formatSaleOrderNumber(value, row, index, field) {
+            if (row.cancel_date != null) {
+                return '<span style="color:red">' + pad(row.id, 8) + '</span>';
+            } else {
+                return '<span style="color:black">' + pad(row.id, 8) + '</span>';
+            }
+        }
+        function formatSaleOrderDate(value, row, index, field) {
+            return formatDate(row.created_date);
+        }
+        function receiptNumberStyle(value, row, index, field) {
+            if (row.cancelled == 1) {
+                return { css: { "color": "red" } };
+            } else {
+                return { css: { "color": "blue" } };
+            }
+        }
+        function cancelSaleOrder(id) {
+            var row = $('#classTable').bootstrapTable('getRowByUniqueId', id);
+            confirmDialog("Cancel Request", 'Are you sure you want to Cancel <br>Sale Order :<span style="color:red">' + pad(row.id, 8) + '</span>  with amount $' + numericStr(row.amount, 2) + ' ?', function (confirm) {
+                if (!confirm) return false;
+
+                $.ajax({
+                    type: "POST",
+                    url: './app/sale_order/cancel/' + id,
+                    success: function (data) {
+                        $('#refresh_but').click();
+                        toastr.success('The sale order was successfully cancelled', 'Success Alert', { timeOut: 5000 });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                    },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+
+            });
+        }
+    </script>
+
+    <script>
+     function initializeCustomer(){
+        $('#edit_form')
+                .data('bootstrapValidator')
+                .updateStatus('customer_name', 'NOT_VALIDATED', null);
+        var path='./app/client/select';
+        
+        $("#customer_name").val("");
+        $("#customer_address").val("");
+        $("#phone_number").val("");
+        if(SELECT_DATA_PATH[path]){
+            $.each(SELECT_DATA_PATH[path], function (key, value) {            
+                if ($("#customer_id").val()==value.id) {
+                    $("#customer_name").val(value.client_fname+' '+value.client_sname);
+                    $("#customer_address").val(value.client_address);
+                    $("#phone_number").val(value.phone_number);
+                }
+            });  
+        } 
+     }
+     function getProduct(id){
+        var obj={};
+        $.ajax({
+            url: './app/product/price/'+id,
+            type: 'GET',
+            async:false,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+               obj=data[0];      
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError);  },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+        return obj;
+     }
+
+     $(document).on('keyup', '.filter-component .bs-searchbox input', function (e) {
+        var searchData = e.target.value;
+        console.log(searchData);
+
+        //You can write the ajax code here
+    });
+    $(".bs-searchbox input").blur(function () {
+        if ($('#customer_id').val())
+        console.log($(this).val());
+    });
+    </script>
+</body>
+
+</html>

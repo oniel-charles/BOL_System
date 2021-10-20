@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bill of Lading Processing </title>
+  <link rel="icon" href="../img/worldwide.png">
+
+
+
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" />
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- bootstrap-daterangepicker -->
+  <link href="./css/datepicker.min.css" rel="stylesheet">
+
+  <link href="../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+  <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
+
+  <!-- iCheck -->
+  <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+  <!-- Custom Theme Style -->
+  <link href="../build/css/custom.min.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <!--    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  -->
+
+</head>
+<body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title">
+                <img src="../img/dennis_icon_xWY_1.ico" />
+                <span>Dennis Shipping</span>
+              </a>
+            </div>
+  
+            <div class="clearfix"></div>
+  
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2 class="user_fullname_disaplay">Active User</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+  
+            <br />
+  
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li>
+                    <a>
+                      <i class="fa fa-home"></i> Home
+                      <span class="fa fa-chevron-down"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <a href="/dennis/main">Dashboard</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>
+                      <i class="fa fa-cogs"></i> Maintenance
+                      <span class="fa fa-chevron-down"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <a href="maintain_vessel.html">Vessel</a>
+                      </li>
+                      <li>
+                        <a href="maintain_port.html">Port</a>
+                      </li>
+                      <li>
+                        <a href="maintain_country.html">Country</a>
+                      </li>
+                      <li>
+                        <a href="maintain_currency.html">Currency</a>
+                      </li>
+                      <li>
+                        <a href="maintain_package.html">Package</a>
+                      </li>
+                      <li>
+                        <a href="maintain_commodity.html">Commodity</a>
+                      </li>
+                      <li>
+                        <a href="maintain_container_size_type.html">Container Size Type</a>
+                      </li>
+                      <li>
+                        <a href="maintain_vessel.html">Vessel</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>
+                      <i class="fa fa-list-alt"></i> Charges
+                      <span class="fa fa-chevron-down"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <a href="maintain_charges.html">Charge Item</a>
+                      </li>
+                      <li>
+                        <a href="maintain_sur_charge.html">Sur Charge</a>
+                      </li>
+                      <li>
+                        <a href="maintain_gct_rate.html">GCT Rate</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>
+                      <i class="fa fa-dollar"></i> Billing
+                      <span class="fa fa-chevron-down"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <a href="maintain_receipt.html">Receipt</a>
+                      </li>
+                      <li>
+                        <a href="maintain_order.html">Order</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>
+                      <i class="fa fa-anchor"></i> Manifest Processing
+                      <span class="fa fa-chevron-down"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <a href="maintain_voyage.html">Voyage</a>
+                      </li>
+                      <li>
+                        <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                      </li>
+                      <li>
+                        <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>
+                      <i class="fa fa-bar-chart"></i> Reports
+                      <span class="fa fa-chevron-down"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                      </li>
+                      <li>
+                        <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                      </li>
+                      <li>
+                        <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                      </li>
+                      <li>
+                        <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                      </li>
+                      <li>
+                        <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                      </li>
+                      <li>
+                        <a href="maintain_gct_report.html">GCT Report</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+  
+  
+            </div>
+            <!-- /sidebar menu -->
+  
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+  
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle">
+                  <i class="fa fa-bars"></i>
+                </a>
+              </div>
+  
+              <ul class="nav navbar-nav navbar-left">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span style="font-size: 20px;"> Voyage</span>
+                  </a>
+  
+                </li>
+  
+              </ul>
+  
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li>
+                      <a href="javascript:;"> Profile</a>
+                    </li>
+                    <li>
+                        <a href="javascript:passwordChangeRequest()"> 
+                            <i class="fa fa-lock pull-right"></i> Change Password</a>
+                            
+                        </a>
+                    </li>
+                    <li>
+                      <a href="javascript:;">Help</a>
+                    </li>
+                    <li>
+                      <a href="javascript:authenticateUser()"> 
+                        <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    </li>
+                  </ul>
+                </li>
+  
+                <li role="presentation" class="dropdownx">
+                  <button type="button" class="btn btn-round btn-success btn-lg " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                    <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+  
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+  
+        <!-- page content -->
+  
+        <div class="right_col" role="main">
+            <div class="">
+                <p class="toolbar">
+      
+                  <div class="form-group">
+                    <a class="col-md-2 create btn btn-success" id="create-rec" href="javascript:">Add Voyage</a>
+      
+                    <div class="col-md-6">
+                      <select id="vessel" onchange="loadVoyageTable()" class=" load-select form-control" data-path="./api.php/vessel/api/select"></select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </p>
+                <table id="containertable" class="display" cellspacing="0" data-toolbar=".toolbar" data-pagination="true" data-striped="true"
+                  data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "voyage_number","sortOrder":"desc"},{"sortName":"id","sortOrder":"desc"}]'>
+                  <thead>
+                    <tr>
+                      <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                      <th data-field="container_number" data-sortable="true" >Container</th>
+                      <th data-field="action" data-searchable="false">Action</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th class="hidden">ID</th>
+                      <th >Container</th>
+                      <th></th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+        </div>
+  
+
+      <!-- /.modal -->
+      <!-- End Bootstrap modal -->
+      <!-- /page content -->
+  
+      <!-- footer content -->
+      <footer>
+        <div class="pull-right">
+          Gentelella - Bootstrap Admin Template by
+          <a href="https://colorlib.com">Colorlib</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      <!-- /footer content -->
+    </div>
+    </div>
+  
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script> -->
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+  
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+  
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+  
+    <script src="./scripts/app.js"></script>
+  
+    <script>
+  
+      $(document).ready(function () {
+  
+        $('[data-toggle="datepicker"]').datepicker({
+          autoHide: true,
+          zIndex: 2048,
+          format: "dd/mm/yyyy"
+        });
+  
+  
+        //
+        data_model = { "id": "0", "vessel_id": "", "voyage_number": "", "departure_date": "", "arrival_date": "", "stripped": "", "stripped_date": "" }
+  
+        bootstrapTableIndex = 0;
+        save_method = '';
+        pkey = 'id';
+        
+        //&**************************************************
+  
+        $('#form')
+          .bootstrapValidator({
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            excluded: [':disabled'],
+            fields: {
+              vessel_id: {
+                validators: {
+                  notEmpty: {
+                    message: 'Vessel Id is  required and cannot be empty'
+                  }
+                }
+              },
+              voyage_number: {
+                validators: {
+                  notEmpty: {
+                    message: 'Voyage Number is  required and cannot be empty'
+                  }
+                }
+              },
+              departure_date: {
+                validators: {
+                  notEmpty: {
+                    message: 'Departure Date is  required and cannot be empty'
+                  },
+                  date: {
+                    format: 'DD/MM/YYYY',
+                    message: 'The Departure Date is not valid'
+                  }
+                }
+              }, stripped_date: {
+                validators: {
+                  date: {
+                    format: 'DD/MM/YYYY',
+                    message: 'The Stripped Date is not valid'
+                  }
+                }
+              },
+              arrival_date: {
+                validators: {
+                  notEmpty: {
+                    message: 'Arrival Date is  required and cannot be empty'
+                  }, date: {
+                    format: 'DD/MM/YYYY',
+                    message: 'The Arrival Date is not valid'
+                  },
+  
+                  callback: {
+                    message: 'Arrival date  is not valid',
+                    callback: function (value, validator, $field) { return valiDateFormField(value, validator, $field) }
+                  }
+                }
+              }
+            }
+          })
+          .on('success.form.bv', function (e) {
+            console.log('success.form.bv');
+            // If you want to prevent the default handler (bootstrapValidator._onSuccess(e))
+            // e.preventDefault();
+          })
+          .on('success.form.bv', function (e) {
+            // Prevent submit form
+            e.preventDefault();
+            var $form = $(e.target),
+              validator = $form.data('bootstrapValidator');
+            for (var x in data_model) {
+              try { data_model[x] = $('#' + x).val(); } catch (e) { }
+            }
+            data_model['arrival_date'] = validDate($('#arrival_date').val()).date;
+            data_model['departure_date'] = validDate($('#departure_date').val()).date;
+            data_model['stripped_date'] = validDate($('#stripped_date').val()).date;
+            if (!valiDateForm()) return false;
+            if (save_method == 'PUT') {
+              $.ajax({
+                type: "PUT",
+                url: './api.php/Voyage/' + data_model['id'],
+                data: JSON.stringify(data_model), // serializes the form's elements.
+                success: function (data) {
+                  $('#modal_form').modal('hide');
+                  toastr.success('The record was updated successfully', 'Success Alert', { timeOut: 5000 })
+                  $('#classTable').bootstrapTable('updateByUniqueId', {
+                    id: data_model['id'],
+                    row: data_model
+                  });
+  
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                  handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+              });
+            }
+            if (save_method == 'POST') {
+              $.ajax({
+                type: "POST",
+                url: './api.php/Voyage/',
+                data: JSON.stringify(data_model), // serializes the form's elements.                        
+                success: function (data) {
+                  console.log('after add -1' + data);
+                  //var object = $.extend({}, object1, object2);
+                  var obj = {};
+                  $.extend(true, obj, data_model);
+                  obj.id = data;
+                  obj.actions = '<button onclick="editThis(' + data + ',this)" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+                  obj.actions += '<button onclick="deleteThis(' + data + ',this)" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+  
+                  console.log(obj);
+                  $('#modal_form').modal('hide');
+                  toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                  $('#classTable').bootstrapTable("append", obj);
+  
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                  handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+              });
+            }
+            $form
+              .bootstrapValidator('disableSubmitButtons', false)  // Enable the submit buttons
+              .bootstrapValidator('resetForm', true);             // Reset the form
+          })
+          .on('click', 'tbody > tr > td', function (e) {
+            var table = $table.data('bootstrap.table'),
+              $element = $(this),
+              $tr = $element.parent(),
+              row = table.data[$tr.data('index')];
+            alert(row);
+          });
+  
+        //**************************************************
+  
+        $("#create-rec").click(function (e) {
+          clearForm(e);
+          save_method = 'POST';
+          $('#vessel_id').val($('#vessel').val());
+          $('#modal_form').modal('show'); // show bootstrap modal                
+          $('.modal-title').text('Add Voyage'); // Set Title to Bootstrap modal title
+          $('#voycontab').hide();
+        });
+  
+        $("#add_container").click(function (e) {
+          if ($('#voy_con_num').val().trim() == '') return false;
+          var voy_con_obj = {};
+          voy_con_obj.container_number = $('#voy_con_num').val().trim();
+          voy_con_obj.id = null;
+          voy_con_obj.voyage_id = $('#id').val();
+          $.ajax({
+            type: "POST",
+            url: './api.php/voyage_container/',
+            data: JSON.stringify(voy_con_obj), // serializes the form's elements.                        
+            success: function (data) {
+              console.log('after add voyage container -1' + data);
+              //var object = $.extend({}, object1, object2);
+              var obj = {};
+              $.extend(true, obj, voy_con_obj);
+              obj.id = data.id;
+              obj.actions += '<button onclick="deleteThis(' + data + ',this)" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+  
+              console.log(obj);
+              toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+              $('#containertab').bootstrapTable("append", obj);
+  
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+              handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+            },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+          });
+          return false;
+  
+        });
+        loadVoyageContainerTable();
+        function getData() {
+          return '{"data":[{"id":"1","name":"1 West","location":"Block C"},{"id":"2","name":"1 North","location":"Block A"},{"id":"3","name":"1 South","location":"Block A"}]}';
+        }
+  
+  
+      });
+      function saveRecord() {
+  
+      }
+      function deleteThis(id, el) {
+        bootstrapTableIndex = $(el).closest("tr").index();
+        var tmp = $(el).closest("tr").find("td:eq(0)").text();
+        confirmDialog("Delete Request", 'Are you sure you want to delete:<br><b>' + tmp + '<b> ?', function (confirm) {
+          if (!confirm) return false;
+          $.ajax({
+            type: "DELETE",
+            url: './api.php/Voyage/' + id,
+            success: function (data) {
+              console.log('deleted ' + id);
+              //$('#classTable').bootstrapTable('remove', { field: 'id', values: ['' + id] });
+              $('#classTable').bootstrapTable('removeByUniqueId', id);
+              toastr.success('The record was deleted successfully', 'Success Alert', { timeOut: 5000 })
+  
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+              handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+            },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+          });
+  
+        });
+  
+  
+      }
+      function editThis(id, el) {
+        bootstrapTableIndex = $(el).closest("tr").index();
+        save_method = 'PUT';
+        $.ajax({
+          url: './api.php/Voyage/' + id,
+          type: 'GET',
+          dataType: 'json',
+          success: function (data) {
+            $('#form')
+              .bootstrapValidator('disableSubmitButtons', false)
+              .bootstrapValidator('resetForm', true);
+            data_model = data;
+            data_model['arrival_date'] = formatDate(data['arrival_date']);
+            data_model['departure_date'] = formatDate(data['departure_date']);
+            data_model['stripped_date'] = formatDate(data['stripped_date']);
+            loadFormData();
+            $('.modal-title').text('Edit Voyage');
+            $('#modal_form').modal('show');
+            $('#voycontab').show();
+            $('#generaltab').tab('show');
+            loadVoyageContainerTable();
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+  
+  
+      }
+  
+  
+      function formatColumDate(value, row, index, field) {
+        return formatDate(value);
+      }
+  
+      function formatStrip(value, row, index, field) {
+        if (value == 1) {
+          return 'Yes';
+        }
+        return 'No';
+      }
+  
+      function valiDateForm(e) {
+        var obj = validDate($('#arrival_date').val());
+        if (!obj.valid) {
+          $('#arrival_date').addClass('invalid');
+          return false;
+        } else {
+          return true;
+        }
+      }
+  
+      function valiDateFormField(value, validator, $field) {
+        console.log(value + '  ' + validator + ' ' + $field);
+        return true;
+      }
+  
+      function loadVoyageTable() {
+        $('#classTable').bootstrapTable("destroy");
+        $.ajax({
+          url: './api.php/Voyage/api/list/' + $('#vessel').val(),
+          type: 'GET',
+          dataType: 'json',
+          success: function (data) {
+            $('#classTable').bootstrapTable({
+              uniqueId: 'id',
+              data: data
+            });
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+      }
+      function loadVoyageContainerTable() {
+        $('#containertable').bootstrapTable("destroy");
+        $.ajax({
+          url: './api.php/voyage_container/api/select/1',
+          type: 'GET',
+          dataType: 'json',
+          success: function (data) {
+            $('#containertable').bootstrapTable({
+              uniqueId: 'container_number',
+              data: data
+            });
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+      }
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,1 @@
+INSERT INTO `menu_item` (`id`, `menu_group_id`, `title`, `url`, `menu_order`, `status`, `level`, `icon`, `description`) VALUES (NULL, '9', 'Cashier Receipts', 'rpt_cashier_listing.html', '7', 0, '2', NULL, NULL);

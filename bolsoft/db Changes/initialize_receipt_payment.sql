@@ -1,0 +1,1 @@
+insert into receipt_payment (receipt_id,payment_type,payment_type_no,currency_id,amount) SELECT id,payment_type,payment_type_no,currency_id,local_total  FROM `receipt`

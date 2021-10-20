@@ -1,0 +1,22 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2021-04-07 08:06
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: Oniel
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+ALTER TABLE `dennisnew`.`bill_of_lading` 
+ADD COLUMN `value_of_goods` DECIMAL(12,2) NULL DEFAULT NULL AFTER `edit_type`,
+ADD COLUMN `value_currency` INT(11) NULL DEFAULT NULL AFTER `value_of_goods`;
+
+ALTER TABLE `dennisnew`.`voyage` 
+ADD COLUMN `transportation_mode` CHAR(1) NULL DEFAULT NULL AFTER `mby_vessel_id`;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

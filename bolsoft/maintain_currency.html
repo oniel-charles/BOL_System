@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bill of Lading Processing </title>
+  <link rel="icon" href="./img/app_icon.ico">
+
+  <!-- Bootstrap -->
+  <!--    <link href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  -->
+  <!-- Font Awesome -->
+  <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" />
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
+
+  <!-- Custom Theme Style -->
+  <link href="./build/css/custom.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title">
+              <img src="./img/company_icon.ico" />
+              <span id=glo_company_name></span>
+            </a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Welcome,</span>
+              <h2 class="user_fullname_disaplay">Active User</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a>
+                    <i class="fa fa-home"></i> Home
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="/home/main">Dashboard</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-cogs"></i> Maintenance
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_vessel.html">Vessel</a>
+                    </li>
+                    <li>
+                      <a href="maintain_port.html">Port</a>
+                    </li>
+                    <li>
+                      <a href="maintain_country.html">Country</a>
+                    </li>
+                    <li>
+                      <a href="maintain_currency.html">Currency</a>
+                    </li>
+                    <li>
+                      <a href="maintain_package.html">Package</a>
+                    </li>
+                    <li>
+                      <a href="maintain_commodity.html">Commodity</a>
+                    </li>
+                    <li>
+                      <a href="maintain_container_size_type.html">Container Size Type</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-list-alt"></i> Charges
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_charges.html">Charge Item</a>
+                    </li>
+                    <li>
+                      <a href="maintain_sur_charge.html">Sur Charge</a>
+                    </li>
+                    <li>
+                      <a href="maintain_gct_rate.html">GCT Rate</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-dollar"></i> Billing
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_receipt.html">Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_order.html">Order</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-anchor"></i> Manifest Processing
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_voyage.html">Voyage</a>
+                    </li>
+                    <li>
+                      <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                    </li>
+                    <li>
+                      <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-bar-chart"></i> Reports
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                    </li>
+                    <li>
+                      <a href="maintain_gct_report.html">GCT Report</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+          <div class="nav_menu">
+              <nav>
+                  <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                      <a id="menu_toggle">
+                          <i style="font-size:16px" class="fa fa-bars"></i>
+                      </a>
+                  </div>
+
+                  <ul class="nav navbar-nav navbar-left">
+                      <li class="">
+                          <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false">
+                              <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Currency</span>
+                          </a>
+
+                      </li>
+
+                  </ul>
+
+                  <ul class="nav navbar-nav navbar-right">
+                      <li class="">
+                          <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false">
+                              <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                              <span class=" fa fa-angle-down"></span>
+                          </a>
+                          <ul class="dropdown-menu dropdown-usermenu pull-right">
+                              <li>
+                                  <a href="javascript:;"> Profile</a>
+                              </li>
+                              <li>
+                                  <a href="javascript:passwordChangeRequest()"> 
+                                      <i class="fa fa-lock pull-right"></i> Change Password</a>
+                                      
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="javascript:displayHelp();">Help</a>
+                              </li>
+                              <li>
+                                  <a href="javascript:authenticateUser()">
+                                      <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                              </li>
+                          </ul>
+                      </li>
+
+                      <li role="presentation" class="dropdownx">
+                          <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                              <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+
+      <div class="right_col" role="main">
+        <div class="">
+
+          <p class="toolbar">
+            <a class="create btn btn-success" id="create-rec" href="javascript:">Add New</a>
+          </p>
+          <table id="classTable" class="display" cellspacing="0" data-toolbar=".toolbar" data-query-params="queryParams" data-pagination="true"
+            data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+            <thead>
+              <tr>
+                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                <th data-field="currency_code" data-sortable="true">Currency Code</th>
+                <th data-field="currency_name" data-sortable="true">Currency Name</th>
+                <th data-field="actions" data-searchable="false">Action</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th class="hidden">ID</th>
+                <th>Currency Code</th>
+                <th>Currency Name</th>
+                <th>Action</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <!-- Bootstrap modal -->
+      <div class="modal fade" id="modal_form" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h3 class="modal-title">Currency Form</h3>
+            </div>
+            <div class="modal-body form">
+              <form id="form" class="form-horizontal" data-toggle="validator">
+                <input type="hidden" value="" name="id" />
+                <div class="form-body">
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Currency Code</label>
+                    <div class="col-md-9">
+                      <input name="currency_code" placeholder="Currency Code" class="form-control" type="text" required>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Currency Name</label>
+                    <div class="col-md-9">
+                      <input name="currency_name" placeholder="Currency Name" class="form-control" type="text" required>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <!-- End Bootstrap modal -->
+      <!-- /page content -->
+
+      <!-- footer content -->
+      <footer>
+        <div class="pull-right">
+          Gentelella - Bootstrap Admin Template by
+          <a href="https://colorlib.com">Colorlib</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      <!-- /footer content -->
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <!--  <script src="./vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+  <script src="./vendors/bootstrap/dist/js/bootstrap.min.js"></script> -->
+  <!-- FastClick -->
+  <script src="./vendors/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="./vendors/nprogress/nprogress.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+  <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  <!-- Custom Theme Scripts -->
+  <script src="./build/js/custom.min.js"></script>
+
+  <script src="./scripts/app.js"></script>
+  <script>
+
+    $(document).ready(function () {
+      //
+      data_model = { "id": "0", "currency_code": "", "currency_name": "" }
+
+      bootstrapTableIndex = 0;
+      save_method = '';
+      pkey = 'id';
+      
+      //&**************************************************
+
+      $('#form')
+        .bootstrapValidator({
+          feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+          },
+          excluded: [':disabled'],
+          fields: {
+            currency_code: {
+              validators: {
+                notEmpty: {
+                  message: 'Currency Code is  required and cannot be empty'
+                }
+              }
+            },
+            currency_name: {
+              validators: {
+                notEmpty: {
+                  message: 'Currency Name is  required and cannot be empty'
+                }
+              }
+            }
+          }
+        })
+        .on('success.form.bv', function (e) {
+          // Prevent submit form
+          e.preventDefault();
+          var $form = $(e.target),
+            validator = $form.data('bootstrapValidator');
+          if ($('input[name=name]').val() == '') { return; }
+          for (var x in data_model) {
+            try { data_model[x] = $('input[name=' + x + ']').val(); } catch (e) { }
+          }
+          if (save_method == 'PUT') {
+            $.ajax({
+              type: "PUT",
+              url: './app/currency/' + data_model['id'],
+              data: JSON.stringify(data_model), // serializes the form's elements.
+              success: function (data) {
+                $('#modal_form').modal('hide');
+                toastr.success('The record was updated successfully', 'Success Alert', { timeOut: 5000 })
+                $('#classTable').bootstrapTable('updateByUniqueId', {
+                  id: data_model['id'],
+                  row: data_model
+                });
+
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.status);
+                console.log(xhr.statusText);
+                console.log(xhr.responseText);
+              },
+              beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+          }
+          if (save_method == 'POST') {
+            $.ajax({
+              type: "POST",
+              url: './app/currency/',
+              data: JSON.stringify(data_model), // serializes the form's elements.                        
+              success: function (data) {
+                console.log('after add -1' + data);
+                //var object = $.extend({}, object1, object2);
+                var obj = {};
+                $.extend(true, obj, data_model);
+                obj.id = data;
+                obj.actions = '<button onclick="editThis(' + data + ',this)" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+                obj.actions += '<button onclick="deleteThis(' + data + ',this)" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+
+                console.log(obj);
+                $('#modal_form').modal('hide');
+                toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                $('#classTable').bootstrapTable("append", obj);
+
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.status);
+                console.log(xhr.statusText);
+                console.log(xhr.responseText);
+              },
+              beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+          }
+          $form
+            .bootstrapValidator('disableSubmitButtons', false)  // Enable the submit buttons
+            .bootstrapValidator('resetForm', true);             // Reset the form
+        })
+        .on('click', 'tbody > tr > td', function (e) {
+          var table = $table.data('bootstrap.table'),
+            $element = $(this),
+            $tr = $element.parent(),
+            row = table.data[$tr.data('index')];
+          alert(row);
+        });
+
+      //**************************************************
+
+      $("#create-rec").click(function (e) {
+        e.preventDefault();
+        $('#form')
+          .bootstrapValidator('disableSubmitButtons', false)  // Enable the submit buttons
+          .bootstrapValidator('resetForm', true);             // Reset the form
+        save_method = 'POST';
+        $('#form')[0].reset(); // reset form on modals
+        $('input[name=id]').val('');
+        $('#modal_form').modal('show'); // show bootstrap modal                
+        $('.modal-title').text('Add Currency'); // Set Title to Bootstrap modal title
+      });
+
+
+      $.ajax({
+        url: './app/currency',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#classTable').bootstrapTable({
+            uniqueId: 'id',
+            data: data
+          });
+
+          try { parent.autoResize('myframe'); } catch (e) { }
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+
+      function getData() {
+        return '{"data":[{"id":"1","name":"1 West","location":"Block C"},{"id":"2","name":"1 North","location":"Block A"},{"id":"3","name":"1 South","location":"Block A"}]}';
+      }
+
+
+    });
+    function saveRecord() {
+
+    }
+    function deleteThis(id, el) {
+      bootstrapTableIndex = $(el).closest("tr").index();
+      var tmp = $(el).closest("tr").find("td:eq(0)").text();
+      confirmDialog("Delete Request", 'Are you sure you want to delete:<br><b>' + tmp + '<b> ?', function (confirm) {
+        if (!confirm) return false;
+        $.ajax({
+          type: "DELETE",
+          url: './app/currency/' + id,
+          success: function (data) {
+            console.log('deleted ' + id);
+            //$('#classTable').bootstrapTable('remove', { field: 'id', values: ['' + id] });
+            $('#classTable').bootstrapTable('removeByUniqueId', id);
+            toastr.success('The record was deleted successfully', 'Success Alert', { timeOut: 5000 })
+
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(xhr.statusText);
+            console.log(xhr.responseText);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+
+      });
+
+
+    }
+    function editThis(id, el) {
+      bootstrapTableIndex = $(el).closest("tr").index();
+      save_method = 'PUT';
+      $.ajax({
+        url: './app/currency/' + id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#form')
+            .bootstrapValidator('disableSubmitButtons', false)
+            .bootstrapValidator('resetForm', true);
+          data_model = data;
+          for (var x in data_model) {
+            $('input[name=' + x + ']').val(data_model[x]);
+          }
+          $('.modal-title').text('Edit Currency');
+          $('#modal_form').modal('show');
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+
+
+
+
+    }
+  </script>
+</body>
+
+</html>

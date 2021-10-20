@@ -1,0 +1,27 @@
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .fa  {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .fa   { left:  0px;}
+.right-addon .fa  { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+ li  {margin:0px 10px ;}
+
+
+body {
+  margin: 10px;
+   background: url(../../img/Harbor_Sunrise.jpg) ;
+}

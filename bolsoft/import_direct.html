@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bill of Lading Processing </title>
+    <link rel="icon" href="./img/app_icon.ico">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+    <!-- Custom Theme Style -->
+    <link href="./build/css/custom.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="./img/company_icon.ico" />
+                            <span id=glo_company_name></span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/home/main">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-cogs"></i> Maintenance
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_port.html">Port</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_country.html">Country</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_currency.html">Currency</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_package.html">Package</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_commodity.html">Commodity</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_container_size_type.html">Container Size Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-list-alt"></i> Charges
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_charges.html">Charge Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_sur_charge.html">Sur Charge</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_rate.html">GCT Rate</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-dollar"></i> Billing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_receipt.html">Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_order.html">Order</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-anchor"></i> Manifest Processing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_voyage.html">Voyage</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                                        </li>
+                                        <li>
+                                            <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-bar-chart"></i> Reports
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_report.html">GCT Report</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                            <a id="menu_toggle">
+                                <i style="font-size:16px" class="fa fa-bars"></i>
+                            </a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Import Manifest</span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images/img.jpg" alt="">
+                                    <span class="user_fullname_disaplay">Active User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:passwordChangeRequest()">
+                                            <i class="fa fa-lock pull-right"></i> Change Password</a>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:displayHelp();">Help</a>
+                                    </li>
+                                    <li>
+                                        <a href="login.html">
+                                            <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdownx">
+                                <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                                    <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                <div>
+                    <form class="form-horizontal" data-toggle="validator">
+                    <div class="col-md-6 border " style=" border: 1px solid #c9c9c9;">
+                    <div class="form-group " style="color: brown;">
+                        <label class="control-label col-md-6 ">From</label>
+                        <div class="col-md-6">
+                            <select id="office_origin" class=" selectpicker " data-width="auto"  >
+                                <option value="newyork">New York </option>
+                                <option value="miami">Miami </option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-md-6">Vessel</label>
+                        <div class="col-md-6 ">
+                            <input  id="external_vessel"  placeholder="Sail Date" class="form-control" type="text" disabled/>
+                        </div>
+                    </div>   
+                    <div class="form-group">
+                        <label class="control-label col-md-6">Sail Date</label>
+                        <div class="col-md-6 ">
+                            <input  id="sail_date"  data-bv-callback-callback="specialDateValidation"  placeholder="Sail Date" class="form-control" type="text" disabled/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-6">Container</label>
+                        <div class="col-md-6 ">
+                            <input  id="container"  placeholder="container" class="form-control" type="text" disabled/>
+                        </div>
+                    </div>
+                    <div class="form-group">                        
+                        <label class="control-label col-md-6">Manifest</label>
+                        <div class="col-md-6">
+                            <select id="manifest" onchange="displayManifest()" class="input-sm load-select form-control" ></select>
+                        </div>
+                    </div>                
+            </div>
+            <div class="col-md-6" style=" border: 1px solid #c9c9c9;"> <!--Right col-->
+                <div class="form-group "  style="color:brown;">
+                    <label class="control-label col-md-6 ">To</label>
+                    <div class="col-md-6 ">
+                        <input  id="localoffice" name="localoffice" placeholder="Office" class="form-control has-feedback-left"
+                        type="text" disabled/>
+                    </div>
+                 </div>
+                <div class="form-group ">
+                    <label class="control-label col-md-6">Vessel</label>
+                    <div class="col-md-6">
+                        <select id="vessel"  class="input-sm load-select form-control" data-path="./app/vessel/select"></select>
+                    </div>
+                </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-6">Arrival Date</label>
+                    <div class="col-md-6">
+                      <input data-toggle="datepicker" id="arrival_date" name="arrival_date" placeholder="Arrival Date" class="form-control has-feedback-left"
+                        type="text" required>
+                      <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>                      
+                    </div>
+                  </div>
+                <div class="form-group ">
+                    <label class="control-label col-md-6">Port Of Origin</label>
+                    <div class="col-md-6">
+                        <select id="port_of_origin" class="input-sm load-select form-control" data-path="./app/port/select" required></select>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label col-md-6">Port Of Discharge</label>
+                    <div class="col-md-6">
+                        <select id="port_of_discharge" class="input-sm load-select form-control" data-path="./app/port/select" required></select>
+                        
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label col-md-6">Container Size</label>
+                    <div class="col-md-6">
+                        <select id="size_type" class="input-sm load-select form-control" data-path="./app/container_size_type/select" required></select>
+                    </div>
+                </div>
+            
+            </div> <!--//End right col-->
+                        
+        </form>
+        <div >
+            <button  class="btn btn-primary" onclick=" importExternalManifest(); return false;">Import External</button>
+        </div> 
+              
+                <div class="">
+
+                    <p class="toolbar">
+
+                    </p>
+                    <table id="classTable" class="display" cellspacing="0" data-toolbar=".toolbar" data-query-params="queryParams" data-pagination="true"
+                        data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                                <th data-field="bill_of_lading_number" data-sortable="true">Bill Of Lading</th>
+                                <th data-field="consignee_fname" data-sortable="true">Consignee First Name</th>
+                                <th data-field="consignee_fname" data-sortable="true">Consignee Last Name</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+
+            <!-- Bootstrap modal -->
+            <div class="modal fade" data-backdrop="static" id="modal_form" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="modal-title">Edi Translation Form</h3>
+                        </div>
+                        <div class="modal-body form">
+                            <form id="edit_form" class="form-horizontal" data-toggle="validator">
+                                <input type="hidden" value="" name="id" id="id" />
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Type</label>
+                                        <div class="col-md-9">
+                                            <input readonly id="type" name="type" placeholder="Type" class="form-control" type="text" required>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group hidden">
+                                        <label class="control-label col-md-3">Internal Code</label>
+                                        <div class="col-md-9">
+                                            <input id="internal_code" name="internal_code" placeholder="Internal Code" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">External Code</label>
+                                        <div class="col-md-9">
+                                            <input readonly id="external_code" name="external_code" placeholder="External Code" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            <i class="fa fa-refresh " style="color:darkcyan;cursor:pointer;font-size:18px;" onclick="reloadInternalSelect()"></i> Internal Code</label>
+                                        <div class="col-md-9">
+                                            <select id="package_id" class=" load-selectpicker form-control" data-live-search="true" data-path="./app/package/select">
+                                            </select>
+                                            <select id="commodity_id" class=" load-selectpicker form-control" data-live-search="true" data-path="./app/commodity/select">
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group hidden">
+                                        <label class="control-label col-md-3">Translation Source Id</label>
+                                        <div class="col-md-9">
+                                            <input id="translation_source_id" name="translation_source_id" placeholder="Translation Source Id" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveEDIRecord(event)">
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="./vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="./vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="./vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="./build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/crud.js"></script>
+    <script src="./scripts/compare-strings.min.js"></script>
+
+    <script>
+        $('#port_of_origin').val(2);
+        $('#port_of_loading').val(2);
+        edi_codes = {};
+        setUpEDITranslation();
+
+        function saveEDIRecord(e) {
+            e.preventDefault();
+            var form_data = {};
+            form_data.translation_source_id = translation_id;
+            form_data.external_code = $('#external_code').val();
+            form_data.type = $('#type').val();
+
+            form_data.code_id = numeric($('#commodity_id').selectpicker('val'));
+            if ($('#type').val() == 'package') {
+                form_data.code_id = numeric($('#package_id').selectpicker('val'));
+                if ($('#package_id').selectpicker('val') == null) {
+                    $('#package_id').select();
+                    alert('Please select an internal package code from the drop down');
+                    return false;
+                }
+            }
+
+
+            $.ajax({
+                type: "POST",
+                url: './app/edi_translation/',
+                data: JSON.stringify(form_data), // serializes the form's elements.                        
+                success: function (data) {
+                    $('#modal_form').removeClass("fade").modal('hide');
+                    //$('.modal-backdrop').remove();           
+                    loadBLDetail();
+                    toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                    //$('#classTable').bootstrapTable("append", obj);
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+        }
+
+        function setUpEDITranslation() {
+            translation_id = 0;
+            //get Translation source bl-import
+            $.ajax({
+                url: './app/translation_source/code/bl-import',
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data.length == 0) {
+                        addTranslationSource();
+                    } else {
+                        translation_id = data[0].id;
+                        loadTranslationcodes();
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+            //get all translation codes
+
+
+        }
+        function loadTranslationcodes() {
+            $.ajax({
+                url: './app/edi_translation/select/' + translation_id,
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        edi_codes[data[i].type.trim() + ':' + data[i].external_code.trim()] = data[i].code_id;
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function addTranslationSource() {
+            var obj = { code: 'bl-import', description: 'Manifest Import' };
+            $.ajax({
+                type: "POST",
+                url: './app/translation_source/',
+                async: false,
+                data: JSON.stringify(obj), // serializes the form's elements.                        
+                success: function (data) {
+                    translation_id = data;
+                    loadTranslationcodes();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function loadManifest() {
+
+            var reader = new FileReader();
+
+            // Handle errors load
+            reader.onload = importManifest;
+            reader.onerror = errorHandler;
+            // Read file into memory as UTF-8  
+            if (typeof (BOLFILEPATH) == 'undefined') {
+                $('#field_path').click();
+                return false;
+            }
+
+            //loadBLDetail(); 
+            reader.readAsText(BOLFILEPATH.files[0]);
+        }
+        function reloadInternalSelect() {
+            reloadSelect('#commodity_id');
+            reloadSelect('#package_id');
+        }
+
+        function trimExternalCode(rec, $type) {
+            var commodity_package = rec.join(' ').split(/\s+/).join(" ").trim();
+            if ($type == 'commodity') {
+                commodity_package = commodity_package.split('&').join(" ").trim();
+                commodity_package = commodity_package.split('/').join(" ").trim();
+                commodity_package = commodity_package.split('-').join(" ").trim();
+                commodity_package = commodity_package.split(/\s+/).join(" ").trim();
+                commodity_package=commodity_package.split(' ').slice(1).join(" ");
+                if (commodity_package.indexOf("FOOD") != -1 && commodity_package.indexOf("CLOTH") != -1) { commodity_package = 'FOOD AND CLOTHING'; }
+                if (commodity_package.indexOf("FOOD") != -1 && commodity_package.indexOf("CLOTH") == -1) { commodity_package = 'FOOD'; }
+                if (commodity_package.indexOf("FOOD") == -1 && commodity_package.indexOf("CLOTH") != -1) { commodity_package = 'CLOTHING'; }
+                if (commodity_package.indexOf("TV") != -1) { commodity_package = 'TELEVISION'; }
+                if (commodity_package.indexOf("TELEVISION") != -1) { commodity_package = 'TELEVISION'; }
+                if (commodity_package.indexOf("TOILETRIES") != -1) { commodity_package = 'TOILETRIES'; }
+                if (commodity_package.indexOf("TOOLS") != -1) { commodity_package = 'TOOLS'; }
+               console.log(commodity_package);               
+            }
+            if ($type == 'package') {
+                commodity_package = commodity_package.split('&').join(" ").trim();
+                commodity_package = commodity_package.split('/').join(" ").trim();
+                commodity_package = commodity_package.split('-').join(" ").trim();
+                commodity_package = commodity_package.split(/\s+/).join(" ").trim();
+                if (commodity_package.indexOf("BOX") != -1) { commodity_package = 'BOX'; }
+                if (commodity_package.indexOf("BARREL") != -1) { commodity_package = 'BARREL'; }
+                if (commodity_package.indexOf("PACKAGE") != -1) { commodity_package = 'PACKAGE'; }
+                if (commodity_package.indexOf("TV") != -1) { commodity_package = 'TELEVISION'; }
+                if (commodity_package.indexOf("TELEVISION") != -1) { commodity_package = 'TELEVISION'; }
+                commodity_package=commodity_package.split(' ')[0];
+            }
+            commodity_package=commodity_package.substr(0, 255);
+            return commodity_package.replace(/[0-9]/g, '');
+        }
+        function mapEdiCodes() {
+
+        }
+        function loadBLDetail() {
+            detail_records = {};
+            reloadInternalSelect();
+            loadTranslationcodes();
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var csv = event.target.result, rec;
+                var allTextLines = csv.split(/\r\n|\n/);
+                for (var i = 0; i < allTextLines.length; i++) {
+                    rec = allTextLines[i].split('\t');
+                    if (numeric(rec[1]) == 0) continue;
+            
+                    var ex_code = rec.slice(2, 3);
+                    ex_code = ('' + ex_code).substr(0, 255);
+                    var commodity_package = trimExternalCode([ex_code], 'package');
+    
+                    var p_key = 'package:' + commodity_package.trim();
+                    if (!edi_codes[p_key]) {
+                        var form_data = {};
+                        form_data.translation_source_id = translation_id;
+                        form_data.external_code = commodity_package;
+                        form_data.type = 'package';
+                        form_data.code_id = 0;
+                        $('#package_id').selectpicker('show');
+                        $('#package_id').selectpicker('val', '');
+                        $('#commodity_id').selectpicker('hide');
+                        loadFormData('#edit_form', form_data);
+                        //if (commodity_package=='BOX') break;
+                        $('#modal_form').modal('show');
+                        return;
+                    }
+                    var commodity_package = trimExternalCode([ex_code], 'commodity');
+                    var c_key = 'commodity:' + commodity_package.trim();
+                    if (!edi_codes[c_key]) {
+                        var form_data = {};
+                        form_data.translation_source_id = translation_id;
+                        form_data.external_code = commodity_package;
+                        form_data.type = 'commodity';
+                        form_data.code_id = 0;
+                        $('#package_id').selectpicker('hide');
+                        $('#commodity_id').selectpicker('val', '');
+                        $('#commodity_id').selectpicker('show');
+                        loadFormData('#edit_form', form_data);
+                        //if (commodity_package=='BOX') break;
+                        console.log(rec); console.log(form_data);
+                        $('#modal_form').modal('show');
+                        return;
+                    }
+                    var obj = { measure: numeric(rec[4]), weight: numeric(rec[3]), measure_unit: 'cuf', weight_unit: 'lb', billoflading_id: 0, commodity_id: edi_codes[c_key], package_type_id: edi_codes[p_key], description_of_goods: rec.slice(1, 3).join(' '), number_of_items: numeric(rec[1]) };
+                    if (!detail_records[rec[0].trim()]) {
+                        detail_records[rec[0].trim()] = [obj];
+                    } else { detail_records[rec[0].trim()].push(obj); }
+                }
+                loadManifest();
+
+            };
+            reader.onerror = errorHandler;
+            reader.readAsText(DETAILPATH.files[0]);
+        }
+
+        function getPackageId(desc){
+            var id=0,rating=0;
+            var select_path = './app/package/select';
+            if (SELECT_DATA_PATH[select_path]) {
+                for(var x in SELECT_DATA_PATH[select_path]) {
+                   rate =compareTwoStrings(desc.toLowerCase(),SELECT_DATA_PATH[select_path][x].description.toLowerCase());
+                   if (rate>rating){
+                       id=SELECT_DATA_PATH[select_path][x].id;
+                       rating=rate;
+                   }
+                   if(rating>.75) break;
+                }
+            } 
+            return id;
+        }
+        function getCommodityId(desc){
+            desc=' '+desc;
+            var id=0,rating=0;
+            var select_path = './app/commodity/select';
+            if (SELECT_DATA_PATH[select_path]) {
+                for(var x in SELECT_DATA_PATH[select_path]) {
+                   rate =compareTwoStrings(desc.toLowerCase(),SELECT_DATA_PATH[select_path][x].description.toLowerCase());
+                   if (rate>rating){
+                       id=SELECT_DATA_PATH[select_path][x].id;
+                       rating=rate;
+                   }
+                   if(rating>.75) break;
+                }
+            } 
+            return id;
+        }
+function validateBolRow(arr){
+    var obj={bol_col:0,consign_col:1,shipper_col:0,pieces_col:0,desc_col:0,measure_col:0,weight_col:0}
+    if(arr==null) return obj;
+    if(arr.length==0) return obj;
+    if(arr[0].trim()=='') return obj;
+    
+        for(var x=obj.bol_col+1;x<arr.length;x++){
+                if(arr[x]!='' && isNaN(arr[x])){
+                    obj.consign_col=x;
+                    break;
+                }
+        }
+        if(x==arr.length)  return obj;
+        for(var x=obj.consign_col+1;x<arr.length;x++){
+                if(arr[x]!='' && isNaN(arr[x])){
+                    obj.shipper_col=x;
+                    break;
+                }
+        }
+        if(x==arr.length)  return obj;
+        for(var x=obj.shipper_col+1;x<arr.length;x++){
+                if(arr[x]!='' && !isNaN(arr[x])){
+                    obj.pieces_col=x;
+                    break;
+                }
+        }
+        if(x==arr.length)  return obj;
+        var t_x=obj.pieces_col+1;
+        for(var x=obj.pieces_col+1;x<arr.length;x++){
+                if(arr[x]!='' && isNaN(arr[x])){
+                    obj.desc_col=x;
+                    break;
+                }
+        }
+        if(x==arr.length)  {x=t_x; obj.desc_col=x;}//return obj;
+        for(var x=obj.desc_col+1;x<arr.length;x++){
+                if(arr[x]!='' && !isNaN(arr[x])){
+                    obj.measure_col=x;
+                    break;
+                }
+        }
+        if(x==arr.length)  return obj;
+        for(var x=obj.measure_col+1;x<arr.length;x++){
+                if(arr[x]!='' && !isNaN(arr[x])){
+                    obj.weight_col=x;
+                    break;
+                }
+        }
+        if(x==arr.length)  return obj;
+    
+    return obj;
+}
+        function importManifest(event) {
+            $('.loader').show();
+            detail_records = {};
+            bl_added = [];
+            bl_ids = {};
+            var csv = event.target.result;
+            var allTextLines = csv.split(/\r\n/);
+            var bol,rec;
+            var data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": $('#voyage').val() };
+            var lines = [],consignee_array=[],shipper_array=[],bl_detail=[],goods_desc=[],current_index=0;
+           // console.log(allTextLines);
+         
+            for (var i = 0; i < allTextLines.length; i++) {
+                bol = CSVtoArray(allTextLines[i]);//allTextLines[i].split(',');
+               var rec_col= validateBolRow(bol);
+               
+                if (rec_col.weight_col==0) { //bol[0]=='' || (bol[3]=='' || 
+                    continue;
+                }
+                consignee_array=[];
+                shipper_array=[];
+                goods_desc=[];
+                bl_detail=[];
+                current_index=i;
+                data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": $('#voyage').val() };
+                data_model.port_of_loading = $('#port_of_loading').val();
+                data_model.port_of_origin = $('#port_of_origin').val();
+                data_model.port_of_delivery = $('#port_of_delivery').val();
+                data_model.port_of_discharge = $('#port_of_discharge').val();
+                if (!bl_ids['TMP_MASTER_BL']) {
+                    data_model.bill_of_lading_number = 'TMP_MASTER_BL';
+                    data_model.parent_bol = 1;
+                    data_model.currency_id = 1;
+                    addBol(data_model);
+                    var clone = Object.assign({}, data_model);
+                    bl_added.push(clone);
+                    //data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": $('#voyage').val() };
+                }
+                
+                 //consignee array
+                 consignee_array.push(bol[1]);                
+                 for (var x = i+1; x < allTextLines.length; x++) {
+                     rec = allTextLines[x].split(',');
+                     if(rec.length < 5) break;
+                     if(rec[0].trim()!='' || rec[1].trim()=='') break;
+                     consignee_array.push(rec[1]);    
+                 }   
+
+                 //Shipper array
+                 shipper_array.push(bol[rec_col.shipper_col]);                
+                 for (var x = i+1; x < allTextLines.length; x++) {
+                     rec = allTextLines[x].split(',');
+                     if(rec.length < 5) break;
+                     if(rec[0].trim()!='' || rec[rec_col.shipper_col].trim()=='') break;
+                     shipper_array.push(rec[rec_col.shipper_col]);    
+                 }
+
+                 //Assign details                 
+                 var desc;
+                 for (var x = i+1; x < allTextLines.length; x++) {
+                     rec = allTextLines[x].split(',');
+                     if(rec.length < 5) break;
+                     if(rec[0].trim()!='' || rec[rec_col.desc_col].trim()=='') break;
+                     desc=rec[rec_col.desc_col];
+                     desc=desc.split(' ');
+                     if(!isNaN(desc[0])) continue;
+                     goods_desc.push(rec[rec_col.desc_col]);    
+                 }                 
+                 for (var x = i; x < allTextLines.length; x++) {
+                     rec = allTextLines[x].split(',');
+                     if(rec.length < 5) break;
+                     if( (x != i && rec[0].trim()!='') || rec[rec_col.desc_col].trim()=='' ) break;
+                     desc=rec[rec_col.desc_col];
+                     desc=desc.split(' ');
+                     if(isNaN(desc[0])) break;
+                     
+                     var obj = { measure: numeric(rec[rec_col.measure_col]), weight: numeric(rec[rec_col.weight_col]), measure_unit: 'cuf', weight_unit: 'kg', billoflading_id: 0, commodity_id: getCommodityId(goods_desc.slice()), package_type_id:  getPackageId(desc[1]), description_of_goods:desc.slice().join(' ')+' '+ goods_desc.slice().join(' '), number_of_items: numeric(desc[0]) };
+                     bl_detail.push(obj);  
+                 }
+                 detail_records[bol[0].trim()]=bl_detail;
+                 
+
+                data_model.bill_of_lading_number = bol[0].trim();
+                data_model.parent_bol = 0;
+                data_model.currency_id = 1;
+                pcnt=0;
+                data_model.consignee_phone_num = '';
+                if(!isNaN(consignee_array[consignee_array.length-1].split('-').join('').split('/').join('').trim())){
+                    data_model.consignee_phone_num = consignee_array[consignee_array.length-1];
+                    pcnt=1;
+                }
+                data_model.master_bol_id = bl_ids['TMP_MASTER_BL'];
+                data_model.consignee_name = consignee_array[0].trim();
+                data_model.consignee_address ='';
+                for(var j=1; j<consignee_array.length-pcnt;j++){
+                    data_model.consignee_address +=(consignee_array[j].trim()+' ');
+                }
+
+                pcnt=0;
+                data_model.shipper_phone_num = '';
+                if(!isNaN(shipper_array[shipper_array.length-1].split('-').join('').split('/').join('').trim())){
+                    data_model.shipper_phone_num = shipper_array[shipper_array.length-1];
+                    pcnt=1;
+                }
+                data_model.shipper_name =shipper_array[0].trim();
+                data_model.shipper_address = '';
+                for(var j=1; j<shipper_array.length-pcnt;j++){
+                    data_model.shipper_address +=(shipper_array[j].trim()+' ');
+                }
+
+                //assign details
+                //var obj = { measure: numeric(bol[rec_col.measure_col]), weight: numeric(bol[rec_col.weight_col]), measure_unit: 'cuf', weight_unit: 'kg', billoflading_id: 0, commodity_id: getCommodityId(goods_desc.slice()), package_type_id:  getPackageId(bol[5]), description_of_goods: goods_desc.slice().join(' '), number_of_items: numeric(bol[rec_col.pieces_col]) };
+                //detail_records[bol[0].trim()]=obj;
+
+                addBol(data_model, bol[0].trim());
+                var clone = Object.assign({}, data_model);
+                bl_added.push(clone);
+
+            }
+            //console.log(bl_added);
+            //console.log(detail_records);
+            $('#classTable').bootstrapTable("destroy");
+            $('#classTable').bootstrapTable({
+                uniqueId: 'id',
+                data: bl_added
+            });
+            toastr.success(bl_added.length + ' Bills Of Lading Added', 'Success Alert', { timeOut: 5000 })
+            $('.loader').hide();
+        }
+        function addBolDetail(refnum, id) {
+
+            if (!detail_records[refnum]) return;
+            for (var i = 0; i < detail_records[refnum].length; i++) {                
+                detail_records[refnum][i].billoflading_id = id
+                $.ajax({
+                    type: "POST",
+                    url: './app/bill_of_lading_detail/',
+                    data: JSON.stringify(detail_records[refnum][i]), // serializes the form's elements.                        
+                    success: function (data) {
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+        }
+        function addBol(form_data, refnum) {
+            var $async = false;
+            if (form_data.parent_bol == 1) { $async = false; }
+            $.ajax({
+                type: "POST",
+                url: './app/bill_of_lading/',
+                async: $async,
+                data: JSON.stringify(form_data), // serializes the form's elements.                        
+                success: function (data) {
+                    bl_ids[form_data.bill_of_lading_number] = data;
+                    var obj = {};
+                    obj.id = data;
+                    obj.blnum = form_data.bill_of_lading_number;
+                    obj.consignee = form_data.consignee_name;
+                    addBolDetail(refnum, data);
+                    //toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                    console.log('successfully added ' + form_data.bill_of_lading_number);
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function errorHandler(evt) {
+            if (evt.target.error.name == "NotReadableError") {
+                alert("Canno't read file !");
+            }
+        }
+        loadVoyageSelect();
+        function loadVoyageSelect() {
+            $('#voyage').empty();
+            var select_path = './app/voyage/select/' + $('#vessel').val();
+            if (SELECT_DATA_PATH[select_path]) {
+                $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+                    $('#voyage').append('<option value=' + value.id + '>' + value.manifest_number + ' - ' + formatDate(value.arrival_date) + '</option>');
+                });
+            } else {
+                $.ajax({
+                    url: select_path,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        SELECT_DATA_PATH[select_path] = data;
+                        $.each(data, function (key, value) {
+                            $('#voyage').append('<option value=' + value.id + '>' + value.manifest_number + ' - ' + formatDate(value.arrival_date) + '</option>');
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+        }
+        function displayManifest(){
+            $booking_data={};
+            var select_path = './app/import/'+$('#office_origin').val()+'/booking/'+$officeuser[0].data_value;
+            if (SELECT_DATA_PATH[select_path]) {
+                for(var i=0;i<SELECT_DATA_PATH[select_path].length;i++){                                        
+                     if(SELECT_DATA_PATH[select_path][i].id==$('#manifest').val()){
+                        $booking_data=SELECT_DATA_PATH[select_path][i];
+                        console.log($booking_data);
+                        console.log(SELECT_DATA_PATH[select_path][i].vessel_id);
+                        $("#external_vessel").val(SELECT_DATA_PATH[select_path][i].vessel_id.vessel_name +'  '+SELECT_DATA_PATH[select_path][i].voyage_number);
+                        $("#sail_date").val(formatDate(SELECT_DATA_PATH[select_path][i].sail_date));
+                        $("#container").val(SELECT_DATA_PATH[select_path][i].container_number);
+                        selectSize(SELECT_DATA_PATH[select_path][i].size_type_code);
+                         break;
+                     }
+                }
+               
+            } 
+            selectPortOrigin();  
+            selectPortDischarge();
+            selectVessel();
+        }
+        function getManifest() {    
+            $('.loader').show();       
+            $('#manifest').empty();
+            var select_path = './app/import/'+$('#office_origin').val()+'/booking/'+$officeuser[0].data_value;
+            if (SELECT_DATA_PATH[select_path]) {
+                $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+                    $('#manifest').append('<option value=' + value.id + '>' + value.manifest_number + '</option>');
+                });
+                displayManifest();
+            } else {
+                $.ajax({
+                    url: select_path,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        SELECT_DATA_PATH[select_path] = data;
+                        $.each(data, function (key, value) {
+                            $('#manifest').append('<option value=' + value.id + '>' + value.manifest_number + '</option>');
+                        });
+                        displayManifest();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+            $('.loader').hide();
+        }
+        function   importExternalManifest(){
+            $v=getBusinessObject('voyage/booking/'+$booking_data["id"]+'/'+$booking_data["manifest_number"]);
+            if($v.length>0){
+                toastr.error('This manifest was already imported', 'Duplicate', { timeOut: 5000 });
+                return false;
+            }
+            var date=validDate($('#arrival_date').val());
+            if(!date.valid){
+                toastr.error('Please select arrival date', 'Invalid Arrival Date', { timeOut: 5000 });
+                return false;
+            }
+            $('.loader').show();       
+            var obj ={manifest_number:$booking_data["manifest_number"],registration_number:$booking_data["contract_number"].split('/')[1],voyage_number:$booking_data["voyage_number"],departure_date:$booking_data["sail_date"],vessel_id:$('#vessel').val(),port_of_origin:$('#port_of_origin').val(),port_of_discharge:$('#port_of_discharge').val(),arrival_date:date.date, container_size_type_id:$("#size_type").val()};
+            $.ajax({
+                type: "POST",
+                url: './app/import/'+$('#office_origin').val()+'/manifest/'+$('#manifest').val(),
+                data: JSON.stringify(obj), // serializes the form's elements.                        
+                success: function (data) {
+                    var bl_data=JSON.parse(data);
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        data: bl_data
+                    });
+                    toastr.success('The '+bl_data.length+' records were successfully added', 'Success Alert', { timeOut: 5000 });
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+            $('.loader').hide();
+
+        }
+        function selectPortOrigin(){
+            var desc=$('#office_origin').val();
+            var id=0,rating=0;
+            var select_path = './app/port/select';
+            if (SELECT_DATA_PATH[select_path]) {
+                for(var x in SELECT_DATA_PATH[select_path]) {
+                   rate =compareTwoStrings(desc.toLowerCase(),SELECT_DATA_PATH[select_path][x].description.toLowerCase());
+                   if (rate>rating){
+                       id=SELECT_DATA_PATH[select_path][x].id;
+                       rating=rate;
+                   }
+                   if(rating>.75) break;
+                }
+            } 
+            $("#port_of_origin").val(id);
+            
+        }
+        function selectPortDischarge(){
+            var desc=$('#localoffice').val();
+            var id=0,rating=0;
+            var select_path = './app/port/select';
+            if (SELECT_DATA_PATH[select_path]) {
+                for(var x in SELECT_DATA_PATH[select_path]) {
+                   rate =compareTwoStrings(desc.toLowerCase(),SELECT_DATA_PATH[select_path][x].description.toLowerCase());
+                   if (rate>rating){
+                       id=SELECT_DATA_PATH[select_path][x].id;
+                       rating=rate;
+                   }
+                   if(rating>.75) break;
+                }
+            } 
+            $("#port_of_discharge").val(id);
+            
+        }
+        function selectVessel(){
+            var desc=$('#external_vessel').val();//.split(" ")[0];
+            var id=0,rating=0;
+            var select_path = './app/vessel/select';
+            if (SELECT_DATA_PATH[select_path]) {
+                for(var x in SELECT_DATA_PATH[select_path]) {
+                   rate =compareTwoStrings(desc.toLowerCase(),SELECT_DATA_PATH[select_path][x].description.toLowerCase());
+                   if (rate>rating){                       
+                       id=SELECT_DATA_PATH[select_path][x].id;
+                       rating=rate;
+                   }
+                   if(rating>.95) break;
+                }
+            } 
+            $("#vessel").val(id);
+            
+        }
+        
+        function selectSize(desc){         
+            var id=0,rating=0;
+            var select_path = "./app/container_size_type/select";
+            if (SELECT_DATA_PATH[select_path]) {
+                for(var x in SELECT_DATA_PATH[select_path]) {
+                   rate =compareTwoStrings(desc.toLowerCase(),SELECT_DATA_PATH[select_path][x].size_type_code.toLowerCase());
+                   if (rate>rating){
+                       id=SELECT_DATA_PATH[select_path][x].id;
+                       rating=rate;
+                       //console.log(rating+'  '+desc.toLowerCase()+'  '+SELECT_DATA_PATH[select_path][x].size_type_code.toLowerCase());
+                   }
+                   if(rating>.75) break;
+                }
+            } 
+            $("#size_type").val(id);
+            
+        }
+
+        $(document).ready(function () {
+            //
+            $officeuser=getBusinessObject('system_values/code/officeuser');
+            if($officeuser.length>0){
+                $('#localoffice').val($officeuser[0].description);
+            }   
+            
+            getManifest();
+
+
+        });
+
+        /*
+        INSERT INTO `system_values` (`id`, `description`, `data_type`, `data_value`, `code`) VALUES (NULL, 'Kingston', 'char', '10', 'officeuser')
+        INSERT INTO `menu_item` (`id`, `menu_group_id`, `title`, `url`, `menu_order`, `status`, `level`, `icon`, `description`) VALUES (NULL, '29', 'Direct Import', 'import_direct.html', '7', NULL, '2', NULL, NULL);
+        */
+    </script>
+</body>
+
+</html>

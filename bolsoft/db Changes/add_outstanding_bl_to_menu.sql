@@ -1,0 +1,1 @@
+INSERT INTO `menu_item` (`id`, `menu_group_id`, `title`, `url`, `menu_order`, `status`, `level`, `icon`, `description`) VALUES (NULL, '9', 'Outstanding Bills', 'rpt_outstanding_bills.html', '4', NULL, '2', NULL, NULL);

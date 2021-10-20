@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+<div id="form-div">
+        <form class="form-horizontal" style="max-width: 350px; margin: 0 auto 25px;">
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">User Name</label>
+                <div class="col-sm-8">
+                    <input class="form-control" name="user_name" id="user_name" type="text" placeholder="User Name.." required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Password</label>
+                <div class="col-sm-8">
+                    <input class="form-control" name="password" id="pwd" type="password" placeholder="Password.." required>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <input value="Login" class="btn btn-primary" type="submit" id="submit">    
+                </div>
+            </div>
+            <input type="checkbox" id="check_id" value="new"/> Creste User<br>
+        </form>
+
+</div>
+
+<button onclick="loadCommodity()">Load Commodity</button>
+<div class="right_col" role="main">
+    <div class="">
+
+    <p class="toolbar">
+        <a class="create btn btn-success" id="create-rec" href="javascript:">Add New</a>
+    </p>
+    <table id="classTable" class="display" cellspacing="0" data-toolbar=".toolbar" data-query-params="queryParams" data-pagination="true"
+        data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+        <thead> <tr> <th data-field="id" data-sortable="true" data-visible="false">ID</th><th data-field="commodity_code" data-sortable="true">Commodity Code</th><th data-field="description" data-sortable="true">Description</th><th data-field="actions" data-searchable="false">Action</th></tr></thead>
+        <tfoot> <tr>  <th class="hidden">ID</th><th>Commodity Code</th><th>Description</th><th>Action</th></tr></tfoot>
+    </table>
+</div>
+</div>
+
+<!-- Bootstrap modal -->
+<div class="modal fade" id="modal_form" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Commodity Form</h3>
+            </div>
+            <div class="modal-body form">
+                <form id="form" class="form-horizontal" data-toggle="validator">
+                    <input type="hidden" value="" name="id" />
+                    <div class="form-body"> <div class="form-group">  <label class="control-label col-md-3">Commodity Code</label><div class="col-md-9"> <input name="commodity_code" placeholder="Commodity Code" class="form-control" type="text" required><span class="help-block"></span> </div> </div><div class="form-group">  <label class="control-label col-md-3">Description</label><div class="col-md-9"> <input name="description" placeholder="Description" class="form-control" type="text" required><span class="help-block"></span> </div> </div></div><div class="modal-footer">
+                        <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- End Bootstrap modal -->
+<!-- /page content -->
+
+<!-- footer content -->
+<footer>
+  <div class="pull-right">
+    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+  </div>
+  <div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
+</div>
+</div>
+
+
+    </div>
+    <script>
+        token='';
+        $(document).ready(function () {
+            $("#submit").click(function (e) {
+                
+                var $url= './api.php/login';
+                if ($('#check_id').is(":checked")) $url= './api.php/new';
+                else token='';
+                e.preventDefault();
+                var form_data = {};
+                form_data['password'] = btoa($('input[name=password]').val());
+                form_data['user_name'] = $('input[name=user_name]').val();
+                console.log(form_data);
+                //form_data['access_type'] = 'login';
+                $.ajax({
+                    type: "POST",
+                    url: $url,
+                    dataType: 'json',
+                    data: form_data, // serializes the form's elements.                        
+                    success: function (data) {
+                        console.log('after add -1' + data.token);
+                        token=data.token;
+                        //var object = $.extend({}, object1, object2);
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log(xhr.status);
+                        console.log(xhr.statusText);
+                        console.log(xhr.responseText);
+                    },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+
+                });
+            });
+
+            $("#myBtn").click(function () {
+                $("#confirm").modal();
+                console.log('after modal');
+            });
+
+          token = 'sss';
+           
+            console.log(parseJwt('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJlbWFpbCI6ImpheUBleGFtcGxlLmNvbSJ9.c96sopKqTQtdtkl9nGMEUWZUNDchZDNYzAKdbj0a_GY'));
+
+
+        });
+
+
+        function parseJwt(token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace('-', '+').replace('_', '/');
+            return JSON.parse(window.atob(base64));
+        }
+  
+        function loadCommodity(){
+            $.ajax({
+                        url: './api.php/commodity',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            $('#classTable').bootstrapTable({
+                                uniqueId: 'id',
+                                data: data
+                            });
+        
+                            try { parent.autoResize('myframe'); } catch (e) { }
+                        },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+        }
+    </script>
+</body>
+<input id="pathid" />
+</html>

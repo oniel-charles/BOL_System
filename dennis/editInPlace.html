@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editable</title>
+    <meta charset="utf-8">
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" />
+  <link href="./css/bootstrap-editable.css" rel="stylesheet"/>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+</head>
+<body>
+    
+        <div class="container">
+                <h1>Editable select box(<a href="https://github.com/wenzhixin/bootstrap-table/issues/986" target="_blank">#986</a>).</h1>
+                <table id="table"></table>
+            </div>
+        <script>
+            var data = [{
+                "name": "active"
+            }, {
+                "name": "blocked"
+            }, {
+                "name": "deleted"
+            }];
+            var $table = $('#table');
+            $(function () {
+                $table.bootstrapTable({
+                    idField: 'name',
+                    columns: [{
+                        field: 'state',
+                        title: '',
+                        checkbox: true
+                    }, {
+                        field: 'name',
+                        title: 'names',
+                        sortable: true,
+                        editable: {
+                            type: 'select',
+                            source: [
+                                {value: 'active', text: 'Active'},
+                                {value: 'blocked', text: 'Blocked'},
+                                {value: 'deleted', text: 'Deleted'}
+                            ]
+                        }
+                    }],
+                    data: data
+                });
+            });
+        </script>
+</body>
+</html>

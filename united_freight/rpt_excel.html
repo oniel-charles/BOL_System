@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bill of Lading Processing </title>
+    <link rel="icon" href="../img/worldwide.png">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="./vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendor/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="./vendor/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+<style>
+ .address-width {
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    </style>
+
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="./img/company.ico" />
+                            <span>United Freight Forwarders</span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/dennis/main">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-cogs"></i> Maintenance
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_port.html">Port</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_country.html">Country</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_currency.html">Currency</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_package.html">Package</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_commodity.html">Commodity</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_container_size_type.html">Container Size Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-list-alt"></i> Charges
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_charges.html">Charge Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_sur_charge.html">Sur Charge</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_rate.html">GCT Rate</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-dollar"></i> Billing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_receipt.html">Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_order.html">Order</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-anchor"></i> Manifest Processing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_voyage.html">Voyage</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                                        </li>
+                                        <li>
+                                            <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-bar-chart"></i> Reports
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_report.html">GCT Report</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                            <a id="menu_toggle">
+                                <i style="font-size:16px" class="fa fa-bars"></i>
+                            </a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Reporting</span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images/img.jpg" alt="">
+                                    <span class="user_fullname_disaplay">Active User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                            <a href="javascript:passwordChangeRequest()"> 
+                                                    <i class="fa fa-lock pull-right"></i> Change Password</a>
+                                                    
+                                                </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Help</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:authenticateUser()">
+                                            <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdownx">
+                                <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                                    <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-3">Data Type</label>
+                        <div class="col-md-6">
+                            <select id="data_type" class="selectpicker ">
+                                <option value="user">Users</option>
+                                <option value="receipt">Receipts</option>
+                                <option value="charges">Charges</option>
+                                <option value="orders">Orders</option>
+                                <option value="charge_item">Charge Items</option>
+                                <option value="package">Packages</option>
+                                <option value="commodity">Commodity</option>
+                                <option value="port">Ports</option>
+                                <option value="vessel">Vessels</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="daterangediv" class="col-md-6">
+                            <label class="control-label col-md-3">Date</label>
+                            <div class="input-group input-daterange col-md-9">
+                                <input data-toggle="datepicker" id="start_date" name="start_date" placeholder="Start Date" class="form-control has-feedback-left"
+                                    type="text" required>
+                                <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                                <span class="help-block"></span>
+                                <div class="input-group-addon">to</div>
+                                <input data-toggle="datepicker" id="end_date" name="end_date" placeholder="End Date" class="form-control has-feedback-left"
+                                    type="text" required>
+                                <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <p class="toolbar">
+                        <button class="btn btn-info" onclick="generateReport(); return false;">
+                            <i class="fa fa-refresh"></i> Load</button>
+                    </p>
+                    <table id="classTable"   data-show-toggle="true"
+                    data-show-columns="true" data-show-pagination-switch="true" data-pagination="true" data-toolbar=".toolbar" data-search="true" data-show-export="true">
+                        
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- /page content -->
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/jquery-ui.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+    <script src="./vendor/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="./vendor/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="./vendor/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="./vendor/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+
+    <script type="text/javascript" src="http://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+    <script type="text/javascript" src="bootstrap-table-export.js"></script>
+
+    <script type="text/javascript" src="libs/jsPDF/jspdf.min.js"></script>
+    <script type="text/javascript" src="libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+           
+
+
+        });
+        function generateReport() {
+            if ($('#data_type').val()=='port'){ generatePort()}
+            if ($('#data_type').val()=='vessel'){ generateVessel()}
+            if ($('#data_type').val()=='charge_item'){ generateChargeItem()}
+            if ($('#data_type').val()=='package'){ generatePackage()}
+            if ($('#data_type').val()=='commodity'){ generateCommodity()}
+
+            if ($('#data_type').val()=='user'){
+                $.ajax({
+                url: './api.php/user_profile/api/excel',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        columns: [
+                            [{
+                                field: 'user_name',
+                                sortable: true,
+                                align: 'left',
+                                title: 'User Name'
+                            },
+                            {
+                                field: 'full_name',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Full Name'
+
+                            },
+                            {
+                                field: 'status',
+                                sortable: true,
+                                align: 'center',
+                                title: 'Status'
+                            }]],
+                        data: data,
+                        showExport: true,
+                        exportTypes: ['json', 'xml', 'csv', 'txt', 'pdf', 'excel'],
+                        exportOptions: {
+                            fileName: 'download'
+                        }
+                    });
+
+                    try { parent.autoResize('myframe'); } catch (e) { }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });  
+            }
+
+          if ($('#data_type').val()=='receipt'){
+            var sdate = validDate($('#start_date').val()).date;
+            var edate = validDate($('#end_date').val()).date;
+                $.ajax({
+                url: './api.php/receipt/api/excel/' + sdate + '/' + edate,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        columns: [
+                            [{
+                                field: 'id',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Receipt Number',
+                                cellStyle: receiptNumberStyle,
+                                formatter: formatReceiptNumber,
+                            },
+                            {
+                                field: 'receipt_date',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Date',
+                                formatter: formatReceiptDate
+
+                            },{
+                                field: 'receipt_total',
+                                sortable: true,
+                                align: 'right',
+                                title: 'Amount'
+
+                            },
+                            {
+                                field: 'payee',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Payee'
+                            },
+                            {
+                                field: 'cancelled',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Status',
+                                formatter: formatReceiptStatus
+                            },{
+                                field: 'cashier',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Cashier'
+                            }
+                            ,{
+                                visible:false,
+                                field: 'cancel_date',
+                                sortable: true,
+                                visible:false,
+                                align: 'center',
+                                title: 'Cancel Date',
+                                formatter: formatCancelDate
+                            }
+                            ,{
+                                visible:false,
+                                field: 'cancel_time',
+                                sortable: true,
+                                visible:false,
+                                align: 'center',
+                                title: 'Cancel Time',
+                                formatter: formatCancelTime
+                            },{
+                                visible:false,
+                                field: 'cancel_by',
+                                sortable: true,
+                                visible:false,
+                                align: 'center',
+                                title: 'Cancel By'                                
+                            },
+                            {
+                                field: 'bill_of_lading_number',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'BL Num'
+                            },
+                            {
+                                field: 'port_name',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Port Name'
+                            },
+                            {
+                                field: 'vessel_name',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Vessel'
+                            },
+                            {
+                                field: 'arrival_date',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Arrival Date'
+                            }
+                        ]],
+                        data: data,
+                        showExport: true,
+                        exportTypes: ['json', 'xml', 'csv', 'txt', 'pdf', 'excel'],
+                        exportOptions: {
+                            fileName: 'download'
+                        }
+                    });
+
+                    try { parent.autoResize('myframe'); } catch (e) { }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });  
+            }
+
+
+          if ($('#data_type').val()=='charges'){
+            var sdate = validDate($('#start_date').val()).date;
+            var edate = validDate($('#end_date').val()).date;
+                $.ajax({
+                url: './api.php/receipt_detail/api/excel/' + sdate + '/' + edate,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        columns: [
+                            [{
+                                field: 'id',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Receipt Number',
+                                cellStyle: receiptNumberStyle,
+                                formatter: formatReceiptNumber,
+                            },
+                            {
+                                field: 'receipt_date',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Date',
+                                formatter: formatReceiptDate
+
+                            },{
+                                field: 'amount',
+                                sortable: true,
+                                align: 'right',
+                                title: 'Amount'
+
+                            },{
+                                field: 'description',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Charge Item'
+
+                            },
+                            {
+                                field: 'payee',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Payee'
+                            },{
+                                field: 'cashier',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Cashier'
+                            },                          
+                            {
+                                field: 'bill_of_lading_number',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'BL Num'
+                            },
+                            {
+                                field: 'port_name',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Port Name'
+                            },
+                            {
+                                field: 'vessel_name',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Vessel'
+                            },
+                            {
+                                field: 'arrival_date',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Arrival Date'
+                            }
+                        ]],
+                        data: data,
+                        showExport: true,
+                        exportTypes: ['json', 'xml', 'csv', 'txt', 'pdf', 'excel'],
+                        exportOptions: {
+                            fileName: 'download'
+                        }
+                    });
+
+                    try { parent.autoResize('myframe'); } catch (e) { }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });  
+            }
+
+
+          if ($('#data_type').val()=='orders'){
+            var sdate = validDate($('#start_date').val()).date;
+            var edate = validDate($('#end_date').val()).date;
+                $.ajax({
+                url: './api.php/shipment_order/api/excel/' + sdate + '/' + edate,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        columns: [
+                            [{
+                                field: 'id',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Order Number',
+                                cellStyle: receiptNumberStyle,
+                                formatter: formatReceiptNumber,
+                            },
+                            {
+                                field: 'order_date',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Date',
+                                formatter: formatOrderDate
+
+                            },{
+                                field: 'consignee_name',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Consignee'
+
+                            },{
+                                field: 'consignee_address',
+                                sortable: true,
+                                class:'address-width',
+                                align: 'left',
+                                title: 'Consignee Address'
+
+                            },
+                            {
+                                field: 'cashier',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Cashier'
+                            },
+                            {
+                                field: 'cancelled',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Status',
+                                formatter: formatReceiptStatus
+                            }
+                            ,{
+                                field: 'cancel_date',
+                                sortable: true,
+                                visible:false,
+                                align: 'center',
+                                title: 'Cancel Date',
+                                formatter: formatOrderDate
+                            }
+                            ,{
+                                field: 'cancel_time',
+                                sortable: true,
+                                visible:false,
+                                align: 'center',
+                                title: 'Cancel Time',
+                                formatter: formatCancelTime
+                            },{
+                                visible:false,
+                                field: 'cancel_by',
+                                sortable: true,
+                                visible:false,
+                                align: 'center',
+                                title: 'Cancel By'
+                            },                          
+                            {
+                                field: 'bill_of_lading_number',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'BL Num'
+                            },
+                            {
+                                field: 'port_name',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Port Name'
+                            },
+                            {
+                                field: 'vessel_name',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Vessel'
+                            },
+                            {
+                                field: 'arrival_date',
+                                sortable: true,
+                                visible:false,
+                                align: 'left',
+                                title: 'Arrival Date'
+                            }
+                        ]],
+                        data: data,
+                        showExport: true,
+                        exportTypes: ['json', 'xml', 'csv', 'txt', 'pdf', 'excel'],
+                        exportOptions: {
+                            fileName: 'download'
+                        }
+                    });
+
+                    try { parent.autoResize('myframe'); } catch (e) { }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });  
+            }
+            //******
+        }
+
+
+        function generateCommodity(){            
+            if ($('#data_type').val()=='commodity'){
+                $.ajax({
+                url: './api.php/commodity',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        columns: [
+                            [{
+                                field: 'commodity_code',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Commodity Code'
+                            },
+                            {
+                                field: 'description',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Description'
+
+                            }]],
+                        data: data,
+                        showExport: true,
+                        exportTypes: ['json', 'xml', 'csv', 'txt', 'pdf', 'excel'],
+                        exportOptions: {
+                            fileName: 'download'
+                        }
+                    });
+
+                    try { parent.autoResize('myframe'); } catch (e) { }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });  
+            }
+        }
+function generateChargeItem(){
+    if ($('#data_type').val()=='charge_item'){
+                $.ajax({
+                url: './api.php/charge_item',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        columns: [
+                            [{
+                                field: 'item_code',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Code'
+                            },
+                            {
+                                field: 'description',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Description'
+
+                            },
+                            {
+                                field: 'item_rate',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Rate'
+
+                            },
+                            {
+                                field: 'basis',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Basis'
+
+                            },
+                            {
+                                field: 'gct',
+                                sortable: true,
+                                align: 'center',
+                                title: 'Attract GCT',
+                                formatter: formatGCT
+
+                            }]],
+                        data: data,
+                        showExport: true,
+                        exportTypes: ['json', 'xml', 'csv', 'txt', 'pdf', 'excel'],
+                        exportOptions: {
+                            fileName: 'download'
+                        }
+                    });
+
+                    try { parent.autoResize('myframe'); } catch (e) { }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });  
+            }
+
+}
+        function generatePackage(){            
+            if ($('#data_type').val()=='package'){
+                $.ajax({
+                url: './api.php/package',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        columns: [
+                            [{
+                                field: 'package_code',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Package Code'
+                            },
+                            {
+                                field: 'description',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Description'
+
+                            }]],
+                        data: data,
+                        showExport: true,
+                        exportTypes: ['json', 'xml', 'csv', 'txt', 'pdf', 'excel'],
+                        exportOptions: {
+                            fileName: 'download'
+                        }
+                    });
+
+                    try { parent.autoResize('myframe'); } catch (e) { }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });  
+            }
+        }
+
+
+        function generatePort(){            
+            if ($('#data_type').val()=='port'){
+                $.ajax({
+                url: './api.php/port/api/excel',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        columns: [
+                            [{
+                                field: 'port_name',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Port Name'
+                            },
+                            {
+                                field: 'port_code',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Code'
+
+                            },
+                                                     {
+                                field: 'country_name',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Country'
+
+                            }]],
+                        data: data,
+                        showExport: true,
+                        exportTypes: ['json', 'xml', 'csv', 'txt', 'pdf', 'excel'],
+                        exportOptions: {
+                            fileName: 'download'
+                        }
+                    });
+
+                    try { parent.autoResize('myframe'); } catch (e) { }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });  
+            }
+        }
+
+        function generateVessel(){            
+            if ($('#data_type').val()=='vessel'){
+                $.ajax({
+                url: './api.php/vessel/api/excel',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        columns: [
+                            [{
+                                field: 'vessel_name',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Vessel Name'
+                            },
+                            {
+                                field: 'vessel_code',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Code'
+
+                            },
+                            {
+                                field: 'lloyd_number',
+                                sortable: true,
+                                align: 'center',
+                                title: 'Lloyd Number'
+                            },
+                            {
+                                field: 'country_name',
+                                sortable: true,
+                                align: 'left',
+                                title: 'Country'
+
+                            }]],
+                        data: data,
+                        showExport: true,
+                        exportTypes: ['json', 'xml', 'csv', 'txt', 'pdf', 'excel'],
+                        exportOptions: {
+                            fileName: 'download'
+                        }
+                    });
+
+                    try { parent.autoResize('myframe'); } catch (e) { }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });  
+            }
+        }
+    </script>
+    <script>
+          function formatReceiptNumber(value, row, index, field) {
+            if (row.cancelled==1){
+              return '<span style="color:red">'+pad(row.id, 8)+'</span>';
+            }else{
+                return '<span style="color:black">'+pad(row.id, 8)+'</span>';
+            }
+        }
+        function formatReceiptDate(value, row, index, field) {
+            return formatDate(row.receipt_date);
+        }
+        function formatCancelDate(value, row, index, field) {
+            return formatDate(row.cancel_date);
+        }
+        function formatOrderDate(value, row, index, field) {
+            return formatDate(row.order_date);
+        }
+        function formatCancelTime(value, row, index, field) {
+            console.log(row.cancel_time);
+            if (numeric(row.cancel_time)==0) return '';
+            var tm=pad(row.cancel_time,4);
+            return tm.substr(0,2)+':'+tm.substr(2,2);
+        }
+        function receiptNumberStyle(value, row, index, field) {
+            if (row.cancelled==1){
+                return {   css: { "color": "red" } };
+            }else{
+                return {   css: { "color": "blue" } };
+            }
+        }
+        function formatReceiptStatus(value, row, index, field) {
+            if (row.cancelled==1){
+                return 'Cancelled';
+            }else{
+                return 'Delivered';
+            }
+        }
+        function formatGCT(value, row, index, field) {
+            if (row.gct==1){
+                return 'Yes';
+            }else{
+                return 'No';
+            }
+        }
+        </script>
+</body>
+
+</html>

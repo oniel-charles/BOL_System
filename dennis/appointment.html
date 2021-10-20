@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bill of Lading Processing </title>
+    <link rel="icon" href="../img/worldwide.png">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="../img/dennis_icon_xWY_1.ico" />
+                            <span>Dennis Shipping</span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/dennis/main">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-cogs"></i> Maintenance
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_port.html">Port</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_country.html">Country</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_currency.html">Currency</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_package.html">Package</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_commodity.html">Commodity</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_container_size_type.html">Container Size Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-list-alt"></i> Charges
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_charges.html">Charge Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_sur_charge.html">Sur Charge</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_rate.html">GCT Rate</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-dollar"></i> Billing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_receipt.html">Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_order.html">Order</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-anchor"></i> Manifest Processing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_voyage.html">Voyage</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                                        </li>
+                                        <li>
+                                            <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-bar-chart"></i> Reports
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_report.html">GCT Report</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                    <div class="nav_menu">
+                            <nav>
+                              <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                                <a id="menu_toggle">
+                                  <i style="font-size:16px" class="fa fa-bars"></i>
+                                </a>
+                              </div>
+                  
+                              <ul class="nav navbar-nav navbar-left">
+                                <li class="">
+                                  <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Appointment</span>
+                                  </a>
+                  
+                                </li>
+                  
+                              </ul>
+                  
+                              <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+                                  <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                  </a>
+                                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                      <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                            <a href="javascript:passwordChangeRequest()"> 
+                                                    <i class="fa fa-lock pull-right"></i> Change Password</a>
+                                                    
+                                                </a>
+                                    </li>
+                                    <li>
+                                      <a href="javascript:;">Help</a>
+                                    </li>
+                                    <li>
+                                      <a href="javascript:authenticateUser()">
+                                        <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                  </ul>
+                                </li>
+                  
+                                <li role="presentation" class="dropdownx">
+                                  <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                                    <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+                  
+                                </li>
+                              </ul>
+                            </nav>
+                          </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                <div class="">
+
+                    <div class="toolbar">
+                        
+                        <div class="form-inline" role="form">
+                            <a class="create btn btn-success" id="create-rec" href="javascript:">New Appointment</a>
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Showing 
+                                    <span id="total_appt" style="font-size:18px;color:red; margin-left: 10px;"></span> 
+                                </label>
+                                <div class="col-md-7">
+                                    <div>
+                                        <input data-toggle="datepicker" id="start_date" name="arrival_date" placeholder="Start Date" class="form-control has-feedback-left "
+                                            type="text" required>
+                                        <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-1"></label>
+                                <div class="col-md-11">
+                                    <div>
+                                        <input data-toggle="datepicker" id="end_date" name="arrival_date" placeholder="End Date" class="form-control has-feedback-left "
+                                            type="text" required>
+                                        <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <select id="status_loaded" class="selectpicker " data-width="auto" required>
+                                  <option value="all">All</option>
+                                  <option value="open">Open</option>
+                                  <option value="close">Close</option>
+                                </select>
+                                <span class="help-block"></span>
+                              </div> 
+
+                            <div class="form-group">
+                                <div id="refresh_but" onclick="loadAppointments()" style="font-size:22px;color:green;cursor: pointer;" class="fa fa-refresh "></div>
+                            </div>
+        
+                        </div>
+                    </div>
+                    <table id="classTable" class="display" cellspacing="0" data-toolbar=".toolbar" data-query-params="queryParams" data-pagination="true"
+                        data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                        <thead> <tr> <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                                     <th data-field="bill_of_lading_number" data-sortable="true">Billoflading No.</th>
+                                     <th data-field="consignee_name" data-sortable="true">Consignee</th>
+                                     <th data-field="appointment_date" data-formatter="formatColumDate" data-sortable="true">Appointment Date</th>
+                                     <th data-field="status" data-sortable="true">Status</th>
+                                     <th data-field="receipt_processed"  data-visible="false">receipted</th>
+                                     <th data-formatter="createActionButtons"  data-searchable="false">Action</th></tr></thead>
+                        
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bootstrap modal -->
+            <div class="modal fade" id="appointment_modal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="modal-title">Appointment Form</h3>
+                        </div>
+                        <div class="modal-body form">
+                            <form id="appointment_form" class="form-horizontal" data-toggle="validator">
+                                <input type="hidden" value="" name="id" id="id" />
+                                <div class="form-body"> 
+                                     
+ <div id="new_customer" class="form-group">  <label class="control-label col-md-3">Customer</label><div class="col-md-9">
+    <select id="billoflading_id" data-live-search="true" class=" load-selectpicker  form-control"  data-bv-callback="true" data-bv-callback-callback="validateCustomer" ></select>
+    <span class="help-block"></span> </div> </div>
+    <div id="edit_customer" class="form-group " > <label class="control-label col-md-3"></label><div id="edit_customer_content" class="col-md-9"></div> </div> 
+   <div class="form-group">  <label class="control-label col-md-3">TRN</label><div class="col-md-9"> <input id="trn" name="trn" placeholder="TRN" class="form-control" type="text" required><span class="help-block"></span> </div> </div>  
+  <div class="form-group">  <label class="control-label col-md-3">UBA Code</label><div class="col-md-9"> <input id="uba_code" name="uba_code" placeholder="UBA Code" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Passport Number</label><div class="col-md-9"> <input id="passport_number" name="passport_number" placeholder="Passport Number" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Status</label>
+    
+        <div class="col-sm-9">
+            <select id="status" class="selectpicker " data-width="auto" disabled>
+              <option value="open">Open</option>
+              <option value="close">Close</option>
+            </select>
+            <span class="help-block"></span>
+          </div>  
+     </div>
+ <div class="form-group">  <label class="control-label col-md-3">Appointment Date</label>
+    
+        <div class="col-md-9">
+            <input data-toggle="datepicker" id="appointment_date" name="appointment_date" placeholder="Appointment Date" class="form-control has-feedback-left"
+              type="text"  data-bv-callback="true" data-bv-callback-callback="appointmentDateValidation" required>
+            <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+            <span class="help-block"></span>
+          </div>   
+    </div>
+
+</div><div class="modal-footer">
+                                    <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- End Bootstrap modal -->
+            <!-- /page content -->
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+   
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/jquery-ui.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+    <script src="./vendor/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+
+    <script>
+        var today = new Date();
+        $('#start_date').datepicker().datepicker("setDate", today);
+        today.setDate(today.getDate() + 30);
+        $('#end_date').datepicker().datepicker("setDate", today);
+/*
+  rename for integration  
+  data_model
+  appointment_form
+  modal_form
+  create-rec
+  classTable
+  editThis
+  deleteThis
+  createActionButtons
+  */
+        $(document).ready(function () {
+            //
+ data_model={ "id": "0","billoflading_id": "","trn": "","uba_code": "","passport_number": "","status": "","appointment_date": ""}
+
+            bootstrapTableIndex = 0;
+            save_method = '';
+            pkey = 'id';
+            
+            //&**************************************************
+
+            $('#appointment_form')
+                .bootstrapValidator({ feedbackIcons: {
+  valid: 'glyphicon glyphicon-ok',
+  invalid: 'glyphicon glyphicon-remove',
+  validating: 'glyphicon glyphicon-refresh'
+  },
+  excluded: [':disabled'],
+ fields: {
+ billoflading_id:{
+   validators: {
+     notEmpty: {
+        message: 'Billoflading Id is  required and cannot be empty'
+      }
+                    
+    }
+ },
+ trn:{
+   validators: {
+     notEmpty: {
+        message: 'TRN is  required and cannot be empty'
+      }
+    }
+ },
+ uba_code:{
+   validators: {
+     notEmpty: {
+        message: 'UBA Code is  required and cannot be empty'
+      }
+    }
+ }
+}})
+                .on('success.form.bv', function (e) {
+                    console.log('success.form.bv');
+                    // If you want to prevent the default handler (bootstrapValidator._onSuccess(e))
+                    // e.preventDefault();
+                })
+                .on('success.form.bv', function (e) {
+                    
+                    // Prevent submit form
+                    e.preventDefault();
+                    var $form = $(e.target),
+                        validator = $form.data('bootstrapValidator');
+                    var form_data=getFormData('#appointment_form',data_model);
+                    form_data['appointment_date'] = validDate($('#appointment_date').val()).date;
+
+                    if (save_method == 'PUT') {
+                        $.ajax({
+                            type: "PUT",
+                            url: './api.php/appointment/' + form_data['id'],
+                            data: JSON.stringify(form_data), // serializes the form's elements.
+                            success: function (data) {
+                                $('#appointment_modal').modal('hide');
+                                toastr.success('The record was updated successfully', 'Success Alert', { timeOut: 5000 })
+                                $('#classTable').bootstrapTable('updateByUniqueId', {
+                                    id: form_data['id'],
+                                    row: form_data
+                                });
+
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                            },
+                            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                        });
+                    }
+                    if (save_method == 'POST') {
+                        $.ajax({
+                            type: "POST",
+                            url: './api.php/appointment/',
+                            data: JSON.stringify(form_data), // serializes the form's elements.                        
+                            success: function (data) {
+                                var obj = {};
+                                $.extend(true, obj, form_data);
+                                obj.id = data;
+                                obj.actions = '<button onclick="editAppointment(' + data + ',this)" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+                                obj.actions += '<button onclick="deleteThis(' + data + ',this)" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+
+                                console.log(obj);
+                                $('#appointment_modal').modal('hide');
+                                toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                                $('#classTable').bootstrapTable("append", obj);
+
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                            },
+                            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                        });
+                    }
+                    $form
+                        .bootstrapValidator('disableSubmitButtons', false)  // Enable the submit buttons
+                        .bootstrapValidator('resetForm', true);             // Reset the form
+                })
+                .on('click', 'tbody > tr > td', function (e) {
+                    var table = $table.data('bootstrap.table'),
+                        $element = $(this),
+                        $tr = $element.parent(),
+                        row = table.data[$tr.data('index')];
+                    alert(row);
+                });
+
+            //**************************************************
+
+            $("#create-rec").click(function (e) {
+                $('#edit_customer').hide();
+                $('#new_customer').show();
+                save_method = 'POST';
+                //
+ data_model={ "id": "0","billoflading_id": "","trn": "","uba_code": "","passport_number": "","status": "","appointment_date": ""}
+                e.preventDefault();
+                clearForm('#appointment_form');
+                $('#appointment_modal').modal('show'); // show bootstrap modal                
+                $('.modal-title').text('Add Appointment'); // Set Title to Bootstrap modal title
+            });
+
+            loadAppointments();
+            
+
+            function getData() {
+                return '{"data":[{"id":"1","name":"1 West","location":"Block C"},{"id":"2","name":"1 North","location":"Block A"},{"id":"3","name":"1 South","location":"Block A"}]}';
+            }
+
+
+        });
+        function loadAppointments(){
+            
+        var sdate = validDate($('#start_date').val()).date;
+        var edate = validDate($('#end_date').val()).date;
+        console.log(sdate+'  '+edate);
+        $.ajax({
+                url: "./api.php/appointment/api/list/"+ sdate + '/' + edate+'/'+$('#status_loaded').val(),
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#total_appt').html(data.length);
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        data: data
+                    });
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+        }
+        function saveRecord() {
+
+        }
+        function deleteThis(id, el) {
+            bootstrapTableIndex = $(el).closest("tr").index();
+            var tmp = $(el).closest("tr").find("td:eq(0)").text();
+            confirmDialog("Delete Request", 'Are you sure you want to delete:<br><b>' + tmp + '<b> ?', function (confirm) {
+                if (!confirm) return false;
+                $.ajax({
+                    type: "DELETE",
+                    url: './api.php/appointment/' + id,
+                    success: function (data) {
+                        console.log('deleted ' + id);
+                        //$('#classTable').bootstrapTable('remove', { field: 'id', values: ['' + id] });
+                        $('#classTable').bootstrapTable('removeByUniqueId', id);
+                        toastr.success('The record was deleted successfully', 'Success Alert', { timeOut: 5000 })
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                    },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+
+            });
+
+
+        }
+        function editAppointment(id, el) {
+            $('#edit_customer').show();
+            $('#new_customer').hide();
+            bootstrapTableIndex = $(el).closest("tr").index();
+            var obj=  $('#classTable').bootstrapTable('getData')[bootstrapTableIndex];
+            $('#edit_customer_content').html(obj.bill_of_lading_number+' - '+obj.consignee_name);
+            save_method = 'PUT';
+            $.ajax({
+                url: './api.php/appointment/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#appointment_form')
+                        .bootstrapValidator('disableSubmitButtons', false)
+                        .bootstrapValidator('resetForm', true);
+                    data_model = data;
+                    data_model['appointment_date'] = formatDate(data['appointment_date']);
+                    loadFormData('#appointment_form',data_model);
+                    if (data_model.status=='close') {
+                        $("#appointment_form :input").prop("disabled", true);
+                    } else {
+                        $("#appointment_form :input").prop("disabled", false);
+                    }
+                    $('.modal-title').text('Edit Appointment');
+                    $('#appointment_modal').modal('show');
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function createActionButtons(value, row, index, field) {
+            var $buttons= '<button onclick="editAppointment(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+            if(numeric(row.receipt_processed)==0){
+              $buttons += '<button onclick="deleteThis(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+            }
+            return $buttons;
+        }
+        
+    </script>
+    <script>
+        
+        $.ajax({
+          url: "./api.php/bill_of_lading/api/open",
+          type: 'GET',
+          dataType: 'json',
+          async: false,
+          success: function (data) {
+            $('#billoflading_id').append('<option value=" ">Please select a customer</option>');  
+            $.each(data, function (key, value) {
+              $('#billoflading_id').append('<option value=' + value.id + '>' + value.bill_of_lading_number + ' - ' + value.consignee_name  + '</option>');
+            });
+          },
+          error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+
+         
+    function formatColumDate(value, row, index, field) {
+        console.log(value);
+      return formatDate(value);
+    }
+    function validateCustomer(value, validator) {
+        alert('ddd');
+        console.log($('#billoflading_id').val());
+      if($('#billoflading_id').val()==0){
+        return false;
+      }
+      return true;
+    }  
+    function appointmentDateValidation(value, validator) {
+      var saved_appointment= getBusinessObject('appointment',$('#id').val());   
+      var date_obj = validDate($('#appointment_date').val());
+      if (!date_obj.valid) {
+          return false;
+      }    
+      if(numeric(saved_appointment.appointment_date)!=date_obj.date){
+            var system_value= getBusinessObject('system_values/api/code/max_appt');             
+            var bobj= getBusinessObject('appointment/api/day_count',date_obj.date)[0] ;
+            console.log(bobj.appointment_count+'  '+numeric(system_value[0].data_value));
+            if(bobj.appointment_count>=numeric(system_value[0].data_value)) {
+               toastr.error('No more appointments can bemade for this date please choos another date', 'ERROR', { timeOut: 5000 })
+               return  { valid: false, message: 'Appointment full for this date'}
+            }
+      }
+     // if (save_method == 'POST') {           
+            
+       // }       
+      return true;
+    };
+
+    </script>
+</body>
+
+</html>

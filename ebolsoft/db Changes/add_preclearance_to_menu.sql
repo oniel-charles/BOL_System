@@ -1,0 +1,1 @@
+INSERT INTO `menu_item` (`id`, `menu_group_id`, `title`, `url`, `menu_order`, `status`, `level`, `icon`, `description`) VALUES (NULL, '18', 'Pre-Clearance', 'preclearance.html', '3', NULL, '2', NULL, NULL);

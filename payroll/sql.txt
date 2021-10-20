@@ -1,0 +1,702 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema boldb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema boldb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `boldb` DEFAULT CHARACTER SET latin1 ;
+USE `boldb` ;
+
+-- -----------------------------------------------------
+-- Table `boldb`.`country`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`country` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `country_code` CHAR(10) NULL DEFAULT NULL,
+  `country_name` CHAR(60) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`port`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`port` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `port_code` CHAR(10) NULL DEFAULT NULL,
+  `port_name` CHAR(60) NULL DEFAULT NULL,
+  `country_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `country_id` (`country_id` ASC),
+  CONSTRAINT `fk_port_country`
+    FOREIGN KEY (`country_id`)
+    REFERENCES `boldb`.`country` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`voyage`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`voyage` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `vessel_id` INT(11) NULL DEFAULT NULL,
+  `voyage_number` CHAR(20) NULL DEFAULT NULL,
+  `departure_date` INT(11) NULL DEFAULT NULL,
+  `arrival_date` INT(11) NULL DEFAULT NULL,
+  `stripped` SMALLINT(6) NULL DEFAULT NULL,
+  `stripped_date` INT(11) NULL DEFAULT NULL,
+  `mby_arrival_date` INT(11) NULL DEFAULT NULL,
+  `mby_vessel_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 55
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`bill_of_lading`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`bill_of_lading` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `parent_bol` SMALLINT(6) NULL DEFAULT NULL,
+  `bol_total` DECIMAL(10,2) NULL DEFAULT NULL,
+  `bill_of_lading_number` CHAR(25) NULL DEFAULT NULL,
+  `port_of_origin` INT(11) NULL DEFAULT NULL,
+  `port_of_loading` INT(11) NULL DEFAULT NULL,
+  `port_of_discharge` INT(11) NULL DEFAULT NULL,
+  `port_of_delivery` INT(11) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `consignee_name` CHAR(40) NULL DEFAULT NULL,
+  `consignee_address` CHAR(200) NULL DEFAULT NULL,
+  `consignee_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `consignee_id` INT(11) NULL DEFAULT NULL,
+  `shipper_name` CHAR(40) NULL DEFAULT NULL,
+  `shipper_address` CHAR(200) NULL DEFAULT NULL,
+  `shipper_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `notify_name` CHAR(40) NULL DEFAULT NULL,
+  `notify_address` CHAR(200) NULL DEFAULT NULL,
+  `notify_date` INT(11) NULL DEFAULT NULL,
+  `notify_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `master_bol_id` INT(11) NULL DEFAULT NULL,
+  `voyage_id` INT(11) NOT NULL,
+  `order_processed` SMALLINT(6) NULL DEFAULT NULL,
+  `receipt_processed` SMALLINT(6) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `unique_bl` (`voyage_id` ASC, `bill_of_lading_number` ASC),
+  INDEX `fk_voyage_idx` (`voyage_id` ASC),
+  INDEX `fk_bol_port_delivery` (`port_of_delivery` ASC),
+  INDEX `fk_bol_port_discharge` (`port_of_discharge` ASC),
+  INDEX `fk_bol_port_loading` (`port_of_loading` ASC),
+  INDEX `fk_bol_port_origin` (`port_of_origin` ASC),
+  CONSTRAINT `fk_bol_port_delivery`
+    FOREIGN KEY (`port_of_delivery`)
+    REFERENCES `boldb`.`port` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_bol_port_discharge`
+    FOREIGN KEY (`port_of_discharge`)
+    REFERENCES `boldb`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_bol_port_loading`
+    FOREIGN KEY (`port_of_loading`)
+    REFERENCES `boldb`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_bol_port_origin`
+    FOREIGN KEY (`port_of_origin`)
+    REFERENCES `boldb`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `boldb`.`voyage` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2191
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`container_size_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`container_size_type` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `size_type_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`bill_of_lading_container`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`bill_of_lading_container` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `container_number` CHAR(15) NULL DEFAULT NULL,
+  `container_size_type_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bol_container_size_type` (`container_size_type_id` ASC),
+  INDEX `fk_bill_of_lading_container_` (`billoflading_id` ASC),
+  CONSTRAINT `fk_bill_of_lading_container_`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `boldb`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_bol_container_size_type`
+    FOREIGN KEY (`container_size_type_id`)
+    REFERENCES `boldb`.`container_size_type` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 20
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`bill_of_lading_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`bill_of_lading_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `package_type_id` INT(11) NULL DEFAULT NULL,
+  `commodity_id` INT(11) NULL DEFAULT NULL,
+  `Description_of_goods` VARCHAR(500) NULL DEFAULT NULL,
+  `number_of_items` INT(11) NULL DEFAULT NULL,
+  `weight` DECIMAL(10,2) NULL DEFAULT NULL,
+  `measure` DECIMAL(10,2) NULL DEFAULT NULL,
+  `weight_unit` CHAR(10) NULL DEFAULT NULL,
+  `measure_unit` CHAR(10) NULL DEFAULT NULL,
+  `width` DECIMAL(10,2) NULL DEFAULT NULL,
+  `depth` DECIMAL(10,2) NULL DEFAULT NULL,
+  `breath` DECIMAL(10,2) NULL DEFAULT NULL,
+  `volume` DECIMAL(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bol_detail_bill_of_lading` (`billoflading_id` ASC),
+  CONSTRAINT `fk_bol_detail_bill_of_lading`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `boldb`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 775
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`commodity`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`commodity` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `commodity_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 9
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`currency`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`currency` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `currency_code` CHAR(10) NULL DEFAULT NULL,
+  `currency_name` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`package`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`package` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `package_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`charge_item`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`charge_item` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `item_code` CHAR(20) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  `basis` CHAR(20) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `item_rate` DECIMAL(10,2) NULL DEFAULT NULL,
+  `commodity_id` INT(11) NULL DEFAULT NULL,
+  `package_id` INT(11) NULL DEFAULT NULL,
+  `print_seperate` SMALLINT(6) NULL DEFAULT NULL,
+  `gct` SMALLINT(6) NULL DEFAULT NULL,
+  `system_def` CHAR(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_charge_item_commodity` (`commodity_id` ASC),
+  INDEX `fk_charge_item_package` (`package_id` ASC),
+  CONSTRAINT `fk_charge_item_commodity`
+    FOREIGN KEY (`commodity_id`)
+    REFERENCES `boldb`.`commodity` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_charge_item_package`
+    FOREIGN KEY (`package_id`)
+    REFERENCES `boldb`.`package` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`bill_of_lading_other_charge`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`bill_of_lading_other_charge` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `prepaid_flag` CHAR(10) NULL DEFAULT NULL,
+  `attract_gct` SMALLINT(6) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `bycharges` (`billoflading_id` ASC, `charge_item_id` ASC),
+  INDEX `fk_bol_other_charge_currency` (`currency_id` ASC),
+  INDEX `fk_bol_other_charge_item` (`charge_item_id` ASC),
+  CONSTRAINT `fk_bol_other_charge_bol`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `boldb`.`bill_of_lading` (`id`)
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_bol_other_charge_commodity`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `boldb`.`commodity` (`id`),
+  CONSTRAINT `fk_bol_other_charge_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `boldb`.`currency` (`id`),
+  CONSTRAINT `fk_bol_other_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `boldb`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 220
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`billoflading_discount`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`billoflading_discount` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `charge_item_id` INT(11) NOT NULL,
+  `basis` VARCHAR(15) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_charge_item_idx` (`charge_item_id` ASC),
+  INDEX `fk_billoflading_idx` (`billoflading_id` ASC),
+  CONSTRAINT `fk_billoflading`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `boldb`.`bill_of_lading` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `boldb`.`charge_item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`charge_item_rate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`charge_item_rate` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `effective_date` INT(11) NULL DEFAULT NULL,
+  `rate` DECIMAL(5,2) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `charge_FK_idx` (`charge_item_id` ASC),
+  CONSTRAINT `charge_FK`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `boldb`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`client`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`client` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `client_code` CHAR(10) NULL DEFAULT NULL,
+  `client_name` CHAR(40) NULL DEFAULT NULL,
+  `client_address` CHAR(200) NULL DEFAULT NULL,
+  `phone_number` CHAR(25) NULL DEFAULT NULL,
+  `email_address` CHAR(80) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`client_discount`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`client_discount` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `client_id` INT(11) NOT NULL,
+  `charge_item_id` INT(11) NOT NULL,
+  `basis` VARCHAR(15) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `by_client_item` (`client_id` ASC, `charge_item_id` ASC),
+  INDEX `fk_charge_item_idx` (`charge_item_id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`company`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`company` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `company_name` CHAR(40) NULL DEFAULT NULL,
+  `company_address` CHAR(100) NULL DEFAULT NULL,
+  `phone` CHAR(20) NULL DEFAULT NULL,
+  `email` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`currency_rate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`currency_rate` (
+  `currency_id` INT(11) NOT NULL,
+  `effective_date` INT(11) NULL DEFAULT NULL,
+  `exchange_rate` DECIMAL(7,2) NULL DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Index_date` (`currency_id` ASC, `effective_date` ASC),
+  CONSTRAINT `fk_currency_rate_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `boldb`.`currency` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`custom_office`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`custom_office` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `code` CHAR(20) NULL DEFAULT NULL,
+  `description` CHAR(40) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`translation_source`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`translation_source` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `code` CHAR(15) NULL DEFAULT NULL,
+  `description` CHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `codeIndex` (`code` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`edi_translation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`edi_translation` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `type` CHAR(15) NULL DEFAULT NULL,
+  `internal_code` CHAR(15) NULL DEFAULT NULL,
+  `external_code` CHAR(255) NULL DEFAULT NULL,
+  `code_id` INT(11) NULL DEFAULT NULL,
+  `translation_source_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_edi_translation_translation_source1_idx` (`translation_source_id` ASC),
+  CONSTRAINT `fk_edi_translation_translation_source1`
+    FOREIGN KEY (`translation_source_id`)
+    REFERENCES `boldb`.`translation_source` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 41
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`menu_group`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`menu_group` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `title` CHAR(100) NULL DEFAULT NULL,
+  `menu_order` INT(11) NULL DEFAULT NULL,
+  `status` SMALLINT(6) NULL DEFAULT NULL,
+  `level` SMALLINT(6) NULL DEFAULT NULL,
+  `icon` CHAR(100) NULL DEFAULT NULL,
+  `description` CHAR(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`menu_item`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`menu_item` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `menu_group_id` BIGINT(20) NULL DEFAULT NULL,
+  `title` VARCHAR(100) NULL DEFAULT NULL,
+  `url` VARCHAR(100) NULL DEFAULT NULL,
+  `menu_order` INT(11) NULL DEFAULT NULL,
+  `status` INT(11) NULL DEFAULT NULL,
+  `level` SMALLINT(6) NULL DEFAULT NULL,
+  `icon` CHAR(100) NULL DEFAULT NULL,
+  `description` CHAR(150) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_menu_item_` (`menu_group_id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 45
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`user_profile`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`user_profile` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_name` CHAR(60) NULL DEFAULT NULL,
+  `password` CHAR(255) NULL DEFAULT NULL,
+  `full_name` CHAR(70) NULL DEFAULT NULL,
+  `status` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 15
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`receipt`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`receipt` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `receipt_date` INT(11) NULL DEFAULT NULL,
+  `receipt_time` SMALLINT(6) NULL DEFAULT NULL,
+  `client_id` INT(11) NULL DEFAULT NULL,
+  `payee` CHAR(40) NULL DEFAULT NULL,
+  `receipt_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `local_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `exchange_rate` DECIMAL(8,2) NULL DEFAULT NULL,
+  `printed` SMALLINT(6) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(6) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `customer_identification` CHAR(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_receipt_currency` (`currency_id` ASC),
+  INDEX `fk_receipt_bol` (`billoflading_id` ASC),
+  INDEX `fk_receipt_client` (`client_id` ASC),
+  INDEX `fk_receipt_created_by` (`created_by` ASC),
+  INDEX `fk_receipt_deleted_by` (`cancel_by` ASC),
+  CONSTRAINT `fk_receipt_client`
+    FOREIGN KEY (`client_id`)
+    REFERENCES `boldb`.`client` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_receipt_created_by`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `boldb`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_receipt_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `boldb`.`currency` (`id`),
+  CONSTRAINT `fk_receipt_deleted_by`
+    FOREIGN KEY (`cancel_by`)
+    REFERENCES `boldb`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB
+AUTO_INCREMENT = 148
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`receipt_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`receipt_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `receipt_id` INT(11) NULL DEFAULT NULL,
+  `bol_id` INT(11) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `currency_amount` DECIMAL(10,2) NOT NULL,
+  `discount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `comment` CHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_receipt_detail_charge_item` (`charge_item_id` ASC),
+  INDEX `fk_Receipt` (`receipt_id` ASC),
+  CONSTRAINT `fk_Receipt`
+    FOREIGN KEY (`receipt_id`)
+    REFERENCES `boldb`.`receipt` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_receipt_detail_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `boldb`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 244
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`shipment_order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`shipment_order` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `locked` INT(11) NULL DEFAULT NULL,
+  `printed` SMALLINT(6) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `order_date` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_order_bol` (`billoflading_id` ASC),
+  INDEX `fk_order_created_by` (`created_by` ASC),
+  INDEX `fk_order_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_order_bol`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `boldb`.`bill_of_lading` (`id`),
+  CONSTRAINT `fk_order_created_by`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `boldb`.`user_profile` (`id`),
+  CONSTRAINT `fk_order_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `boldb`.`voyage` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 65
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`system_values`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`system_values` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `description` CHAR(30) NULL DEFAULT NULL,
+  `data_type` CHAR(10) NULL DEFAULT NULL,
+  `data_value` CHAR(30) NULL DEFAULT NULL,
+  `code` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`user_option`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`user_option` (
+  `menu_item_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `fk_user_option_user_profile` USING BTREE (`user_id` ASC, `menu_item_id` ASC),
+  INDEX `menu_item_id` USING BTREE (`menu_item_id` ASC, `user_id` ASC),
+  CONSTRAINT `fk_user_option_menu_item`
+    FOREIGN KEY (`menu_item_id`)
+    REFERENCES `boldb`.`menu_item` (`id`),
+  CONSTRAINT `fk_user_option_user_profile`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `boldb`.`user_profile` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 111
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`vessel`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`vessel` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `vessel_name` CHAR(50) NULL DEFAULT NULL,
+  `vessel_code` CHAR(10) NULL DEFAULT NULL,
+  `lloyd_number` CHAR(20) NULL DEFAULT NULL,
+  `country_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_vessel_country` (`country_id` ASC),
+  CONSTRAINT `fk_vessel_country`
+    FOREIGN KEY (`country_id`)
+    REFERENCES `boldb`.`country` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `boldb`.`voyage_container`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `boldb`.`voyage_container` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `container_number` CHAR(15) NULL DEFAULT NULL,
+  `port_origin` INT(11) NULL DEFAULT NULL,
+  `seal` CHAR(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_voyage_container_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_voyage_container_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `boldb`.`voyage` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 9
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

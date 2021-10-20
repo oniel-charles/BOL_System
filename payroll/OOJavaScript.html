@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript new Date()</h2>
+
+<p id="demo"></p>
+
+<script>
+var d = new Date();
+document.getElementById("demo").innerHTML = d;
+let oniel= new Person("oniel");
+oniel.greeting();
+oniel.save();
+
+
+function Person(name) {
+  this.name = name;
+  this.age=47;
+  this.address="28 Sonny Bradshaw Ave";
+  this.greeting = function() {
+    alert('Hi! I\'m ' + this.name + '.'+this.address);
+  };
+  this.save=function(){
+     saveDomainObject(this);
+  }
+}
+
+function saveDomainObject(obj){
+   for (x in obj)
+     alert(x);
+}     
+</script>
+
+</body>
+</html>

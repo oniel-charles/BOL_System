@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bill of Lading Processing </title>
+  <link rel="icon" href="../img/worldwide.png">
+
+  <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Custom Theme Style -->
+  <link href="../build/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+  <!-- Font Awesome -->
+  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+
+  <!-- iCheck -->
+  <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+  <!-- bootstrap-daterangepicker -->
+  <link href="./css/datepicker.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+  <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+  <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+  <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="nav-md">
+  <div id='app-cover' style=" display:none;position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: url(../img/Harbor_Sunrise.jpg) ;
+  background-color: rgba(0,0,0,0.9); /*dim the background*/"></div>
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title">
+              <img src="../img/company.ico" />
+              <span>Cargo Shipping</span>
+            </a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Welcome,</span>
+              <h2 class="user_fullname_disaplay">Active User</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a>
+                    <i class="fa fa-home"></i> Home
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="#">Dashboard</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-cogs"></i> Maintenance
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu" id="mnt-opt">
+                    <li>
+                      <a href="maintain_vessel.html">Vessel</a>
+                    </li>
+                    <li>
+                      <a href="maintain_port.html">Port</a>
+                    </li>
+                    <li>
+                      <a href="maintain_country.html">Vessel</a>
+                    </li>
+                    <li>
+                      <a href="maintain_currency">Currency</a>
+                    </li>
+                    <li>
+                      <a href="maintain_package.html">Package</a>
+                    </li>
+                    <li>
+                      <a href="./#/commodity">Commodity</a>
+                    </li>
+                    <li>
+                      <a href="maintain_container_size_type.html">Container Size Type</a>
+                    </li>
+                    <li>
+                      <a href="maintain_client.html">Vessel</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-list-alt"></i> Charges
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_charges.html">Charge Item</a>
+                    </li>
+                    <li>
+                      <a href="maintain_sur_charge.html">Sur Charge</a>
+                    </li>
+                    <li>
+                      <a href="maintain_gct_rate.html">GCT Rate</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-dollar"></i> Billing
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_receipt.html">Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_order.html">Order</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-anchor"></i> Manifest Processing
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_voyage.html">Voyage</a>
+                    </li>
+                    <li>
+                      <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                    </li>
+                    <li>
+                      <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-bar-chart"></i> Reports
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                    </li>
+                    <li>
+                      <a href="maintain_gct_report.html">GCT Report</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+          <div class="nav_menu">
+              <nav>
+                  <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                      <a id="menu_toggle">
+                          <i style="font-size:16px" class="fa fa-bars"></i>
+                      </a>
+                  </div>
+
+                  <ul class="nav navbar-nav navbar-left">
+                      <li class="">
+                          <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false">
+                              <span style="font-size: 15px;color:#73879C;font-weight:bold;"> </span>
+                          </a>
+
+                      </li>
+
+                  </ul>
+
+                  <ul class="nav navbar-nav navbar-right">
+                      <li class="">
+                          <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                              aria-expanded="false">
+                              <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                              <span class=" fa fa-angle-down"></span>
+                          </a>
+                          <ul class="dropdown-menu dropdown-usermenu pull-right">
+                              <li>
+                                  <a href="javascript:;"> Profile</a>
+                              </li>
+                              <li>
+                                  <a href="javascript:passwordChangeRequest()"> 
+                                      <i class="fa fa-lock pull-right"></i> Change Password</a>
+                                      
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="javascript:;">Help</a>
+                              </li>
+                              <li>
+                                  <a href="javascript:authenticateUser()"> 
+                                      <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                              </li>
+                          </ul>
+                      </li>
+
+                      <li role="presentation" class="dropdownx">
+                          <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                              <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+
+      <div id='dashboard' style="display:none" class="right_col" role="main">
+        <!--a href="#/commodity">Home</a-->
+        <!-- top tiles -->
+        <div class="row tile_count">
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top">
+              <i class="fa fa-user"></i> Total Customers</span>
+            <div class="count">1500</div>
+            <span class="count_bottom">
+              <i class="green">4% </i> From last Week</span>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top">
+              <i class="fa fa-clock-o"></i> Average Time</span>
+            <div class="count">172.50</div>
+            <span class="count_bottom">
+              <i class="green">
+                <i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top">
+              <i class="fa fa-dollar"></i> Total Freight</span>
+            <div class="count green">$21,500</div>
+            <span class="count_bottom">
+              <i class="green">
+                <i class="fa fa-sort-asc"></i>14% </i> From last Week</span>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top">
+              <i class="fa fa-truck"></i> Total Container</span>
+            <div class="count">67</div>
+            <span class="count_bottom">
+              <i class="red">
+                <i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+          </div>
+
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top">
+              <i class="fa fa-square"></i> Containers Not Stripped</span>
+            <div class="count">10</div>
+
+          </div>
+        </div>
+        <!-- /top tiles -->
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Revenue Proformance
+                  <small>by clientel</small>
+                </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li>
+                    <a class="collapse-link">
+                      <i class="fa fa-chevron-up"></i>
+                    </a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li>
+                        <a href="#">Settings 1</a>
+                      </li>
+                      <li>
+                        <a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a class="close-link">
+                      <i class="fa fa-close"></i>
+                    </a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <canvas id="line-chart"></canvas>
+              </div>
+
+
+            </div>
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Cashier Work Rate
+                  <small>by clientel</small>
+                </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li>
+                    <a class="collapse-link">
+                      <i class="fa fa-chevron-up"></i>
+                    </a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li>
+                        <a href="#">Settings 1</a>
+                      </li>
+                      <li>
+                        <a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a class="close-link">
+                      <i class="fa fa-close"></i>
+                    </a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <canvas id="my-pie-chart"></canvas>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel tile fixed_height_320 overflow_hidden">
+              <div class="x_title">
+                <h2>Revenue Break Down</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li>
+                    <a class="collapse-link">
+                      <i class="fa fa-chevron-up"></i>
+                    </a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li>
+                        <a href="#">Settings 1</a>
+                      </li>
+                      <li>
+                        <a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a class="close-link">
+                      <i class="fa fa-close"></i>
+                    </a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <table class="" style="width:100%">
+                  <tr>
+                    <th style="width:37%;">
+                      <p>Top 5</p>
+                    </th>
+                    <th>
+                      <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                        <p class="">Charges</p>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        <p class="">Percentage</p>
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+
+
+
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p>
+                              <i class="fa fa-square blue"></i>Door to Door </p>
+                          </td>
+                          <td>30%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p>
+                              <i class="fa fa-square green"></i>Freight Collect </p>
+                          </td>
+                          <td>10%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p>
+                              <i class="fa fa-square purple"></i>Handling </p>
+                          </td>
+                          <td>20%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p>
+                              <i class="fa fa-square aero"></i>Pre-Clearance Service </p>
+                          </td>
+                          <td>15%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p>
+                              <i class="fa fa-square red"></i>WHRG & STRPG & PDC </p>
+                          </td>
+                          <td>15%</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                </table>
+              </div>
+            </div>
+            <div class="x_panel tile fixed_height_320 overflow_hidden">
+              <div class="x_title">
+                <h2>Revenue Break Down</h2>
+              </div>
+              <canvas id="mybarChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- /page content -->
+
+      <!-- footer content -->
+      <footer>
+        <div class="pull-right">
+          Gentelella - Bootstrap Admin Template by
+          <a href="https://colorlib.com">Colorlib</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      <!-- /footer content -->
+    </div>
+  </div>
+
+  <script src="./vendor/js/jquery.min.js"></script>
+  <script src="./vendor/js/jquery-ui.js"></script>
+  <script src="./vendor/js/bootstrap.min.js"></script>
+  <script src="./vendor/js/bootstrap-table.min.js"></script>
+  <script src="./vendor/js/bootstrap-select.min.js"></script>
+  <script src="./js/ajax-bootstrap-select.min.js"></script>
+  <script src="../vendors/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="../vendors/nprogress/nprogress.js"></script>
+
+  <script src="./js/bootstrap-editable.js"></script>
+  <!-- iCheck -->
+  <script src="./js/bootstrap-table-editable.js"></script>
+  <script src="../vendors/iCheck/icheck.min.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="./js/datepicker.min.js"></script>
+
+  <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+  <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+  <script src="../vendors/moment/min/moment.min.js"></script>
+  <script src="../vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+      <!--Reveal Animations When You Scroll. -->
+  <script src="js/wow.min.js"></script>
+
+  <!-- Custom Theme Scripts -->
+  <script src="../build/js/custom.min.js"></script>
+
+  <script src="./scripts/app.js"></script>
+  <script>
+    if (!show_dashboard) {
+      var $html=' <div style="margin-top:20%;margin-left:15%;width:100%;font-family:Arial Black;font-size:70px;color: #fff;';
+        $html+='text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;';
+        $html+='">  DENNIS SHIPPING </div>';
+       $('#dashboard').html($html);
+    }
+    $('#dashboard').show();
+    new Chart(document.getElementById("my-pie-chart"), {
+
+      type: 'pie',
+      data: {
+        labels: ["Ricardo", "Donna", "Howard", "Pat", "Victoria"],
+        datasets: [{
+          label: "Number of receipts issued",
+          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+          data: [2478, 5267, 734, 784, 433]
+        }]
+      },
+      options: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Number of receipts issued over the past week'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("line-chart"), {
+      type: 'line',
+      data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [{
+          label: "Revenue for 2017",
+          backgroundColor: "rgba(38, 185, 154, 0.31)",
+          borderColor: "rgba(38, 185, 154, 0.7)",
+          pointBorderColor: "rgba(38, 185, 154, 0.7)",
+          pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointBorderWidth: 1,
+          data: [31000, 74000, 6000, 39000, 20000, 85000, 7000]
+        }, {
+          label: "Revenue for 2018",
+          backgroundColor: "rgba(3, 88, 106, 0.3)",
+          borderColor: "rgba(3, 88, 106, 0.70)",
+          pointBorderColor: "rgba(3, 88, 106, 0.70)",
+          pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(151,187,205,1)",
+          pointBorderWidth: 1,
+          data: [82000, 23000, 66000, 9000, 99000, 4000, 2000]
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Comparing Revenue Performance for the last six month'
+        }
+      }
+    });
+
+
+
+    new WOW().init();
+    var txt = '<li><a> <i class="fa fa-cogs"></i>Maintenance<span class="fa fa-chevron-down"></span></a>';
+    txt += '<ul class="nav child_menu">';
+    txt += '<li><a href="maintain_vessel.html">Vessel</a></li>';
+    txt += ' <li><a href="maintain_port.html">Port</a>';
+    txt += '</li><li><a href="maintain_country.html">Country</a></li>';
+    txt += '<li><a href="maintain_voyage.html">Voyage</a></li></ul></li>';
+
+    $.ajax({
+		url: './service.php/load/' + window.location.pathname.split('/').slice(-1)[0],
+		type: 'GET',
+		dataType: 'text',
+		async: false,
+		success: function (data) {
+		},
+    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError);},
+		beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+	});
+
+  </script>
+
+</body>
+
+</html>

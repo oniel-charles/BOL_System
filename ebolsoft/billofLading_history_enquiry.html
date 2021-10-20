@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bill of Lading Processing </title>
+    <link rel="icon" href="./img/app_icon.ico">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="./build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+
+    <style>
+        .popover{
+            width:350px;
+        }
+        .address-width {
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        @font-face {
+            font-family: Delicious;
+            src: url('ManuskriptGothischUNZ1A.ttf');
+        }
+
+        .vertical-text.tabs-left>li {
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="./img/company_icon.ico" />
+                            <span id=glo_company_name></span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/home/main">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-cogs"></i> Maintenance
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_port.html">Port</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_country.html">Country</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_currency.html">Currency</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_package.html">Package</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_commodity.html">Commodity</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_container_size_type.html">Container Size Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-list-alt"></i> Charges
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_charges.html">Charge Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_sur_charge.html">Sur Charge</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_rate.html">GCT Rate</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-dollar"></i> Billing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_receipt.html">Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_order.html">Order</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-anchor"></i> Manifest Processing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_voyage.html">Voyage</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                                        </li>
+                                        <li>
+                                            <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-bar-chart"></i> Reports
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_report.html">GCT Report</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                            <a id="menu_toggle">
+                                <i style="font-size:16px" class="fa fa-bars"></i>
+                            </a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <!--span style="font-size: 25px;color:#73879C;font-weight:bold; font-family: Delicious, sans-serif; "> Import Manifest</span-->
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> ARCHIVES</span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images/img.jpg" alt="">
+                                    <span class="user_fullname_disaplay">Active User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:passwordChangeRequest()">
+                                            <i class="fa fa-lock pull-right"></i> Change Password</a>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:displayHelp();">Help</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:authenticateUser()">
+                                            <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdownx">
+                                <button type="button" class="btn btn-round btn-success btn-sm " onclick="loadShortCutOption(this)">
+                                    <i class="fa fa-search-plus"></i> BL Processing</button>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+            <div class="loader"></div>
+            <div class="right_col" role="main">
+                <div>
+                    <div class="form-group col-md-6">
+                        <button  onclick="processReceipt();return false;" id="receipt_btn" class=" hidden btn btn-primary" onclick="return false;">
+                            <i class="fa fa-cc-mastercard"></i> Receipt</button>
+                        <button  onclick="processOrder();return false;" id="order_btn" class="hidden btn btn-warning" onclick="return false;">
+                            <i class="fa fa-file-text"></i> Order</button>
+                        <button  id="charge_btn" class="hidden btn btn-success" onclick="displayCharges();return false;">
+                            <i class="fa fa-dollar"></i> Charges</button>
+                        <button id="charge_btn" class="btn btn-info" onclick="displayDetails();return false;">
+                            <i class="fa fa-eye"></i> Display</button>
+                            <button  class="btn btn-default " type="button" onclick="printBOL();return false;"> 
+                                <i class="fa fa-list-alt"></i> Bill of Lading  </button>
+                    </div>
+                    <div class="">
+
+                        <div id="toolbar">
+                            <div class="form-inline" role="form">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Showing </label>
+                                    <div class="col-md-9">
+                                        <div>
+                                            <input data-toggle="datepicker" id="start_date" name="arrival_date" placeholder="Start Date" class="form-control has-feedback-left "
+                                                type="text" required>
+                                            <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-1">to</label>
+                                    <div class="col-md-11">
+                                        <div>
+                                            <input data-toggle="datepicker" id="end_date" name="arrival_date" placeholder="End Date" class="form-control has-feedback-left "
+                                                type="text" required>
+                                            <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div id="refresh_but" onclick="loadManifestTable()" style="font-size:22px;color:green;cursor: pointer;" class="fa fa-refresh "></div>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="enquiryTable" class="display" cellspacing="0" data-toolbar="#toolbar" data-query-params="queryParams" data-pagination="true"
+                            data-show-columns="true" data-editable="true" data-striped="true" data-search="true" data-show-multi-sort="true"
+                            data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                            <thead>
+                                <!--tr>
+                                    <th data-field="id" data-visible="false">ID</th>
+                                    <th data-field="bill_of_lading_number" data-sortable="true"> Master BL</th>
+                                    <th data-field="refnum" data-sortable="true"> Reference Number</th>
+                                    <th data-field="consignee_name" data-sortable="true"> Consignee</th>
+                                    <th data-field="consignee_address" data-class="address-width" data-sortable="true">Consignee Address</th>
+                                    <th data-field="notify_date" data-sortable="true">Notify Date</th>
+                                    <th data-field="stripped" data-formatter="formatStrip" data-sortable="true">Stripped</th>
+                                    <th data-field="voyage_number" data-visible="false">Voyage</th>
+                                    <th data-field="vessel_name" data-visible="false">Vessel</th>
+                                    <th data-field="arrival_date" data-formatter="formatColumDate" data-sortable="true">Arrival Date</th>
+                                    <th data-field="notify_address" data-visible="false">Notify Address</th>
+                                    <th data-field="notify_phone_num" data-visible="false">Notify Num</th>
+                                    <th data-field="notify_name" data-visible="false">Notify Name</th>
+                                </tr-->
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th class="hidden">ID</th>
+                                    <th> Bill Of Lading Number</th>
+                                    <th> Reference Number</th>
+                                    <th>Consignee Name</th>
+                                    <th>Consignee Address</th>
+                                    <th>Notify Date</th>
+                                    <th>Stripped</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+
+                    <!-- Bootstrap modal -->
+                    <div class="modal fade" id="med_report_modal" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div style="height:40px" class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title">Import Entry Form</h4>
+                                </div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a id=report1-tab data-toggle="tab" href="#report1-div">Home</a>
+                                    </li>
+                                    <li>
+                                        <a id=report2-tab data-toggle="tab" href="#report2-div">Receipt 2</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="report1-div" class="tab-pane fade in active">
+                                        <iframe id='my-report1-iframe' type="application/pdf" style="min-height:400px;width:100%"></iframe>
+                                    </div>
+                                    <div id="report2-div" class="tab-pane fade">
+                                        <iframe id='my-report2-iframe' type="application/pdf" style="min-height:400px;width:100%"></iframe>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                </div>
+
+                <!-- Bootstrap modal -->
+                <div class="modal fade" id="print_preview" role="dialog">
+                    <div class="modal-dialog modal-md" style="width:800px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="modal-title">Import Entry Form</h3>
+                            </div>
+                            <div class="modal-body form">
+                             <form id="preview_form" class="form-horizontal" data-toggle="validator"> 
+                                <button class="hidden btn btn-default" onclick="printDocument('my-preport-iframe')">Print</button>
+                                <input id="proceed_print_but" type="submit" class="btn btn-success" value="Process Order" style="width:100%">
+                                <div id=print_preview_div class=" well"></div>
+                            </form>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+                <!-- Bootstrap modal -->
+                <div class="modal fade" id="charge_window" role="dialog">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="modal-title">Charges</h3>
+                            </div>
+                            <div class="modal-body form">
+                                <p class="chargetoolbar">
+                                    <a class="create btn btn-success" id="create-charge-rec" href="javascript:">Add New</a>
+                                </p>
+                                <table id="chargeTable" class="display" cellspacing="0" data-toolbar=".chargetoolbar" data-query-params="queryParams" data-pagination="true"
+                                    data-striped="true" data-search="true" data-show-multi-sort="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="id" data-visible="false">ID</th>
+                                            <th data-field="charge_item_id" data-formatter="formatChargeItem" data-sortable="true">Charge Item </th>
+                                            <th data-field="prepaid_flag" data-formatter="formatPrepaid" data-sortable="true">Prepaid </th>
+                                            <th data-field="amount" data-sortable="true">Amount</th>
+                                            <th data-field="currency_code" data-sortable="true">Currency</th>
+                                            <th data-formatter="createChargeActionButtons" data-searchable="false">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="hidden">ID</th>
+                                            <th>Charge Item </th>
+                                            <th>Prepaid </th>
+                                            <th>Amount</th>
+                                            <th>Currency</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+                <!-- Bootstrap BL CHARGE modal Form-->
+                <div class="modal fade" id="charge_modal" role="dialog">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 class="modal-title">Bill Of Lading Other Charge Form</h3>
+                            </div>
+                            <div class="modal-body form">
+                                <form id="charge_form" class="form-horizontal" data-toggle="validator">
+                                    <input type="hidden" name="id" id="id" />
+                                    <input type="hidden" id="billoflading_id" />
+
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Charge Item </label>
+                                            <div class="col-md-9">
+                                                <select onchange="initialLizeAmount()" id="charge_item_id" class="load-select selectpicker" data-path="./app/charge_item/select"
+                                                    required></select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Amount</label>
+                                            <div class="col-md-4">
+                                                <input id="amount" name="amount" placeholder="Amount" class="form-control" type="number" min="0" step=".01" required>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Prepaid Flag</label>
+                                            <div class="col-md-9">
+                                                <select id="prepaid_flag" class="selectpicker ">
+                                                    <option value="c">Collect</option>
+                                                    <option value="p">Prepaid</option>
+                                                    <option value="i">Ignore</option>
+                                                </select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox ">
+                                                <label class="control-label">Attracts GCT
+                                                    <input id="attract_gct" type="checkbox" class="flat">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Payment Currency</label>
+                                            <div class="col-md-9">
+                                                <select id="currency_id" class="load-select selectpicker" data-path="./app/currency/select" required></select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input id="submit" type="submit" class="btn btn-info" value="Save">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+    
+
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Gentelella - Bootstrap Admin Template by
+                        <a href="https://colorlib.com">Colorlib</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+    <!-- Define content -->
+    <!----  
+<div id="popupBottom" class="popover">
+    <div class="arrow"></div>
+    <div class="popover-content">
+        dsds
+        <div class="daterangepicker dropdown-menu ltr single opensright show-calendar picker_4 xdisplay"><div class="calendar left single" style="display: block;"><div class="daterangepicker_input"><input class="input-mini form-control active" type="text" name="daterangepicker_start" value="" style="display: none;"><i class="fa fa-calendar glyphicon glyphicon-calendar" style="display: none;"></i><div class="calendar-time" style="display: none;"><div></div><i class="fa fa-clock-o glyphicon glyphicon-time"></i></div></div><div class="calendar-table"><table class="table-condensed"><thead><tr><th class="prev available"><i class="fa fa-chevron-left glyphicon glyphicon-chevron-left"></i></th><th colspan="5" class="month">Oct 2016</th><th class="next available"><i class="fa fa-chevron-right glyphicon glyphicon-chevron-right"></i></th></tr><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead><tbody><tr><td class="weekend off available" data-title="r0c0">25</td><td class="off available" data-title="r0c1">26</td><td class="off available" data-title="r0c2">27</td><td class="off available" data-title="r0c3">28</td><td class="off available" data-title="r0c4">29</td><td class="off available" data-title="r0c5">30</td><td class="weekend available" data-title="r0c6">1</td></tr><tr><td class="weekend available" data-title="r1c0">2</td><td class="available" data-title="r1c1">3</td><td class="available" data-title="r1c2">4</td><td class="available" data-title="r1c3">5</td><td class="available" data-title="r1c4">6</td><td class="available" data-title="r1c5">7</td><td class="weekend available" data-title="r1c6">8</td></tr><tr><td class="weekend available" data-title="r2c0">9</td><td class="available" data-title="r2c1">10</td><td class="available" data-title="r2c2">11</td><td class="available" data-title="r2c3">12</td><td class="available" data-title="r2c4">13</td><td class="available" data-title="r2c5">14</td><td class="weekend available" data-title="r2c6">15</td></tr><tr><td class="weekend available" data-title="r3c0">16</td><td class="available" data-title="r3c1">17</td><td class="today active start-date active end-date available" data-title="r3c2">18</td><td class="available" data-title="r3c3">19</td><td class="available" data-title="r3c4">20</td><td class="available" data-title="r3c5">21</td><td class="weekend available" data-title="r3c6">22</td></tr><tr><td class="weekend available" data-title="r4c0">23</td><td class="available" data-title="r4c1">24</td><td class="available" data-title="r4c2">25</td><td class="available" data-title="r4c3">26</td><td class="available" data-title="r4c4">27</td><td class="available" data-title="r4c5">28</td><td class="weekend available" data-title="r4c6">29</td></tr><tr><td class="weekend available" data-title="r5c0">30</td><td class="available" data-title="r5c1">31</td><td class="off available" data-title="r5c2">1</td><td class="off available" data-title="r5c3">2</td><td class="off available" data-title="r5c4">3</td><td class="off available" data-title="r5c5">4</td><td class="weekend off available" data-title="r5c6">5</td></tr></tbody></table></div></div><div class="calendar right" style="display: none;"><div class="daterangepicker_input"><input class="input-mini form-control" type="text" name="daterangepicker_end" value="" style="display: none;"><i class="fa fa-calendar glyphicon glyphicon-calendar" style="display: none;"></i><div class="calendar-time" style="display: none;"><div></div><i class="fa fa-clock-o glyphicon glyphicon-time"></i></div></div><div class="calendar-table"><table class="table-condensed"><thead><tr><th></th><th colspan="5" class="month">Nov 2016</th><th class="next available"><i class="fa fa-chevron-right glyphicon glyphicon-chevron-right"></i></th></tr><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead><tbody><tr><td class="weekend off available" data-title="r0c0">30</td><td class="off available" data-title="r0c1">31</td><td class="available" data-title="r0c2">1</td><td class="available" data-title="r0c3">2</td><td class="available" data-title="r0c4">3</td><td class="available" data-title="r0c5">4</td><td class="weekend available" data-title="r0c6">5</td></tr><tr><td class="weekend available" data-title="r1c0">6</td><td class="available" data-title="r1c1">7</td><td class="available" data-title="r1c2">8</td><td class="available" data-title="r1c3">9</td><td class="available" data-title="r1c4">10</td><td class="available" data-title="r1c5">11</td><td class="weekend available" data-title="r1c6">12</td></tr><tr><td class="weekend available" data-title="r2c0">13</td><td class="available" data-title="r2c1">14</td><td class="available" data-title="r2c2">15</td><td class="available" data-title="r2c3">16</td><td class="available" data-title="r2c4">17</td><td class="available" data-title="r2c5">18</td><td class="weekend available" data-title="r2c6">19</td></tr><tr><td class="weekend available" data-title="r3c0">20</td><td class="available" data-title="r3c1">21</td><td class="available" data-title="r3c2">22</td><td class="available" data-title="r3c3">23</td><td class="available" data-title="r3c4">24</td><td class="available" data-title="r3c5">25</td><td class="weekend available" data-title="r3c6">26</td></tr><tr><td class="weekend available" data-title="r4c0">27</td><td class="available" data-title="r4c1">28</td><td class="available" data-title="r4c2">29</td><td class="available" data-title="r4c3">30</td><td class="off available" data-title="r4c4">1</td><td class="off available" data-title="r4c5">2</td><td class="weekend off available" data-title="r4c6">3</td></tr><tr><td class="weekend off available" data-title="r5c0">4</td><td class="off available" data-title="r5c1">5</td><td class="off available" data-title="r5c2">6</td><td class="off available" data-title="r5c3">7</td><td class="off available" data-title="r5c4">8</td><td class="off available" data-title="r5c5">9</td><td class="weekend off available" data-title="r5c6">10</td></tr></tbody></table></div></div><div class="ranges" style="display: none;"><div class="range_inputs"><button class="applyBtn btn btn-sm btn-success" type="button">Apply</button> <button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button></div></div></div>
+
+        <div class="form-group">
+            <div class="col-sm-12">
+              <input data-toggle="datepicker" value="01/01/2020" id="note_date" name="note_date" placeholder="Notification Date" class="form-control has-feedback-left"
+                type="text">
+              <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+              <span class="help-block"></span>
+            </div>
+          </div>
+    </div>
+</div>
+-->
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/jquery-ui.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+    <script src="./vendor/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="./vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="./vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="./vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="./build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+
+    <script>
+
+        var today = new Date();
+        var current_date=''+today.getFullYear()+ pad((1 + today.getMonth()), 2)+pad(today.getDate(), 2);
+        $('#end_date').datepicker().datepicker("setDate", today);
+        today.setDate(today.getDate() - 60);
+        $('#start_date').datepicker().datepicker("setDate", today);
+
+
+        $(document).click(function (e) {
+            try{
+            if (!$(e.target).is('.popover-button') && ($('.popover').has(e.target).length == 0) || $(e.target).is('.close')) {
+                $($notification_element).popover('hide');
+            }   
+            }catch(e){}       
+            
+        });
+
+        getFormList();
+        $restrict_order='Y';
+        $.ajax({
+            url: './app/system_values/code/printorder',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                
+                if (data.length > 0) {
+                    $restrict_order =data[0].data_value;                    
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+
+         
+        function formatColumDate(value, row, index, field) {
+            return formatDate(value);
+        }
+        function displayDetails() {
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 });
+                return false;
+            }
+
+
+
+            $.ajax({
+                url: './app/shipment_order/valid/' + obj.id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (order_data) {
+
+
+                    $.ajax({
+                        url: './app/report/print_receipt/' + obj.id + '/check',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            var $receipt_date = '', $receipt_num = 0, $order_date = '', $order_num = 0, $receipt_list = "";
+                            if (order_data.length > 0) { $order_num = order_data[0].id; $order_date = formatDate(order_data[0].order_date); }
+                            if (data.length > 0) {
+                                var rec = {};
+                                for (var i = 0; i < data.length; i++) {
+                                    if (data[i].receipt_number > 0) {
+                                        if (!rec[data[i].receipt_number]) {
+                                            rec[data[i].receipt_number] = {};
+                                            rec[data[i].receipt_number].amount = 0;
+                                            rec[data[i].receipt_number].date = data[i].date;
+                                            rec[data[i].receipt_number].num = data[i].receipt_number;
+                                        }
+                                        rec[data[i].receipt_number].amount += numeric(data[i].amount, 2);
+                                    }
+                                }
+                                for (var x in rec) {
+                                    $receipt_list += '<br><div class="row"><div class="col-sm-3">Receipt</div><div class="col-sm-3"> <span style="color:red">' + pad(rec[x].num, 8) + '</span></div> <div class="col-sm-3"> ' + formatDate(rec[x].date) + ' </div> <div class="col-sm-3">$' + numericStr(rec[x].amount, 2) + '</div></div>';
+                                }
+                                if ($receipt_list == '') {
+                                    $receipt_list = '<br><div class="row"><div class="col-sm-3">Receipt</div><div class="col-sm-9"> <span style="color:red">00000000</span> </div></div>';
+                                }
+                            } else {
+                                $receipt_list = '<br><div class="row"><div class="col-sm-3">Receipt</div><div class="col-sm-9"> <span style="color:red">00000000</span> </div></div>';
+                            }
+
+
+                            var table = '<div class="row">', row;
+                            table += '<div class="col-md-5"><span style="color:black;font-weight: bold;">Consignee</span>';
+
+                            table += '<div>' + getSelectedRow().consignee_fname +'  '+getSelectedRow().consignee_sname + '</div>';
+                            table += '<div>' + getSelectedRow().consignee_address + '</div><br>';
+                            table += '<div><span style="color:black;font-weight: bold;">Shipper</span></div>';
+                            table += '<div>' + getSelectedRow().shipper_fname +'  '+ getSelectedRow().shipper_sname + '</div>';
+                            table += '<div>' + getSelectedRow().shipper_address + '</div>';
+                            
+                            
+                            table += '</div>';// close of fist column
+
+
+                            var $charge_table = '<table  style="width:100%"><tr><td style="color:black;font-weight: bold;">Charges</td><td align=right>Paid</td><td align=right>$US</td><td align=right>Discount</td><td align=right>Outstanding</td></tr>', total = 0, amt = 0;
+                            var usd = '';
+                            for (var i = 0; i < data.length; i++) {
+                                usd = '';
+                                data[i].amount=data[i].amount;                                
+                                amt = numeric(data[i].bill_amount, 2) - numeric(data[i].paid, 2)- numeric(data[i].discount, 2) ;
+                                if (data[i].item_currency == 2) { usd = data[i].bill_amount; amt = numeric(1 * amt * data[i].roe,2); }
+                                total += amt;
+                                var $style = '';
+                                if (data[i].description.toUpperCase().indexOf('FREIGHT') != -1) { $style = 'style="color:red"' }
+                                $charge_table += '<tr ' + $style + '><td>' + data[i].description + '</td><td style="text-align:right">' + numericStr(data[i].paid, 2) + '</td><td style="text-align:right">' + usd + '</td><td style="text-align:right">' + data[i].discount+'</td><td style="text-align:right">' + amt + '</td></tr>';
+                            }
+                            $charge_table += '<tr style=" text-decoration: underline;font-weight: bold;color:black"><td> TOTAL</td><td></td><td></td><td></td><td style="text-align:right">' + numericStr(total, 2) + '</td></b></tr></table>';
+                            table += '<div class="col-md-7">' + $charge_table;
+                            table += '<br> <div class="row"><div class="col-sm-6" style="font-weight:bold;">Master BL</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + getSelectedRow().bill_of_lading_number + '</div></div>';
+
+                            table += ' <div class="row"><div class="col-sm-6" style="font-weight:bold;">Reference Num</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + getSelectedRow().refnum + '</div></div>';
+
+                            table += ' <div class="row"><div class="col-sm-6" style="font-weight:bold;">Voyage</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + getSelectedRow().voyage_number + '</div></div>';
+
+                            table += ' <div class="row"><div class="col-sm-6" style="font-weight:bold;">Manifest #</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + getSelectedRow().manifest_number + '</div></div>';
+
+                            table += ' <div class="row"><div class="col-sm-6" style="font-weight:bold;">Arrival Date</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + formatDate(getSelectedRow().arrival_date) + '</div></div>';
+
+                            table += '<div class="row"> <div class="col-sm-6" style="font-weight:bold;">Vessel</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + getSelectedRow().vessel_name + '</div></div></div></div>';
+                            table += '</div>'; //close row
+
+
+                            $('#proceed_print_but').attr('value','Details');
+                            $('#proceed_print_but').attr('onclick', "");
+
+                            $('#print_preview_div').html(table);
+                            $('#print_preview').find('h3').html('Display Details');
+                            $('#print_preview').modal('show');
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+
+        function getFormList(){
+            $.ajax({
+            url: './app/system_values/code/forms',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                
+                if (data.length > 0) {
+                    data.forEach((element) => {                         
+                        $('#form-list').append('<li onclick=\'printForms("'+element.data_value+'","'+element.description+'")\'><a>'+element.description+'</a></li>'); 
+                    } );
+                    
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+        }
+    </script>
+    <script>
+      
+    </script>
+
+
+    <script>
+        function printDocument(iframeId) {
+            var PDF = document.getElementById(iframeId);
+            PDF.focus();
+            PDF.contentWindow.print();
+        }
+        function formatStrip(value, row, index, field) {
+            if (value == 1) {
+                return 'Yes';
+            }
+            return 'No';
+        }
+    </script>
+    <script>
+
+        function loadBOLTable(data) {
+            $('#enquiryTable').bootstrapTable({
+                idField: 'id',
+                columns: [
+                    [{
+                        field: 'id',
+                        sortable: true,
+                        visible: false,
+                        align: 'left',
+                        title: 'id'
+                    }, {
+                        field: 'sail_date',
+                        sortable: true,
+                        align: 'center',
+                        title: 'Sail Date',
+                    }, {
+                        field: 'vessel_name',
+                        sortable: true,
+                        align: 'left',
+                        title: 'Vessel Name',
+                    }, {
+                        field: 'manifest_number',
+                        sortable: true,
+                        align: 'left',
+                        title: 'Man. No.',
+                    }, 
+                    {
+                        field: 'bill_of_lading_number',
+                        sortable: true,
+                        align: 'left',
+                        visible: false,
+                        title: 'Master BL',
+                    },
+                    {
+                        field: 'refnum',
+                        sortable: true,
+                        align: 'left',
+                        title: 'Ref. No.'
+                    },
+                    {
+                        field: 'shipper_fname',
+                        sortable: true,
+                        align: 'left',
+                        title: 'Shipper Name',
+                        formatter:formatShipperName
+                    },
+                    {
+                        field: 'consignee_fname',
+                        sortable: true,
+                        align: 'left',
+                        title: 'Consignee Name',
+                        formatter:formatConsigneeName
+                    },
+                    {
+                        field: 'stripped',
+                        sortable: true,
+                        align: 'left',
+                        formatter:formatStrip,
+                        title: 'Stripped'
+                    },
+                    {
+                        field: 'stripped_date',
+                        sortable: true,
+                        align: 'left',
+                        formatter:formatStripDate,
+                        title: 'Strip Date'
+                    }
+                    ]
+                ],
+                uniqueId: 'id',
+                data: data
+            });
+        }
+        function formatShipperName(value, row, index, field) {
+             return row.shipper_fname+' '+row.shipper_sname;
+        }
+        function formatConsigneeName(value, row, index, field) {
+             return row.consignee_fname+' '+row.consignee_sname;
+        }
+
+        function formatStrip(value, row, index, field) {
+            if (value == 1) {
+                return 'Yes';
+            }
+            return 'No';
+        }
+        function formatStripDate(value, row, index, field) {
+            return formatDate(row.stripped_date);
+  
+        }
+        function printBOL() {
+            
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+
+                $('#report2-tab').hide();
+                showLargeReport('./app/report//billoflading_f1/' + obj.id, 'import_entry.pdf', 'Bill of Lading');
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading '+e.message, 'Warning', { timeOut: 3000 })
+            }
+
+        }
+
+    </script>
+    <script> 
+    
+        function printForms(code,description) {
+            
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+
+                $('#report2-tab').hide();
+                showLargeReport('./app/report/'+code+'/' + obj.id, 'import_entry.pdf', description);
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+            }
+
+        }
+
+        function printEntryForm() {
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+
+                $('#report2-tab').hide();
+                showMediumReport('./app/report/import_entry/' + obj.id, 'import_entry.pdf', 'Import Entry')
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+            }
+
+        }
+     
+
+        var $table = $('#enquiryTable');
+
+        $(function () {
+            $table.on('click-row.bs.table', function (e, row, $element) {
+                $('.success').removeClass('success');
+                $($element).addClass('success');
+            });
+            $('#button').click(function () {
+                try {
+                    alert(+ getSelectedRow().id + 'Selected name: ' + getSelectedRow().refnum);
+                } catch (e) {
+                    toastr.warning('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+                }
+            });
+        });
+
+        function getSelectedRow() {
+            var index = $table.find('tr.success').data('index');            
+            obj= $table.bootstrapTable('getData')[index];
+            obj.index=index;
+            return obj;
+        }
+
+        loadManifestTable();
+        function loadManifestTable() {
+            $('.loader').show();
+            var sdate = validDate($('#start_date').val()).date;
+            var edate = validDate($('#end_date').val()).date;
+            $.ajax({
+                url: './app/bill_of_lading/processing_history/' + sdate + '/' + edate,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#enquiryTable').bootstrapTable("destroy");
+                    loadBOLTable(data);
+                    $('.loader').hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+    </script>
+    <script>
+            $('#preview_form')
+               .bootstrapValidator({
+                   feedbackIcons: {
+                       valid: 'glyphicon glyphicon-ok',
+                       invalid: 'glyphicon glyphicon-remove',
+                       validating: 'glyphicon glyphicon-refresh'
+                   },
+                   excluded: [':disabled'],
+                   fields: {
+                       
+                   }
+               })
+               .on('success.form.bv', function (e) {
+                   // Prevent submit form
+                   e.preventDefault();
+                   var $form = $(e.target),
+                       validator = $form.data('bootstrapValidator');
+                  
+                   
+                   $form
+                       .bootstrapValidator('disableSubmitButtons', true)  // Enable the submit buttons
+                       .bootstrapValidator('resetForm', true);             // Reset the form
+               });
+               
+   
+           //**************************************************
+   
+           
+       </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+
+});
+
+function postData(){
+$.ajax({
+      type: "POST",
+      url: 'post_test.php',
+      data: JSON.stringify({name: "Donald Duck", city: "Duckburg"}), // serializes the form's elements.
+      success: function (data) {
+        alert("Data: " + data + "\nStatus: " + status);
+
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+          alert(xhr+' '+ajaxOptions+' '+ thrownError);
+      }
+  });
+}
+
+function putData(){
+$.ajax({
+      type: "PUT",
+      url: 'post_test.php',
+      data: JSON.stringify({name: "Donald Duck", city: "Duckburg"}), // serializes the form's elements.
+      success: function (data) {
+        alert("Data: " + data + "\nStatus: " + status);
+
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+          alert(xhr+' '+ajaxOptions+' '+ thrownError);
+      }
+  });
+}
+
+</script>
+</head>
+<body>
+
+<button onclick="postData()">  Post Data</button>
+<button onclick="putData()">  Put Data</button>
+</body>
+</html>

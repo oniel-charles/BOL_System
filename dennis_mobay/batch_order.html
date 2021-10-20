@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bill of Lading Processing </title>
+  <link rel="icon" href="../img/worldwide.png">
+
+  <!-- Bootstrap -->
+  <!--    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  -->
+  <link rel="icon" href="../img/worldwide.png">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+  <style>
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:hover {
+      box-shadow: inset 0 0 0 0 rgba(0, 0, 0, .4), -2px -3px 5px -2px rgba(0, 0, 0, .4);
+    }
+        .address-width {
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+    </style>
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title">
+              <img src="../img/dennis_icon_xWY_1.ico" />
+              <span>Dennis Shipping</span>
+            </a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Welcome,</span>
+              <h2 class="user_fullname_disaplay">Active User</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a>
+                    <i class="fa fa-home"></i> Home
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="/dennis/main">Dashboard</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-cogs"></i> Maintenance
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_vessel.html">Vessel</a>
+                    </li>
+                    <li>
+                      <a href="maintain_port.html">Port</a>
+                    </li>
+                    <li>
+                      <a href="maintain_country.html">Country</a>
+                    </li>
+                    <li>
+                      <a href="maintain_currency.html">Currency</a>
+                    </li>
+                    <li>
+                      <a href="maintain_package.html">Package</a>
+                    </li>
+                    <li>
+                      <a href="maintain_commodity.html">Commodity</a>
+                    </li>
+                    <li>
+                      <a href="maintain_container_size_type.html">Container Size Type</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-list-alt"></i> Charges
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_charges.html">Charge Item</a>
+                    </li>
+                    <li>
+                      <a href="maintain_sur_charge.html">Sur Charge</a>
+                    </li>
+                    <li>
+                      <a href="maintain_gct_rate.html">GCT Rate</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-dollar"></i> Billing
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_receipt.html">Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_order.html">Order</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-anchor"></i> Manifest Processing
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_voyage.html">Voyage</a>
+                    </li>
+                    <li>
+                      <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                    </li>
+                    <li>
+                      <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-bar-chart"></i> Reports
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                    </li>
+                    <li>
+                      <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                    </li>
+                    <li>
+                      <a href="maintain_gct_report.html">GCT Report</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+              <a id="menu_toggle">
+                <i style="font-size:16px" class="fa fa-bars"></i>
+              </a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-left">
+              <li class="">
+                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                  aria-expanded="false">
+                  <span style="font-size: 15px;font-weight:bold;color:#73879C;"> Generate Batch Order</span>
+                </a>
+
+              </li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                  <span class=" fa fa-angle-down"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                  <li>
+                    <a href="javascript:;"> Profile</a>
+                  </li>
+                  <li>
+                    <a href="javascript:passwordChangeRequest()"> 
+                      <i class="fa fa-lock pull-right"></i> Change Password</a>
+                      
+                  </a>
+                  </li>
+                  <li>
+                    <a href="javascript:;">Help</a>
+                  </li>
+                  <li>
+                    <a href="javascript:authenticateUser()"> 
+                      <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li role="presentation" class="dropdownx">
+                <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                  <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+
+      <div class="right_col" role="main">
+
+
+        <div class="">
+
+          <div id="toolbar">
+            <div class="form-inline" role="form">
+  
+              <div class="form-group">
+                <label class="control-label col-md-3">Vessel</label>
+              </div>
+              <div class="form-group">
+                <select id="vessel" onchange="loadVoyageSelect()" class=" load-select form-control" data-path="./api.php/vessel/api/select"></select>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Voyage</label>
+              </div>
+              <div class="form-group">
+                <select id="voyage" onchange="loadManifestTable()" class=" load-select form-control"></select>
+              </div>
+              <div class="form-group" style="padding-left:30px;">
+                <a class="create btn btn-info" onclick=" generateOrders();">
+                  <i class="fa fa-print"></i>Generate Orders</a>
+              </div>
+              
+                  <label class="control-label ">New Orders Only
+                      <input id="new_orders_only" name="parent_bol" type="checkbox" class="flat">
+                  </label>
+                
+            </div>
+          </div>
+          <table id="classTable" class="display" cellspacing="0" data-toolbar="#toolbar" data-query-params="queryParams" data-pagination="true"
+          data-show-pagination-switch="true" data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "consignee_name","sortOrder":"desc"},{"sortName":"consignee_address","sortOrder":"desc"}]'>
+            <thead>
+              <tr>
+                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                <th data-checkbox=true  data-formatter="stateFormatter" data-field="checkid" >Check</th>
+                <th data-field="order_processed" data-align="center" data-sortable="true" data-formatter="formatProcessedOrder">Order Printed</th>
+                <th data-field="bill_of_lading_number" data-sortable="true"> Bill Of Lading Number</th>
+                <th data-field="consignee_name" data-sortable="true"> Consignee</th>
+                <th data-field="consignee_address"  data-class="address-width"  data-sortable="true">Consignee Address</th>                
+              </tr>
+            </thead>        
+          </table>
+        </div>
+      </div>
+
+
+      <!-- /page content -->
+
+    </div>
+  </div>
+
+  <script src="./vendor/js/jquery.min.js"></script>
+  <script src="./vendor/js/jquery-ui.js"></script>
+  <script src="./vendor/js/bootstrap.min.js"></script>
+  <script src="./vendor/js/bootstrap-table.min.js"></script>
+  <script src="./vendor/js/bootstrap-select.min.js"></script>
+  <script src="./js/ajax-bootstrap-select.min.js"></script>
+  <script src="../vendors/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="../vendors/nprogress/nprogress.js"></script>
+
+  <script src="./js/bootstrap-editable.js"></script>
+  <!-- iCheck -->
+  <script src="./js/bootstrap-table-editable.js"></script>
+  <script src="../vendors/iCheck/icheck.min.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="./js/datepicker.min.js"></script>
+
+  <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+  <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+  <!-- Custom Theme Scripts -->
+  <script src="../build/js/custom.min.js"></script>
+
+  <script src="./scripts/app.js"></script>
+  <script>
+    $('#new_orders_only').iCheck('check');
+   // $('#new_orders_only').iCheck('disable');
+
+   function formatProcessedOrder(value, row, index, field) {
+      if (value == 1) {
+        return 'Yes';
+      }
+      return 'No';
+    }
+    function stateFormatter(value, row, index) {
+      /*  if (row.order_processed == 1) {
+            return {
+                disabled: true
+            };
+        }
+        */       
+        return value;
+    }
+
+    function generateOrders(){
+      var recs = $('#classTable').bootstrapTable('getSelections');
+          //  $('#classTable').bootstrapTable('uncheckAll');
+            var ids=[];
+            for (var i=0;i<recs.length;i++){
+               ids.push(recs[i].id);
+            }  
+
+            try {
+                var obj = {};
+                obj.ids = ids;    
+                obj.new_orders_only=0;
+                if ($('#new_orders_only').prop('checked')){obj.new_orders_only=1;}            
+                showMediumReportEmbed('./report/rpt_print_batch_order.php', 'order.pdf', 'Shipment Order','#my-report1-iframe',obj);
+                $('#report2-tab').hide();
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+            }
+
+
+    }
+    loadVoyageSelect();
+
+    function loadVoyageSelect() {
+      $('#voyage').empty();
+      var select_path = './api.php/voyage/api/select/' + $('#vessel').val();
+      if (SELECT_DATA_PATH[select_path]) {
+        $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+          $('#voyage').append('<option value=' + value.id + '>' + value.voyage_number + ' - ' + formatDate(value.arrival_date) + '</option>');
+        });
+        loadManifestTable();
+      } else {
+        $.ajax({
+          url: select_path,
+          type: 'GET',
+          dataType: 'json',
+          async: false,
+          success: function (data) {
+            SELECT_DATA_PATH[select_path] = data;
+            $.each(data, function (key, value) {
+              $('#voyage').append('<option value=' + value.id + '>' + value.voyage_number + ' - ' + formatDate(value.arrival_date) + '</option>');
+            });
+            loadManifestTable();
+          },
+          error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+      }
+    }
+
+
+    function loadManifestTable() {
+      $.ajax({
+        url: './api.php/bill_of_lading/api/house/' + $('#voyage').val(),
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#classTable').bootstrapTable("destroy");
+          $('#classTable').bootstrapTable({
+            uniqueId: 'id',
+            data: data
+          });
+        },
+        error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
+    }
+
+
+
+  </script>
+  
+</body>
+
+</html>

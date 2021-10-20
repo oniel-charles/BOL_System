@@ -1,0 +1,282 @@
+<html>
+<head>
+<title> XML/JSON - Tests </title>
+<script type="text/javascript" src="xml2json.js"></script>
+<script type="text/javascript" src="json2xml.js"></script>
+<script type="text/javascript" src="jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+var xml=[
+      '<e/>',
+
+      '<e>text</e>',
+
+      '<e name="value" />',
+
+      '<e name="value">text</e>',
+
+      '<e> <a>text</a> <b>text</b> </e>',
+
+      '<e> <a>text</a> <a>text</a> </e>',
+
+      '<e> text <a>text</a> </e>',
+
+      '<a>hello</a>',
+
+      '<a x="y">hello</a>',
+
+      '<a id="a"><b id="b">hey!</b></a>',
+
+      '<a>x<c/>y</a>',
+
+      '<x u=""/>',
+
+      '<html>'+
+      ' <head>'+
+      '   <title>Xml/Json</title>'+
+	    '   <meta name="x" content="y" />'+
+      ' </head>'+
+      ' <body>'+
+      ' </body>'+
+      '</html>',
+
+      '<ol class="xoxo">'+
+      '   <li>Subject 1'+
+      '     <ol>'+
+      '       <li>subpoint a</li>'+
+      '      <li>subpoint b</li>'+
+      '     </ol>'+
+      '   </li>'+
+      '   <li><span>Subject 2</span>'+
+      '     <ol compact="compact">'+
+      '       <li>subpoint c</li>'+
+      '       <li>subpoint d</li>'+
+      '     </ol>'+
+      '  </li>'+
+      '</ol>',
+
+      '<span class="vevent">'+
+      '  <a class="url" href="http://www.web2con.com/">'+
+      '    <span class="summary">Web 2.0 Conference</span>'+
+      '    <abbr class="dtstart" title="2005-10-05">October 5</abbr>'+
+      '    <abbr class="dtend" title="2005-10-08">7</abbr>'+
+      '    <span class="location">Argent Hotel, San Francisco, CA</span>'+
+      '  </a>'+
+      '</span>',
+
+      '<e>\n'+
+      '  <![CDATA[ .. some data .. ]]>\n'+
+      '</e>',
+
+      '<e>\n'+
+      '  <a />\n' +
+      '  <![CDATA[ .. some data .. ]]>\n'+
+      '  <b />\n' +
+      '</e>',
+
+      '<e>\n'+
+      '  some text\n' +
+      '  <![CDATA[ .. some data .. ]]>\n'+
+      '  more text\n' +
+      '</e>',
+
+      '<e>\n'+
+      '  some text\n' +
+      '  <![CDATA[ .. some data .. ]]>\n'+
+      '  <a />\n' +
+      '</e>',
+
+      '<e>\n'+
+      '  <![CDATA[ .. some data .. ]]>\n'+
+      '  <![CDATA[ .. more data .. ]]>\n'+
+      '</e>'
+   ];
+
+function parseXml(xml) {
+   var dom = null;
+   if (window.DOMParser) {
+      try { 
+         dom = (new DOMParser()).parseFromString(xml, "text/xml"); 
+      } 
+      catch (e) { dom = null; }
+   }
+   else if (window.ActiveXObject) {
+      try {
+         dom = new ActiveXObject('Microsoft.XMLDOM');
+         dom.async = false;
+         if (!dom.loadXML(xml)) // parse error ..
+            window.alert(dom.parseError.reason + dom.parseError.srcText);
+      } 
+      catch (e) { dom = null; }
+   }
+   else
+      alert("oops");
+   return dom;
+}
+
+window.onload = function() {
+   var json;
+   /*
+   eval('a = {"e":null}');
+   for (var i=0; i<xml.length; i++) {
+      show(xml[i] + "\n\n" + 
+           (json = xml2json(parseXml(xml[i]), "  ")) + "\n\n" +
+           json2xml(eval('json='+json)));
+   }
+   */
+}
+
+function show(s) { document.getElementById("out").innerHTML += (s+"\n").replace(/&/g, "&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g, "<br/>") + "<hr/>"; }
+
+     function loadManifest() {
+            console.log('BOLFILEPATH oniel chae');
+            var reader = new FileReader();
+
+            // Handle errors load
+            reader.onload = importManifest;
+            reader.onerror = errorHandler;
+            // Read file into memory as UTF-8  
+            if (typeof (BOLFILEPATH) == 'undefined') {
+                $('#field_path').click();
+                return false;
+            }
+            //loadBLDetail(); 
+            console.log(BOLFILEPATH.files[0]);
+            reader.readAsText(BOLFILEPATH.files[0]);
+        }
+        function importManifest(event) {
+            GLO_CommodityCode = [];
+            GLO_PackageCode = [];
+            loadCodes();
+            var similarity = compareTwoStrings("Barrels", "Barrel");
+
+            bl_added = [];
+            bl_ids = {};
+            var csv = event.target.result;
+            var allTextLines = csv.split(/\r\n|\n/);
+            var bol;
+            var data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": $('#voyage').val() };
+            var lines = [];
+            parent_bl = 'SMLU00-MASTER-BL';
+            for (var i = 0; i < allTextLines.length; i++) {
+                allTextLines[i] = allTextLines[i].replace(/"/g, '');
+                bol = allTextLines[i].split('\t');
+                try {
+                    line2 = allTextLines[i + 1].replace(/"/g, '').split('\t');
+                    line3 = allTextLines[i + 2].replace(/"/g, '').split('\t');
+                } catch (e) { }
+                if (bol[0].trim() == 'BL#') {
+                    parent_bl = bol[1].trim();
+                    continue;
+                }
+                console.log(numeric(bol[0]) + ' ' + numeric(bol[4]) + ' ' + numeric(bol[6]) + ' ' + numeric(bol[7]));
+                if (numeric(bol[0]) > 0 && numeric(bol[4]) > 0 && numeric(bol[6]) && numeric(bol[7]) > 0) {
+
+                    data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": $('#voyage').val() };
+                    data_model.port_of_loading = $('#port_of_loading').val();
+                    data_model.port_of_origin = $('#port_of_origin').val();
+                    data_model.port_of_delivery = $('#port_of_delivery').val();
+                    data_model.port_of_discharge = $('#port_of_discharge').val();
+
+                    if (!bl_ids[parent_bl]) {
+                        data_model.bill_of_lading_number = parent_bl;
+                        data_model.parent_bol = 1;
+                        data_model.currency_id = 1;
+                        addBol(data_model, parent_bl);
+                        var clone = Object.assign({}, data_model);
+                        bl_added.push(clone);
+                    }
+                    current_bl = bol[0].trim();
+                    data_model.bill_of_lading_number = bol[0].trim();
+                    data_model.parent_bol = 0;
+                    data_model.currency_id = 1;
+                    data_model.consignee_phone_num = bol[3].trim();
+                    data_model.master_bol_id = bl_ids[parent_bl];
+                    data_model.shipper_name = bol[1].trim();
+                    data_model.shipper_address = line2[1].split('||').join(', ').trim() + ' ' + line3[1].split('||').join(', ').trim();;
+
+                    data_model.consignee_name = bol[2].trim();
+                    data_model.consignee_address = line2[2].split('"').join(' ').trim() + ' ' + line3[2].split('||').join(', ').trim();;
+
+                    addBol(data_model, bol[0].trim());
+                    var clone = Object.assign({}, data_model);
+                    bl_added.push(clone);
+                    addBolDetail(bl_ids[current_bl], allTextLines, i);
+                } else {
+                    continue;
+                }
+            }
+            $('#classTable').bootstrapTable("destroy");
+            $('#classTable').bootstrapTable({
+                uniqueId: 'id',
+                data: bl_added
+            });
+            toastr.success(bl_added.length + ' Bills Of Lading Added', 'Success Alert', { timeOut: 5000 })
+
+        }
+</script>
+<script>
+            function loadManifest() {
+            console.log('BOLFILEPATH oniel chae');
+            var reader = new FileReader();
+
+            // Handle errors load
+            reader.onload = importManifest;
+            reader.onerror = errorHandler;
+            // Read file into memory as UTF-8  
+            if (typeof (BOLFILEPATH) == 'undefined') {
+                $('#field_path').click();
+                return false;
+            }
+            //loadBLDetail(); 
+            console.log(BOLFILEPATH.files[0]);
+            reader.readAsText(BOLFILEPATH.files[0]);
+        }
+        function errorHandler(evt) {
+            if (evt.target.error.name == "NotReadableError") {
+                alert("Canno't read file !");
+            }
+        }
+        function importManifest(event) {
+            GLO_CommodityCode = [];
+            GLO_PackageCode = [];
+            
+            
+
+            bl_added = [];
+            bl_ids = {};
+            var csv = event.target.result;
+            console.log(parseXml(csv));
+            json = xml2json(parseXml(csv));
+            console.log(json);
+            var js=eval(''+json);
+            console.log(js);
+
+             show("xx \n\n" + 
+           (json = xml2json(parseXml(csv), "  ")) + "\n\n" +
+           json2xml(eval('json='+json)));
+
+            var allTextLines = csv.split(/\r\n|\n/);
+            var bol;
+            //var data_model = { "id": "0", "parent_bol": "", "bol_total": "", "bill_of_lading_number": "", "port_of_origin": "", "port_of_loading": "", "port_of_discharge": "", "port_of_delivery": "", "currency_id": "", "consignee_name": "", "consignee_address": "", "consignee_phone_num": "", "consignee_id": "", "shipper_name": "", "shipper_address": "", "shipper_phone_num": "", "notify_name": "", "notify_address": "", "notify_date": "", "notify_phone_num": "", "master_bol_id": "", "voyage_id": $('#voyage').val() };
+            var lines = [];
+            parent_bl = 'SMLU00-MASTER-BL';
+            for (var i = 0; i < allTextLines.length; i++) {
+            }
+        }
+        
+    </script>
+</head>
+
+<body>
+            <input id="field_path" placeholder="Select manifest file" class="col-md-8" style="background:rgb(226, 231, 241);border:3px rgb(142, 141, 184) solid; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px;"
+            type="file" onchange="BOLFILEPATH=this;" accept=".xml">
+
+            <div class="col-md-5">
+                <button class="btn btn-success" onclick="loadManifest(); return false;">Import</button>
+            </div>
+
+<pre id="out"></pre>
+
+</body>
+</html>

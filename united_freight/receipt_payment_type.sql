@@ -1,0 +1,19 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2019-02-13 22:54
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: Oniel
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+ALTER TABLE `uniteddb`.`receipt` 
+CHANGE COLUMN `customer_identification` `customer_identification` CHAR(20) NULL DEFAULT NULL ,
+ADD COLUMN `payment_type` CHAR(20) NULL DEFAULT NULL AFTER `customer_identification`;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

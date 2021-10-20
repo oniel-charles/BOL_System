@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"> 
+<title>Show Local Folder File List</title>
+ 
+<script type="text/javascript"> 
+    var cmd = new ActiveXObject("WScript.Shell");
+    var fso = new ActiveXObject("Scripting.FileSystemObject"); 
+    
+    function ShowFolderFileList(folderspec){
+        
+        var s = "";
+        var f = fso.GetFolder(folderspec);
+        
+        // recurse subfolders
+        var subfolders = new Enumerator(f.SubFolders);
+        for(; !subfolders.atEnd(); subfolders.moveNext()){s+=ShowFolderFileList((subfolders.item()).path);}  
+ 
+        // display all file path names.
+        var fc = new Enumerator(f.files);
+        for (; !fc.atEnd(); fc.moveNext()){
+		   var file = (""+fc.item()).split('\\').slice(-1)[0];
+		   var tmp1 = (""+fc.item()).split('C:\\xampp\\htdocs\\prod').slice(-1)[0];
+		   //s += fc.item() + "<br>"+file+ " ** C:\\xampp\\htdocs\\dev"+tmp1+"<br>";
+		  s += "xcopy  C:\\xampp\\htdocs\\dev"+tmp1 +" "+fc.item() + " /d /y<br>";
+		    //cmd.run("xcopy  C:\\xampp\\htdocs\\dev"+tmp1 +" "+fc.item() + " /d /y");
+		}
+        
+        return s; 
+    }
+    
+</script>
+ 
+<script type="text/javascript">
+function listFiles(){
+    document.getElementById('files').innerHTML = ShowFolderFileList('C:\\xampp\\htdocs\\prod');
+}
+</script>
+</head>
+ 
+<body> 
+    <input type='button' onclick='listFiles()' value='List Files'/>
+    <div id="files"/>
+</html>

@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bill of Lading Processing </title>
+    <link rel="icon" href="../img/worldwide.png">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+
+    <style>
+        .address-width {
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        @font-face {
+            font-family: Delicious;
+            src: url('ManuskriptGothischUNZ1A.ttf');
+        }
+
+        .vertical-text.tabs-left>li {
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="../img/dennis_icon_xWY_1.ico" />
+                            <span>Dennis Shipping</span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/dennis/main">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-cogs"></i> Maintenance
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_port.html">Port</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_country.html">Country</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_currency.html">Currency</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_package.html">Package</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_commodity.html">Commodity</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_container_size_type.html">Container Size Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-list-alt"></i> Charges
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_charges.html">Charge Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_sur_charge.html">Sur Charge</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_rate.html">GCT Rate</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-dollar"></i> Billing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_receipt.html">Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_order.html">Order</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-anchor"></i> Manifest Processing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_voyage.html">Voyage</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                                        </li>
+                                        <li>
+                                            <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-bar-chart"></i> Reports
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_report.html">GCT Report</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                            <a id="menu_toggle">
+                                <i style="font-size:16px" class="fa fa-bars"></i>
+                            </a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <!--span style="font-size: 25px;color:#73879C;font-weight:bold; font-family: Delicious, sans-serif; "> Import Manifest</span-->
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> BLs TO BE PROCESSED</span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images/img.jpg" alt="">
+                                    <span class="user_fullname_disaplay">Active User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:passwordChangeRequest()">
+                                            <i class="fa fa-lock pull-right"></i> Change Password</a>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Help</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:authenticateUser()">
+                                            <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdownx">
+                                <button type="button" class="btn btn-round btn-success btn-sm " onclick="window.location.href='BillOfLading_Enquiry.html'">
+                                    <i class="fa fa-search-plus"></i> Shipment Inquiry</button>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+            <div class="loader"></div>
+            <div class="right_col" role="main">
+                <div>
+                    <div class="form-group col-md-6">
+                        <button onclick="processReceipt();return false;" id="receipt_btn" class="btn btn-primary" onclick="return false;">
+                            <i class="fa fa-cc-mastercard"></i> Receipt</button>
+                        <button onclick="processOrder();return false;" id="order_btn" class="btn btn-warning" onclick="return false;">
+                            <i class="fa fa-file-text"></i> Order</button>
+                        <button id="charge_btn" class="btn btn-success" onclick="displayCharges();return false;">
+                            <i class="fa fa-dollar"></i> Charges</button>
+                        <button id="charge_btn" class="btn btn-info" onclick="displayDetails();return false;">
+                            <i class="fa fa-eye"></i> Display</button>
+                            <div class="btn-group">
+                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"> 
+                                        <i class="fa fa-list-alt"></i> Forms <span class="caret"></span> </button>
+                                <ul class="dropdown-menu">
+                                  <li><a href="javascript:printEntryForm();">Import Entry Form</a>
+                                  </li>
+                                  <li><a href="javascript:printDeliverySlip();">Delivery Slip</a>
+                                  </li>
+                                  <li><a href="javascript:printTruckingReceipt();">Trucking Receipt</a>
+                                  </li>
+                                  <li><a href="javascript:printClearance();">Clearance</a>
+                                  </li>
+                                </ul>
+                              </div>
+                    </div>
+                    <div class="">
+
+                        <div id="toolbar">
+
+                        </div>
+                        <table id="enquiryTable" class="display" cellspacing="0" data-toolbar="#toolbar" data-query-params="queryParams" data-pagination="true"
+                            data-show-columns="true" data-editable="true" data-striped="true" data-search="true" data-show-multi-sort="true"
+                            data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                            <thead>
+                                <tr>
+                                    <th data-field="id" data-visible="false">ID</th>
+                                    <th data-field="bill_of_lading_number" data-sortable="true"> Master BL</th>
+                                    <th data-field="refnum" data-sortable="true"> Reference Number</th>
+                                    <th data-field="consignee_name" data-sortable="true"> Consignee</th>
+                                    <th data-field="consignee_address" data-class="address-width" data-sortable="true">Consignee Address</th>
+                                    <th data-field="notify_date" data-sortable="true">Notify Date</th>
+                                    <th data-field="stripped" data-formatter="formatStrip" data-sortable="true">Stripped</th>
+                                    <th data-field="voyage_number" data-visible="false">Voyage</th>
+                                    <th data-field="vessel_name" data-visible="false">Vessel</th>
+                                    <th data-field="arrival_date" data-formatter="formatColumDate" data-sortable="true">Arrival Date</th>
+                                    <th data-field="notify_address" data-visible="false">Notify Address</th>
+                                    <th data-field="notify_phone_num" data-visible="false">Notify Num</th>
+                                    <th data-field="notify_name" data-visible="false">Notify Name</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th class="hidden">ID</th>
+                                    <th> Bill Of Lading Number</th>
+                                    <th> Reference Number</th>
+                                    <th>Consignee Name</th>
+                                    <th>Consignee Address</th>
+                                    <th>Notify Date</th>
+                                    <th>Stripped</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+
+                    <!-- Bootstrap modal -->
+                    <div class="modal fade" id="med_report_modal" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div style="height:40px" class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title">Import Entry Form</h4>
+                                </div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a id=report1-tab data-toggle="tab" href="#report1-div">Home</a>
+                                    </li>
+                                    <li>
+                                        <a id=report2-tab data-toggle="tab" href="#report2-div">Receipt 2</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="report1-div" class="tab-pane fade in active">
+                                        <iframe id='my-report1-iframe' type="application/pdf" style="min-height:400px;width:100%"></iframe>
+                                    </div>
+                                    <div id="report2-div" class="tab-pane fade">
+                                        <iframe id='my-report2-iframe' type="application/pdf" style="min-height:400px;width:100%"></iframe>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                </div>
+
+                <!-- Bootstrap modal -->
+                <div class="modal fade" id="print_preview" role="dialog">
+                    <div class="modal-dialog modal-md" style="width:800px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="modal-title">Import Entry Form</h3>
+                            </div>
+                            <div class="modal-body form">
+                                <button class="hidden btn btn-default" onclick="printDocument('my-preport-iframe')">Print</button>
+                                <button style="width:100%" class=" btn btn-success" onclick="" id="proceed_print_but">Process Order</button>
+                                <div id=print_preview_div class=" well"></div>
+
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+                <!-- Bootstrap modal -->
+                <div class="modal fade" id="charge_window" role="dialog">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="modal-title">Charges</h3>
+                            </div>
+                            <div class="modal-body form">
+                                <p class="chargetoolbar">
+                                    <a class="create btn btn-success" id="create-charge-rec" href="javascript:">Add New</a>
+                                </p>
+                                <table id="chargeTable" class="display" cellspacing="0" data-toolbar=".chargetoolbar" data-query-params="queryParams" data-pagination="true"
+                                    data-striped="true" data-search="true" data-show-multi-sort="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="id" data-visible="false">ID</th>
+                                            <th data-field="charge_item_id" data-formatter="formatChargeItem" data-sortable="true">Charge Item </th>
+                                            <th data-field="prepaid_flag" data-formatter="formatPrepaid" data-sortable="true">Prepaid </th>
+                                            <th data-field="amount" data-sortable="true">Amount</th>
+                                            <th data-field="currency_code" data-sortable="true">Currency</th>
+                                            <th data-formatter="createChargeActionButtons" data-searchable="false">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="hidden">ID</th>
+                                            <th>Charge Item </th>
+                                            <th>Prepaid </th>
+                                            <th>Amount</th>
+                                            <th>Currency</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+                <!-- Bootstrap BL CHARGE modal Form-->
+                <div class="modal fade" id="charge_modal" role="dialog">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 class="modal-title">Bill Of Lading Other Charge Form</h3>
+                            </div>
+                            <div class="modal-body form">
+                                <form id="charge_form" class="form-horizontal" data-toggle="validator">
+                                    <input type="hidden" name="id" id="id" />
+                                    <input type="hidden" id="billoflading_id" />
+
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Charge Item </label>
+                                            <div class="col-md-9">
+                                                <select onchange="initialLizeAmount()" id="charge_item_id" class="load-select selectpicker" data-path="./api.php/charge_item/api/select"
+                                                    required></select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Amount</label>
+                                            <div class="col-md-4">
+                                                <input id="amount" name="amount" placeholder="Amount" class="form-control" type="number" min="0" step=".01" required>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Prepaid Flag</label>
+                                            <div class="col-md-9">
+                                                <select id="prepaid_flag" class="selectpicker ">
+                                                    <option value="c">Collect</option>
+                                                    <option value="p">Prepaid</option>
+                                                    <option value="i">Ignore</option>
+                                                </select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox ">
+                                                <label class="control-label">Attracts GCT
+                                                    <input id="attract_gct" type="checkbox" class="flat">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Freight Currency</label>
+                                            <div class="col-md-9">
+                                                <select id="currency_id" class="load-select selectpicker" data-path="./api.php/currency/api/select" required></select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input id="submit" type="submit" class="btn btn-info" value="Save">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Gentelella - Bootstrap Admin Template by
+                        <a href="https://colorlib.com">Colorlib</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/jquery-ui.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+    <script src="./vendor/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+
+    <script>
+        function formatColumDate(value, row, index, field) {
+            return formatDate(value);
+        }
+        function displayDetails() {
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 });
+                return false;
+            }
+
+
+
+            $.ajax({
+                url: './api.php/shipment_order/api/valid/' + obj.id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (order_data) {
+
+
+                    $.ajax({
+                        url: './report/rpt_print_receipt.php/' + obj.id + '/check',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            var $receipt_date = '', $receipt_num = 0, $order_date = '', $order_num = 0, $receipt_list = "";
+                            if (order_data.length > 0) { $order_num = order_data[0].id; $order_date = formatDate(order_data[0].order_date); }
+                            if (data.length > 0) {
+                                var rec = {};
+                                for (var i = 0; i < data.length; i++) {
+                                    if (data[i].receipt_number > 0) {
+                                        if (!rec[data[i].receipt_number]) {
+                                            rec[data[i].receipt_number] = {};
+                                            rec[data[i].receipt_number].amount = 0;
+                                            rec[data[i].receipt_number].date = data[i].date;
+                                            rec[data[i].receipt_number].num = data[i].receipt_number;
+                                        }
+                                        rec[data[i].receipt_number].amount += numeric(data[i].amount, 2);
+                                    }
+                                }
+                                for (var x in rec) {
+                                    $receipt_list += '<br><div class="row"><div class="col-sm-3">Receipt</div><div class="col-sm-3"> <span style="color:red">' + pad(rec[x].num, 8) + '</span></div> <div class="col-sm-3"> ' + formatDate(rec[x].date) + ' </div> <div class="col-sm-3">$' + numericStr(rec[x].amount, 2) + '</div></div>';
+                                }
+                                if ($receipt_list == '') {
+                                    $receipt_list = '<br><div class="row"><div class="col-sm-3">Receipt</div><div class="col-sm-9"> <span style="color:red">00000000</span> </div></div>';
+                                }
+                            } else {
+                                $receipt_list = '<br><div class="row"><div class="col-sm-3">Receipt</div><div class="col-sm-9"> <span style="color:red">00000000</span> </div></div>';
+                            }
+
+
+                            var table = '<div class="row">', row;
+                            table += '<div class="col-md-5"><span style="color:black;font-weight: bold;">Consignee</span>';
+
+                            table += '<div>' + getSelectedRow().consignee_name + '</div>';
+                            table += '<div>' + getSelectedRow().consignee_address + '</div><br>';
+                            table += '<div><p style="color:black;font-weight: bold;">Notify</p></div>';
+                            table += '<div>' + getSelectedRow().notify_name + '</div>';
+                            table += '<div>' + getSelectedRow().notify_address + '</div>';
+                            table += '<div style="color:blue">' + getSelectedRow().notify_phone_num + '</div>';
+                            table += '<br><div>Date Notified : ' + formatDate(getSelectedRow().notify_date) + '</div>';
+                            table += $receipt_list;
+                            table += '    <div class="row"><div class="col-sm-3">Order  </div><div class="col-sm-3"> <span style="color:red">' + pad($order_num, 8) + '</span></div> <div class="col-sm-6">' + $order_date + '</div></div>';
+                            table += '</div>';// close of fist column
+
+
+                            var $charge_table = '<table  style="width:100%"><tr><td style="color:black;font-weight: bold;">Charges</td><td align=right>Paid</td><td align=right>$US</td><td align=right>Discount</td><td align=right>Outstanding</td></tr>', total = 0, amt = 0;
+                            var usd = '';
+                            for (var i = 0; i < data.length; i++) {
+                                usd = '';
+                                data[i].amount=data[i].amount;                                
+                                amt = numeric(data[i].bill_amount, 2) - numeric(data[i].paid, 2)- numeric(data[i].discount, 2) ;
+                                if (data[i].item_currency == 2) { usd = data[i].bill_amount; amt = numeric(1 * amt * data[i].roe,2); }
+                                total += amt;
+                                var $style = '';
+                                if (data[i].description.toUpperCase().indexOf('FREIGHT') != -1) { $style = 'style="color:red"' }
+                                $charge_table += '<tr ' + $style + '><td>' + data[i].description + '</td><td style="text-align:right">' + numericStr(data[i].paid, 2) + '</td><td style="text-align:right">' + usd + '</td><td style="text-align:right">' + data[i].discount+'</td><td style="text-align:right">' + amt + '</td></tr>';
+                            }
+                            $charge_table += '<tr style=" text-decoration: underline;font-weight: bold;color:black"><td> TOTAL</td><td></td><td></td><td></td><td style="text-align:right">' + numericStr(total, 2) + '</td></b></tr></table>';
+                            table += '<div class="col-md-7">' + $charge_table;
+                            table += '<br> <div class="row"><div class="col-sm-6" style="font-weight:bold;">Master BL</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + getSelectedRow().bill_of_lading_number + '</div></div>';
+
+                            table += ' <div class="row"><div class="col-sm-6" style="font-weight:bold;">Reference Num</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + getSelectedRow().refnum + '</div></div>';
+
+                            table += ' <div class="row"><div class="col-sm-6" style="font-weight:bold;">Voyage</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + getSelectedRow().voyage_number + '</div></div>';
+
+                            table += ' <div class="row"><div class="col-sm-6" style="font-weight:bold;">Arrival Date</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + formatDate(getSelectedRow().arrival_date) + '</div></div>';
+
+                            table += '<div class="row"> <div class="col-sm-6" style="font-weight:bold;">Vessel</div>';
+                            table += ' <div class="col-sm-6" style="font-weight:bold;">' + getSelectedRow().vessel_name + '</div></div></div></div>';
+                            table += '</div>'; //close row
+
+
+                            $('#proceed_print_but').html('Details');
+                            $('#proceed_print_but').attr('onclick', "");
+
+                            $('#print_preview_div').html(table);
+                            $('#print_preview').find('h3').html('Display Details');
+                            $('#print_preview').modal('show');
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+    </script>
+    <script>
+        function processReceipt() {
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 });
+                return false;
+            }
+
+
+            $.ajax({
+
+                url: './report/rpt_print_receipt.php/' + obj.id + '/check',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    var print_receipt = true;
+                    if (data.length == 0) print_receipt = false;
+                    var obj = {}, freight_id = 0;
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].description.toUpperCase().indexOf('FREIGHT') != -1) {
+                            freight_id = data[i].item;
+                        }
+                        try {
+                            if (data[i].receipt_number == 0) { print_receipt = false; }
+                        } catch (e) { print_receipt = false; }
+                        if (numeric(data[i].receipt_number) > 0) { obj[data[i].receipt_number] = 1; }
+                    }
+                    var receipts = [], recs = [];
+                    for (var x in obj) { receipts.push(x); recs.push(pad(x, 6)); }
+                    if (print_receipt) {
+                        //printReceipt('reprint', receipts);
+                        $('#proceed_print_but').html('RECEIPT ' + recs + ' Was Processed');
+                        $('#proceed_print_but').attr('onclick', "");
+                    } else {
+                        $('#proceed_print_but').html('Process Receipt');
+                        $('#proceed_print_but').attr('onclick', "$('#print_preview').modal('hide'); printReceipt('create',[" + numeric(receipts[0]) + "]," + freight_id + ");");
+                    }
+                    var total = 0;
+                    $('#proceed_print_but').show();
+                    $('#print_preview_div').html('');
+                    var div_form = $('<div>');
+                    var field = ' <div  class="form-group col-sm-7">';
+                    field += '<label  style="margin-left:-2px;" class="control-label col-sm-5">Identification No</label>';
+                    field += ' <div   class="col-sm-7">';
+                    field += '<input id="customer_identification" placeholder="DR# 000-000-000" class="form-control"  type="text"  >';
+                    field += '</div> </div>';
+                    div_form.append(field);
+
+                    field = '<div class="form-group col-sm-5">';
+                    field += '   <label >';
+                    field += '   <input disabled id="print_separate" checked type="checkbox" >';
+                    field += '    Freight - Separate Receipt</label>';
+                    field += '   <label style="display:none">';
+                    field += '   <input id="no_order" type="checkbox" >';
+                    field += '    No Order Needed</label>';
+                    field += '  </div>';
+                    div_form.append(field);
+
+
+                    var table = $('<table width=100% border=0 style="font-size:12px">'), row;
+                    row = $('<tr>');
+                    row.append($('<td>', { html: 'Description', css: { 'text-align': 'left' } }))
+                        .append($('<td>', { html: 'Paid', css: { 'text-align': 'right' } }))
+                        .append($('<td>', { html: 'Charge', css: { 'text-align': 'right' } }))
+                        .append($('<td>', { html: 'Discount', css: { 'text-align': 'right' } }))    
+                        .append($('<td>', { html: '$US', css: { 'text-align': 'right' } }))
+                        .append($('<td>', { html: '$JMD', css: { 'text-align': 'right' } }))
+                    table.append(row);
+                    var amt = 0, usd = '', total_us = 0, us_to_pay = '', jm_to_pay = '', charge_amt = 0;
+                    for (var i = 0; i < data.length; i++) {
+                        usd = 0;
+                        charge_amt = numeric(data[i].bill_amount, 2);
+
+
+                        amt = numeric(data[i].amount, 2);//- numeric(data[i].paid, 2);
+                        jm_to_pay = numeric(data[i].amount, 2);
+                        jm_amount = numeric(data[i].bill_amount, 2) - numeric(data[i].paid, 2)- numeric(data[i].discount, 2);
+                        jm_to_pay =jm_amount;
+                        if (data[i].item_currency == 2) {
+                            usd = numeric(data[i].bill_amount, 2) - numeric(data[i].paid, 2)- numeric(data[i].discount, 2);
+                            roe = data[i].roe;
+                            if (data[i].bill_currency == 2) {
+                                jm_amount = 0;//numeric(1 * usd * data[i].roe,2);
+                            } else {
+                                usd = 0
+                                jm_amount = data[i].amount //- numeric(1*data[i].roe*data[i].discount,2);
+
+                            }
+                            us_to_pay = '<input onKeyUp="changeTotals()" data-us="' + (numeric(data[i].bill_amount, 2) - numeric(data[i].paid, 2)- numeric(data[i].discount, 2)) + '" value=' + usd + ' id=us_amount style="text-align:right"/>';
+                            jm_to_pay = '<input disabled value=' + jm_amount + ' id=jm_amount style="text-align:right"/>';
+                            charge_amt = numeric(data[i].bill_amount, 2);
+                        }
+                        else { us_to_pay = ''; }
+                        total += jm_amount;
+                        total_us += numeric(usd);
+                        row = $('<tr>');
+                        row.append($('<td>', { html: data[i].description, css: { 'text-align': 'left' } }))
+                            .append($('<td>', { html: numericStr(data[i].paid, 2), css: { "color": "black", 'text-align': 'right' } }))
+                            .append($('<td>', { html: numericStr(charge_amt, 2), css: { "color": "black", 'text-align': 'right' } }))
+                            .append($('<td>', { html: numericStr(data[i].discount, 2), css: { "color": "black", 'text-align': 'right' } }))    
+                            .append($('<td >', { html: us_to_pay, css: { "color": "black", 'text-align': 'right' } }))
+                            .append($('<td>', { html: jm_to_pay, css: { "color": "black", 'text-align': 'right' } }))
+                        table.append(row);
+                    }
+                    row = $('<tr>');
+                    row.append($('<td>', { html: '<b>TOTAL<b>', css: { 'text-align': 'left', 'border-top': 'solid 1px' } }))
+                        .append($('<td>', { html: ' ', css: { 'border-top': 'solid 1px' } }))
+                        .append($('<td>', { html: ' ', css: { 'border-top': 'solid 1px' } }))
+                        .append($('<td>', { html: ' ', css: { 'border-top': 'solid 1px' } }))
+                        .append($('<td>', { html: '<input disabled value=' + numericStr(total_us, 2) + ' id=us_total style="text-align:right"/>', css: { "color": "black", 'text-align': 'right', 'border-top': 'solid 1px' } }))
+                        .append($('<td>', { html: '<input disabled value=' + numericStr(total, 2) + ' id=jm_total style="text-align:right"/>', css: { "color": "black", 'text-align': 'right', 'border-top': 'solid 1px' } }))
+                    table.append(row);
+                    $('#print_preview_div').append(div_form);
+                    $('#print_preview_div').append(table);
+                    $('#print_preview').find('h3').html('Receipt Detail');
+                    $('#print_preview').modal('show');
+                    if (total == 0 && total_us == 0) { $('#proceed_print_but').attr('onclick', "alert('Receipt amount due is Zero')"); }
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+        }
+        function changeTotals() {
+            console.log($('#us_amount').attr("data-us"));
+            if (numeric($('#us_amount').val()) > numeric($('#us_amount').attr("data-us"))) {
+                alert('The amount cannot be greater than the charge total ' + $('#us_amount').attr("data-us"));
+                $('#us_amount').val($('#us_amount').attr("data-us"));
+            }
+            if (numeric($('#us_amount').val()) < 0) {
+                alert('The amount cannot be less than zero ');
+                $('#us_amount').val($('#us_amount').attr("data-us"));
+            }
+            var origin_us = numeric($('#us_amount').attr("data-us"));
+            var jtotal = numeric($('#jm_total').val());
+            var jamount = numeric($('#jm_amount').val());
+            var utotal = numeric($('#us_total').val());
+            var uamount = numeric($('#us_amount').val());
+            var new_jamount = numeric(1 * roe * (origin_us - uamount), 2);
+            console.log(new_jamount);
+            $('#jm_total').val(numeric(jtotal - jamount + new_jamount,2));
+            $('#jm_amount').val(new_jamount);
+            $('#us_total').val(uamount);
+
+        }
+        function printReceipt($type, receipt_ids, freight_id) {
+            obj = {};
+            parm_obj = { cus_id: $('#customer_identification').val(), separate: $('#print_separate').is(":checked"), no_order: $('#no_order').is(":checked"), us_amount: $('#us_amount').val() };
+            obj.id = getSelectedRow().id;
+            obj.refnum = getSelectedRow().refnum;
+            obj.consignee_name = getSelectedRow().consignee_name;
+            $.ajax({
+                url: './api.php/shipment_order/api/valid/' + obj.id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length != 0) {
+                        $('#my-report1-iframe').attr('src', '');
+                        $('#my-report2-iframe').attr('src', '');
+                        $('#report2-tab').hide();
+                        var parm_obj = { cus_id: $('#customer_identification').val(), separate: $('#print_separate').is(":checked"), no_order: $('#no_order').is(":checked"), us_amount: numeric($('#us_amount').val()) };
+                        obj = {};
+                        obj.id = getSelectedRow().id;
+                        obj.refnum = getSelectedRow().refnum;
+                        obj.consignee_name = getSelectedRow().consignee_name;
+
+                        setTimeout(function () {
+                            showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/create/' + receipt_ids[0], 'receipt.pdf', 'Receipt', '#my-report1-iframe', parm_obj);
+                        }, 1000);
+                    } else {
+                        toastr.error('Please process Order before receipt can be printed', 'Warning', { timeOut: 3000 })
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+
+        function printReceiptOld($type, receipt_ids, freight_id) {
+            //arguments 0==type,1=additional receipt,2=freight_id
+            //find freight id, if one is aready printed print all, if none is printed , and seperate .., if 
+            $('#my-report1-iframe').attr('src', '');
+            $('#my-report2-iframe').attr('src', '');
+            try {
+                obj = {};
+                parm_obj = { cus_id: $('#customer_identification').val(), separate: $('#print_separate').is(":checked"), no_order: $('#no_order').is(":checked"), us_amount: $('#us_amount').val() };
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+                $.ajax({
+                    url: './api.php/shipment_order/api/valid/' + obj.id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.length != 0) {
+                            $('#report2-tab').show();
+                            if ($type == 'create') {
+                                if ($('#print_separate').is(":checked") && numeric(freight_id) > 0) {
+                                    if (numeric(receipt_ids[0]) > 0) {
+                                        setTimeout(function () {
+                                            showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/reprint/' + receipt_ids[0], 'receipt.pdf', 'Receipt', '#my-report1-iframe', parm_obj);
+                                        }, 1000);
+                                        showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/create/all', 'receipt.pdf', 'Receipt', '#my-report1-iframe', parm_obj);
+                                    } else {
+                                        setTimeout(function () {
+                                            showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/create/no_freight/' + freight_id, 'receipt.pdf', 'Receipt', '#my-report1-iframe', parm_obj);
+                                        }, 1000);
+                                        showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/create/freight/' + freight_id, 'freight-receipt.pdf', 'Receipt', '#my-report2-iframe', parm_obj);
+                                    }
+                                } else {
+                                    if (numeric(receipt_ids[0]) > 0) {
+                                        setTimeout(function () {
+                                            showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/reprint/' + receipt_ids[0], 'receipt.pdf', 'Receipt', '#my-report1-iframe', parm_obj);
+                                        }, 1000);
+                                        showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/create/all', 'receipt.pdf', 'Receipt', '#my-report2-iframe', parm_obj);
+                                    } else {
+                                        showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/create/all', 'receipt.pdf', 'Receipt', '#my-report1-iframe', parm_obj);
+                                        $('#report2-tab').hide();
+                                    }
+                                }
+                            }
+                            if ($type == 'reprint') {
+                                if (receipt_ids.length == 1) {
+                                    showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/reprint/' + receipt_ids[0], 'receipt.pdf', 'Receipt', '#my-report1-iframe', parm_obj);
+                                    $('#report2-tab').hide();
+                                }
+                                if (receipt_ids.length == 2) {
+                                    showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/reprint/' + receipt_ids[0], 'receipt.pdf', 'Receipt', '#my-report1-iframe', parm_obj);
+                                    setTimeout(function () {
+                                        showMediumReportEmbed('./report/rpt_print_receipt.php/' + obj.id + '/reprint/' + receipt_ids[1], 'receipt.pdf', 'Receipt', '#my-report2-iframe', parm_obj);
+                                    }, 1000);
+                                    $('#report2-tab').show();
+                                }
+
+                            }
+                        } else {
+                            toastr.error('Please process Order before receipt can be printed', 'Warning', { timeOut: 3000 })
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+            }
+
+        }
+
+
+
+    </script>
+    <script>
+        charge_model = { "id": "0", "charge_item_id": "", "amount": "", "prepaid_flag": "", "attract_gct": "", "currency_id": "", "billoflading_id": "" }
+        function initialLizeAmount() {
+            var select_path = "./api.php/charge_item/api/select";
+            if (SELECT_DATA_PATH[select_path]) {
+                var data = getJsonObjectValue(SELECT_DATA_PATH[select_path], 'id', $('#charge_item_id').val());
+
+                $('#attract_gct').iCheck('uncheck');
+                $('#attract_gct').prop('checked', false);
+                if (data[0].gct == 1) {
+                    $('#attract_gct').iCheck('check');
+                    $('#attract_gct').prop('checked', true);
+                }
+                //if (data.basis=='fixed'){   TBC
+                $('#amount').val(data[0].item_rate);
+                $('#currency_id').selectpicker('val', data[0].currency_id);
+                //}
+            }
+        }
+        function displayCharges() {
+            try {
+                var bl_id = getSelectedRow().id;
+                bl_rec = getSelectedRow();
+                if (bl_rec.receipt_processed == 1) {
+                    $('#create-charge-rec').hide();
+                } else {
+                    $('#create-charge-rec').show();
+                }
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 });
+                return false;
+            }
+
+            loadCharges(bl_id);
+            $('#charge_window').modal('show');
+
+        }
+
+        function loadCharges(id) {
+            $('#chargeTable').bootstrapTable("destroy");
+            $.ajax({
+                url: './api.php/bill_of_lading_other_charge/api/select/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#chargeTable').bootstrapTable({
+                        uniqueId: 'id',
+                        data: data
+                    });
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+
+
+        function formatPrepaid(value, row, index, field) {
+            return $("#prepaid_flag [value='" + value + "']").text();
+        }
+
+        function formatChargeItem(value, row, index, field) {
+
+            var select_path = "./api.php/charge_item/api/select";
+            if (!SELECT_DATA_PATH[select_path]) {
+                $.ajax({
+                    url: select_path,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        SELECT_DATA_PATH[select_path] = data;
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+            var txt = ''
+            for (var i = 0; i < SELECT_DATA_PATH[select_path].length; i++) {
+                if (SELECT_DATA_PATH[select_path][i].id == value) { txt = SELECT_DATA_PATH[select_path][i].description; }
+            }
+            return txt;
+        }
+        function createChargeActionButtons(value, row, index, field) {
+            var $buttons = "";
+            console.log(bl_rec.receipt_processed);
+            if (bl_rec.receipt_processed != 1) {
+                $buttons = '<button onclick="editCharge(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+                $buttons += '<button onclick="deleteCharge(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+            }
+            return $buttons;
+        }
+
+
+        $('#charge_form')
+            .bootstrapValidator({
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                excluded: [':disabled'],
+                fields: {
+                    charge_item_id: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Charge Item Id is  required and cannot be empty'
+                            }
+                        }
+                    },
+                    amount: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Amount is  required and cannot be empty'
+                            }
+                        }
+                    },
+                    prepaid_flag: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Prepaid Flag is  required and cannot be empty'
+                            }
+                        }
+                    }
+                }
+            })
+            .on('success.form.bv', function (e) {
+                console.log('success.form.bv');
+                // If you want to prevent the default handler (bootstrapValidator._onSuccess(e))
+                // e.preventDefault();
+            })
+            .on('success.form.bv', function (e) {
+                // Prevent submit form
+                e.preventDefault();
+                var $form = $(e.target),
+                    validator = $form.data('bootstrapValidator');
+                var form_data = getFormData('#charge_form', charge_model);
+                if (save_method == 'PUT') {
+                    $.ajax({
+                        type: "PUT",
+                        url: './api.php/bill_of_lading_other_charge/' + form_data['id'],
+                        data: JSON.stringify(form_data), // serializes the form's elements.
+                        success: function (data) {
+                            $('#charge_modal').modal('hide');
+                            toastr.success('The record was updated successfully', 'Success Alert', { timeOut: 5000 })
+                            loadCharges(form_data['billoflading_id']);
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                        },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+                }
+                if (save_method == 'POST') {
+                    $.ajax({
+                        type: "POST",
+                        url: './api.php/bill_of_lading_other_charge/',
+                        data: JSON.stringify(form_data), // serializes the form's elements.                        
+                        success: function (data) {
+                            loadCharges(form_data.billoflading_id);
+                            $('#charge_modal').modal('hide');
+                            toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                           // $('#chargeTable').bootstrapTable("append", obj);
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                        },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+                }
+                $form
+                    .bootstrapValidator('disableSubmitButtons', false)  // Enable the submit buttons
+                    .bootstrapValidator('resetForm', true);             // Reset the form
+            })
+            .on('click', 'tbody > tr > td', function (e) {
+                var table = $table.data('bootstrap.table'),
+                    $element = $(this),
+                    $tr = $element.parent(),
+                    row = table.data[$tr.data('index')];
+                alert(row);
+            });
+
+        //**************************************************
+
+
+        $("#create-charge-rec").click(function (e) {
+            //
+            save_method = 'POST';
+            charge_model = { "id": "0", "charge_item_id": "", "amount": "", "prepaid_flag": "", "attract_gct": "", "currency_id": "", "billoflading_id": "" }
+            e.preventDefault();
+            clearForm('#charge_form');
+            $('#charge_form #billoflading_id').val(getSelectedRow().id);
+            $('#charge_modal').modal('show'); // show bootstrap modal                
+            $('.modal-title').text('Add Bill Of Lading Other Charge'); // Set Title to Bootstrap modal title
+            initialLizeAmount();
+        });
+
+        function deleteCharge(id, el) {
+            bootstrapTableIndex = $(el).closest("tr").index();
+            var tmp = $(el).closest("tr").find("td:eq(0)").text();
+            confirmDialog("Delete Request", 'Are you sure you want to delete:<br><b>' + tmp + '<b> ?', function (confirm) {
+                if (!confirm) return false;
+                $.ajax({
+                    type: "DELETE",
+                    url: './api.php/bill_of_lading_other_charge/' + id,
+                    success: function (data) {
+                        console.log('deleted ' + id);
+                        //$('#chargeTable').bootstrapTable('remove', { field: 'id', values: ['' + id] });
+                        $('#chargeTable').bootstrapTable('removeByUniqueId', id);
+                        toastr.success('The record was deleted successfully', 'Success Alert', { timeOut: 5000 })
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                    },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+
+            });
+        }
+
+        function editCharge(id, el) {
+            bootstrapTableIndex = $(el).closest("tr").index();
+            save_method = 'PUT';
+            $.ajax({
+                url: './api.php/bill_of_lading_other_charge/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#charge_form')
+                        .bootstrapValidator('disableSubmitButtons', false)
+                        .bootstrapValidator('resetForm', true);
+                    charge_model = data;
+                    loadFormData('#charge_form', charge_model);
+                    $('.modal-title').text('Edit Bill Of Lading Other Charge');
+                    $('#charge_modal').modal('show');
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+
+    </script>
+
+    <script>
+        function printDocument(iframeId) {
+            var PDF = document.getElementById(iframeId);
+            PDF.focus();
+            PDF.contentWindow.print();
+        }
+        function formatStrip(value, row, index, field) {
+            if (value == 1) {
+                return 'Yes';
+            }
+            return 'No';
+        }
+    </script>
+    <script>
+
+        function loadBOLTable(data) {
+            $('#enquiryTable').bootstrapTable({
+                idField: 'id',
+                columns: [
+                    [{
+                        field: 'id',
+                        sortable: true,
+                        align: 'left',
+                        title: 'id'
+                    }, {
+                        field: 'bill_of_lading_number',
+                        sortable: true,
+                        align: 'left',
+                        title: 'Master BL',
+                    },
+                    {
+                        field: 'refnum',
+                        sortable: true,
+                        align: 'left',
+                        title: 'Reference Number'
+                    },
+                    {
+                        field: 'consignee_name',
+                        sortable: true,
+                        align: 'left'
+                    },
+                    {
+                        field: 'consignee_address',
+                        sortable: true,
+                        align: 'left'
+                    },
+                    {
+                        field: 'notify_date',
+                        title: 'Notify Date',
+
+                        dateFormat: 'dd/mm/yyyy',
+                        formatter: function (value, row, index) {
+                            var date1 = '' + value;
+                            date1 = date1.substr(0, 4) + '-' + date1.substr(4, 2) + '-' + date1.substr(6, 2);
+                            console.log(date1);
+                            return date1;
+                        },
+                        editable: {
+                            type: 'date',
+                            placement: function (context, source) {
+                                var popupWidth = 336;
+                                if (($(window).scrollLeft() + popupWidth) > $(source).offset().left) {
+                                    return "right";
+                                } else {
+                                    return "left";
+                                }
+                            },
+                            url: function (params) {
+                                var obj = {};
+                                obj[params.name] = params.value.split('-').join('');
+                                return saveNotifyDate(obj, params.pk);
+                            }
+                        }
+                    }]
+                ],
+                uniqueId: 'id',
+                data: data
+            });
+        }
+        function operateFormatter(value, row, index) {
+            return ['<a class="btn-danger" onclick="deleteBOLContainer(' + row.id + ')" href="#" title="Remove">',
+                '<i class="glyphicon glyphicon-remove"></i>',
+                '</a>'
+            ].join('');
+        }
+        function saveNotifyDate(field_obj, id) {
+            var record_saved = false;
+            $.ajax({
+                type: "PUT",
+                url: './api.php/bill_of_lading/' + id,
+                data: JSON.stringify(field_obj), // serializes the form's elements.
+                success: function (data) {
+                    record_saved = true;
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+            return record_saved;
+        }
+
+    </script>
+    <script> 
+        function getBOLDetails(id) {
+            bl_details = {};
+            $.ajax({
+                url: './api.php/bill_of_lading_detail/api/select/' + id,
+                type: 'GET',
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    bl_details = data;
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function processOrder() {
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 });
+                return false;
+            }
+            getBOLDetails(obj.id);
+
+            $.ajax({
+                url: './api.php/shipment_order/api/valid/' + obj.id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+
+                    $('#proceed_print_but').show();
+                    $('#proceed_print_but').html('Process Order');
+                    if (data.length == 0) {
+                        $('#proceed_print_but').attr('onclick', "$('#print_preview').modal('hide');printOrder();");
+                    } else {
+                        $('#proceed_print_but').html('Order was Generated # : ' + pad(data[0].id, 8));
+                        $('#proceed_print_but').attr('onclick', "");
+                    }
+                    $('#print_preview_div').html('');
+                    var table = $('<table width=100% border=0 style="font-size:16px">'), row;
+
+                    row = $('<tr>');
+                    row.append($('<td>', { html: 'Consignee Name :', css: { 'width': '200px' } }))
+                        .append($('<td>', { html: getSelectedRow().consignee_name, css: { "color": "black" } }))
+                    table.append(row);
+
+                    row = $('<tr>');
+                    row.append($('<td>', { html: 'Address :', css: { 'width': '200px' } }))
+                        .append($('<td>', { html: getSelectedRow().consignee_address, css: { "color": "black" } }))
+                    table.append(row);
+
+                    row = $('<tr>');
+                    row.append($('<td>', { html: 'Vessel :', css: { 'width': '200px' } }))
+                        .append($('<td>', { html: getSelectedRow().vessel_name, css: { "color": "black" } }))
+                    table.append(row);
+
+                    row = $('<tr>');
+                    row.append($('<td>', { html: 'Arrival :', css: { 'width': '200px' } }))
+                        .append($('<td>', { html: formatDate(getSelectedRow().arrival_date), css: { "color": "black" } }))
+                    table.append(row);
+
+                    row = $('<tr>');
+                    row.append($('<td>', { html: 'B/L Number :', css: { 'width': '200px' } }))
+                        .append($('<td>', { html: getSelectedRow().bill_of_lading_number, css: { "color": "black" } }))
+                    table.append(row);
+
+                    row = $('<tr>');
+                    row.append($('<td>', { html: 'Details:', css: { 'text-decoration': 'underline' } }))
+                    table.append(row);
+                    for (var i = 0; i < bl_details.length; i++) {
+                        row = $('<tr>');
+                        row.append($('<td>', { html: bl_details[i].measure + ' ' + bl_details[i].measure_unit }))
+                            .append($('<td>', { html: bl_details[i].weight + ' ' + bl_details[i].weight_unit }))
+                            .append($('<td>', { html: bl_details[i].Description_of_goods }))
+                        table.append(row);
+                    }
+                    /*
+                          row = $('<tr>');
+                          row.append($('<td>', { html: 'Vessel :', css: {'text-align':'right','width':'200px'} }))
+                              .append($('<td>', { html: getSelectedRow().vessel_name, css: {"color":"black"} }))
+                          table.append(row);
+                    */
+
+                    $('#print_preview_div').append(table);
+                    $('#print_preview').find('h3').html('Order Detail');
+                    $('#print_preview').modal('show');
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+        }
+        function printOrder() {
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+                $('#report2-tab').hide();
+                $('#my-report1-iframe').attr('src', '');
+                showMediumReportEmbed('./report/rpt_print_order.php/' + obj.id, 'order.pdf', 'Shipment Order')
+
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+            }
+
+        }
+
+        function printEntryForm() {
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+
+                $('#report2-tab').hide();
+                showMediumReport('./report/import_entry.php/' + obj.id, 'import_entry.pdf', 'Import Entry')
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+            }
+
+        }
+        function printTruckingReceipt() {
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+
+                $('#report2-tab').hide();
+                showMediumReport('./report/trucking_receipt.php/' + obj.id, 'truck_receipt.pdf', 'Trucking Receipt')
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+            }
+
+        }
+        function printClearance() {
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+
+                $('#report2-tab').hide();
+                showMediumReport('./report/shipment_clearance.php/' + obj.id, 'clearance.pdf', 'Clearance')
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+            }
+
+        }
+        function printDeliverySlip() {
+            try {
+                var obj = {};
+                obj.id = getSelectedRow().id;
+                obj.refnum = getSelectedRow().refnum;
+                obj.consignee_name = getSelectedRow().consignee_name;
+
+                $('#report2-tab').hide();
+                showMediumReport('./report/delivery_slip.php/' + obj.id, 'delivery_slip.pdf', 'Delivery Slip')
+            } catch (e) {
+                toastr.error('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+            }
+
+        }
+
+        var $table = $('#enquiryTable');
+
+        $(function () {
+            $table.on('click-row.bs.table', function (e, row, $element) {
+                $('.success').removeClass('success');
+                $($element).addClass('success');
+            });
+            $('#button').click(function () {
+                try {
+                    alert(+ getSelectedRow().id + 'Selected name: ' + getSelectedRow().refnum);
+                } catch (e) {
+                    toastr.warning('Please click on  a Bill of Lading', 'Warning', { timeOut: 3000 })
+                }
+            });
+        });
+
+        function getSelectedRow() {
+            var index = $table.find('tr.success').data('index');
+            return $table.bootstrapTable('getData')[index];
+        }
+
+        loadManifestTable();
+        function loadManifestTable() {
+            $('.loader').show();
+            $.ajax({
+                url: './api.php/bill_of_lading/api/processing',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#enquiryTable').bootstrapTable("destroy");
+                    loadBOLTable(data);
+                    $('.loader').hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,902 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema jacksondb2
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema jacksondb2
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `jacksondb2` DEFAULT CHARACTER SET latin1 ;
+USE `jacksondb2` ;
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`country`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`country` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `country_code` CHAR(10) NULL DEFAULT NULL,
+  `country_name` CHAR(60) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 212
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`port`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`port` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `port_code` CHAR(10) NULL DEFAULT NULL,
+  `port_name` CHAR(60) NULL DEFAULT NULL,
+  `country_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `country_id` (`country_id` ASC),
+  CONSTRAINT `fk_port_country`
+    FOREIGN KEY (`country_id`)
+    REFERENCES `jacksondb2`.`country` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 18
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`user_profile`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`user_profile` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_name` CHAR(60) NULL DEFAULT NULL,
+  `password` CHAR(255) NULL DEFAULT NULL,
+  `full_name` CHAR(70) NULL DEFAULT NULL,
+  `status` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`voyage`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`voyage` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `vessel_id` INT(11) NULL DEFAULT NULL,
+  `voyage_number` CHAR(20) NULL DEFAULT NULL,
+  `departure_date` INT(11) NULL DEFAULT NULL,
+  `arrival_date` INT(11) NULL DEFAULT NULL,
+  `stripped` SMALLINT(6) NULL DEFAULT NULL,
+  `stripped_date` INT(11) NULL DEFAULT NULL,
+  `mby_arrival_date` INT(11) NULL DEFAULT NULL,
+  `mby_vessel_id` INT(11) NULL DEFAULT NULL,
+  `transportation_mode` CHAR(1) NULL DEFAULT NULL,
+  `manifest_number` CHAR(15) NULL DEFAULT NULL,
+  `registration_number` CHAR(10) NULL DEFAULT NULL,
+  `booking_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 84
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`bill_of_lading`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`bill_of_lading` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `parent_bol` SMALLINT(6) NULL DEFAULT NULL,
+  `bol_total` DECIMAL(10,2) NULL DEFAULT NULL,
+  `bill_of_lading_number` CHAR(25) NULL DEFAULT NULL,
+  `port_of_origin` INT(11) NULL DEFAULT NULL,
+  `port_of_loading` INT(11) NULL DEFAULT NULL,
+  `port_of_discharge` INT(11) NULL DEFAULT NULL,
+  `port_of_delivery` INT(11) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `consignee_name` CHAR(100) NULL DEFAULT NULL,
+  `consignee_address` CHAR(255) NULL DEFAULT NULL,
+  `consignee_phone_num` CHAR(30) NULL DEFAULT NULL,
+  `consignee_id` INT(11) NULL DEFAULT NULL,
+  `shipper_name` CHAR(100) NULL DEFAULT NULL,
+  `shipper_address` CHAR(255) NULL DEFAULT NULL,
+  `shipper_phone_num` CHAR(30) NULL DEFAULT NULL,
+  `notify_name` CHAR(40) NULL DEFAULT NULL,
+  `notify_address` CHAR(255) NULL DEFAULT NULL,
+  `notify_date` INT(11) NULL DEFAULT NULL,
+  `notify_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `master_bol_id` INT(11) NULL DEFAULT NULL,
+  `voyage_id` INT(11) NOT NULL,
+  `order_processed` SMALLINT(6) NULL DEFAULT NULL,
+  `receipt_processed` SMALLINT(6) NULL DEFAULT NULL,
+  `edited_by` INT(11) NULL DEFAULT NULL,
+  `edit_type` CHAR(25) NULL DEFAULT NULL,
+  `value_of_goods` DECIMAL(12,2) NULL DEFAULT NULL,
+  `value_currency` INT(11) NULL DEFAULT NULL,
+  `customer_type` CHAR(15) NULL DEFAULT NULL,
+  `date_processed` INT(11) NULL DEFAULT NULL,
+  `status` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `unique_bl` (`voyage_id` ASC, `bill_of_lading_number` ASC),
+  INDEX `fk_voyage_idx` (`voyage_id` ASC),
+  INDEX `fk_bol_port_delivery` (`port_of_delivery` ASC),
+  INDEX `fk_bol_port_discharge` (`port_of_discharge` ASC),
+  INDEX `fk_bol_port_loading` (`port_of_loading` ASC),
+  INDEX `fk_bol_port_origin` (`port_of_origin` ASC),
+  INDEX `by_Receipt_processed` (`receipt_processed` ASC),
+  INDEX `by_order_processed` (`order_processed` ASC),
+  INDEX `by_parent` (`parent_bol` ASC),
+  INDEX `fk_edit_user_idx` (`edited_by` ASC),
+  CONSTRAINT `fk_bol_port_delivery`
+    FOREIGN KEY (`port_of_delivery`)
+    REFERENCES `jacksondb2`.`port` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_bol_port_discharge`
+    FOREIGN KEY (`port_of_discharge`)
+    REFERENCES `jacksondb2`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_bol_port_loading`
+    FOREIGN KEY (`port_of_loading`)
+    REFERENCES `jacksondb2`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_bol_port_origin`
+    FOREIGN KEY (`port_of_origin`)
+    REFERENCES `jacksondb2`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_edit_user`
+    FOREIGN KEY (`edited_by`)
+    REFERENCES `jacksondb2`.`user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `jacksondb2`.`voyage` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 5569
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`container_size_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`container_size_type` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `size_type_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`bill_of_lading_container`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`bill_of_lading_container` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `container_number` CHAR(15) NULL DEFAULT NULL,
+  `container_size_type_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bol_container_size_type` (`container_size_type_id` ASC),
+  INDEX `fk_bill_of_lading_container_` (`billoflading_id` ASC),
+  CONSTRAINT `fk_bill_of_lading_container_`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `jacksondb2`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_bol_container_size_type`
+    FOREIGN KEY (`container_size_type_id`)
+    REFERENCES `jacksondb2`.`container_size_type` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 80
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`bill_of_lading_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`bill_of_lading_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `package_type_id` INT(11) NULL DEFAULT NULL,
+  `commodity_id` INT(11) NULL DEFAULT NULL,
+  `Description_of_goods` VARCHAR(500) NULL DEFAULT NULL,
+  `number_of_items` INT(11) NULL DEFAULT NULL,
+  `weight` DECIMAL(10,2) NULL DEFAULT NULL,
+  `measure` DECIMAL(10,2) NULL DEFAULT NULL,
+  `weight_unit` CHAR(10) NULL DEFAULT NULL,
+  `measure_unit` CHAR(10) NULL DEFAULT NULL,
+  `width` DECIMAL(10,2) NULL DEFAULT NULL,
+  `depth` DECIMAL(10,2) NULL DEFAULT NULL,
+  `breath` DECIMAL(10,2) NULL DEFAULT NULL,
+  `volume` DECIMAL(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bol_detail_bill_of_lading` (`billoflading_id` ASC),
+  CONSTRAINT `fk_bol_detail_bill_of_lading`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `jacksondb2`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 4195
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`currency`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`currency` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `currency_code` CHAR(10) NULL DEFAULT NULL,
+  `currency_name` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`commodity`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`commodity` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `commodity_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 58
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`package`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`package` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `package_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 45
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`charge_item`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`charge_item` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `item_code` CHAR(20) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  `basis` CHAR(20) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `item_rate` DECIMAL(10,2) NULL DEFAULT NULL,
+  `commodity_id` INT(11) NULL DEFAULT NULL,
+  `package_id` INT(11) NULL DEFAULT NULL,
+  `print_seperate` SMALLINT(6) NULL DEFAULT NULL,
+  `gct` SMALLINT(6) NULL DEFAULT NULL,
+  `system_def` CHAR(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_charge_item_commodity` (`commodity_id` ASC),
+  INDEX `fk_charge_item_package` (`package_id` ASC),
+  CONSTRAINT `fk_charge_item_commodity`
+    FOREIGN KEY (`commodity_id`)
+    REFERENCES `jacksondb2`.`commodity` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_charge_item_package`
+    FOREIGN KEY (`package_id`)
+    REFERENCES `jacksondb2`.`package` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB
+AUTO_INCREMENT = 33
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`bill_of_lading_other_charge`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`bill_of_lading_other_charge` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `prepaid_flag` CHAR(10) NULL DEFAULT NULL,
+  `attract_gct` SMALLINT(6) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `bycharges` (`billoflading_id` ASC, `charge_item_id` ASC),
+  INDEX `fk_bol_other_charge_currency` (`currency_id` ASC),
+  INDEX `fk_bol_other_charge_item` (`charge_item_id` ASC),
+  CONSTRAINT `fk_bol_other_charge_bol`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `jacksondb2`.`bill_of_lading` (`id`)
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_bol_other_charge_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `jacksondb2`.`currency` (`id`),
+  CONSTRAINT `fk_bol_other_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `jacksondb2`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4067
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`billoflading_discount`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`billoflading_discount` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `charge_item_id` INT(11) NOT NULL,
+  `basis` VARCHAR(15) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `bol_charge_item` (`charge_item_id` ASC, `billoflading_id` ASC),
+  INDEX `fk_charge_item_idx` (`charge_item_id` ASC),
+  INDEX `fk_billoflading_idx` (`billoflading_id` ASC),
+  CONSTRAINT `fk_billoflading`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `jacksondb2`.`bill_of_lading` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `jacksondb2`.`charge_item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 13
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`charge_item_rate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`charge_item_rate` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `effective_date` INT(11) NULL DEFAULT NULL,
+  `rate` DECIMAL(5,2) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `charge_FK_idx` (`charge_item_id` ASC),
+  CONSTRAINT `charge_FK`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `jacksondb2`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`client`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`client` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `client_code` CHAR(10) NULL DEFAULT NULL,
+  `client_name` CHAR(40) NULL DEFAULT NULL,
+  `client_address` CHAR(200) NULL DEFAULT NULL,
+  `phone_number` CHAR(25) NULL DEFAULT NULL,
+  `email_address` CHAR(80) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`client_discount`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`client_discount` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `client_id` INT(11) NOT NULL,
+  `charge_item_id` INT(11) NOT NULL,
+  `basis` VARCHAR(15) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `by_client_item` (`client_id` ASC, `charge_item_id` ASC),
+  INDEX `fk_charge_item_idx` (`charge_item_id` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`company`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`company` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `company_name` CHAR(50) NULL DEFAULT NULL,
+  `company_address` CHAR(100) NULL DEFAULT NULL,
+  `phone` CHAR(20) NULL DEFAULT NULL,
+  `email` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`currency_rate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`currency_rate` (
+  `currency_id` INT(11) NOT NULL,
+  `effective_date` INT(11) NULL DEFAULT NULL,
+  `exchange_rate` DECIMAL(7,2) NULL DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Index_date` (`currency_id` ASC, `effective_date` ASC),
+  CONSTRAINT `fk_currency_rate_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `jacksondb2`.`currency` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`custom_office`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`custom_office` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `code` CHAR(20) NULL DEFAULT NULL,
+  `description` CHAR(40) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 57
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`delivery_order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`delivery_order` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `order_date` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_order_bol` (`billoflading_id` ASC),
+  INDEX `fk_order_created_by` (`created_by` ASC),
+  INDEX `fk_order_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_order_bol0`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `jacksondb2`.`bill_of_lading` (`id`),
+  CONSTRAINT `fk_order_created_by0`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `jacksondb2`.`user_profile` (`id`),
+  CONSTRAINT `fk_order_voyage0`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `jacksondb2`.`voyage` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`translation_source`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`translation_source` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `code` CHAR(15) NULL DEFAULT NULL,
+  `description` CHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `codeIndex` (`code` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 10
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`edi_translation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`edi_translation` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `type` CHAR(15) NULL DEFAULT NULL,
+  `internal_code` CHAR(15) NULL DEFAULT NULL,
+  `external_code` CHAR(255) NULL DEFAULT NULL,
+  `code_id` INT(11) NULL DEFAULT NULL,
+  `translation_source_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_edi_translation_translation_source1_idx` (`translation_source_id` ASC),
+  CONSTRAINT `fk_edi_translation_translation_source1`
+    FOREIGN KEY (`translation_source_id`)
+    REFERENCES `jacksondb2`.`translation_source` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 878
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`menu_group`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`menu_group` (
+  `id` BIGINT(20) NOT NULL,
+  `title` CHAR(100) NULL DEFAULT NULL,
+  `menu_order` INT(11) NULL DEFAULT NULL,
+  `status` SMALLINT(6) NULL DEFAULT NULL,
+  `level` SMALLINT(6) NULL DEFAULT NULL,
+  `icon` CHAR(100) NULL DEFAULT NULL,
+  `description` CHAR(100) NULL DEFAULT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`menu_item`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`menu_item` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `menu_group_id` BIGINT(20) NULL DEFAULT NULL,
+  `title` VARCHAR(100) NULL DEFAULT NULL,
+  `url` VARCHAR(100) NULL DEFAULT NULL,
+  `menu_order` INT(11) NULL DEFAULT NULL,
+  `status` INT(11) NULL DEFAULT NULL,
+  `level` SMALLINT(6) NULL DEFAULT NULL,
+  `icon` CHAR(100) NULL DEFAULT NULL,
+  `description` CHAR(150) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_menu_item_` (`menu_group_id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 54
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`notification_history`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`notification_history` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `notification_date` INT(11) NULL DEFAULT NULL,
+  `notification_detail` CHAR(100) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_billoflading_notification` (`billoflading_id` ASC),
+  CONSTRAINT `fk_billoflading_notification`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `jacksondb2`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 962
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`preclearance`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`preclearance` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `preclearance_date` INT(11) NULL DEFAULT NULL,
+  `preclearance_time` INT(11) NULL DEFAULT NULL,
+  `client_id` INT(11) NULL DEFAULT NULL,
+  `payee` CHAR(40) NULL DEFAULT NULL,
+  `preclearance_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `local_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `exchange_rate` DECIMAL(8,2) NULL DEFAULT NULL,
+  `printed` SMALLINT(6) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(6) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Unique_preclearance_by_bol` (`preclearance_date` ASC, `billoflading_id` ASC, `preclearance_time` ASC, `preclearance_total` ASC),
+  INDEX `fk_preclearance_currency` (`currency_id` ASC),
+  INDEX `fk_preclearancet_bol` (`billoflading_id` ASC),
+  INDEX `fk_preclearance_client` (`client_id` ASC),
+  INDEX `fk_preclearance_created_by` (`created_by` ASC),
+  INDEX `fk_preclearance_deleted_by` (`cancel_by` ASC),
+  CONSTRAINT `fk_preclearance_client0`
+    FOREIGN KEY (`client_id`)
+    REFERENCES `jacksondb2`.`client` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_preclearance_created_by0`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `jacksondb2`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_preclearance_currency0`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `jacksondb2`.`currency` (`id`),
+  CONSTRAINT `fk_preclearance_deleted_by0`
+    FOREIGN KEY (`cancel_by`)
+    REFERENCES `jacksondb2`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB
+AUTO_INCREMENT = 118
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`preclearance_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`preclearance_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `preclearance_id` INT(11) NULL DEFAULT NULL,
+  `bol_id` INT(11) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `currency_amount` DECIMAL(10,2) NOT NULL,
+  `discount` DECIMAL(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_preclearance_detail_charge_item` (`charge_item_id` ASC),
+  INDEX `fk_preclearance_idx` (`preclearance_id` ASC),
+  CONSTRAINT `fk_preclearance0`
+    FOREIGN KEY (`preclearance_id`)
+    REFERENCES `jacksondb2`.`preclearance` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_preclearance_detail_charge_item0`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `jacksondb2`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 342
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`rate_table`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`rate_table` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `package_id` INT(11) NULL DEFAULT NULL,
+  `basis` CHAR(20) NULL DEFAULT NULL,
+  `unit` DECIMAL(10,2) NULL DEFAULT NULL,
+  `rate` DECIMAL(10,2) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `purpose` CHAR(15) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_rate_package_idx` (`package_id` ASC),
+  INDEX `fk_rate_charge_item_idx` (`charge_item_id` ASC),
+  CONSTRAINT `fk_rate_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `jacksondb2`.`charge_item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_rate_package`
+    FOREIGN KEY (`package_id`)
+    REFERENCES `jacksondb2`.`package` (`id`)
+    ON DELETE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 16
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`receipt`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`receipt` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `receipt_date` INT(11) NULL DEFAULT NULL,
+  `receipt_time` INT(11) NULL DEFAULT NULL,
+  `client_id` INT(11) NULL DEFAULT NULL,
+  `payee` CHAR(40) NULL DEFAULT NULL,
+  `receipt_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `local_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `exchange_rate` DECIMAL(8,2) NULL DEFAULT NULL,
+  `printed` SMALLINT(6) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(6) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `customer_identification` CHAR(20) NOT NULL,
+  `payment_type` CHAR(20) NULL DEFAULT NULL,
+  `payment_type_no` CHAR(15) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Unique_Receipt_by_bol` (`receipt_date` ASC, `billoflading_id` ASC, `receipt_time` ASC, `receipt_total` ASC),
+  INDEX `fk_receipt_currency` (`currency_id` ASC),
+  INDEX `fk_receipt_bol` (`billoflading_id` ASC),
+  INDEX `fk_receipt_client` (`client_id` ASC),
+  INDEX `fk_receipt_created_by` (`created_by` ASC),
+  INDEX `fk_receipt_deleted_by` (`cancel_by` ASC),
+  CONSTRAINT `fk_receipt_client`
+    FOREIGN KEY (`client_id`)
+    REFERENCES `jacksondb2`.`client` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_receipt_created_by`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `jacksondb2`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_receipt_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `jacksondb2`.`currency` (`id`),
+  CONSTRAINT `fk_receipt_deleted_by`
+    FOREIGN KEY (`cancel_by`)
+    REFERENCES `jacksondb2`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB
+AUTO_INCREMENT = 859
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`receipt_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`receipt_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `receipt_id` INT(11) NULL DEFAULT NULL,
+  `bol_id` INT(11) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `currency_amount` DECIMAL(10,2) NOT NULL,
+  `discount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `comment` CHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_receipt_detail_charge_item` (`charge_item_id` ASC),
+  INDEX `fk_Receipt` (`receipt_id` ASC),
+  CONSTRAINT `fk_Receipt`
+    FOREIGN KEY (`receipt_id`)
+    REFERENCES `jacksondb2`.`receipt` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_receipt_detail_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `jacksondb2`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1231
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`receipt_payment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`receipt_payment` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `receipt_id` INT(11) NULL DEFAULT NULL,
+  `payment_type` CHAR(15) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  `currency_amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `payment_type_no` CHAR(25) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `by_receipt` (`receipt_id` ASC, `payment_type` ASC),
+  INDEX `fk_receipt_payment_receipt_idx` (`receipt_id` ASC),
+  CONSTRAINT `fk_receipt_payment_receipt`
+    FOREIGN KEY (`receipt_id`)
+    REFERENCES `jacksondb2`.`receipt` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1067
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`shipment_order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`shipment_order` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `locked` INT(11) NULL DEFAULT NULL,
+  `printed` SMALLINT(6) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `order_date` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_order_bol` (`billoflading_id` ASC),
+  INDEX `fk_order_created_by` (`created_by` ASC),
+  INDEX `fk_order_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_order_bol`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `jacksondb2`.`bill_of_lading` (`id`)
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_created_by`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `jacksondb2`.`user_profile` (`id`),
+  CONSTRAINT `fk_order_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `jacksondb2`.`voyage` (`id`)
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`system_values`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`system_values` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `description` CHAR(30) NULL DEFAULT NULL,
+  `data_type` CHAR(10) NULL DEFAULT NULL,
+  `data_value` CHAR(30) NULL DEFAULT NULL,
+  `code` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 20
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`user_option`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`user_option` (
+  `menu_item_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `fk_user_option_user_profile` USING BTREE (`user_id` ASC, `menu_item_id` ASC),
+  INDEX `menu_item_id` USING BTREE (`menu_item_id` ASC, `user_id` ASC),
+  CONSTRAINT `fk_user_option_menu_item`
+    FOREIGN KEY (`menu_item_id`)
+    REFERENCES `jacksondb2`.`menu_item` (`id`),
+  CONSTRAINT `fk_user_option_user_profile`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `jacksondb2`.`user_profile` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1626
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`vessel`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`vessel` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `vessel_name` CHAR(50) NULL DEFAULT NULL,
+  `vessel_code` CHAR(10) NULL DEFAULT NULL,
+  `lloyd_number` CHAR(20) NULL DEFAULT NULL,
+  `country_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_vessel_country` (`country_id` ASC),
+  CONSTRAINT `fk_vessel_country`
+    FOREIGN KEY (`country_id`)
+    REFERENCES `jacksondb2`.`country` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 152
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `jacksondb2`.`voyage_container`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jacksondb2`.`voyage_container` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `container_number` CHAR(15) NULL DEFAULT NULL,
+  `port_origin` INT(11) NULL DEFAULT NULL,
+  `seal` CHAR(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_voyage_container_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_voyage_container_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `jacksondb2`.`voyage` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

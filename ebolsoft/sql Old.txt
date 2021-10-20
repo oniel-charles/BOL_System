@@ -1,0 +1,743 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema dennisnew
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema dennisnew
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `dennisnew` DEFAULT CHARACTER SET latin1 ;
+USE `dennisnew` ;
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`country`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`country` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `country_code` CHAR(10) NULL DEFAULT NULL,
+  `country_name` CHAR(60) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 212
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`port`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`port` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `port_code` CHAR(10) NULL DEFAULT NULL,
+  `port_name` CHAR(60) NULL DEFAULT NULL,
+  `country_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `country_id` (`country_id` ASC),
+  CONSTRAINT `fk_port_country`
+    FOREIGN KEY (`country_id`)
+    REFERENCES `dennisnew`.`country` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 17
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`user_profile`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`user_profile` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_name` CHAR(60) NULL DEFAULT NULL,
+  `password` CHAR(255) NULL DEFAULT NULL,
+  `full_name` CHAR(70) NULL DEFAULT NULL,
+  `status` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 38
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`voyage`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`voyage` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `vessel_id` INT(11) NULL DEFAULT NULL,
+  `voyage_number` CHAR(20) NULL DEFAULT NULL,
+  `departure_date` INT(11) NULL DEFAULT NULL,
+  `arrival_date` INT(11) NULL DEFAULT NULL,
+  `stripped` SMALLINT(6) NULL DEFAULT NULL,
+  `stripped_date` INT(11) NULL DEFAULT NULL,
+  `mby_arrival_date` INT(11) NULL DEFAULT NULL,
+  `mby_vessel_id` INT(11) NULL DEFAULT NULL,
+  `transportation_mode` CHAR(1) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3011
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`bill_of_lading`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`bill_of_lading` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `parent_bol` SMALLINT(6) NULL DEFAULT NULL,
+  `bol_total` DECIMAL(10,2) NULL DEFAULT NULL,
+  `bill_of_lading_number` CHAR(25) NULL DEFAULT NULL,
+  `port_of_origin` INT(11) NULL DEFAULT NULL,
+  `port_of_loading` INT(11) NULL DEFAULT NULL,
+  `port_of_discharge` INT(11) NULL DEFAULT NULL,
+  `port_of_delivery` INT(11) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `consignee_name` CHAR(40) NULL DEFAULT NULL,
+  `consignee_address` CHAR(255) NULL DEFAULT NULL,
+  `consignee_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `consignee_id` INT(11) NULL DEFAULT NULL,
+  `shipper_name` CHAR(40) NULL DEFAULT NULL,
+  `shipper_address` CHAR(255) NULL DEFAULT NULL,
+  `shipper_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `notify_name` CHAR(40) NULL DEFAULT NULL,
+  `notify_address` CHAR(255) NULL DEFAULT NULL,
+  `notify_date` INT(11) NULL DEFAULT NULL,
+  `notify_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `master_bol_id` INT(11) NULL DEFAULT NULL,
+  `voyage_id` INT(11) NOT NULL,
+  `order_processed` SMALLINT(6) NULL DEFAULT NULL,
+  `receipt_processed` SMALLINT(6) NULL DEFAULT NULL,
+  `edited_by` INT(11) NULL DEFAULT NULL,
+  `edit_type` CHAR(25) NULL DEFAULT NULL,
+  `value_of_goods` DECIMAL(12,2) NULL,
+  `value_currency` INT(11) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `unique_bl` (`voyage_id` ASC, `bill_of_lading_number` ASC),
+  INDEX `fk_voyage_idx` (`voyage_id` ASC),
+  INDEX `fk_bol_port_delivery` (`port_of_delivery` ASC),
+  INDEX `fk_bol_port_discharge` (`port_of_discharge` ASC),
+  INDEX `fk_bol_port_loading` (`port_of_loading` ASC),
+  INDEX `fk_bol_port_origin` (`port_of_origin` ASC),
+  INDEX `by_Receipt_processed` (`receipt_processed` ASC),
+  INDEX `by_order_processed` (`order_processed` ASC),
+  INDEX `by_parent` (`parent_bol` ASC),
+  INDEX `fk_edit_user_idx` (`edited_by` ASC),
+  CONSTRAINT `fk_bol_port_delivery`
+    FOREIGN KEY (`port_of_delivery`)
+    REFERENCES `dennisnew`.`port` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_bol_port_discharge`
+    FOREIGN KEY (`port_of_discharge`)
+    REFERENCES `dennisnew`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_bol_port_loading`
+    FOREIGN KEY (`port_of_loading`)
+    REFERENCES `dennisnew`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_bol_port_origin`
+    FOREIGN KEY (`port_of_origin`)
+    REFERENCES `dennisnew`.`port` (`id`)
+    ON DELETE NO ACTION,
+  CONSTRAINT `fk_edit_user`
+    FOREIGN KEY (`edited_by`)
+    REFERENCES `dennisnew`.`user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `dennisnew`.`voyage` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 180326
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`container_size_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`container_size_type` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `size_type_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`bill_of_lading_container`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`bill_of_lading_container` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `container_number` CHAR(15) NULL DEFAULT NULL,
+  `container_size_type_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bol_container_size_type` (`container_size_type_id` ASC),
+  INDEX `fk_bill_of_lading_container_` (`billoflading_id` ASC),
+  CONSTRAINT `fk_bill_of_lading_container_`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `dennisnew`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_bol_container_size_type`
+    FOREIGN KEY (`container_size_type_id`)
+    REFERENCES `dennisnew`.`container_size_type` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2285
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`bill_of_lading_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`bill_of_lading_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `package_type_id` INT(11) NULL DEFAULT NULL,
+  `commodity_id` INT(11) NULL DEFAULT NULL,
+  `Description_of_goods` VARCHAR(500) NULL DEFAULT NULL,
+  `number_of_items` INT(11) NULL DEFAULT NULL,
+  `weight` DECIMAL(10,2) NULL DEFAULT NULL,
+  `measure` DECIMAL(10,2) NULL DEFAULT NULL,
+  `weight_unit` CHAR(10) NULL DEFAULT NULL,
+  `measure_unit` CHAR(10) NULL DEFAULT NULL,
+  `width` DECIMAL(10,2) NULL DEFAULT NULL,
+  `depth` DECIMAL(10,2) NULL DEFAULT NULL,
+  `breath` DECIMAL(10,2) NULL DEFAULT NULL,
+  `volume` DECIMAL(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bol_detail_bill_of_lading` (`billoflading_id` ASC),
+  CONSTRAINT `fk_bol_detail_bill_of_lading`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `dennisnew`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 209191
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`currency`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`currency` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `currency_code` CHAR(10) NULL DEFAULT NULL,
+  `currency_name` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`commodity`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`commodity` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `commodity_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 53
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`package`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`package` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `package_code` CHAR(10) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 43
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`charge_item`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`charge_item` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `item_code` CHAR(20) NULL DEFAULT NULL,
+  `description` CHAR(50) NULL DEFAULT NULL,
+  `basis` CHAR(20) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `item_rate` DECIMAL(10,2) NULL DEFAULT NULL,
+  `commodity_id` INT(11) NULL DEFAULT NULL,
+  `package_id` INT(11) NULL DEFAULT NULL,
+  `print_seperate` SMALLINT(6) NULL DEFAULT NULL,
+  `gct` SMALLINT(6) NULL DEFAULT NULL,
+  `system_def` CHAR(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_charge_item_commodity` (`commodity_id` ASC),
+  INDEX `fk_charge_item_package` (`package_id` ASC),
+  CONSTRAINT `fk_charge_item_commodity`
+    FOREIGN KEY (`commodity_id`)
+    REFERENCES `dennisnew`.`commodity` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_charge_item_package`
+    FOREIGN KEY (`package_id`)
+    REFERENCES `dennisnew`.`package` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB
+AUTO_INCREMENT = 23
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`bill_of_lading_other_charge`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`bill_of_lading_other_charge` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `prepaid_flag` CHAR(10) NULL DEFAULT NULL,
+  `attract_gct` SMALLINT(6) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `bycharges` (`billoflading_id` ASC, `charge_item_id` ASC),
+  INDEX `fk_bol_other_charge_currency` (`currency_id` ASC),
+  INDEX `fk_bol_other_charge_item` (`charge_item_id` ASC),
+  CONSTRAINT `fk_bol_other_charge_bol`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `dennisnew`.`bill_of_lading` (`id`)
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_bol_other_charge_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `dennisnew`.`currency` (`id`),
+  CONSTRAINT `fk_bol_other_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `dennisnew`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 549333
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`billoflading_discount`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`billoflading_discount` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `charge_item_id` INT(11) NOT NULL,
+  `basis` VARCHAR(15) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `bol_charge_item` (`charge_item_id` ASC, `billoflading_id` ASC),
+  INDEX `fk_charge_item_idx` (`charge_item_id` ASC),
+  INDEX `fk_billoflading_idx` (`billoflading_id` ASC),
+  CONSTRAINT `fk_billoflading`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `dennisnew`.`bill_of_lading` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `dennisnew`.`charge_item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`charge_item_rate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`charge_item_rate` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `effective_date` INT(11) NULL DEFAULT NULL,
+  `rate` DECIMAL(5,2) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `charge_FK_idx` (`charge_item_id` ASC),
+  CONSTRAINT `charge_FK`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `dennisnew`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`client`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`client` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `client_code` CHAR(10) NULL DEFAULT NULL,
+  `client_name` CHAR(40) NULL DEFAULT NULL,
+  `client_address` CHAR(200) NULL DEFAULT NULL,
+  `phone_number` CHAR(25) NULL DEFAULT NULL,
+  `email_address` CHAR(80) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`client_discount`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`client_discount` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `client_id` INT(11) NOT NULL,
+  `charge_item_id` INT(11) NOT NULL,
+  `basis` VARCHAR(15) NULL DEFAULT NULL,
+  `amount` DECIMAL(12,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `by_client_item` (`client_id` ASC, `charge_item_id` ASC),
+  INDEX `fk_charge_item_idx` (`charge_item_id` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`company`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`company` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `company_name` CHAR(40) NULL DEFAULT NULL,
+  `company_address` CHAR(100) NULL DEFAULT NULL,
+  `phone` CHAR(20) NULL DEFAULT NULL,
+  `email` CHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`currency_rate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`currency_rate` (
+  `currency_id` INT(11) NOT NULL,
+  `effective_date` INT(11) NULL DEFAULT NULL,
+  `exchange_rate` DECIMAL(7,2) NULL DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Index_date` (`currency_id` ASC, `effective_date` ASC),
+  CONSTRAINT `fk_currency_rate_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `dennisnew`.`currency` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`custom_office`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`custom_office` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `code` CHAR(20) NULL DEFAULT NULL,
+  `description` CHAR(40) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 57
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`delivery_order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`delivery_order` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `order_date` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_order_bol` (`billoflading_id` ASC),
+  INDEX `fk_order_created_by` (`created_by` ASC),
+  INDEX `fk_order_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_order_bol0`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `dennisnew`.`bill_of_lading` (`id`),
+  CONSTRAINT `fk_order_created_by0`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `dennisnew`.`user_profile` (`id`),
+  CONSTRAINT `fk_order_voyage0`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `dennisnew`.`voyage` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 214
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`translation_source`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`translation_source` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `code` CHAR(15) NULL DEFAULT NULL,
+  `description` CHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `codeIndex` (`code` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`edi_translation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`edi_translation` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `type` CHAR(15) NULL DEFAULT NULL,
+  `internal_code` CHAR(15) NULL DEFAULT NULL,
+  `external_code` CHAR(255) NULL DEFAULT NULL,
+  `code_id` INT(11) NULL DEFAULT NULL,
+  `translation_source_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_edi_translation_translation_source1_idx` (`translation_source_id` ASC),
+  CONSTRAINT `fk_edi_translation_translation_source1`
+    FOREIGN KEY (`translation_source_id`)
+    REFERENCES `dennisnew`.`translation_source` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1853
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`menu_group`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`menu_group` (
+  `id` BIGINT(20) NOT NULL,
+  `title` CHAR(100) NULL DEFAULT NULL,
+  `menu_order` INT(11) NULL DEFAULT NULL,
+  `status` SMALLINT(6) NULL DEFAULT NULL,
+  `level` SMALLINT(6) NULL DEFAULT NULL,
+  `icon` CHAR(100) NULL DEFAULT NULL,
+  `description` CHAR(100) NULL DEFAULT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`menu_item`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`menu_item` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `menu_group_id` BIGINT(20) NULL DEFAULT NULL,
+  `title` VARCHAR(100) NULL DEFAULT NULL,
+  `url` VARCHAR(100) NULL DEFAULT NULL,
+  `menu_order` INT(11) NULL DEFAULT NULL,
+  `status` INT(11) NULL DEFAULT NULL,
+  `level` SMALLINT(6) NULL DEFAULT NULL,
+  `icon` CHAR(100) NULL DEFAULT NULL,
+  `description` CHAR(150) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_menu_item_` (`menu_group_id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 47
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`receipt`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`receipt` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `receipt_date` INT(11) NULL DEFAULT NULL,
+  `receipt_time` INT(11) NULL DEFAULT NULL,
+  `client_id` INT(11) NULL DEFAULT NULL,
+  `payee` CHAR(40) NULL DEFAULT NULL,
+  `receipt_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `currency_id` INT(11) NULL DEFAULT NULL,
+  `local_total` DECIMAL(12,2) NULL DEFAULT NULL,
+  `exchange_rate` DECIMAL(8,2) NULL DEFAULT NULL,
+  `printed` SMALLINT(6) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(6) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `customer_identification` CHAR(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Unique_Receipt_by_bol` (`receipt_date` ASC, `billoflading_id` ASC, `receipt_time` ASC, `receipt_total` ASC),
+  INDEX `fk_receipt_currency` (`currency_id` ASC),
+  INDEX `fk_receipt_bol` (`billoflading_id` ASC),
+  INDEX `fk_receipt_client` (`client_id` ASC),
+  INDEX `fk_receipt_created_by` (`created_by` ASC),
+  INDEX `fk_receipt_deleted_by` (`cancel_by` ASC),
+  CONSTRAINT `fk_receipt_client`
+    FOREIGN KEY (`client_id`)
+    REFERENCES `dennisnew`.`client` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_receipt_created_by`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `dennisnew`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_receipt_currency`
+    FOREIGN KEY (`currency_id`)
+    REFERENCES `dennisnew`.`currency` (`id`),
+  CONSTRAINT `fk_receipt_deleted_by`
+    FOREIGN KEY (`cancel_by`)
+    REFERENCES `dennisnew`.`user_profile` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB
+AUTO_INCREMENT = 146700
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`receipt_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`receipt_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `receipt_id` INT(11) NULL DEFAULT NULL,
+  `bol_id` INT(11) NULL DEFAULT NULL,
+  `charge_item_id` INT(11) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `currency_amount` DECIMAL(10,2) NOT NULL,
+  `discount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `comment` CHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_receipt_detail_charge_item` (`charge_item_id` ASC),
+  INDEX `fk_Receipt` (`receipt_id` ASC),
+  CONSTRAINT `fk_Receipt`
+    FOREIGN KEY (`receipt_id`)
+    REFERENCES `dennisnew`.`receipt` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_receipt_detail_charge_item`
+    FOREIGN KEY (`charge_item_id`)
+    REFERENCES `dennisnew`.`charge_item` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 561833
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`shipment_order`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`shipment_order` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `created_by` INT(11) NULL DEFAULT NULL,
+  `locked` INT(11) NULL DEFAULT NULL,
+  `printed` SMALLINT(6) NULL DEFAULT NULL,
+  `cancelled` SMALLINT(6) NULL DEFAULT NULL,
+  `order_date` INT(11) NULL DEFAULT NULL,
+  `cancel_by` INT(11) NULL DEFAULT NULL,
+  `cancel_date` INT(11) NULL DEFAULT NULL,
+  `cancel_time` SMALLINT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_order_bol` (`billoflading_id` ASC),
+  INDEX `fk_order_created_by` (`created_by` ASC),
+  INDEX `fk_order_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_order_bol`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `dennisnew`.`bill_of_lading` (`id`)
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_created_by`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `dennisnew`.`user_profile` (`id`),
+  CONSTRAINT `fk_order_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `dennisnew`.`voyage` (`id`)
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 176429
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`system_values`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`system_values` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `description` CHAR(30) NULL DEFAULT NULL,
+  `data_type` CHAR(10) NULL DEFAULT NULL,
+  `data_value` CHAR(30) NULL DEFAULT NULL,
+  `code` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 10
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`user_option`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`user_option` (
+  `menu_item_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `fk_user_option_user_profile` USING BTREE (`user_id` ASC, `menu_item_id` ASC),
+  INDEX `menu_item_id` USING BTREE (`menu_item_id` ASC, `user_id` ASC),
+  CONSTRAINT `fk_user_option_menu_item`
+    FOREIGN KEY (`menu_item_id`)
+    REFERENCES `dennisnew`.`menu_item` (`id`),
+  CONSTRAINT `fk_user_option_user_profile`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `dennisnew`.`user_profile` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1053
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`vessel`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`vessel` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `vessel_name` CHAR(50) NULL DEFAULT NULL,
+  `vessel_code` CHAR(10) NULL DEFAULT NULL,
+  `lloyd_number` CHAR(20) NULL DEFAULT NULL,
+  `country_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_vessel_country` (`country_id` ASC),
+  CONSTRAINT `fk_vessel_country`
+    FOREIGN KEY (`country_id`)
+    REFERENCES `dennisnew`.`country` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 143
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dennisnew`.`voyage_container`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dennisnew`.`voyage_container` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `voyage_id` INT(11) NULL DEFAULT NULL,
+  `container_number` CHAR(15) NULL DEFAULT NULL,
+  `port_origin` INT(11) NULL DEFAULT NULL,
+  `seal` CHAR(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_voyage_container_voyage` (`voyage_id` ASC),
+  CONSTRAINT `fk_voyage_container_voyage`
+    FOREIGN KEY (`voyage_id`)
+    REFERENCES `dennisnew`.`voyage` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2492
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

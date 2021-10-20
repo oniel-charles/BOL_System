@@ -1,0 +1,1 @@
+delete FROM `bill_of_lading_detail` WHERE billoflading_id not in (select id from bill_of_lading)

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editable</title>
+    <meta charset="utf-8">
+
+  <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+  <link href="./css/bootstrap-editable.css" rel="stylesheet"/>
+
+
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+</head>
+<body>
+    
+        <div class="container">
+                <h1>Editable select box(<a href="https://github.com/wenzhixin/bootstrap-table/issues/986" target="_blank">#986</a>).</h1>
+                <table id="table"></table>
+            </div>
+        <script>
+            var data = [{
+                "name": "active"
+            }, {
+                "name": "blocked"
+            }, {
+                "name": "deleted"
+            }];
+            var $table = $('#table');
+            $(function () {
+                $table.bootstrapTable({
+                    idField: 'name',
+                    columns: [{
+                        field: 'state',
+                        title: '',
+                        checkbox: true
+                    }, {
+                        field: 'name',
+                        title: 'names',
+                        sortable: true,
+                        editable: {
+                            type: 'select',
+                            source: [
+                                {value: 'active', text: 'Active'},
+                                {value: 'blocked', text: 'Blocked'},
+                                {value: 'deleted', text: 'Deleted'}
+                            ]
+                        }
+                    }],
+                    data: data
+                });
+            });
+        </script>
+</body>
+</html>
