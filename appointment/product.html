@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>App</title>
+    <link rel="icon" href="./img/app_icon.ico">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="./build/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="./img/company_icon.ico" />
+                            <span>Quality One</span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="index.html">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout"
+                            href="javascript:authenticateUser()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                            <a id="menu_toggle">
+                                <i style="font-size:16px" class="fa fa-bars"></i>
+                            </a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;"
+                                    class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Product</span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;"
+                                    class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active
+                                        User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:passwordChangeRequest()">
+                                            <i class="fa fa-lock pull-right"></i> Change Password</a>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:displayHelp();">Help</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:authenticateUser()">
+                                            <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdownx">
+                                <button type="button" class="btn btn-round btn-success btn-sm "
+                                    onclick="loadShortCutOption(this)">
+                                    <i class="fa fa-search-plus"></i> BL Processing</button>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                <div class="">
+
+                    <p class="toolbar">
+                        <a class="create btn btn-success" id="create-rec" href="javascript:">Add New</a>
+                    </p>
+                    <table id="classTable" class="display" cellspacing="0" data-toolbar=".toolbar"
+                        data-query-params="queryParams" data-pagination="true" data-striped="true" data-search="true"
+                        data-show-multi-sort="true"
+                        data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                                <th data-field="code" data-sortable="true">Code</th>
+                                <th data-field="description" data-sortable="true">Description</th>
+                                <th data-field="balance_quantity" data-sortable="true">Balance</th>
+                                <th data-field="selling_price" data-sortable="true">Selling Price</th>
+                                <th data-formatter="getProductImage" data-field="img">Image</th>
+                                <th data-formatter="createActionButtons" data-searchable="false">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th class="hidden">ID</th>
+                                <th>Code</th>
+                                <th>Description</th>
+                                <th>Balance</th>
+                                <th>Selling Price</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bootstrap modal -->
+            <div class="modal fade" id="modal_form" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="modal-title">Product Form</h3>
+                        </div>
+                        <div class="modal-body form">
+                            <form id="edit_form" class="form-horizontal" data-toggle="validator">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a id="generaltab" data-toggle="tab" href="#general"><i class="fa fa-globe"
+                                                style="color:blue"></i> General</a>
+                                    </li>
+                                    <li>
+                                        <a id="ratetab" data-toggle="tab" href="#rate"><i class="fa fa-dollar"
+                                                style="color:green"></i> Price</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="general" class="tab-pane fade in active">
+                                        <input type="hidden" value="" name="id" id="id" />
+                                        <div class="form-body">
+                                            <div class="form-group"> <label class="control-label col-md-3">Code</label>
+                                                <div class="col-md-9"> <input id="code" name="code" placeholder="Code"
+                                                        class="form-control" type="text" required><span
+                                                        class="help-block"></span> </div>
+                                            </div>
+                                            <div class="form-group"> <label
+                                                    class="control-label col-md-3">Description</label>
+                                                <div class="col-md-9"> <input id="description" name="description"
+                                                        placeholder="Description" class="form-control" type="text"
+                                                        required><span class="help-block"></span> </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Brand</label>
+                                                <div class="col-md-9">
+                                                    <select id="brand_id" class=" load-select form-control "
+                                                        data-path="./app/brand/select"></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"> <label class="control-label col-md-3">Low Stock
+                                                    Value</label>
+                                                <div class="col-md-9"> <input id="low_stock_value"
+                                                        name="low_stock_value" placeholder="Low Stock Value"
+                                                        class="form-control" type="text" required><span
+                                                        class="help-block"></span> </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Photo</label>
+                                                <input id="photo_path" class="col-md-4"
+                                                    placeholder="Select manifest file"
+                                                    style="background:rgb(226, 231, 241);border:3px rgb(142, 141, 184) solid; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px;"
+                                                    type="file" accept="image/*">
+
+                                                <div class="col-md-5"><img id="product_photo" width=70 height=70 />
+                                                </div>
+                                            </div>
+                                            <div class="form-group hidden"> <label
+                                                    class="control-label col-md-3">Image</label>
+                                                <div class="col-md-9"> <input id="img" name="img" placeholder="Img"
+                                                        class="form-control" type="text"><span
+                                                        class="help-block"></span> </div>
+                                            </div>
+                                            <div class="form-group"> <label
+                                                    class="control-label col-md-3">Dimention</label>
+                                                <div class="col-md-9"> <input id="dimention" name="dimention"
+                                                        placeholder="Dimention" class="form-control" type="text"><span
+                                                        class="help-block"></span> </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group"> <label
+                                                            class="control-label col-md-6">Weight
+                                                            (kg)</label>
+                                                        <div class="col-md-6"> <input id="weight" name="weight"
+                                                                placeholder="Weight" class="form-control"
+                                                                type="text"><span class="help-block"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group"> <label
+                                                            class="control-label col-md-6">Volume
+                                                            (cm)</label>
+                                                        <div class="col-md-6"> <input id="volume" name="volume"
+                                                                placeholder="Volume" class="form-control"
+                                                                type="text"><span class="help-block"></span> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div id="rate" class="tab-pane fade">
+                                        <div class="">
+                                            <p class="toolbarprice ">
+
+                                            <div style="margin-top:3px;">
+                                                <button type="button" onclick="addSellingPrice()"
+                                                    class="btn btn-success btn-sm">Add New Price</button>
+                                            </div>
+                                            </p>
+                                            <table id="pricetable" class="display" cellspacing="0"
+                                                data-toolbar=".toolbarprice" data-pagination="true" data-striped="true"
+                                                data-editable="true" data-toolbar-align='top'>
+                                                <th data-field="id" data-visible="false">ID</th>
+                                  
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input id="submit" type="submit" class="btn btn-info" value="Save"
+                                        onclick="saveRecord()">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- End Bootstrap modal -->
+            <!-- /page content -->
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/jquery-ui.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+    <script src="./vendor/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="./vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="./vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="./vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="./build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/crud.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            //
+            data_model = { "id": "0", "code": "", "description": "", "brand_id": "", "img": "", "low_stock_value": "", "weight": "", "volume": "", "dimention": "", "balance_quantity": "" };
+            //
+            businessObject = new BusinessObject(data_model, 'product');
+
+            fieldValidatrs = {};
+            //
+            fieldValidatrs.code = createValidationField('Code', 'notEmpty');
+            fieldValidatrs.description = createValidationField('Description', 'notEmpty');
+            //fieldValidatrs.brand_id=createValidationField('Brand Id','notEmpty');
+
+            fieldValidatrs.low_stock_value = createValidationField('Low Stock Value', 'notEmpty');
+            crudInit(businessObject);
+            loadBusinessObjects(businessObject.data_table);
+            businessObject.beforeUpdate = savePhoto;
+            businessObject.afterSave = savePhoto;
+            businessObject.afterGet = loadPhoto;
+            businessObject.afterDelete = deletePhoto;
+            businessObject.beforeGet = function () {
+                $('#photo_path').val(null);
+                $('#ratetab').show();
+                $('#generaltab').tab('show');              
+            }
+            businessObject.beforeNewRecord = function () {
+                $('#ratetab').hide();
+                $('#generaltab').tab('show');
+            }
+
+            /*function beforeSave(){
+                console.log("before save.... right");
+            } */
+        });
+        function loadBusinessObjects(data_table){  
+        $.ajax({
+            url: './app/'+data_table+"/list",
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $('#classTable').bootstrapTable({
+                    uniqueId: 'id',
+                    data: data
+                });
+
+                try { parent.autoResize('myframe'); } catch (e) { }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+            },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+        }
+        function savePhoto() {
+            var file_data = $('#photo_path').prop('files')[0];
+            if (!file_data) { return; }
+            var form_data = new FormData();
+            //form_data.append('file', file_data);
+            form_data.append("file", photo_path.files[0]);
+            form_data.append("path", "img/product");
+            form_data.append("name", "prod" + businessObject.data_model.id);
+            $.ajax({
+                url: 'product_upload.php', // <-- point to server-side PHP script 
+                dataType: 'text',  // <-- what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                async: false,
+                data: form_data,
+                type: 'post',
+                success: function (php_script_response) {
+                    businessObject.data_model.img = php_script_response;
+                }
+            });
+            this.form_data.img = businessObject.data_model.img;
+            if (save_method == 'POST') {
+                var obj = {};
+                obj.img = businessObject.data_model.img;
+                $.ajax({
+                    type: "PUT",
+                    url: './app/' + businessObject.data_table + '/' + businessObject.data_model.id,
+                    data: JSON.stringify(obj), // serializes the form's elements.
+                    success: function (data) { },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError); },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+        }
+
+        function loadPhoto() {
+            loadPriceTable();
+            $('#product_photo').attr('src', './img/product/' + businessObject.data_model.img);
+        }
+        function deletePhoto() {
+            var form_data = new FormData();
+            form_data.append("path", "img/product");
+            form_data.append("action", "delete");
+            form_data.append("name", businessObject.data_model.img.trim());
+
+            $.ajax({
+                url: 'product_upload.php', // <-- point to server-side PHP script 
+                dataType: 'text',  // <-- what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                async: false,
+                data: form_data,
+                type: 'post',
+                success: function (php_script_response) {
+                }
+            });
+        }
+        //***********************
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#product_photo').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#photo_path").change(function () {
+            readURL(this);
+        });
+        //************************
+        function getProductImage(value, row, index, field) {
+            return "<img src='./img/product/" + row.img + "' height=30 width=30 >";
+        }
+
+        function loadPriceTable() {
+            $('#pricetable').bootstrapTable("destroy");
+            //toggle `popup` / `inline` mode
+            //$.fn.editable.defaults.mode = 'inline';
+
+            $.ajax({
+                url: './app/product_rate/select/' +businessObject.data_model.id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#pricetable').bootstrapTable({
+                        idField: 'id',
+                        columns: [
+                            [{
+                                field: 'effective_date',
+                                title: 'Effective Date',
+                                dateFormat: 'dd/mm/yyyy',
+                                formatter: function (value, row, index) {
+                                    var date1 = '' + value;
+                                    date1 = date1.substr(0, 4) + '-' + date1.substr(4, 2) + '-' + date1.substr(6, 2);
+                                    console.log(date1);
+                                    return date1;
+                                },
+                                editable: {
+                                    type: 'date',
+                                    onchange:'submit',
+                                    placement: function (context, source) {
+                                        var popupWidth = 336;
+                                        if (($(window).scrollLeft() + popupWidth) > $(source).offset().left) {
+                                            return "right";
+                                        } else {
+                                            return "left";
+                                        }
+                                    },
+                                    url: function (params) {
+                                        var obj = {};
+                                        obj[params.name] = params.value.split('-').join('');
+                                        return saveEffectiveDate(obj, params.pk);
+                                    }
+                                }
+                            },
+                            {
+                                field: 'selling_price',
+                                title: 'Price',
+                                editable: {
+                                    type: 'text',
+                                    url: function (params) {
+                                        var obj = {};
+                                        obj[params.name] = numeric(params.value.split('$').join(''));
+                                        return saveProductPrice(obj, params.pk);
+                                    }
+                                },
+                                formatter: function (value, row, index) {
+                                    
+                                    return '$'+numericStr(value,2);
+                                }
+                            }, {
+                                field: 'operate',
+                                title: ' ',
+                                align: 'center',
+                                formatter: operateFormatter
+                            }]
+                        ],
+                        uniqueId: 'id',
+                        data: data
+                    });
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function saveEffectiveDate(field_obj, id) {
+            var record_saved = false;
+            $.ajax({
+                type: "PUT",
+                url: './app/product_rate/' + id,
+                data: JSON.stringify(field_obj), // serializes the form's elements.
+                success: function (data) {
+                    record_saved = true;
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+            return record_saved;
+        }
+
+        function operateFormatter(value, row, index) {
+            return ['<a class="btn-danger" onclick="deleteProductRate(' + row.id + ')" href="#" title="Remove">',
+                '<i class="glyphicon glyphicon-remove"></i>',
+                '</a>'
+            ].join('');
+        }
+        function deleteProductRate(id) {
+            console.log(id);
+
+            $.ajax({
+                type: "DELETE",
+                url: './app/product_rate/' + id,
+                success: function (data) {
+                    loadPriceTable();
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function addSellingPrice() {
+            var d = new Date();
+            var date = '' + d.getFullYear() + pad((1 + d.getMonth()), 2) + pad(d.getDate(), 2);
+            var obj = { "effective_date": date, "product_id": businessObject.data_model.id };
+            $.ajax({
+                type: "POST",
+                url: './app/product_rate/',
+                data: JSON.stringify(obj),
+                success: function (data) {
+                    loadPriceTable();
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function saveProductPrice(field_obj, id) {
+            var record_saved = false;
+            $.ajax({
+                type: "PUT",
+                url: './app/product_rate/' + id,
+                data: JSON.stringify(field_obj),
+                success: function (data) {
+                    record_saved = true;
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+            return record_saved;
+        }
+    </script>
+</body>
+
+</html>

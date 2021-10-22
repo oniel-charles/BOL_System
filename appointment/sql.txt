@@ -1,0 +1,199 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema appt_db
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema appt_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `appt_db` DEFAULT CHARACTER SET latin1 ;
+USE `appt_db` ;
+
+-- -----------------------------------------------------
+-- Table `appt_db`.`bill_of_lading`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `appt_db`.`bill_of_lading` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `bol_total` DECIMAL(10,2) NULL DEFAULT NULL,
+  `bill_of_lading_number` CHAR(25) NULL DEFAULT NULL,
+  `port_of_origin` CHAR(30) NULL DEFAULT NULL,
+  `port_of_discharge` CHAR(30) NULL DEFAULT NULL,
+  `consignee_name` CHAR(40) NULL DEFAULT NULL,
+  `consignee_address` CHAR(255) NULL DEFAULT NULL,
+  `consignee_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `shipper_name` CHAR(40) NULL DEFAULT NULL,
+  `shipper_address` CHAR(255) NULL DEFAULT NULL,
+  `shipper_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `notify_name` CHAR(40) NULL DEFAULT NULL,
+  `notify_address` CHAR(255) NULL DEFAULT NULL,
+  `notify_date` INT(11) NULL DEFAULT NULL,
+  `notify_phone_num` CHAR(15) NULL DEFAULT NULL,
+  `voyage` CHAR(20) NOT NULL,
+  `reported_date` INT(11) NULL DEFAULT NULL,
+  `vessel` CHAR(40) NULL DEFAULT NULL,
+  `customer_type` CHAR(15) NULL DEFAULT NULL,
+  `status` CHAR(15) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `unique_bl` (`voyage` ASC, `bill_of_lading_number` ASC),
+  INDEX `fk_voyage_idx` (`voyage` ASC),
+  INDEX `fk_bol_port_discharge` (`port_of_discharge` ASC),
+  INDEX `fk_bol_port_origin` (`port_of_origin` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 180179
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `appt_db`.`appointment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `appt_db`.`appointment` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `trn` CHAR(15) NULL DEFAULT NULL,
+  `uba_code` CHAR(30) NULL DEFAULT NULL,
+  `passport_number` CHAR(20) NULL DEFAULT NULL,
+  `status` CHAR(20) NULL DEFAULT NULL,
+  `appointment_date` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `fk_appointment_billoflading_idx` (`billoflading_id` ASC),
+  CONSTRAINT `fk_appointment_billoflading`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `appt_db`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 20
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `appt_db`.`bill_of_lading_detail`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `appt_db`.`bill_of_lading_detail` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  `package_type` CHAR(30) NULL DEFAULT NULL,
+  `commodity` CHAR(30) NULL DEFAULT NULL,
+  `Description_of_goods` VARCHAR(500) NULL DEFAULT NULL,
+  `number_of_items` INT(11) NULL DEFAULT NULL,
+  `weight` DECIMAL(10,2) NULL DEFAULT NULL,
+  `measure` DECIMAL(10,2) NULL DEFAULT NULL,
+  `weight_unit` CHAR(10) NULL DEFAULT NULL,
+  `measure_unit` CHAR(10) NULL DEFAULT NULL,
+  `width` DECIMAL(10,2) NULL DEFAULT NULL,
+  `depth` DECIMAL(10,2) NULL DEFAULT NULL,
+  `breath` DECIMAL(10,2) NULL DEFAULT NULL,
+  `volume` DECIMAL(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bol_detail_bill_of_lading` (`billoflading_id` ASC),
+  CONSTRAINT `fk_boldetail_bol`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `appt_db`.`bill_of_lading` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 209191
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `appt_db`.`bill_of_lading_other_charge`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `appt_db`.`bill_of_lading_other_charge` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `charge_item` CHAR(30) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NULL DEFAULT NULL,
+  `prepaid_flag` CHAR(10) NULL DEFAULT NULL,
+  `attract_gct` SMALLINT(6) NULL DEFAULT NULL,
+  `currency` CHAR(10) NULL DEFAULT NULL,
+  `billoflading_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `bycharges` (`billoflading_id` ASC, `charge_item` ASC),
+  INDEX `fk_bol_other_charge_currency` (`currency` ASC),
+  INDEX `fk_bol_other_charge_item` (`charge_item` ASC),
+  CONSTRAINT `fk_bol_charge_bol`
+    FOREIGN KEY (`billoflading_id`)
+    REFERENCES `appt_db`.`bill_of_lading` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 549346
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `appt_db`.`menu_item`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `appt_db`.`menu_item` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `menu_group_id` BIGINT(20) NULL DEFAULT NULL,
+  `title` VARCHAR(100) NULL DEFAULT NULL,
+  `url` VARCHAR(100) NULL DEFAULT NULL,
+  `menu_order` INT(11) NULL DEFAULT NULL,
+  `status` INT(11) NULL DEFAULT NULL,
+  `level` SMALLINT(6) NULL DEFAULT NULL,
+  `icon` CHAR(100) NULL DEFAULT NULL,
+  `description` CHAR(150) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_menu_item_` (`menu_group_id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 52
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `appt_db`.`system_values`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `appt_db`.`system_values` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `description` CHAR(30) NULL DEFAULT NULL,
+  `data_type` CHAR(10) NULL DEFAULT NULL,
+  `data_value` CHAR(30) NULL DEFAULT NULL,
+  `code` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 14
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `appt_db`.`user_option`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `appt_db`.`user_option` (
+  `menu_item_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `fk_user_option_user_profile` USING BTREE (`user_id` ASC, `menu_item_id` ASC),
+  INDEX `menu_item_id` USING BTREE (`menu_item_id` ASC, `user_id` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1133
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `appt_db`.`user_profile`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `appt_db`.`user_profile` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_name` CHAR(60) NULL DEFAULT NULL,
+  `password` CHAR(255) NULL DEFAULT NULL,
+  `full_name` CHAR(70) NULL DEFAULT NULL,
+  `status` CHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 38
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

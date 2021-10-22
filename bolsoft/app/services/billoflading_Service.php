@@ -398,6 +398,9 @@ switch ($service_type) {
           $cost=(4000*$quan)+1000;
         }
       break;
+      default:
+         $cost=$rate*$quan;	  
+      break;
     }
     return $cost; 
   }

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>App</title>
+  <link rel="icon" href="./img/app_icon.ico">
+
+  <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Custom Theme Style -->
+  <link href="./build/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+  <!-- Font Awesome -->
+  <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+  <!-- iCheck -->
+  <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+  <!-- bootstrap-daterangepicker -->
+  <link href="./css/datepicker.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+  <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+  <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+  <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="nav-md">
+  <div id='app-cover' style=" display:none;position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.9); /*dim the background*/"></div>
+  <div class="container body">
+    <div class="main_container">
+  
+
+    
+
+      <!-- page content -->
+      
+
+      <div id='dashboard' style="display:xnone;width:100%;margin-left: 0px;" class="right_col" role="main">
+        <div class="row text-center ">
+            <div class=" col-md-12 col-sm-12" ><h1>Appointment</h1> </div>
+        </div>  
+      
+      <div class="row">
+        <div class=" col-md-6 col-sm-6 text-center" > <img src="./img/dennis-shipping.jpg" height="80px" width="120px" /></div>
+        <div class=" col-md-6  col-sm-6 text-center">
+          <img src="./img/appointment.png" height="70px" width="70px"/>
+        
+       </div>
+      </div>
+    <div class="">
+        <div class="panel panel-primary" >
+          <div class="panel-body">
+            <div class="row " style="font-size: large;color: black;" >
+              <div id="customer_name" class=" col-md-6 col-sm-6 text-center" >Oniel Charles </div>
+              <div id="ref_num" class=" col-md-6  col-sm-6 text-center">Reference #: 345757</div>
+              </div>
+          </div>
+        </div>        
+     </div>
+     <div class="row text-center" style="color:red;">
+     <h2 id="appointment_date">Appointment Not Set</h2>
+    </div>
+    <div class="row text-center">
+      <button onclick="editAppointment()" type="button" class="btn btn-info" data-dismiss="modal">Change Appointment</button>
+      <button onclick="createAppointment()" type="button" class="btn btn-primary" data-dismiss="modal">Set Appointment</button>
+  </div>
+        <!--a href="#/commodity">Home</a-->
+        <!-- top tiles -->
+        
+
+      </div>
+
+
+               <!-- Bootstrap modal -->
+               <div class="modal fade" id="appointment_modal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="modal-title">Appointment Form</h3>
+                        </div>
+                        <div class="modal-body form">
+                            <form id="appointment_form" class="form-horizontal" data-toggle="validator">
+                                <input type="hidden" value="" name="id" id="id" />
+                                <div class="form-body"> 
+                                     
+ <div id="new_customer" class="form-group">  <label class="control-label col-md-3">Customer</label><div class="col-md-9">
+    <select id="billoflading_id" data-live-search="true" class=" load-selectpicker  form-control"  data-bv-callback="true" data-bv-callback-callback="validateCustomer" ></select>
+    <span class="help-block"></span> </div> </div>
+    <div id="edit_customer" class="form-group " > <label class="control-label col-md-3"></label><div id="edit_customer_content" class="col-md-9"></div> </div> 
+   <div class="form-group">  <label class="control-label col-md-3">TRN</label><div class="col-md-9"> <input id="trn" name="trn" placeholder="TRN" class="form-control" type="text" required><span class="help-block"></span> </div> </div>  
+  <div class="form-group">  <label class="control-label col-md-3">UBA Code</label><div class="col-md-9"> <input id="uba_code" name="uba_code" placeholder="UBA Code" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Passport Number</label><div class="col-md-9"> <input id="passport_number" name="passport_number" placeholder="Passport Number" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label col-md-3">Status</label>
+    
+        <div class="col-sm-9">
+            <select id="status" class="selectpicker " data-width="auto" disabled>
+              <option value="open">Open</option>
+              <option value="close">Close</option>
+            </select>
+            <span class="help-block"></span>
+          </div>  
+     </div>
+ <div class="form-group">  <label class="control-label col-md-3">Appointment Date</label>
+    
+        <div class="col-md-9">
+            <input data-toggle="datepicker" id="appointment_date" name="appointment_date" placeholder="Appointment Date" class="form-control has-feedback-left"
+              type="text"  data-bv-callback="true" data-bv-callback-callback="appointmentDateValidation" required>
+            <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+            <span class="help-block"></span>
+          </div>   
+    </div>
+
+</div><div class="modal-footer">
+                                    <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- End Bootstrap modal -->
+      <!-- /page content -->
+
+    
+    </div>
+  </div>
+
+  <script src="./vendor/js/jquery.min.js"></script>
+  <script src="./vendor/js/jquery-ui.js"></script>
+  <script src="./vendor/js/bootstrap.min.js"></script>
+  <script src="./vendor/js/bootstrap-table.min.js"></script>
+  <script src="./vendor/js/bootstrap-select.min.js"></script>
+  <script src="./js/ajax-bootstrap-select.min.js"></script>
+  <script src="./vendors/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="./vendors/nprogress/nprogress.js"></script>
+
+  <script src="./js/bootstrap-editable.js"></script>
+  <!-- iCheck -->
+  <script src="./js/bootstrap-table-editable.js"></script>
+  <script src="./vendors/iCheck/icheck.min.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="./js/datepicker.min.js"></script>
+
+  <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+  <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+  <!-- Custom Theme Scripts -->
+  <script src="./build/js/custom.min.js"></script>
+
+  <script src="./scripts/app.js"></script>
+  <script src="./scripts/crud.js"></script>
+
+  <script>
+    //authenticateUser();
+   var pass_num="179278";
+  var cyfer= {"0":['T','O','U','I','L','V','Z','W','H','X','A','R','K','G','F','S','C','B','Q','P','N','M','J','E','D','Y'],
+  "1":['H','J','B','A','T','Q','Y','C','R','W','U','X','V','G','P','E','Z','I','N','L','M','S','K','F','D','O']};
+  console.log(cyfer["1"][3]);
+  save_method = 'PUT';
+  sdata_model={ "id": "0","billoflading_id": "","trn": "","uba_code": "","passport_number": "","status": "","appointment_date": ""}
+console.log(getBusinessObject('appointment/cypher'));
+function editAppointment() {
+            $('#edit_customer').show();
+            $('#new_customer').hide();
+            save_method = 'PUT';
+            $.ajax({
+                url: './api.php/appointment/' + $('#id').val(),
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#appointment_form')
+                        .bootstrapValidator('disableSubmitButtons', false)
+                        .bootstrapValidator('resetForm', true);
+                    data_model = data;
+                    data_model['appointment_date'] = formatDate(data['appointment_date']);
+                    loadFormData('#appointment_form',data_model);
+                    if (data_model.status=='close') {
+                        $("#appointment_form :input").prop("disabled", true);
+                    } else {
+                        $("#appointment_form :input").prop("disabled", false);
+                    }
+                    $('.modal-title').text('Edit Appointment');
+                    $('#appointment_modal').modal('show');
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+    function createAppointment(){
+      $('#edit_customer').hide();
+                $('#new_customer').show();
+                save_method = 'POST';
+                //
+                clearForm('#appointment_form');
+                $('#appointment_modal').modal('show'); // show bootstrap modal                
+                $('.modal-title').text('Add Appointment'); // Set Title to Bootstrap modal title
+    }
+    function saveRecord() {
+
+    }
+    $(document).ready(function () {
+            //
+ data_model={ "id": "0","billoflading_id": "","trn": "","uba_code": "","passport_number": "","status": "","appointment_date": ""}
+
+            bootstrapTableIndex = 0;
+            save_method = '';
+            pkey = 'id';
+            
+            //&**************************************************
+
+            $('#appointment_form')
+                .bootstrapValidator({ feedbackIcons: {
+  valid: 'glyphicon glyphicon-ok',
+  invalid: 'glyphicon glyphicon-remove',
+  validating: 'glyphicon glyphicon-refresh'
+  },
+  excluded: [':disabled'],
+ fields: {
+ billoflading_id:{
+   validators: {
+     notEmpty: {
+        message: 'Billoflading Id is  required and cannot be empty'
+      }
+                    
+    }
+ },
+ trn:{
+   validators: {
+     notEmpty: {
+        message: 'TRN is  required and cannot be empty'
+      }
+    }
+ },
+ uba_code:{
+   validators: {
+     notEmpty: {
+        message: 'UBA Code is  required and cannot be empty'
+      }
+    }
+ }
+}})
+                .on('success.form.bv', function (e) {
+                    console.log('success.form.bv');
+                    // If you want to prevent the default handler (bootstrapValidator._onSuccess(e))
+                    // e.preventDefault();
+                })
+                .on('success.form.bv', function (e) {
+                    
+                    // Prevent submit form
+                    e.preventDefault();
+                    var $form = $(e.target),
+                        validator = $form.data('bootstrapValidator');
+                    var form_data=getFormData('#appointment_form',data_model);
+                    form_data['appointment_date'] = validDate($('#appointment_date').val()).date;
+
+                    if (save_method == 'PUT') {
+                        $.ajax({
+                            type: "PUT",
+                            url: './api.php/appointment/' + form_data['id'],
+                            data: JSON.stringify(form_data), // serializes the form's elements.
+                            success: function (data) {
+                                $('#appointment_modal').modal('hide');
+                                toastr.success('The record was updated successfully', 'Success Alert', { timeOut: 5000 })
+                                $('#classTable').bootstrapTable('updateByUniqueId', {
+                                    id: form_data['id'],
+                                    row: form_data
+                                });
+
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                            },
+                            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                        });
+                    }
+                    if (save_method == 'POST') {
+                        $.ajax({
+                            type: "POST",
+                            url: './api.php/appointment/',
+                            data: JSON.stringify(form_data), // serializes the form's elements.                        
+                            success: function (data) {
+                                var obj = {};
+                                $.extend(true, obj, form_data);
+                                obj.id = data;
+                                obj.actions = '<button onclick="editAppointment(' + data + ',this)" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+                                obj.actions += '<button onclick="deleteThis(' + data + ',this)" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+
+                                console.log(obj);
+                                $('#appointment_modal').modal('hide');
+                                toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                                $('#classTable').bootstrapTable("append", obj);
+
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                            },
+                            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                        });
+                    }
+                    $form
+                        .bootstrapValidator('disableSubmitButtons', false)  // Enable the submit buttons
+                        .bootstrapValidator('resetForm', true);             // Reset the form
+                })
+                .on('click', 'tbody > tr > td', function (e) {
+                    var table = $table.data('bootstrap.table'),
+                        $element = $(this),
+                        $tr = $element.parent(),
+                        row = table.data[$tr.data('index')];
+                    alert(row);
+                });
+
+           
+
+        });
+  </script>
+
+</body>
+
+</html>

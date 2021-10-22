@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bill of Lading Processing </title>
+    <link rel="icon" href="./img/app_icon.ico">
+
+    <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+    <!-- Font Awesome -->
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="./css/datepicker.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+    <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+    <!-- Custom Theme Style -->
+    <link href="./build/css/custom.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">
+                            <img src="./img/company_icon.ico" />
+                            <span id=glo_company_name></span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 class="user_fullname_disaplay">Active User</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a>
+                                        <i class="fa fa-home"></i> Home
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/home/main">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-cogs"></i> Maintenance
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_port.html">Port</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_country.html">Country</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_currency.html">Currency</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_package.html">Package</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_commodity.html">Commodity</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_container_size_type.html">Container Size Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_vessel.html">Vessel</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-list-alt"></i> Charges
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_charges.html">Charge Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_sur_charge.html">Sur Charge</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_rate.html">GCT Rate</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-dollar"></i> Billing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_receipt.html">Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_order.html">Order</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-anchor"></i> Manifest Processing
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_voyage.html">Voyage</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_bill_of_lading.html">Bill of Lading</a>
+                                        </li>
+                                        <li>
+                                            <a href="BillOfLading_Enquiry.html">Bill of Lading Inquiry</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="fa fa-bar-chart"></i> Reports
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="maintain_item_Report.html">Item Report (Freight)</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_receipt.html">Print Daily Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_daily_order.html">Print Daily Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_receipt.html">Print Cancel Receipt</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_print_cancel_order.html">Print Cancel Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="maintain_gct_report.html">GCT Report</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+                            <a id="menu_toggle">
+                                <i style="font-size:16px" class="fa fa-bars"></i>
+                            </a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Export To Customs</span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:passwordChangeRequest()"> 
+                                                <i class="fa fa-lock pull-right"></i> Change Password</a>
+                                                
+                                            </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:displayHelp();">Help</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:authenticateUser()"> 
+                                            <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdownx">
+                                <button type="button" class="btn btn-round btn-success btn-sm " onclick="loadShortCutOption(this)">
+                                    <i class="fa fa-search-plus"></i> BL Processing</button>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                <div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-6">Shipping Agent Code</label>
+                        <div class="col-md-6">
+                            <input id="sac_code" placeholder="SAC Code" class="form-control" type="text" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="control-label col-md-6">Carrier Place</label>
+                        <div class="col-md-6">
+                            <input id="carrier_place" type="text" value="KINGSTON" />
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-6">Vessel</label>
+                        <div class="col-md-6">
+                            <select id="vessel" onchange="loadVoyageSelect()" class=" load-select form-control" data-path="./app/vessel/select"></select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-6">Voyage</label>
+                        <div class="col-md-6">
+                            <select id="voyage" onchange="loadParentSelect();" class=" load-select form-control"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="masterbl" class="col-md-6 form-group">
+                        <label class="control-label col-md-6">Master BL</label>
+                        <div class="col-md-6">
+                            <select id="master_bol_id" onchange=" loadManifestTable();" class=" form-control"></select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 ">
+                        <label class="radio-inline">
+                            <input type="radio" value="FT" name="transferType">First Time
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="AM" name="transferType">Amend
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="AP" name="transferType">Append
+                        </label>
+                    </div>
+
+                    <div class="col-md-3 " id="amend-new" class="checkbox">
+                        <label>Amendment for new BL </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="Y" name="newAmend">Yes
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="N" name="newAmend">No
+                        </label>
+                    </div>
+
+                </div>
+                <button class="btn btn-success" onclick="downloadAsycuda(); return false;">Download Ansix12</button>
+                <textarea id="results" cols="800" style="display:none" rows="10"></textarea>
+                <div id="table-div">
+                    <table id="classTable" class="display striped" cellspacing="0" data-toolbar="#toolbar" data-query-params="queryParams" data-pagination="true"
+                        data-striped="true" data-search="true" data-show-multi-sort="true" data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                                <th data-field="chkfld" data-checkbox="true">ID</th>
+                                <th data-field="bill_of_lading_number" data-sortable="true"> Bill Of Lading Number</th>
+                                <th data-field="consignee_name" data-sortable="true"> Consignee</th>
+                                <th data-field="consignee_address" data-sortable="true">Consignee Address</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th class="hidden">ID</th>
+                                <th>Check</th>
+                                <th> Bill Of Lading Number</th>
+                                <th>Consignee Name</th>
+                                <th>Consignee Address</th>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+
+            <!-- Bootstrap modal -->
+            <div class="modal fade" data-backdrop="static" id="modal_form" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 class="modal-title">Edi Translation Form</h3>
+                        </div>
+                        <div class="modal-body form">
+                            <form id="edit_form" class="form-horizontal" data-toggle="validator">
+                                <input type="hidden" value="" name="id" id="id" />
+
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Type</label>
+                                        <div class="col-md-9">
+                                            <input readonly id="type" name="type" placeholder="Type" class="form-control" type="text" required>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group hidden">
+                                        <label class="control-label col-md-3">Internal Code</label>
+                                        <div class="col-md-9">
+                                            <input id="internal_code" name="internal_code" placeholder="Internal Code" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">External Code</label>
+                                        <div class="col-md-9">
+                                            <input id="external_code" name="external_code" placeholder="External Code" class="form-control" type="text" required>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">
+                                            <i class="fa fa-refresh " style="color:darkcyan;cursor:pointer;font-size:18px;" onclick="reloadInternalSelect()"></i> Internal Code</label>
+                                        <div class="col-md-9">
+                                            <select readonly id="port_id" class=" load-selectpicker form-control" data-live-search="true" data-path="./app/port/select">
+                                            </select>
+                                            <select id="package_id" class=" load-selectpicker" data-path="./app/package/select">
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group hidden">
+                                        <label class="control-label col-md-3">Translation Source Id</label>
+                                        <div class="col-md-9">
+                                            <input id="translation_source_id" name="translation_source_id" placeholder="Translation Source Id" class="form-control" type="text">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveEDIRecord(event)">
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./vendor/js/jquery.min.js"></script>
+    <script src="./vendor/js/jquery-ui.js"></script>
+    <script src="./vendor/js/bootstrap.min.js"></script>
+    <script src="./vendor/js/bootstrap-table.min.js"></script>
+    <script src="./vendor/js/bootstrap-select.min.js"></script>
+    <script src="./js/ajax-bootstrap-select.min.js"></script>
+    <script src="./vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="./vendors/nprogress/nprogress.js"></script>
+
+    <script src="./js/bootstrap-editable.js"></script>
+    <!-- iCheck -->
+    <script src="./js/bootstrap-table-editable.js"></script>
+    <script src="./vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="./js/datepicker.min.js"></script>
+
+    <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="./build/js/custom.min.js"></script>
+
+    <script src="./scripts/app.js"></script>
+
+    <script>
+        getSCAC();
+        $('#table-div').hide();
+        $("input[name=transferType][value='FT']").prop("checked", true);
+        $("input[name=newAmend][value='N']").prop("checked", true);
+
+        $('#amend-new').hide();
+        $('input:radio[name=transferType]').change(function () {
+            if ($('input:radio[name=transferType]:checked').val() == 'AM') { $('#amend-new').show(); }
+            else { $('#amend-new').hide(); }
+            console.log($('input:radio[name=transferType]:checked').val());
+            if ($('input:radio[name=transferType]:checked').val() != 'FT') {
+                $('#table-div').show();
+            } else {
+                $('#table-div').hide();
+            }
+        });
+
+        function getIdSelections() {
+            return $.map($('#classTable').bootstrapTable('getSelections'), function (row) {
+                return row.id
+            });
+        }
+
+
+        function getSCAC(){
+            //scac=asycud_ascac
+            $.ajax({
+            url: './app/system_values/code/ansix12Xp',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                
+                if (data.length > 0) {
+                    scac_id=data[0].id;
+                    $('#sac_code').val(data[0].data_value);
+                } else {
+                    var obj = { data_type: 'char', data_value: 'SCAC CODE', description: 'ASYCUDA SCAC Code', code: 'ansix12Xp' };
+                    $.ajax({
+                        type: "POST",
+                        url: './app/system_values/',
+                        async: false,
+                        data: JSON.stringify(obj), // serializes the form's elements.                        
+                        success: function (data) {
+                            scac_id=data;
+                           // return  data[0].data_value;
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                        },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+                }
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+        }
+
+        function setSCAC(){
+            var obj = {  data_value:$('#sac_code').val() };
+            $.ajax({
+                        type: "PUT",
+                        url: './app/system_values/' + scac_id,
+                        data: JSON.stringify(obj), // serializes the form's elements.                        
+                        success: function (data) {
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+        }
+    </script>
+    <script>
+        setUpEDITranslation();
+        package_codes = {};
+        $.ajax({
+            url: './app/package',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    package_codes[data[i].id] = data[i].package_code;
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+        transmission_count = {};
+        $.ajax({
+            url: './app/system_values/select/ansix12',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    transmission_count['value'] = data[0].data_value;
+                    transmission_count['id'] = data[0].id;
+                } else {
+                    var obj = { data_type: 'int', data_value: '1', description: 'ANSIX12 export sequence', code: 'ANSIX12' };
+                    $.ajax({
+                        type: "POST",
+                        url: './app/system_values/',
+                        async: false,
+                        data: JSON.stringify(obj), // serializes the form's elements.                        
+                        success: function (data) {
+                            transmission_count['value'] = 1;
+                            transmission_count['id'] = data;
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                        },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+                }
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+
+        function loadParentSelect() {
+            $('#master_bol_id').empty();
+            var select_path = './app/bill_of_lading/master-select/' + $('#voyage').val();
+            if (SELECT_DATA_PATH[select_path] && arguments.length == 0) {
+                $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+                    $('#master_bol_id').append('<option value=' + value.id + '>' + value.bill_of_lading_number + '</option>');
+                });
+                loadManifestTable();
+            } else {
+                $.ajax({
+                    url: select_path,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        SELECT_DATA_PATH[select_path] = data;
+                        $.each(data, function (key, value) {
+                            $('#master_bol_id').append('<option value=' + value.id + '>' + value.bill_of_lading_number + '</option>');
+
+                        });
+                        loadManifestTable();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+        }
+
+        loadVoyageSelect();
+        function loadVoyageSelect() {
+            $('#voyage').empty();
+            var select_path = './app/voyage/select/' + $('#vessel').val();
+            if (SELECT_DATA_PATH[select_path]) {
+                $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+                    var date1 = '' + value.arrival_date;
+                    date1 = date1.substr(0, 4) + '-' + date1.substr(4, 2) + '-' + date1.substr(6, 2);
+                    $('#voyage').append('<option value=' + value.id + '>' + value.voyage_number + ' * ' + date1 + '</option>');
+                });
+                loadParentSelect();
+            } else {
+                $.ajax({
+                    url: select_path,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        SELECT_DATA_PATH[select_path] = data;
+                        voyage_list = {};
+                        $.each(data, function (key, value) {
+                            voyage_list[value.id] = value;
+                            var date1 = '' + value.arrival_date;
+                            date1 = date1.substr(0, 4) + '-' + date1.substr(4, 2) + '-' + date1.substr(6, 2);
+                            $('#voyage').append('<option value=' + value.id + '>' + value.voyage_number + ' * ' + date1 + '</option>');
+                        });
+                        loadParentSelect();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                    beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+        }
+        //**********************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&***************************
+        function downloadAsycuda() {            
+            var amend_bls = getIdSelections();
+            if (amend_bls.length == 0 && ($('input:radio[name=transferType]:checked').val() == 'AM' || $('input:radio[name=transferType]:checked').val() == 'AP')) {
+                alert('Please select BLs for Amend/Append');
+                return false;
+            }
+            if ($('#sac_code').val().trim() == '') {
+                alert('SCAC Code required');
+                return false;
+            }
+            loadTranslationcodes();
+
+
+            //*** GET CONTAINER AND MATER INFO
+            $.ajax({
+                url: './app/bill_of_lading/master-con/' + $('#master_bol_id').val(),
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    master_BOL = data[0];
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+            //GET ********** all the details
+            bol_details = {};
+            $.ajax({
+                url: './app/bill_of_lading_detail/manifest-detail/' + $('#voyage').val(),
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (!bol_details[data[i].billoflading_id]) {
+                            bol_details[data[i].billoflading_id] = [];
+                        }
+                        bol_details[data[i].billoflading_id].push(data[i]);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+            if (master_BOL.bill_of_lading_number == undefined) {
+                alert('error exporting asycuda ');
+                return false;
+            }
+            var p_key =  'port:' + master_BOL.port_of_loading;
+            var port_loading='',port_discharge='';
+            if (edi_codes[p_key]) { port_loading =edi_codes[p_key]; }
+            else { getEDICode('port', master_BOL.port_of_loading); return false;}  
+
+            p_key = 'port:' + master_BOL.port_of_discharge;
+            if (edi_codes[p_key]) { port_discharge =edi_codes[p_key]; }
+            else { getEDICode('port', master_BOL.port_of_discharge); return false;}  
+
+            $.ajax({
+                url: './app/bill_of_lading/bill-chg/' + $('#voyage').val() + '/' + $('#master_bol_id').val(),
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var lscounter = 0;
+                    console.log(voyage_list);
+                    var vid = $('#voyage').val();
+                    var Yb = 'b';
+                    if ($('input:radio[name=transferType]:checked').val() == 'AM' ) {
+                        Yb = 'Y';
+                    }
+                    var ansix12_text = 'ST*309*' + pad(transmission_count['value'], 7);
+                    ansix12_text += '\nM10*' + $('#sac_code').val().substr(0, 4) + '*O*JAM*' + voyage_list[vid].lloyd_number.substr(0, 7) + '*' + voyage_list[vid].vessel_name.substr(0, 28) + '*' + voyage_list[vid].voyage_number.substr(0, 10) + '**' + data.length + '*' + Yb + '*L*N';
+                    lscounter += 1;
+                    ansix12_text += '\nLS*' + lscounter;
+                    var date1 = '' + voyage_list[vid].arrival_date;
+                    date1 = date1.substr(2, 2) + date1.substr(4, 2) + date1.substr(6, 2);
+                    ansix12_text += '\nP4*' + port_discharge + '*' + date1 + '*' + data.length;
+                    lscounter += 1;
+                    ansix12_text += '\nLS*' + lscounter;
+
+                    for (var i = 0; i < data.length; i++) {
+                        if ($('input:radio[name=transferType]:checked').val() == 'AM' || $('input:radio[name=transferType]:checked').val() == 'AP') {
+                            if (amend_bls.indexOf(data[i].id) == -1) {
+                                continue;
+                            }
+                        }
+                        var item_cnt = 0, weight = 0, pkg_code='';
+                        if (bol_details[data[i].id]) {
+                            for (var j = 0; j < bol_details[data[i].id].length; j++) {
+                                p_key =  'package:' + bol_details[data[i].id][j].package_type_id;
+                                if (edi_codes[p_key]) { pkg_code =edi_codes[p_key]; }
+                                else { getEDICode('package', bol_details[data[i].id][j].package_type_id); return false;} 
+
+                                item_cnt += numeric(bol_details[data[i].id][j].number_of_items);
+                                var mass = numeric(bol_details[data[i].id][j].weight, 3);
+                                if (bol_details[data[i].id][j].weight_unit == 'lb') mass = 0.453592 * bol_details[data[i].id][j].weight;
+                                weight += mass;
+                            }
+                        }
+                        ansix12_text += '\nLX*' + (i + 1);
+                        if ($('input:radio[name=transferType]:checked').val() == 'AM') {
+                            if ($('input:radio[name=newAmend]:checked').val() == 'N') {
+                                ansix12_text += '\nM13*' + $('#sac_code').val().substr(0, 4) + '*' + port_loading + '*D*' + master_BOL.bill_of_lading_number.trim() + '*' + item_cnt + '*01**' + data[i].bill_of_lading_number + '*' + $('#sac_code').val().substr(0, 4);
+                                ansix12_text += '\nLS*3';
+                                ansix12_text += '\nLE*3';
+                                ansix12_text += '\nLS*4';
+                                ansix12_text += '\nLE*4';
+                            }
+                            ansix12_text += '\nM13*' + $('#sac_code').val().substr(0, 4) + '*' + port_loading + '*A*' + master_BOL.bill_of_lading_number.trim() + '*' + item_cnt + '*01**' + data[i].bill_of_lading_number + '*' + $('#sac_code').val().substr(0, 4);
+                        }
+                        ansix12_text += '\nM11*' + master_BOL.bill_of_lading_number.trim() + '*' + port_loading + '*' + item_cnt + '*' + pkg_code.substr(0, 4) + '*' + numericStr(weight, 3) + '*K****' + $('#carrier_place').val().substr(0, 17) + '*' + data[i].bill_of_lading_number + '*' + $('#sac_code').val().substr(0, 4) + '*' + $('#sac_code').val().substr(0, 4) + '**';
+                        ansix12_text += '\nLS*3';
+                        if (data[i].shipper_name.trim() == '') { data[i].shipper_name = 'UNKNOWN'; }
+                        ansix12_text += '\nN1*SH*' + data[i].shipper_name.substr(0, 35) + '**';
+
+                        var addr = chunckString(data[i].shipper_address, 35);
+                        for (var j = 0; j < 3; j++) {
+                            if (typeof (addr[j]) == "undefined") {
+                                addr[j] = 'UNKNOWN';
+                            } else {
+                                if (addr[j].trim() == '') {
+                                    addr[j] = 'UNKNOWN';
+                                }
+                            }
+
+                        }
+                        ansix12_text += '\nN2*' + addr[0].trim() + '*';
+                        ansix12_text += '\nN3*' + addr[1].trim() + '*';
+                        ansix12_text += '\nN4*' + addr[2].trim() + '*';
+                        if (data[i].consignee_name.trim() == '') { data[i].consignee_name = 'UNKNOWN'; }
+                        ansix12_text += '\nN1*CN*' + data[i].consignee_name.trim(0, 35) + '** ';
+                        var addr = chunckString(data[i].consignee_address.trim(), 35);
+                        for (var j = 0; j < 3; j++) {
+                            if (typeof (addr[j]) == "undefined") {
+                                addr[j] = 'UNKNOWN';
+                            } else {
+                                if (addr[j].trim() == '') {
+                                    addr[j] = 'UNKNOWN';
+                                }
+                            }
+
+                        }
+                        ansix12_text += '\nN2*' + addr[0].trim() + '*';
+                        ansix12_text += '\nN3*' + addr[1].trim() + '*';
+                        ansix12_text += '\nN4*' + addr[2].trim() + '*';
+                        if (data[i].notify_name.trim() == '') { data[i].notify_name = 'UNKNOWN'; }
+                        ansix12_text += '\nN1*N1*' + data[i].notify_name + '** ';
+                        var addr = chunckString(data[i].notify_address.trim(), 35);
+                        for (var j = 0; j < 3; j++) {
+                            if (typeof (addr[j]) == "undefined") {
+                                addr[j] = 'UNKNOWN';
+                            } else {
+                                if (addr[j].trim() == '') {
+                                    addr[j] = 'UNKNOWN';
+                                }
+                            }
+
+                        }
+                        ansix12_text += '\nN2*' + addr[0].trim() + '*';
+                        ansix12_text += '\nN3*' + addr[1].trim() + '*';
+                        ansix12_text += '\nN4*' + addr[2].trim() + '*';
+                        ansix12_text += '\nLE*3';
+                        ansix12_text += '\nLS*4';
+                        var indx = data[i].id;
+                        if (bol_details[indx]) {
+                            console.log('in detail');
+                            for (var x = 0; x < bol_details[indx].length; x++) {
+                                if (!master_BOL.container_number ) {master_BOL.container_number = '';}
+                                if (master_BOL.container_number.trim() == '') {
+                                    ansix12_text += '\nVID*OB*@@@@*000000*0000000*0000000';
+                                } else {
+                                    ansix12_text += '\nVID*CN*' + master_BOL.container_number.substr(0, 4) + '*' + master_BOL.container_number.substr(4, 7) + '**';
+                                }
+                                var goods = chunckString(bol_details[indx][x].Description_of_goods.trim(), 30);
+                                for (var j = 0; j < goods.length; j++) {
+                                    var num = bol_details[indx][x].number_of_items;
+                                    if (j > 0) num = '';
+                                    ansix12_text += '\nN10*' + num + '*' + goods[j];
+                                }
+
+                            }
+
+                        }
+                        ansix12_text += '\nLE*4';
+
+                    }
+                    ansix12_text += '\nLE*' + lscounter;
+                    lscounter -= 1;
+                    ansix12_text += '\nLE*' + lscounter;
+                    lscounter -= 1;
+
+                    ansix12_text += '\nSE*' + (2 + ansix12_text.match(/\n/g).length) + '*' + pad(transmission_count['value'], 7);
+                    var obj = { data_type: 'int', data_value: (1 + numeric(transmission_count['value'])), description: 'ANSIX12 export sequence', code: 'ANSIX12' };
+                    $.ajax({
+                        type: "PUT",
+                        url: './app/system_values/' + transmission_count['id'],
+                        data: JSON.stringify(obj), // serializes the form's elements.                        
+                        success: function (data) {
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                    });
+
+                    $("#myselect option:selected").text();
+                    $('#results').val(ansix12_text);
+                    setSCAC();
+                    downloadTXTFile(ansix12_text, 'Customs_Ansix12.txt','plain/text');
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+
+        }
+
+        function getEDICode(type, id) {
+            var p_key = type + ':' + id;
+                var form_data = {};
+                form_data.translation_source_id = translation_id;
+                form_data.external_code = '';
+                form_data.type = type;
+                form_data.code_id = 0;
+
+                $('#port_id').selectpicker('hide');
+                $('#package_id').selectpicker('hide');
+                if (type == 'port') {
+                    $('#port_id').selectpicker('show');
+                    $("#port_id").prop('disabled', true);
+                    $('#port_id').selectpicker('val', id);
+                    form_data.port_id = id;
+                }
+                if (type == 'package') {
+                    $('#package_id').selectpicker('show');
+                    $("#package_id").prop('disabled', true);
+                    $('#package_id').selectpicker('val', id);
+                    form_data.package_id = id;
+                }
+                //$('#package_id').selectpicker('val', '');
+                //$('#commodity_id').selectpicker('hide');
+                loadFormData('#edit_form', form_data);
+                //if (commodity_package=='BOX') break;
+                $('#modal_form').modal('show');
+                return '';
+          
+        }
+
+        function setUpEDITranslation() {
+            edi_codes = {};
+            translation_id = 0;
+            //get Translation source bl-import
+            $.ajax({
+                url: './app/translation_source/code/ansix12',
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data.length == 0) {
+                        addTranslationSource();
+                    } else {
+                        translation_id = data[0].id;
+                        loadTranslationcodes();
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+            //get all translation codes
+
+        }
+        function loadTranslationcodes() {
+            $.ajax({
+                url: './app/edi_translation/select/' + translation_id,
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        edi_codes[data[i].type + ':' + data[i].code_id] = data[i].external_code;
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function addTranslationSource() {
+            var obj = { code: 'ansix12', description: 'ANSIX12 Export' };
+            $.ajax({
+                type: "POST",
+                url: './app/translation_source/',
+                async: false,
+                data: JSON.stringify(obj), // serializes the form's elements.                        
+                success: function (data) {
+                    translation_id = data;
+                    loadTranslationcodes();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+
+        function saveEDIRecord(e) {
+            e.preventDefault();
+            var form_data = {};
+            form_data.translation_source_id = translation_id;
+            form_data.external_code = $('#external_code').val();
+            form_data.type = $('#type').val();
+
+            if ($('#type').val() == 'port') {
+                form_data.code_id = numeric($('#port_id').selectpicker('val'));
+            }
+            if ($('#type').val() == 'package') {
+                form_data.code_id = numeric($('#package_id').selectpicker('val'));
+            }
+
+            $.ajax({
+                type: "POST",
+                url: './app/edi_translation/',
+                data: JSON.stringify(form_data), // serializes the form's elements.                        
+                success: function (data) {
+                    $('#modal_form').removeClass("fade").modal('hide');
+                    //$('.modal-backdrop').remove();        
+                    downloadAsycuda();
+                    toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
+                    //$('#classTable').bootstrapTable("append", obj);
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+
+        }
+
+        function loadManifestTable() {
+            $.ajax({
+                url: './app/bill_of_lading/master-list/' + $('#master_bol_id').val(),
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#classTable').bootstrapTable("destroy");
+                    $('#classTable').bootstrapTable({
+                        uniqueId: 'id',
+                        data: data
+                    });
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+
+
+    </script>
+</body>
+
+</html>

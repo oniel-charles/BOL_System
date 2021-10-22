@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>App</title>
+  <link rel="icon" href="./img/app_icon.ico">
+
+  <link href="./vendor/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Custom Theme Style -->
+  <link href="./build/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="./vendor/css/bootstrap-select.min.css">
+  <!-- Font Awesome -->
+  <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+
+  <!-- iCheck -->
+  <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+  <!-- bootstrap-daterangepicker -->
+  <link href="./css/datepicker.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./dist/css/bootstrapValidator.css" />
+  <link rel="stylesheet" href="./vendor/css/bootstrap-table.min.css" />
+  <link href="./vendor/css/toastr.min.css" rel="stylesheet">
+
+  <link href="./css/bootstrap-editable.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title">
+              <img src="./img/company_icon.ico" />
+              <span>Quality One</span>
+            </a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Welcome,</span>
+              <h2 class="user_fullname_disaplay">Active User</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a>
+                    <i class="fa fa-home"></i> Home
+                    <span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="index.html">Dashboard</a>
+                    </li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div>
+
+
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="javascript:authenticateUser()">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle" style=" line-height: 12px;padding: 5px 5px;">
+              <a id="menu_toggle">
+                <i style="font-size:16px" class="fa fa-bars"></i>
+              </a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-left">
+              <li class="">
+                <a style=" line-height: 12px;padding: 5px 5px ;margin-top:2px" href="javascript:;"
+                  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <span style="font-size: 15px;color:#73879C;font-weight:bold;"> Booking</span>
+                </a>
+
+              </li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                <a style=" line-height: 12px;padding: 0px 0px;" href="javascript:;" class="user-profile dropdown-toggle"
+                  data-toggle="dropdown" aria-expanded="false">
+                  <img src="images/img.jpg" alt=""><span class="user_fullname_disaplay">Active User</span>
+                  <span class=" fa fa-angle-down"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                  <li>
+                    <a href="javascript:;"> Profile</a>
+                  </li>
+                  <li>
+                    <a href="javascript:passwordChangeRequest()">
+                      <i class="fa fa-lock pull-right"></i> Change Password</a>
+
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:displayHelp();">Help</a>
+                  </li>
+                  <li>
+                    <a href="javascript:authenticateUser()">
+                      <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li role="presentation" class="dropdownx">
+                <button type="button" class="btn btn-round btn-success btn-sm " onclick="loadShortCutOption(this)">
+                  <i class="fa fa-search-plus"></i> BL Processing</button>
+
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+
+      <div class="right_col" role="main">
+        <div class="">
+          <div id="toolbar">
+            <div class="form-inline" role="form">
+                <div class="form-group">
+                    <a class="create btn btn-success" id="create-rec" href="javascript:">New Booking</a>
+                </div>
+                <div class="form-group">
+                    <span>Vessel </span>
+                    <select id="vessel" onchange="loadBusinessObjects()" class=" load-select form-control " data-path="./app/vessel/select"></select>
+                </div>
+            </div>
+        </div>
+          <table id="classTable" class="display" cellspacing="0" data-toolbar=".toolbar" data-query-params="queryParams"
+            data-pagination="true" data-striped="true" data-search="true" data-show-multi-sort="true"
+            data-sort-priority='[{"sortName": "name","sortOrder":"desc"},{"sortName":"location","sortOrder":"desc"}]'>
+            <thead>
+              <tr>
+                <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+                <th data-field="sail_date" data-formatter="formatColumDate" data-sortable="true">Sail Date</th>
+                <th data-field="port_of_loading" data-sortable="true">Port of Loading</th>
+                <th data-field="manifest_number" data-sortable="true">Manifest Number</th>                
+                <th data-field="document_number" data-sortable="true">Document Number</th>    
+                <th data-field="stripped" data-formatter=formatStrip data-sortable="true">Stripped</th>  
+                <th data-field="stripped_date" data-formatter=formatStripDate data-sortable="true">Strip Date</th>                
+                <th data-formatter="createActionButtons" data-searchable="false">Action</th>
+                
+              </tr>
+            </thead>
+            
+          </table>
+        </div>
+      </div>
+
+      <!-- Bootstrap modal -->
+      <div class="modal fade" id="modal_form" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 class="modal-title">Booking Form</h3>
+            </div>
+            <div class="modal-body form">
+              <form id="edit_form" class="form-horizontal" data-toggle="validator">
+                <input type="hidden" value="" name="id" id="id" />
+                <div class="form-body">
+                  <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a id="generaltab" data-toggle="tab" href="#general"><i class="fa fa-globe"
+                                style="color:blue"></i> General</a>
+                    </li>
+                    <li>
+                        <a id="containertab" data-toggle="tab" href="#container"><i class="fa fa-dollar"
+                                style="color:green"></i> Container</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="general" class="tab-pane fade in active">
+                      <div class="form-group">
+                        <label class="control-label col-md-3">Shipping Line</label>
+                        <div class="col-md-9">
+                          <select id="shipping_line_id" name="shipping_line_id" placeholder="Select Line" class="load-select form-control" data-path="./app/shipping_line/select"
+                            required></select>
+                          <span class="help-block"></span>
+                        </div>
+                      </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Vessel</label>
+                    <div class="col-md-9">
+                      <select id="vessel_id" name="vessel_id" placeholder="Select Vessel" class="load-select form-control" data-path="./app/vessel/select"
+                        required></select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group ">
+                    <label class="control-label col-md-3">Sail Date</label>
+                    <div class="col-md-9">
+                      <input data-toggle="datepicker" id="sail_date" name="sail_date" placeholder="Sail Date" class="form-control has-feedback-left"
+                      data-bv-callback="true"    data-bv-callback-callback="validateSailDate" type="text" required>
+                      <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group"> <div class="col-md-6"> <label class="control-label col-md-6">Voyage #</label><div class="col-md-6"> <input id="voyage_number" name="voyage_number" placeholder="Voyage Number" class="form-control" type="text" ><span class="help-block"></span> </div> </div>
+                   <div class="col-md-6">  <label class="control-label col-md-5">Manifest #</label><div class="col-md-7"> <input id="manifest_number" name="manifest_number" placeholder="Manifest Number" class="form-control" type="text" ><span class="help-block"></span> </div> </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Port Of Loading</label>
+                    <div class="col-md-9">
+                      <select id="port_of_loading" class="load-select form-control" data-path="./app/port/select" required></select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3">Port Of Discharge</label>
+                    <div class="col-md-9">
+                      <select id="port_of_discharge" class="load-select form-control" data-path="./app/port/select" ></select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="form-group "> 
+                    <div class="col-md-6">
+                    <label class="control-label col-md-6">Document Number</label>
+                    <div class="col-md-6"> <input id="document_number" name="document_number"
+                        placeholder="Document Number" class="form-control" type="text" ><span
+                        class="help-block"></span> </div>
+                  </div>
+                  <div class="col-md-6"> <label class="control-label col-md-6">Contract Number</label>
+                    <div class="col-md-6"> <input id="contract_number" name="contract_number"
+                        placeholder="Contract Number" class="form-control" type="text" ><span
+                        class="help-block"></span> </div>
+                  </div></div>
+                  <div class="form-group"> <div class="col-md-6">  <label class="control-label col-md-6">Tare</label><div class="col-md-6"> <input id="tare" name="tare" placeholder="Tare" class="form-control" type="text" ><span class="help-block"></span> </div> </div>
+                  
+                  <div class="col-md-6">                               
+                    <label class="control-label col-md-3">Status</label>
+                    <div class="col-sm-9">
+                      <select id="status" class="selectpicker " data-width="auto" disabled>
+                        <option value="Processing">Processing</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Tally Ended">Tally Ended</option>
+                        <option value="Approved">Approved</option>
+                      </select>
+                      <span class="help-block"></span>
+                    </div>
+                  </div></div>
+
+                  <div class="form-group hidden"> <label class="control-label col-md-3">Transportation Mode</label>
+                    <div class="col-md-9"> <input id="transportation_mode" name="transportation_mode"
+                        placeholder="Transportation Mode" class="form-control" type="text" ><span
+                        class="help-block"></span> </div>
+                  </div>
+                </div>
+                <div id="container" class="tab-pane fade">
+                    <div class="">
+                        <p class="toolbarcontainer ">
+
+                        <div style="margin-top:3px;">
+                            <button type="button" onclick="addContainer()"
+                                class="btn btn-success btn-sm">Add Container</button>
+                        </div>
+                        </p>
+                        <table id="containertable" class="display" cellspacing="0"
+                            data-toolbar=".toolbarcontainer" data-pagination="true" data-striped="true"
+                            data-editable="true" data-toolbar-align='top'>
+              
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+                </div>
+                <div class="modal-footer">
+                  <input id="submit" type="submit" class="btn btn-info" value="Save" onclick="saveRecord()">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <!-- End Bootstrap modal -->
+      <!-- /page content -->
+
+      <!-- footer content -->
+      <footer>
+        <div class="pull-right">
+          Gentelella - Bootstrap Admin Template by
+          <a href="https://colorlib.com">Colorlib</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      <!-- /footer content -->
+    </div>
+  </div>
+
+  <script src="./vendor/js/jquery.min.js"></script>
+  <script src="./vendor/js/jquery-ui.js"></script>
+  <script src="./vendor/js/bootstrap.min.js"></script>
+  <script src="./vendor/js/bootstrap-table.min.js"></script>
+  <script src="./vendor/js/bootstrap-select.min.js"></script>
+  <script src="./js/ajax-bootstrap-select.min.js"></script>
+  <script src="./vendors/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="./vendors/nprogress/nprogress.js"></script>
+
+  <script src="./js/bootstrap-editable.js"></script>
+  <!-- iCheck -->
+  <script src="./js/bootstrap-table-editable.js"></script>
+  <script src="./vendors/iCheck/icheck.min.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="./js/datepicker.min.js"></script>
+
+  <script type="text/javascript" src="./dist/js/bootstrapValidator.js"></script>
+  <script type="text/javascript" src="./vendor/js/toastr.min.js"></script>
+
+  <!-- Custom Theme Scripts -->
+  <script src="./build/js/custom.min.js"></script>
+
+  <script src="./scripts/app.js"></script>
+  <script src="./scripts/crud.js"></script>
+
+  <script>
+
+    $(document).ready(function () {
+      //
+      data_model={ "id": "0","vessel_id": "","document_number": "","sail_date": "","port_of_loading": "","transportation_mode": "","status": "","voyage_number": "","port_of_discharge": "","tare": "","shipping_line_id": "","manifest_number": "","contract_number": ""};
+      //
+      businessObject = new BusinessObject(data_model, 'booking');
+      fieldValidatrs = {};
+      //
+      fieldValidatrs.vessel_id = createValidationField('Vessel Id', 'notEmpty');
+      fieldValidatrs.sail_date = createValidationField('Sail Date', 'notEmpty');
+      fieldValidatrs.port_of_loading = createValidationField('Port Of Loading', 'notEmpty');      
+      fieldValidatrs.status = createValidationField('Status', 'notEmpty');
+      businessObject.beforeSave = function () {
+               this.form_data.sail_date = validDate($('#sail_date').val()).date;          
+          }
+      businessObject.afterSave=function(){
+            createMasterBL();
+      }    
+      businessObject.beforeUpdate = function () {
+               this.form_data.sail_date = validDate($('#sail_date').val()).date;          
+          }   
+      businessObject.afterGet = function () {
+               this.data_model.sail_date =  formatDate(this.data_model.sail_date);  
+               if (this.data_model.status=='Approved') {
+                 $("#edit_form :input").prop("disabled", true);
+                 //$('#containertable .editable').editable('toggleDisabled');
+               }else{
+                $("#edit_form :input").prop("disabled", false);
+               }  
+               loadContainerTable();    
+               $("#status").prop("disabled", true);
+          } 
+      businessObject.beforeGet = function () {
+                $('#containertab').show();
+                $('#generaltab').tab('show');              
+            }
+      businessObject.beforeNewRecord = function () {
+                $('#containertab').hide();
+                $('#generaltab').tab('show');
+                $("#edit_form :input").prop("disabled", false);
+                $("#status").prop("disabled", true);
+         }
+      businessObject.afterUpdate= function(){
+          loadBusinessObjects();
+      }   
+			    
+
+      crudInit(businessObject);
+      loadBusinessObjects(businessObject.data_table);
+      
+    });
+
+
+    function validateSailDate(value, validator) {
+          var obj = validDate($('#sail_date').val());
+          if (!obj.valid) {
+              $('#sail_date').addClass('invalid');
+              return false;
+          } else {
+            return true;
+          }
+    }
+       
+    function formatColumDate(value, row, index, field) {
+      return formatDate(value);
+    }
+
+    function loadBusinessObjects($data_table) {
+        $('.loader').show();
+        $('#classTable').bootstrapTable("destroy");
+        $.ajax({
+          url: './app/booking/list/' + $('#vessel').val(),
+          type: 'GET',
+          dataType: 'json',
+          success: function (data) {
+            $('#classTable').bootstrapTable({
+              uniqueId: 'id',
+              data: data
+            });
+            $('.loader').hide();
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+          },
+          beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+      }
+
+      function loadContainerTable() {
+            var size_types = loadContainerSizeType();
+            $('#containertable').bootstrapTable("destroy");
+            //toggle `popup` / `inline` mode
+            //$.fn.editable.defaults.mode = 'inline';
+
+            $.ajax({
+                url: './app/booking_container/select/' +businessObject.data_model.id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#containertable').bootstrapTable({
+                        idField: 'id',
+                        columns:  [
+              [{
+                field: 'container_number',
+                sortable: true,
+                align: 'left',
+                title: 'Container',
+                editable: {
+                  type: 'text',
+                  validate: function (value) {
+                    value = $.trim(value);
+                    if (!value) {
+                      return 'This field is required';
+                    }
+                  },
+                  url: function (params) {
+                    var obj = {};
+                    obj[params.name] = params.value;
+                    return saveBookingContainer(obj, params.pk);
+                  }
+
+                }
+              },
+              {
+                field: 'container_size_type_id',
+                title: 'Size Type',
+                editable: {
+                  type: 'select',
+                  source: size_types,
+                  url: function (params) {
+                    var obj = {};
+                    obj[params.name] = params.value;
+                    return saveBookingContainer(obj, params.pk);
+                  }
+                }
+              },
+              {
+                field: 'container_seal',
+                sortable: true,
+                align: 'left',
+                title: 'Seal',
+                editable: {
+                 type: 'text',                  
+                  url: function (params) {
+                    var obj = {};
+                    obj[params.name] = params.value;
+                    return saveBookingContainer(obj, params.pk);
+                  }
+
+                }
+              }, {
+                field: 'operate',
+                title: ' ',
+                align: 'center',
+                formatter: operateFormatter
+              }]
+            ],
+                        uniqueId: 'id',
+                        data: data
+                    });
+                },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function saveBookingContainer(field_obj, id) {
+          console.log('are we getting here');
+          var record_saved = false;
+          $.ajax({
+            type: "PUT",
+            url: './app/booking_container/' + id,
+            data: JSON.stringify(field_obj),
+            success: function (data) {
+              record_saved = true;
+            },
+            error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+          });
+          return record_saved;
+        }
+        function deleteContainer(id) {
+            console.log(id);
+
+            $.ajax({
+                type: "DELETE",
+                url: './app/booking_container/' + id,
+                success: function (data) {
+                    loadContainerTable();
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        }
+        function addContainer() {
+            var d = new Date();
+            var date = '' + d.getFullYear() + pad((1 + d.getMonth()), 2) + pad(d.getDate(), 2);
+            var obj = { "container_size_type_id": 1, "booking_id": businessObject.data_model.id };
+            $.ajax({
+                type: "POST",
+                url: './app/booking_container/',
+                data: JSON.stringify(obj),
+                success: function (data) {
+                    loadContainerTable();
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+            });
+        } 
+        
+        function loadContainerSizeType() {
+            var select_path = './app/container_size_type/select';
+            var size_type_code = [], obj = {};
+            if (SELECT_DATA_PATH[select_path]) {
+                $.each(SELECT_DATA_PATH[select_path], function (key, value) {
+                obj = {};
+                obj['value'] = value.id;
+                obj['text'] = value.size_type_code;
+                size_type_code.push(obj);
+                });
+            } else {
+                $.ajax({
+                url: select_path,
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    SELECT_DATA_PATH[select_path] = data;
+                    $.each(data, function (key, value) {
+                    obj = {};
+                    obj['value'] = value.id;
+                    obj['text'] = value.size_type_code;
+                    size_type_code.push(obj);
+                    });
+                },
+                error: function (xhr, ajaxOptions, thrownError) { handleStandardHttpErrors(xhr, ajaxOptions, thrownError) },
+                beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+                });
+            }
+            return size_type_code;
+            }
+            function operateFormatter(value, row, index) {
+              return ['<a class="btn-danger" onclick="deleteContainer(' + row.id + ')" href="#" title="Remove">',
+                '<i class="glyphicon glyphicon-remove"></i>',
+                '</a>'
+              ].join('');
+            }
+     function createActionButtons(value, row, index, field) {
+        var $buttons = '<button data-toggle="tooltip" data-placement="top" title="Print Dock Receipt" onclick="printDockReceipt(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-default btn-sm"   data-target="#print-button" ><i class="fa fa-print"></i></button>';
+        $buttons += '<button onclick="editThis(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#editbl-button" ><i class="glyphicon glyphicon-edit"></i></button>';
+        $buttons += '<button onclick="deleteThis(' + row.id + ',this); return false;" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#deletebl-button" ><i class="glyphicon glyphicon-trash"></i></button>';
+        return $buttons;
+      }
+      function printDockReceipt(id, el) {
+        showLargeReport('./app/report/dock_receipt/' + id , 'dock_receipt.pdf', 'Dock Receipt', '#my-report1-iframe', {});
+        $('#report2-tab').hide();
+      }
+      
+      function createMasterBL(){
+        var bl_model={};
+        bl_model.booking_id=businessObject.data_model.id;
+        var obj=getBusinessObject('company');
+        bl_model.shipper_fname=obj[0].company_name;
+        bl_model.shipper_address=obj[0].company_address;
+        bl_model.shipper_phone_num=obj[0].phone;
+        bl_model.parent_bol=1;     
+        bl_model.bill_of_lading_number='MASTERBL-TEMP';   
+        console.log(data_model);
+        var id=saveDataModel(bl_model,'bill_of_lading');
+        var obj={};
+        obj.package_type_id=1;
+        obj.Description_of_goods='GROCERY, CLOTHING HOUSEHOLD FURNITURE & HOUSEHOLD APPLIANCE '; 
+        obj.number_of_items=1;
+        obj.measure=0;
+        obj.weight=0;
+        obj.measure_unit='cuf';
+        obj.weight_unit='lb';
+        obj.commodity_id=5;
+        obj.package_type_id=1;
+        obj.billoflading_id=id;
+        saveDataModel(obj,'bill_of_lading_detail');
+      }
+
+      function formatStrip(value, row, index, field) {
+            if (value == 1) {
+                return 'Yes';
+            }
+            return 'No';
+        }
+        function formatStripDate(value, row, index, field) {
+            return formatDate(row.stripped_date);
+  
+        }
+
+  </script>
+</body>
+
+</html>
