@@ -584,7 +584,7 @@
                   id: form_data['id'],
                   row: form_data
                 });
-
+                sendSMSNotification(form_data['id'],form_data['stripped']);
               },
               error: function (xhr, ajaxOptions, thrownError) {
                 handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
@@ -607,7 +607,7 @@
                 $('#modal_form').modal('hide');
                 toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
                 $('#classTable').bootstrapTable("append", obj);
-
+                sendSMSNotification(form_data['id'],form_data['stripped']);
               },
               error: function (xhr, ajaxOptions, thrownError) {
                 handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
@@ -770,6 +770,21 @@
       }else{
          return true;
       }
+    }
+
+    function sendSMSNotification(id,stripped) {
+      var obj={voyage_id:id,stripped:stripped}
+      $.ajax({
+              type: "POST",
+              url: './api.php/appointment/api/sms',
+              data: JSON.stringify(obj),                     
+              success: function (data) {
+              },
+        error: function (xhr, ajaxOptions, thrownError) {
+          handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
+        },
+        beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      });
     }
 
     function loadVoyageTable() {

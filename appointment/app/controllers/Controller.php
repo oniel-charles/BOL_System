@@ -192,6 +192,7 @@
                 exit;
             }
           }else{
+            //echo ($this->requestMethod);
             $this->claims=authenticateToken();
             if ($this->claims==null){
                     header("HTTP/1.1 401 Unauthorized");

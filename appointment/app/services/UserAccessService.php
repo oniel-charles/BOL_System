@@ -38,18 +38,12 @@ function login($mysqli) {
         LIMIT 1")) {
         $stmt->bind_param('ss', $pass,$user_name);  // Bind "$user_name" to parameter.
         $stmt->execute();    // Execute the prepared query.
-        $stmt->store_result();
-         // get variables from result.
-         $stmt->bind_result($user_id, $user_name, $db_password,$full_name);
-         $stmt->fetch();
-         $result = $stmt->get_result();  
-         $data = $result->fetch_assoc();
-         var_dump($data);
-          // get variables from result.
-        $stmt->bind_result($user_id, $user_name, $db_password,$full_name);
-        $stmt->fetch();
-echo $full_name. ' ?? '.$stmt->num_rows;
-        if ($stmt->num_rows == 1) {
+        
+       // get variables from result.
+       $stmt->bind_result($user_id, $user_name, $db_password,$full_name);
+       //$stmt->fetch();
+      // echo $stmt->num_rows.' - '.$user_id.' - '. $user_name.' - '. $db_password.' - '.$full_name;
+        if ( $stmt->fetch()) {
             // If the user exists we check if the account is locked
             // from too many login attempts 
 
@@ -63,7 +57,9 @@ echo $full_name. ' ?? '.$stmt->num_rows;
                 // Check if the password in the database matches
                 // the password the user submitted. We are using
                 // the password_verify function to avoid timing attacks.
-                if (password_verify($password, $db_password)) {
+               
+              //  if (password_verify($password, $db_password)) {
+                  
                     // Password is correct!
                     // Get the user-agent string of the user.
                     $user_browser = $_SERVER['HTTP_USER_AGENT'];
@@ -77,12 +73,12 @@ echo $full_name. ' ?? '.$stmt->num_rows;
                     $access_token=createToken($user_name,$full_name,$user_id);
                     $token_array = array('token'=>$access_token);
                     exit(json_encode($token_array));
-                } else {
+                /*} else {
                     // Password is not correct
                     // We record this attempt in the database
                     $now = time();
                     return false;
-                }
+                }*/
             }
         } else {
             echo ('<br><br>outx here'. $mysqli->error);
@@ -315,7 +311,7 @@ function createToken($user,$name,$user_id){
     $algorithm = 'HS256';
     $time = time();
     $leeway = 5; // seconds
-    $ttl = 24*60*60; // seconds
+    $ttl = 0.1*60*60; // seconds
     $claims = array('iss'=>$_SERVER['REMOTE_ADDR'],'user'=>$user,'full_name'=>$name,'id'=>$user_id);
     $encodedToken = generateToken($claims,$time,$ttl,$algorithm,SECRET_SERVER_KEY);
 

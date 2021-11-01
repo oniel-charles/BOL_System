@@ -52,33 +52,36 @@
       
 
       <div id='dashboard' style="display:xnone;width:100%;margin-left: 0px;" class="right_col" role="main">
+        <div class="col-md-12 col-sm-12 col-xs-12 text-right"><a href="javascript:authenticateUser()">
+          <i class="fa fa-power-off " style="font-size: 19px;color:black"></i> 
+      </a></div>
         <div class="row text-center ">
-            <div class=" col-md-12 col-sm-12" ><h1>Appointment</h1> </div>
+            <div  ><h1>Appointment</h1> </div>
         </div>  
       
       <div class="row">
-        <div class=" col-md-6 col-sm-6 text-center" > <img src="./img/dennis-shipping.jpg" height="80px" width="120px" /></div>
-        <div class=" col-md-6  col-sm-6 text-center">
-          <img src="./img/appointment.png" height="70px" width="70px"/>
-        
+        <div class=" col-md-6 col-sm-6 col-xs-6 text-center" > <img src="./img/dennis-shipping.jpg" height="80px" width="120px" /></div>
+        <div class=" col-md-6  col-sm-6 col-xs-6 text-center">
+          <img src="./img/appointment.png" height="70px" width="70px"/>        
        </div>
       </div>
     <div class="">
         <div class="panel panel-primary" >
           <div class="panel-body">
             <div class="row " style="font-size: large;color: black;" >
-              <div id="customer_name" class=" col-md-6 col-sm-6 text-center" >Oniel Charles </div>
-              <div id="ref_num" class=" col-md-6  col-sm-6 text-center">Reference #: 345757</div>
+              <div id="customer_name" class=" col-md-6 col-sm-6 col-xs-6  text-center" >Name </div>
+              <div id="ref_num" class=" col-md-6  col-sm-6 col-xs-6 text-center">Reference #: 0000</div>
               </div>
+              <div  class=" col-md-12  col-sm-12 col-xs-12 text-center"><ul id="goods"></ul></div>
           </div>
         </div>        
      </div>
      <div class="row text-center" style="color:red;">
-     <h2 id="appointment_date">Appointment Not Set</h2>
+     <h4 id="date_display">Appointment Not Set</h4>
     </div>
     <div class="row text-center">
-      <button onclick="editAppointment()" type="button" class="btn btn-info" data-dismiss="modal">Change Appointment</button>
-      <button onclick="createAppointment()" type="button" class="btn btn-primary" data-dismiss="modal">Set Appointment</button>
+      <button id="edit_button" onclick="editAppointment()" type="button" class="btn btn-info" data-dismiss="modal">Change Appointment</button>
+      <button style="display: none;" id="create_button" onclick="createAppointment()" type="button" class="btn btn-primary " data-dismiss="modal">Set Appointment</button>
   </div>
         <!--a href="#/commodity">Home</a-->
         <!-- top tiles -->
@@ -100,14 +103,14 @@
                                 <input type="hidden" value="" name="id" id="id" />
                                 <div class="form-body"> 
                                      
- <div id="new_customer" class="form-group">  <label class="control-label col-md-3">Customer</label><div class="col-md-9">
-    <select id="billoflading_id" data-live-search="true" class=" load-selectpicker  form-control"  data-bv-callback="true" data-bv-callback-callback="validateCustomer" ></select>
+ <div id="new_customer" class="form-group hidden">  <label class="control-label  col-md-3 col-sm-3 col-xs-3 ">Customer</label><div class=" col-md-9 col-sm-9 col-xs-9 ">
+  <input id="billoflading_id" name="billoflading_id" placeholder="Bill ID" class="form-control" type="text" required>
     <span class="help-block"></span> </div> </div>
-    <div id="edit_customer" class="form-group " > <label class="control-label col-md-3"></label><div id="edit_customer_content" class="col-md-9"></div> </div> 
-   <div class="form-group">  <label class="control-label col-md-3">TRN</label><div class="col-md-9"> <input id="trn" name="trn" placeholder="TRN" class="form-control" type="text" required><span class="help-block"></span> </div> </div>  
-  <div class="form-group">  <label class="control-label col-md-3">UBA Code</label><div class="col-md-9"> <input id="uba_code" name="uba_code" placeholder="UBA Code" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
- <div class="form-group">  <label class="control-label col-md-3">Passport Number</label><div class="col-md-9"> <input id="passport_number" name="passport_number" placeholder="Passport Number" class="form-control" type="text" required><span class="help-block"></span> </div> </div>
- <div class="form-group">  <label class="control-label col-md-3">Status</label>
+    <div id="edit_customer" class="form-group hidden" > <label class="control-label  col-md-3 col-sm-3 col-xs-3 "></label><div id="edit_customer_content" class=" col-md-9 col-sm-9 col-xs-9 "></div> </div> 
+   <div class="form-group">  <label class="control-label  col-md-3 col-sm-3 col-xs-3 ">TRN</label><div class=" col-md-9 col-sm-9 col-xs-9 "> <input id="trn" name="trn" placeholder="TRN" class="form-control" type="text" required><span class="help-block"></span> </div> </div>  
+  <div class="form-group">  <label class="control-label  col-md-3 col-sm-3 col-xs-3 ">UBA Code</label><div class=" col-md-9 col-sm-9 col-xs-9 "> <input id="uba_code" name="uba_code" placeholder="UBA Code" class="form-control" type="text" ><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label  col-md-3 col-sm-3 col-xs-3 ">Passport Number</label><div class=" col-md-9 col-sm-9 col-xs-9 "> <input id="passport_number" name="passport_number" placeholder="Passport Number" class="form-control" type="text" ><span class="help-block"></span> </div> </div>
+ <div class="form-group">  <label class="control-label  col-md-3 col-sm-3 col-xs-3 ">Status</label>
     
         <div class="col-sm-9">
             <select id="status" class="selectpicker " data-width="auto" disabled>
@@ -117,9 +120,9 @@
             <span class="help-block"></span>
           </div>  
      </div>
- <div class="form-group">  <label class="control-label col-md-3">Appointment Date</label>
+ <div class="form-group">  <label class="control-label  col-md-3 col-sm-3 col-xs-3 ">Appointment Date</label>
     
-        <div class="col-md-9">
+        <div class=" col-md-9 col-sm-9 col-xs-9 ">
             <input data-toggle="datepicker" id="appointment_date" name="appointment_date" placeholder="Appointment Date" class="form-control has-feedback-left"
               type="text"  data-bv-callback="true" data-bv-callback-callback="appointmentDateValidation" required>
             <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
@@ -174,20 +177,54 @@
   <script src="./scripts/crud.js"></script>
 
   <script>
-    //authenticateUser();
-   var pass_num="179278";
-  var cyfer= {"0":['T','O','U','I','L','V','Z','W','H','X','A','R','K','G','F','S','C','B','Q','P','N','M','J','E','D','Y'],
-  "1":['H','J','B','A','T','Q','Y','C','R','W','U','X','V','G','P','E','Z','I','N','L','M','S','K','F','D','O']};
-  console.log(cyfer["1"][3]);
+   
+  const queryString = window.location.search;
+  console.log(queryString);  
+  const urlParams = new URLSearchParams(queryString);
+  const code = urlParams.get('code');
+  const ref = urlParams.get('ref');
+
+  
+	$("#login_password").val(code);
+	$("#login_user_name").val(ref) ;
+  loginUser('Validating');
+  console.log(	$("#login_password").val()+" - "+$("#login_user_name").val() );
+  $cypher=getBusinessObject('appointment/cypher','180180');
+  console.log(parseJwt());
+$rec=getBusinessObject('bill_of_lading',parseJwt().id);
+$goods=getBusinessObject('bill_of_lading/goods',parseJwt().id);
+$appt=getBusinessObject('appointment/bol',$rec.id);
+console.log($goods);
+for(var i=0;i<$goods.length;i++){
+  $("#goods").append('<li>'+$goods[i].Description_of_goods+'</li>');
+}
+if ($appt.length==0){
+  save_method = 'POST';
+  $('#create_button').show();
+  $('#edit_button').hide();
+  $('#id').val(0);
+}else{
   save_method = 'PUT';
-  sdata_model={ "id": "0","billoflading_id": "","trn": "","uba_code": "","passport_number": "","status": "","appointment_date": ""}
-console.log(getBusinessObject('appointment/cypher'));
+  $('#create_button').hide();
+  $('#edit_button').show();  
+  $('#id').val($appt[0].id);
+  $('#date_display').html('Appointment Date : '+getFullDate($appt[0].appointment_date));
+}
+$('#customer_name').html($rec.consignee_name);
+$('#ref_num').html('Reference #: '+$rec.bill_of_lading_number);
+
+function getFullDate($date){
+  $date =''+$date;
+  var d=new Date($date.substr(0,4),pad(numeric($date.substr(4,2))-1,2),pad($date.substr(6,2),2));
+  var x=''+d;
+  return x.substr(0,15);
+}
 function editAppointment() {
             $('#edit_customer').show();
             $('#new_customer').hide();
             save_method = 'PUT';
             $.ajax({
-                url: './api.php/appointment/' + $('#id').val(),
+                url: './app/appointment/' + $('#id').val(),
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
@@ -212,11 +249,12 @@ function editAppointment() {
             });
         }
     function createAppointment(){
-      $('#edit_customer').hide();
+                $('#edit_customer').hide();
                 $('#new_customer').show();
                 save_method = 'POST';
                 //
                 clearForm('#appointment_form');
+                $('#billoflading_id').val(parseJwt().id);
                 $('#appointment_modal').modal('show'); // show bootstrap modal                
                 $('.modal-title').text('Add Appointment'); // Set Title to Bootstrap modal title
     }
@@ -255,13 +293,6 @@ function editAppointment() {
         message: 'TRN is  required and cannot be empty'
       }
     }
- },
- uba_code:{
-   validators: {
-     notEmpty: {
-        message: 'UBA Code is  required and cannot be empty'
-      }
-    }
  }
 }})
                 .on('success.form.bv', function (e) {
@@ -281,15 +312,12 @@ function editAppointment() {
                     if (save_method == 'PUT') {
                         $.ajax({
                             type: "PUT",
-                            url: './api.php/appointment/' + form_data['id'],
+                            url: './app/appointment/' + form_data['id'],
                             data: JSON.stringify(form_data), // serializes the form's elements.
                             success: function (data) {
                                 $('#appointment_modal').modal('hide');
                                 toastr.success('The record was updated successfully', 'Success Alert', { timeOut: 5000 })
-                                $('#classTable').bootstrapTable('updateByUniqueId', {
-                                    id: form_data['id'],
-                                    row: form_data
-                                });
+                                $('#date_display').html('Appointment Date : '+getFullDate(form_data['appointment_date']));
 
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
@@ -301,20 +329,17 @@ function editAppointment() {
                     if (save_method == 'POST') {
                         $.ajax({
                             type: "POST",
-                            url: './api.php/appointment/',
+                            url: './app/appointment/',
                             data: JSON.stringify(form_data), // serializes the form's elements.                        
                             success: function (data) {
                                 var obj = {};
-                                $.extend(true, obj, form_data);
-                                obj.id = data;
-                                obj.actions = '<button onclick="editAppointment(' + data + ',this)" style="margin-left:10px" class="btn btn-primary btn-sm"   data-target="#edit-button" ><i class="glyphicon glyphicon-edit"></i></button>';
-                                obj.actions += '<button onclick="deleteThis(' + data + ',this)" style="margin-left:10px" class="btn btn-danger btn-sm"  data-target="#delete-button" ><i class="glyphicon glyphicon-trash"></i></button>';
-
-                                console.log(obj);
+                                $.extend(true, obj, form_data);                             
                                 $('#appointment_modal').modal('hide');
                                 toastr.success('The record was successfully added', 'Success Alert', { timeOut: 5000 });
-                                $('#classTable').bootstrapTable("append", obj);
-
+                                $('#date_display').html('Appointment Date : '+getFullDate(form_data['appointment_date']));
+                                $('#id').val(data);
+                                $('#create_button').hide();
+                                $('#edit_button').show();
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
                                 handleStandardHttpErrors(xhr, ajaxOptions, thrownError);
@@ -337,6 +362,35 @@ function editAppointment() {
            
 
         });
+
+        function appointmentDateValidation(value, validator) {
+      var d = new Date();
+      var today=''+d.getFullYear()+pad((1 + d.getMonth()), 2)+pad(d.getDate(), 2);
+
+      var saved_appointment= getBusinessObject('appointment',$('#id').val());   
+      console.log($('#appointment_date').val());
+      var date_obj = validDate($('#appointment_date').val());
+      console.log(date_obj);
+      if (!date_obj.valid) {
+          return false;
+      }    
+      if(date_obj.date<today){
+        return  { valid: false, message: 'Appointment date cant be in the past'}
+      }
+      if(numeric(saved_appointment.appointment_date)!=date_obj.date){
+            var system_value= getBusinessObject('system_values/code/max_appt');             
+            var bobj= getBusinessObject('appointment/day_count',date_obj.date)[0] ;
+            console.log(bobj.appointment_count+'  '+numeric(system_value[0].data_value));
+            if(bobj.appointment_count>=numeric(system_value[0].data_value)) {
+               toastr.error('No more appointments can bemade for this date please choos another date', 'ERROR', { timeOut: 5000 })
+               return  { valid: false, message: 'Appointment full for this date'}
+            }
+      }
+     // if (save_method == 'POST') {           
+            
+       // }       
+      return true;
+    };
   </script>
 
 </body>

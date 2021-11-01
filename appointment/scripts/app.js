@@ -297,7 +297,9 @@ function handleStandardHttpErrors(xhr, ajaxOptions, thrownError) {
 		default:
 	}
 }
-
+if (!$('#loginModal').length) {
+	createLoginForm();
+}
 function authenticateUser() {
 	token = ''; saveToken();
 	if (!$('#loginModal').length) {
@@ -307,10 +309,11 @@ function authenticateUser() {
 	$('#login_user_name').focus();
 }
 
-function loginUser() {
+function loginUser($prevent_reload) {
 	var $url = './app/login';
 	if ($("#login_password").val() == '') { return; }
 	if ($("#login_user_name").val() == '') { return; }
+	console.log($("#login_password").val() +" == "+$("#login_user_name").val());
 	var form_data = {};
 	form_data['password'] = btoa($('#login_password').val());
 	form_data['user_name'] = $('#login_user_name').val();
@@ -318,12 +321,17 @@ function loginUser() {
 	$.ajax({
 		type: "POST",
 		url: $url,
+		async:false,
 		dataType: 'json',
 		data: form_data, // serializes the form's elements.                        
 		success: function (data) {
 			token = data.token;
+			console.log(token);
 			saveToken(); 
-			location.reload();
+			console.log($prevent_reload);
+			if(!$prevent_reload){
+			   location.reload();
+		     }
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			$('#login-form').data('bootstrapValidator').updateStatus('login_password', 'INVALID', null);
@@ -898,7 +906,7 @@ function jsDateToDisplay($date) {
 }
 
 
-loadOptions();
+//loadOptions();
 function loadOptions() {
 	opt_list = [];
 	show_dashboard = false;
